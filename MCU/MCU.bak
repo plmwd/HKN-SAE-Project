@@ -1,0 +1,62 @@
+EESchema Schematic File Version 4
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L USER_Microchip_MCU:dsPIC33EP32GP502_SSOP_SOIC U?
+U 1 1 5D1AE2E9
+P 2450 4250
+F 0 "U?" H 2550 6600 50  0000 R CNN
+F 1 "dsPIC33EP32GP502_SSOP_SOIC" H 3250 4150 50  0000 R CNN
+F 2 "" H 2550 6800 50  0001 C CNN
+F 3 "" H 2550 6800 50  0001 C CNN
+	1    2450 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 1800 3250 1450
+Text GLabel 3250 1300 1    50   Input ~ 0
+VDD
+Wire Wire Line
+	3250 1800 3450 1800
+Wire Wire Line
+	3450 1800 3450 1850
+$Comp
+L Device:L L?
+U 1 1 5D1AFDBE
+P 3400 1450
+F 0 "L?" V 3590 1450 50  0000 C CNN
+F 1 "L" V 3499 1450 50  0000 C CNN
+F 2 "" H 3400 1450 50  0001 C CNN
+F 3 "~" H 3400 1450 50  0001 C CNN
+	1    3400 1450
+	0    -1   -1   0   
+$EndComp
+Connection ~ 3250 1450
+Wire Wire Line
+	3250 1450 3250 1300
+Wire Wire Line
+	3550 1850 3550 1450
+$Comp
+L Device:CP1 C?
+U 1 1 5D1B11E5
+P 3650 1700
+F 0 "C?" H 3535 1654 50  0000 R CNN
+F 1 "CP1" H 3535 1745 50  0000 R CNN
+F 2 "" H 3650 1700 50  0001 C CNN
+F 3 "~" H 3650 1700 50  0001 C CNN
+	1    3650 1700
+	-1   0    0    1   
+$EndComp
+$EndSCHEMATC
