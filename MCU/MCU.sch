@@ -8,7 +8,7 @@ Sheet 1 1
 Title "Formula Power Monioring - MCU"
 Date ""
 Rev "1.0"
-Comp "University of Central Florida HKN Zeta Chi"
+Comp "University of Central Florida - HKN Zeta Chi"
 Comment1 ""
 Comment2 ""
 Comment3 ""
