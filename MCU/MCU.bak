@@ -5,10 +5,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "Formula Power Monioring - MCU"
+Title "Formula 1 Power Monioring - MCU"
 Date ""
 Rev "1.0"
-Comp "University of Central Florida HKN Zeta Chi"
+Comp "University of Central Florida - HKN Zeta Chi"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -224,9 +224,9 @@ F 3 "" H 7000 1800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 6500 1200 0    50   Input ~ 0
-CANTX
+CAN_TX
 Text GLabel 6500 1300 0    50   Input ~ 0
-CANRX
+CAN_RX
 Text GLabel 6500 1600 0    50   Input ~ 0
 CAN_STBY
 $Comp
@@ -426,15 +426,15 @@ PGED
 Text GLabel 4850 2500 2    50   Input ~ 0
 PDEC
 Text GLabel 4850 3400 2    50   Input ~ 0
-CANTX
+CAN_TX
 Text GLabel 4850 3500 2    50   Input ~ 0
-CANRX
+CAN_RX
 Text GLabel 4850 3600 2    50   Input ~ 0
 CAN_STBY
 Text GLabel 4850 3000 2    50   Input ~ 0
-PMON_UARTRX
+PMON_UART_RX
 Text GLabel 4850 3100 2    50   Input ~ 0
-PMON_UARTTX
+PMON_UART_TX
 Text GLabel 1700 1800 0    50   Input ~ 0
 PMCLR
 Wire Wire Line
