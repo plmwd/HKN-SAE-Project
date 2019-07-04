@@ -432,9 +432,9 @@ CAN_RX
 Text GLabel 4850 3600 2    50   Input ~ 0
 CAN_STBY
 Text GLabel 4850 3000 2    50   Input ~ 0
-PMON_UART_RX
+PSEN_UART_RX
 Text GLabel 4850 3100 2    50   Input ~ 0
-PMON_UART_TX
+PSEN_UART_TX
 Text GLabel 1700 1800 0    50   Input ~ 0
 PMCLR
 Wire Wire Line
@@ -454,4 +454,14 @@ Wire Wire Line
 	3500 1500 3500 1600
 Wire Wire Line
 	3650 1100 3650 1600
+Text GLabel 4850 2700 2    50   Input ~ 0
+PSEN_EVNT1
+Text GLabel 4850 2200 2    50   Input ~ 0
+PSEN_EVNT2
+Text GLabel 4850 2800 2    50   Input ~ 0
+PSEN_ADC_RST
+Text GLabel 4850 2900 2    50   Input ~ 0
+PSEN_MCLR
+Text GLabel 4850 3200 2    50   Input ~ 0
+PSEN_ZCD
 $EndSCHEMATC
