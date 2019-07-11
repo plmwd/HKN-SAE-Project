@@ -206,9 +206,9 @@ F 3 "" H 7900 4350 50  0001 C CNN
 	1    7900 4350
 	1    0    0    -1  
 $EndComp
-Text Notes 7750 3200 0    50   ~ 0
+Text Notes 9100 3500 0    50   ~ 0
 The exposed pad should be connected to GNDD\n
-Text Notes 5050 3850 0    50   ~ 0
+Text Notes 9850 3650 0    50   ~ 0
 Using internal oscillator\n
 $Comp
 L Sensor_Temperature:MCP9700AT-ETT U?

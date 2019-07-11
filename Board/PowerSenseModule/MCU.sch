@@ -193,10 +193,6 @@ Wire Wire Line
 	7500 1500 7650 1500
 Wire Wire Line
 	7650 1500 7650 1550
-Text GLabel 8300 1250 2    50   Input ~ 0
-CANH
-Text GLabel 8300 1550 2    50   Input ~ 0
-CANL
 $Comp
 L power:GND #PWR0106
 U 1 1 5D1D8E02
@@ -459,4 +455,8 @@ Text Label 9550 1500 2    50   ~ 0
 PGEC
 Text Label 9550 1200 2    50   ~ 0
 PMCLR
+Text HLabel 8300 1250 2    50   Input ~ 0
+CANH
+Text HLabel 8300 1550 2    50   Input ~ 0
+CANL
 $EndSCHEMATC
