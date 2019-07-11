@@ -3,5 +3,4 @@
   (lib (name F1_Power_ICs)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Power-Management/F1_power.lib)(options "")(descr ""))
   (lib (name F1_TVS_Diodes)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Protection/TI_TVS_DIODES.lib)(options "")(descr ""))
   (lib (name F1_Power_Sense)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Sensors/Power_Sense_Microchip.lib)(options "")(descr ""))
-  (lib (name PowerSenseModule-rescue)(type Legacy)(uri ${KIPRJMOD}/PowerSenseModule-rescue.lib)(options "")(descr ""))
 )
