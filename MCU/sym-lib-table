@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name MCU-rescue)(type Legacy)(uri ${KIPRJMOD}/MCU-rescue.lib)(options "")(descr ""))
-)
