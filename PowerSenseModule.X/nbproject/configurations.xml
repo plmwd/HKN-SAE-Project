@@ -25,6 +25,7 @@
         <itemPath>mcc_generated_files/system_types.h</itemPath>
         <itemPath>mcc_generated_files/ecan1.h</itemPath>
         <itemPath>mcc_generated_files/system.h</itemPath>
+        <itemPath>mcc_generated_files/dma.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -51,6 +52,7 @@
         <itemPath>mcc_generated_files/traps.c</itemPath>
         <itemPath>mcc_generated_files/ecan1.c</itemPath>
         <itemPath>mcc_generated_files/uart1.c</itemPath>
+        <itemPath>mcc_generated_files/dma.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -71,7 +73,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.35</languageToolchainVersion>
+        <languageToolchainVersion>1.36</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -116,7 +118,8 @@
         <property key="enable-short-double" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
-        <property key="extra-include-directories" value=""/>
+        <property key="extra-include-directories"
+                  value="..\..\..\..\..\..\Program Files (x86)\Microchip\xc16\v1.36\lib"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -247,6 +250,13 @@
         <property key="periphComp6.gte" value="gt"/>
         <property key="reset.scl" value="false"/>
         <property key="reset.type" value="MCLR"/>
+        <property key="tracecontrol.include.timestamp" value="summarydataenabled"/>
+        <property key="tracecontrol.select" value="0"/>
+        <property key="tracecontrol.stallontracebufferfull" value="false"/>
+        <property key="tracecontrol.timestamp" value="0"/>
+        <property key="tracecontrol.tracebufmax" value="546000"/>
+        <property key="tracecontrol.tracefile" value="defmplabxtrace.log"/>
+        <property key="tracecontrol.traceresetonrun" value="false"/>
         <property key="uart0io.output" value="window"/>
         <property key="uart0io.outputfile" value=""/>
         <property key="uart0io.uartioenabled" value="false"/>
