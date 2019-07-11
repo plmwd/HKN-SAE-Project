@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# MPLAB
+\PowerSenseModule.X\nbproject
+\PowerSenseModule.X\debug
+\PowerSenseModule.X\Makefile
+PowerSenseModule\.X/nbproject/
