@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:PowerSenseModule-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -86,7 +87,7 @@ Wire Wire Line
 Wire Wire Line
 	6850 1700 7450 1700
 $Comp
-L Buck_TI_CUSTOM:Buck_Converter_TPS82150 U?
+L F1_Power_ICs:Buck_Converter_TPS82150 U?
 U 1 1 5D27B15E
 P 4300 1600
 F 0 "U?" H 4350 2065 50  0000 C CNN
@@ -119,7 +120,7 @@ F 3 "~" H 1450 3150 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Diode_TVS_TI_CUSTOM:TVS1400 D?
+L F1_TVS_Diodes:TVS1400 D?
 U 1 1 5D295415
 P 1850 1650
 F 0 "D?" V 1846 1321 50  0000 R CNN
@@ -130,7 +131,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1800 1500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Diode_TVS_TI_CUSTOM:TVS1400 D?
+L F1_TVS_Diodes:TVS1400 D?
 U 1 1 5D295E23
 P 2350 2050
 F 0 "D?" V 2254 1888 50  0000 L CNN
