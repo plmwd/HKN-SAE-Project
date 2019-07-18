@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TVS1400
+D 14-V Flat-Clamp Surge Protection Device
+K Clamp, TVS, Surge
+F http://www.ti.com/lit/ds/symlink/tvs1400.pdf
+$ENDCMP
+#
+#End Doc Library

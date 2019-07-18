@@ -17,6 +17,7 @@
 *.pch
 
 # Libraries
+!\KiCAD-Libraries\*.lib
 *.lib
 *.a
 *.la
