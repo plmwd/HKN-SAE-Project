@@ -459,4 +459,8 @@ Text HLabel 8300 1250 2    50   Input ~ 0
 CANH
 Text HLabel 8300 1550 2    50   Input ~ 0
 CANL
+Text Label 1850 1450 0    50   ~ 0
+3v3
+Text Label 3300 1500 0    50   ~ 0
+3v3
 $EndSCHEMATC

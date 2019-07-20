@@ -542,4 +542,6 @@ Wire Wire Line
 	5700 3150 6100 3150
 Wire Wire Line
 	5850 3650 6100 3650
+Text GLabel 2000 1250 0    50   Input ~ 0
+3.3V
 $EndSCHEMATC
