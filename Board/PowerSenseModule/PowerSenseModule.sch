@@ -86,8 +86,6 @@ Wire Wire Line
 	2700 6200 2700 4200
 Wire Wire Line
 	2700 4200 3150 4200
-Text Notes 850  800  0    50   ~ 0
-Live_x_y\nx     -P=Protected     -S=Sensed\ny     -IN     -OUT
 Wire Wire Line
 	1400 1550 1700 1550
 $Comp
@@ -112,64 +110,30 @@ F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1400 1500 50  0001 C CNN
 	1    1450 1650
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	1950 2800 1200 2800
-$Comp
-L Connector:Conn_01x04_Male J1
-U 1 1 5D2865FC
-P 1000 2700
-F 0 "J1" H 1108 2981 50  0000 C CNN
-F 1 "Power IO" H 1108 2890 50  0000 C CNN
-F 2 "" H 1000 2700 50  0001 C CNN
-F 3 "~" H 1000 2700 50  0001 C CNN
-	1    1000 2700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1400 2600 1200 2600
-Wire Wire Line
-	1400 1550 1400 2600
-Wire Wire Line
-	1400 2700 1200 2700
 $Comp
 L Connector:Conn_01x02_Male J2
 U 1 1 5D28FA5A
 P 1000 4500
 F 0 "J2" H 1108 4681 50  0000 C CNN
 F 1 "CAN IO" H 1108 4590 50  0000 C CNN
-F 2 "" H 1000 4500 50  0001 C CNN
+F 2 "Connector_TE:DT13-2P" H 1000 4500 50  0001 C CNN
 F 3 "~" H 1000 4500 50  0001 C CNN
 	1    1000 4500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1200 2900 1400 2900
 $Comp
 L Device:C C6
 U 1 1 5D3208C5
 P 4850 1950
 F 0 "C6" H 4965 1996 50  0000 L CNN
 F 1 "10uF" H 4965 1905 50  0000 L CNN
-F 2 "" H 4888 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4888 1800 50  0001 C CNN
 F 3 "~" H 4850 1950 50  0001 C CNN
 	1    4850 1950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	6300 2150 6300 2450
-Wire Wire Line
-	1400 2700 1400 2900
-$Comp
-L power:GND #PWR01
-U 1 1 5D342EEF
-P 1400 3000
-F 0 "#PWR01" H 1400 2750 50  0001 C CNN
-F 1 "GND" H 1405 2827 50  0000 C CNN
-F 2 "" H 1400 3000 50  0001 C CNN
-F 3 "" H 1400 3000 50  0001 C CNN
-	1    1400 3000
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR02
 U 1 1 5D348833
@@ -205,17 +169,6 @@ F 3 "" H 8200 1350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8200 1350 8200 1550
-$Comp
-L F1_Power_ICs:ZLDO117 U2
-U 1 1 5D37AF29
-P 8950 1550
-F 0 "U2" H 8650 1800 39  0000 C CNN
-F 1 "ZLDO117" H 8975 1800 39  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223" H 8800 1900 20  0001 C CNN
-F 3 "https://www.diodes.com/assets/Datasheets/ZLDO1117Q.pdf" H 8800 1900 20  0001 C CNN
-	1    8950 1550
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1200 4500 3150 4500
 Wire Wire Line
@@ -254,7 +207,7 @@ U 1 1 5D33425E
 P 5500 2450
 F 0 "C7" H 5615 2496 50  0000 L CNN
 F 1 "430p" H 5615 2405 50  0000 L CNN
-F 2 "" H 5538 2300 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5538 2300 50  0001 C CNN
 F 3 "~" H 5500 2450 50  0001 C CNN
 	1    5500 2450
 	1    0    0    -1  
@@ -281,8 +234,6 @@ Wire Wire Line
 Connection ~ 7650 1550
 Wire Wire Line
 	7650 1550 7650 1600
-Text Notes 8250 2100 0    35   ~ 0
-ceramic, 3.7mOhm ESR\n
 Wire Wire Line
 	8200 2300 8200 2100
 $Comp
@@ -304,8 +255,8 @@ L Device:C C8
 U 1 1 5D369605
 P 8200 1950
 F 0 "C8" H 8315 1996 50  0000 L CNN
-F 1 "47u" H 8315 1905 50  0000 L CNN
-F 2 "" H 8238 1800 50  0001 C CNN
+F 1 "47uF" H 8315 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8238 1800 50  0001 C CNN
 F 3 "~" H 8200 1950 50  0001 C CNN
 	1    8200 1950
 	1    0    0    -1  
@@ -338,7 +289,7 @@ U 1 1 5D350E98
 P 7650 2150
 F 0 "R3" H 7718 2196 50  0000 L CNN
 F 1 "100k" H 7718 2105 50  0000 L CNN
-F 2 "" V 7690 2140 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 2140 50  0001 C CNN
 F 3 "~" H 7650 2150 50  0001 C CNN
 	1    7650 2150
 	1    0    0    -1  
@@ -349,7 +300,7 @@ U 1 1 5D350393
 P 7650 1750
 F 0 "R2" H 7718 1796 50  0000 L CNN
 F 1 "523k" H 7718 1705 50  0000 L CNN
-F 2 "" V 7690 1740 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 1740 50  0001 C CNN
 F 3 "~" H 7650 1750 50  0001 C CNN
 	1    7650 1750
 	1    0    0    -1  
@@ -371,7 +322,7 @@ U 1 1 5D32FCBE
 P 6900 2000
 F 0 "R1" H 6968 2046 50  0000 L CNN
 F 1 "100k" H 6968 1955 50  0000 L CNN
-F 2 "" V 6940 1990 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6940 1990 50  0001 C CNN
 F 3 "~" H 6900 2000 50  0001 C CNN
 	1    6900 2000
 	1    0    0    -1  
@@ -383,7 +334,7 @@ U 1 1 5D3344CE
 P 4400 1950
 F 0 "C5" H 4515 1996 50  0000 L CNN
 F 1 "4.7uF" H 4515 1905 50  0000 L CNN
-F 2 "" H 4438 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4438 1800 50  0001 C CNN
 F 3 "~" H 4400 1950 50  0001 C CNN
 	1    4400 1950
 	1    0    0    -1  
@@ -394,7 +345,7 @@ U 1 1 5D334C90
 P 3950 1950
 F 0 "C4" H 4065 1996 50  0000 L CNN
 F 1 "0.1uF" H 4065 1905 50  0000 L CNN
-F 2 "" H 3988 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3988 1800 50  0001 C CNN
 F 3 "~" H 3950 1950 50  0001 C CNN
 	1    3950 1950
 	1    0    0    -1  
@@ -405,7 +356,7 @@ U 1 1 5D334CE0
 P 3450 1950
 F 0 "C3" H 3565 1996 50  0000 L CNN
 F 1 "0.01uF" H 3565 1905 50  0000 L CNN
-F 2 "" H 3488 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3488 1800 50  0001 C CNN
 F 3 "~" H 3450 1950 50  0001 C CNN
 	1    3450 1950
 	1    0    0    -1  
@@ -416,7 +367,7 @@ U 1 1 5D335009
 P 3000 1950
 F 0 "C2" H 3115 1996 50  0000 L CNN
 F 1 "470pF" H 3115 1905 50  0000 L CNN
-F 2 "" H 3038 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3038 1800 50  0001 C CNN
 F 3 "~" H 3000 1950 50  0001 C CNN
 	1    3000 1950
 	1    0    0    -1  
@@ -427,7 +378,7 @@ U 1 1 5D33534D
 P 2550 1950
 F 0 "C1" H 2665 1996 50  0000 L CNN
 F 1 "4.7pF" H 2665 1905 50  0000 L CNN
-F 2 "" H 2588 1800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2588 1800 50  0001 C CNN
 F 3 "~" H 2550 1950 50  0001 C CNN
 	1    2550 1950
 	1    0    0    -1  
@@ -506,9 +457,6 @@ Wire Wire Line
 Connection ~ 3700 2300
 Wire Wire Line
 	3700 2300 3950 2300
-Connection ~ 1400 2900
-Wire Wire Line
-	1400 2900 1400 3000
 Wire Wire Line
 	2050 6650 2050 1550
 Wire Wire Line
@@ -517,67 +465,188 @@ Connection ~ 2050 1550
 Wire Wire Line
 	2050 1550 2550 1550
 Wire Wire Line
+	1950 6950 3200 6950
+Wire Wire Line
 	1950 6950 1950 2800
 Wire Wire Line
-	1950 6950 3200 6950
-Text Notes 700  2600 0    50   ~ 0
-Live_IN\n
+	1950 2800 1200 2800
+Wire Wire Line
+	1400 1550 1400 2600
+Wire Wire Line
+	1400 2600 1200 2600
+Wire Wire Line
+	1400 2700 1200 2700
+Connection ~ 1400 2900
+Wire Wire Line
+	1400 2700 1400 2900
+Wire Wire Line
+	1200 2900 1400 2900
+Wire Wire Line
+	1400 2900 1400 3000
+$Comp
+L power:GND #PWR01
+U 1 1 5D342EEF
+P 1400 3000
+F 0 "#PWR01" H 1400 2750 50  0001 C CNN
+F 1 "GND" H 1405 2827 50  0000 C CNN
+F 2 "" H 1400 3000 50  0001 C CNN
+F 3 "" H 1400 3000 50  0001 C CNN
+	1    1400 3000
+	1    0    0    -1  
+$EndComp
+Text Notes 500  2900 0    50   ~ 0
+Neutral_OUT
 Text Notes 650  2900 0    50   ~ 0
 Live_OUT\n\n
 Text Notes 550  2700 0    50   ~ 0
 Neutral_IN\n
-Text Notes 500  2900 0    50   ~ 0
-Neutral_OUT
+Text Notes 700  2600 0    50   ~ 0
+Live_IN\n
 $Comp
-L power:GND #PWR?
-U 1 1 5D33134A
-P 8950 2300
-F 0 "#PWR?" H 8950 2050 50  0001 C CNN
-F 1 "GND" H 8955 2127 50  0000 C CNN
-F 2 "" H 8950 2300 50  0001 C CNN
-F 3 "" H 8950 2300 50  0001 C CNN
-	1    8950 2300
+L Connector:Conn_01x04_Male J1
+U 1 1 5D2865FC
+P 1000 2700
+F 0 "J1" H 1108 2981 50  0000 C CNN
+F 1 "Power IO" H 1108 2890 50  0000 C CNN
+F 2 "Connector_TE:DT13-4P" H 1000 2700 50  0001 C CNN
+F 3 "~" H 1000 2700 50  0001 C CNN
+	1    1000 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Net-Tie_3_Tee NT1
+U 1 1 5D4008D3
+P 10750 800
+F 0 "NT1" H 10750 981 50  0000 C CNN
+F 1 "Net-Tie_3_Tee" H 10750 890 50  0000 C CNN
+F 2 "" H 10750 800 50  0001 C CNN
+F 3 "~" H 10750 800 50  0001 C CNN
+	1    10750 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR013
+U 1 1 5D401FC5
+P 10750 900
+F 0 "#PWR013" H 10750 650 50  0001 C CNN
+F 1 "GNDD" H 10754 745 50  0000 C CNN
+F 2 "" H 10750 900 50  0001 C CNN
+F 3 "" H 10750 900 50  0001 C CNN
+	1    10750 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR014
+U 1 1 5D40268A
+P 11000 900
+F 0 "#PWR014" H 11000 650 50  0001 C CNN
+F 1 "GNDA" H 11005 727 50  0000 C CNN
+F 2 "" H 11000 900 50  0001 C CNN
+F 3 "" H 11000 900 50  0001 C CNN
+	1    11000 900 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8950 1850 8950 2100
+	11000 900  11000 800 
 Wire Wire Line
-	8500 1550 8200 1550
-Wire Wire Line
-	9450 1550 9500 1550
-Connection ~ 8950 2100
-Wire Wire Line
-	8950 2100 8950 2300
-Wire Wire Line
-	9500 2100 8950 2100
-Connection ~ 9500 1550
-Wire Wire Line
-	9300 1550 9450 1550
+	11000 800  10850 800 
 $Comp
-L Device:C C9
-U 1 1 5D39E84F
-P 9500 1900
-F 0 "C9" H 9615 1946 50  0000 L CNN
-F 1 "100uF" H 9615 1855 50  0000 L CNN
-F 2 "" H 9538 1750 50  0001 C CNN
-F 3 "~" H 9500 1900 50  0001 C CNN
-	1    9500 1900
+L power:GND #PWR012
+U 1 1 5D405EBA
+P 10500 900
+F 0 "#PWR012" H 10500 650 50  0001 C CNN
+F 1 "GND" H 10505 727 50  0000 C CNN
+F 2 "" H 10500 900 50  0001 C CNN
+F 3 "" H 10500 900 50  0001 C CNN
+	1    10500 900 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9500 1550 9500 1750
+	10500 900  10500 800 
 Wire Wire Line
-	9500 2050 9500 2100
+	10500 800  10650 800 
+Text Notes 6300 5250 0    59   ~ 0
+NOTES
+Text Notes 6400 5600 0    39   ~ 0
+The grounds should have their own planes and the power, digital, and analog sections should tried to be kept separate - different regions of the board
+Text Notes 6400 5750 0    39   ~ 0
+Bypass capacitors need to be placed close to the IC and must be physically between the power and IC\n
+Text Notes 6400 5900 0    39   ~ 0
+The TVS (zener) diodes need to be placed physically before the capacitors and before any connections to power sensor\n
+Text Notes 6400 5450 0    39   ~ 0
+The different grounds should only be connected at one junction using the net tie
+Text Notes 6400 6050 0    39   ~ 0
+Temp IC should be close to the power sensor\n
+Wire Wire Line
+	9950 1350 9950 1550
 $Comp
-L power:+3.3V #PWR?
+L power:+3.3V #PWR010
 U 1 1 5D3A49D9
-P 9500 1550
-F 0 "#PWR?" H 9500 1400 50  0001 C CNN
-F 1 "+3.3V" V 9515 1678 50  0000 L CNN
-F 2 "" H 9500 1550 50  0001 C CNN
-F 3 "" H 9500 1550 50  0001 C CNN
-	1    9500 1550
+P 9950 1350
+F 0 "#PWR010" H 9950 1200 50  0001 C CNN
+F 1 "+3.3V" V 9965 1478 50  0000 L CNN
+F 2 "" H 9950 1350 50  0001 C CNN
+F 3 "" H 9950 1350 50  0001 C CNN
+	1    9950 1350
 	1    0    0    -1  
 $EndComp
-Connection ~ 9450 1550
+Wire Wire Line
+	9950 1550 9950 1750
+Connection ~ 9950 1550
+Wire Wire Line
+	9900 1550 9950 1550
+$Comp
+L power:GND #PWR09
+U 1 1 5D33134A
+P 9400 2300
+F 0 "#PWR09" H 9400 2050 50  0001 C CNN
+F 1 "GND" H 9405 2127 50  0000 C CNN
+F 2 "" H 9400 2300 50  0001 C CNN
+F 3 "" H 9400 2300 50  0001 C CNN
+	1    9400 2300
+	1    0    0    -1  
+$EndComp
+Text Notes 8250 2100 0    35   ~ 0
+ceramic, 3.7mOhm ESR\n
+$Comp
+L F1_Power_ICs:ZLDO117 U2
+U 1 1 5D37AF29
+P 9400 1550
+F 0 "U2" H 9100 1800 39  0000 C CNN
+F 1 "ZLDO117" H 9425 1800 39  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223" H 9250 1900 20  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ZLDO1117Q.pdf" H 9250 1900 20  0001 C CNN
+	1    9400 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9400 1850 9400 2300
+$Comp
+L Device:CP C9
+U 1 1 5D424F64
+P 9950 1900
+F 0 "C9" H 10068 1946 50  0000 L CNN
+F 1 "150uF" H 10068 1855 50  0000 L CNN
+F 2 "" H 9988 1750 50  0001 C CNN
+F 3 "~" H 9950 1900 50  0001 C CNN
+	1    9950 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 5D425C0E
+P 9950 2300
+F 0 "#PWR011" H 9950 2050 50  0001 C CNN
+F 1 "GND" H 9955 2127 50  0000 C CNN
+F 2 "" H 9950 2300 50  0001 C CNN
+F 3 "" H 9950 2300 50  0001 C CNN
+	1    9950 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 2300 9950 2050
+Text Notes 10050 2050 0    39   ~ 0
+Electrolytic low ESR
+Wire Wire Line
+	8200 1550 8950 1550
 $EndSCHEMATC

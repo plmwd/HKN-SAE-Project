@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Connector_TE)(type KiCad)(uri ${CUSTOM_FOOTPRINT_DIR}/Connectors/Connector_TE.pretty)(options "")(descr ""))
+)
