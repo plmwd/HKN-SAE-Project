@@ -1,4 +1,4 @@
-15941845555436620
+-9207431753520105168
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -59226,13 +59226,6 @@ X2SON-8 1.4x1mm Pitch0.35mm
 0
 8
 8
-Package_SON_Custom
-WSON-6-2NET-1EP_2x2mm_P0.65mm_EP1x1.6mm
-WSON, 6 Pin (http://www.ti.com/lit/ds/symlink/tps61040.pdf#page=35), generated with kicad-footprint-generator ipc_noLead_generator.py
-WSON NoLead
-0
-9
-3
 Package_SO_J-Lead
 TSOC-6_3.76x3.94mm_P1.27mm
 Maxim Integrated TSOC-6 D6+1,https://datasheets.maximintegrated.com/en/ds/DS2401.pdf, https://pdfserv.maximintegrated.com/land_patterns/90-0321.PDF
