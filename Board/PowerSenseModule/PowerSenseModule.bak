@@ -183,7 +183,7 @@ U 1 1 5D32B50B
 P 6300 1750
 F 0 "U1" H 6300 2217 50  0000 C CNN
 F 1 "TPS82150" H 6300 2126 50  0000 C CNN
-F 2 "Package_LGA:Texas_MicroSiP-8-1EP_2.8x3.0mm_P0.65mm_EP1.1x1.9mm_SMD_ThermalVias" H 6300 1100 50  0001 C CNN
+F 2 "Package_LGA:Texas_SIL0008D_MicroSiP-8-1EP_2.8x3mm_P0.65mm_EP1.1x1.9mm" H 6300 1100 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/tps82150.pdf" H 6300 1000 50  0001 C CNN
 	1    6300 1750
 	1    0    0    -1  
