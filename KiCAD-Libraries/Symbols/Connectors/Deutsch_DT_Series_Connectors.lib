@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# DT13-4P
+#
+DEF DT13-4P J 0 40 Y Y 1 F N
+F0 "J" -200 501 50 H V L BNN
+F1 "DT13-4P" -200 -600 50 H V L BNN
+F2 "TE_DT13-4P" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "DT13-4P" 0 0 50 H I L BNN
+F5 "DT13, 4 way header" 0 0 50 H I L BNN
+F6 "https://www.te.com/usa-en/product-DT13-4P.html?te_bu=Cor&te_type=disp&te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&elqCampaignId=32493" 0 0 50 H I L BNN
+F7 "None" 0 0 50 H I L BNN
+F8 "TE Connectivity" 0 0 50 H I L BNN
+F9 "https://www.digikey.com/product-detail/en/te-connectivity-deutsch-connectors/DT13-4P/1734-1024-ND/6566588?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol" 0 0 50 H I L BNN
+F10 "1734-1024-ND" 0 0 50 H I L BNN
+DRAW
+P 2 0 0 10 -200 -400 200 -400 N
+P 2 0 0 10 -200 400 -200 -400 N
+P 2 0 0 10 200 -400 200 400 N
+P 2 0 0 10 200 400 -200 400 N
+X 1 1 -400 300 200 R 40 40 0 0 P
+X 2 2 -400 100 200 R 40 40 0 0 P
+X 3 3 -400 -100 200 R 40 40 0 0 P
+X 4 4 -400 -300 200 R 40 40 0 0 P
+ENDDRAW
+ENDDEF
+#
+#End Library
