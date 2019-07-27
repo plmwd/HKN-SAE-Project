@@ -20,7 +20,7 @@ U 1 1 5D1B11E5
 P 4900 1750
 F 0 "C15" H 4785 1704 50  0000 R CNN
 F 1 "10uF" H 4785 1795 50  0000 R CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-6032-28_Kemet-C_Pad2.25x2.35mm_HandSolder" H 4900 1750 50  0001 C CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3528-12_Kemet-T_Pad1.50x2.35mm_HandSolder" H 4900 1750 50  0001 C CNN
 F 3 "~" H 4900 1750 50  0001 C CNN
 	1    4900 1750
 	-1   0    0    1   
