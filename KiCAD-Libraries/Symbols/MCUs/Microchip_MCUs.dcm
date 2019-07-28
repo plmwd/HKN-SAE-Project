@@ -4,4 +4,9 @@ $CMP dsPIC33EP32GP502_QFN
 F http://ww1.microchip.com/downloads/en/DeviceDoc/70000657H.pdf
 $ENDCMP
 #
+$CMP dsPIC33EV32GM102
+D SSOP28 16bit dsPIC MCU
+F http://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EVXXXGM00X-10X-Family-Data-Sheet-DS70005144H.pdf
+$ENDCMP
+#
 #End Doc Library

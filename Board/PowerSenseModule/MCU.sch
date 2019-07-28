@@ -17,17 +17,17 @@ $EndDescr
 $Comp
 L Device:CP1 C15
 U 1 1 5D1B11E5
-P 4900 1750
-F 0 "C15" H 4785 1704 50  0000 R CNN
-F 1 "10uF" H 4785 1795 50  0000 R CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3528-12_Kemet-T_Pad1.50x2.35mm_HandSolder" H 4900 1750 50  0001 C CNN
-F 3 "~" H 4900 1750 50  0001 C CNN
-	1    4900 1750
+P 4950 1500
+F 0 "C15" H 4835 1454 50  0000 R CNN
+F 1 "10uF" H 4835 1545 50  0000 R CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3528-12_Kemet-T_Pad1.50x2.35mm_HandSolder" H 4950 1500 50  0001 C CNN
+F 3 "~" H 4950 1500 50  0001 C CNN
+	1    4950 1500
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	4750 1800 4600 1800
-Text Notes 5000 1900 0    50   ~ 0
+	4800 1550 4650 1550
+Text Notes 5050 1650 0    50   ~ 0
 tantalum, < 1 Ohm ESR\n
 $Comp
 L Device:R_US R4
@@ -80,12 +80,6 @@ F 3 "~" H 2950 2550 50  0001 C CNN
 	1    2950 2550
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4400 4300 4400 4500
-Wire Wire Line
-	4400 4500 4550 4500
-Wire Wire Line
-	4550 4500 4550 4300
 Text Notes 1800 3000 0    50   ~ 0
 Capacitor disconnected when programming\n
 $Comp
@@ -143,12 +137,12 @@ $EndComp
 $Comp
 L power:+3.3V #PWR022
 U 1 1 5D1E7EFD
-P 4600 1250
-F 0 "#PWR022" H 4600 1100 50  0001 C CNN
-F 1 "+3.3V" H 4615 1423 50  0000 C CNN
-F 2 "" H 4600 1250 50  0001 C CNN
-F 3 "" H 4600 1250 50  0001 C CNN
-	1    4600 1250
+P 4650 1000
+F 0 "#PWR022" H 4650 850 50  0001 C CNN
+F 1 "+3.3V" H 4665 1173 50  0000 C CNN
+F 2 "" H 4650 1000 50  0001 C CNN
+F 3 "" H 4650 1000 50  0001 C CNN
+	1    4650 1000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -186,8 +180,6 @@ F 3 "~" H 2000 5250 50  0001 C CNN
 	1    2000 5250
 	1    0    0    -1  
 $EndComp
-Text Notes 3200 5000 0    50   ~ 0
-Close to CAN transceiver
 $Comp
 L Device:C C13
 U 1 1 5D1E97D0
@@ -251,23 +243,12 @@ Wire Wire Line
 	8350 2500 8200 2500
 Wire Wire Line
 	2050 2100 2950 2100
-$Comp
-L F1_Microchip_MCUs:dsPIC33EP32GP502_QFN U3
-U 1 1 5D1D3BA4
-P 3550 4200
-F 0 "U3" H 3406 5346 50  0000 R CNN
-F 1 "dsPIC33EP32GP502_QFN" H 3406 5255 50  0000 R CNN
-F 2 "Package_DFN_QFN:QFN-28-1EP_6x6mm_P0.65mm_EP4.25x4.25mm_ThermalVias" H 4000 6850 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70000657H.pdf" H 4000 6850 50  0001 C CNN
-	1    3550 4200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	4600 1800 4600 1900
+	4650 1550 4650 1650
 Wire Wire Line
-	4750 1800 4750 1900
+	4800 1550 4800 1650
 Wire Wire Line
-	4600 1250 4600 1800
+	4650 1000 4650 1550
 Wire Wire Line
 	9000 3750 9150 3750
 Wire Wire Line
@@ -280,31 +261,13 @@ Wire Wire Line
 	2950 5400 3150 5400
 Wire Wire Line
 	2950 5100 3150 5100
-Text HLabel 6750 2500 2    50   Input ~ 0
-PSEN_EVENT2
-Wire Wire Line
-	7850 3800 5950 3800
-Wire Wire Line
-	7700 3900 5950 3900
-Text HLabel 6750 3000 2    50   Input ~ 0
-PSEN_EVENT1
-Text HLabel 6750 3100 2    50   Input ~ 0
-PSEN_ADC_RST
-Text HLabel 6750 3200 2    50   Input ~ 0
-PSEN_MCLR
-Text HLabel 6750 3300 2    50   Input ~ 0
-PSEN_UART_RX
-Text HLabel 6750 3400 2    50   Input ~ 0
-PSEN_UART_TX
-Text HLabel 6750 3500 2    50   Input ~ 0
-PSEN_ZCD
 Wire Wire Line
 	7700 4100 7850 4100
 Text HLabel 9650 3750 2    50   Input ~ 0
 CANH
 Text HLabel 9650 4050 2    50   Input ~ 0
 CANL
-Connection ~ 4600 1800
+Connection ~ 4650 1550
 Connection ~ 1700 5100
 Wire Wire Line
 	1700 5100 2000 5100
@@ -324,23 +287,7 @@ Connection ~ 9150 4050
 Wire Wire Line
 	9150 4050 9650 4050
 Wire Wire Line
-	5950 3700 7850 3700
-Wire Wire Line
 	7700 3900 7700 4100
-Wire Wire Line
-	6750 2500 5950 2500
-Wire Wire Line
-	6750 3000 5950 3000
-Wire Wire Line
-	6750 3100 5950 3100
-Wire Wire Line
-	6750 3200 5950 3200
-Wire Wire Line
-	6750 3300 5950 3300
-Wire Wire Line
-	6750 3400 5950 3400
-Wire Wire Line
-	6750 3500 5950 3500
 Wire Wire Line
 	8200 2500 8200 2800
 Wire Wire Line
@@ -353,23 +300,9 @@ Wire Wire Line
 Wire Wire Line
 	7600 2600 7600 2800
 Wire Wire Line
-	5950 2800 7600 2800
-Wire Wire Line
 	8350 2700 7700 2700
 Wire Wire Line
 	7700 2700 7700 2900
-Wire Wire Line
-	5950 2900 7700 2900
-Text Notes 6050 3700 0    50   ~ 0
-CAN_TX\n
-Text Notes 6050 3800 0    50   ~ 0
-CAN_RX\n
-Text Notes 6050 3900 0    50   ~ 0
-CAN_STBY
-Text Notes 6050 2800 0    50   ~ 0
-PDEC
-Text Notes 6050 2900 0    50   ~ 0
-PGEC
 Wire Wire Line
 	2050 2100 2050 700 
 Wire Wire Line
@@ -384,74 +317,6 @@ Text Notes 8200 2700 0    50   ~ 0
 PGEC
 Text Notes 8200 2300 0    50   ~ 0
 MCLR
-Wire Wire Line
-	5950 2100 6100 2100
-Wire Wire Line
-	6100 2100 6100 2200
-Wire Wire Line
-	5950 2200 6100 2200
-Connection ~ 6100 2200
-Wire Wire Line
-	6100 2200 6100 2300
-Wire Wire Line
-	5950 2300 6100 2300
-Connection ~ 6100 2300
-Wire Wire Line
-	6100 2300 6100 2400
-Wire Wire Line
-	5950 2400 6100 2400
-Connection ~ 6100 2400
-Wire Wire Line
-	6100 2400 6100 2600
-Wire Wire Line
-	5950 2600 6100 2600
-Connection ~ 6100 2600
-Wire Wire Line
-	6100 2600 6100 2700
-Wire Wire Line
-	5950 2700 6100 2700
-Connection ~ 6100 2700
-Wire Wire Line
-	6100 2700 6100 3600
-Wire Wire Line
-	5950 3600 6100 3600
-Connection ~ 6100 3600
-Wire Wire Line
-	6100 3600 6100 4000
-Wire Wire Line
-	5950 4000 6100 4000
-Connection ~ 6100 4000
-Wire Wire Line
-	6100 4000 6100 4100
-Wire Wire Line
-	5950 4100 6100 4100
-Connection ~ 6100 4100
-Wire Wire Line
-	6100 4100 6100 4350
-$Comp
-L Device:R_US R6
-U 1 1 5D3BE01C
-P 6100 4500
-F 0 "R6" H 6168 4546 50  0000 L CNN
-F 1 "10k" H 6168 4455 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6140 4490 50  0001 C CNN
-F 3 "~" H 6100 4500 50  0001 C CNN
-	1    6100 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6100 4650 6100 4750
-$Comp
-L power:GNDD #PWR026
-U 1 1 5D3C467D
-P 6100 4750
-F 0 "#PWR026" H 6100 4500 50  0001 C CNN
-F 1 "GNDD" H 6104 4595 50  0000 C CNN
-F 2 "" H 6100 4750 50  0001 C CNN
-F 3 "" H 6100 4750 50  0001 C CNN
-	1    6100 4750
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GNDD #PWR028
 U 1 1 5D3C46D6
@@ -463,44 +328,6 @@ F 3 "" H 8200 2850 50  0001 C CNN
 	1    8200 2850
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:GNDD #PWR021
-U 1 1 5D3EDC9C
-P 4550 4500
-F 0 "#PWR021" H 4550 4250 50  0001 C CNN
-F 1 "GNDD" H 4554 4345 50  0000 C CNN
-F 2 "" H 4550 4500 50  0001 C CNN
-F 3 "" H 4550 4500 50  0001 C CNN
-	1    4550 4500
-	1    0    0    -1  
-$EndComp
-Connection ~ 4550 4500
-$Comp
-L power:GNDD #PWR024
-U 1 1 5D3F3C7A
-P 4850 4500
-F 0 "#PWR024" H 4850 4250 50  0001 C CNN
-F 1 "GNDD" H 4854 4345 50  0000 C CNN
-F 2 "" H 4850 4500 50  0001 C CNN
-F 3 "" H 4850 4500 50  0001 C CNN
-	1    4850 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4850 4500 4850 4300
-$Comp
-L power:GNDA #PWR023
-U 1 1 5D3F656F
-P 4700 4700
-F 0 "#PWR023" H 4700 4450 50  0001 C CNN
-F 1 "GNDA" H 4705 4527 50  0000 C CNN
-F 2 "" H 4700 4700 50  0001 C CNN
-F 3 "" H 4700 4700 50  0001 C CNN
-	1    4700 4700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4700 4700 4700 4300
 $Comp
 L power:GNDD #PWR020
 U 1 1 5D3FABB0
@@ -526,12 +353,12 @@ $EndComp
 $Comp
 L power:GNDD #PWR025
 U 1 1 5D3FBC0D
-P 4900 1600
-F 0 "#PWR025" H 4900 1350 50  0001 C CNN
-F 1 "GNDD" H 4904 1445 50  0000 C CNN
-F 2 "" H 4900 1600 50  0001 C CNN
-F 3 "" H 4900 1600 50  0001 C CNN
-	1    4900 1600
+P 4950 1350
+F 0 "#PWR025" H 4950 1100 50  0001 C CNN
+F 1 "GNDD" H 4954 1195 50  0000 C CNN
+F 2 "" H 4950 1350 50  0001 C CNN
+F 3 "" H 4950 1350 50  0001 C CNN
+	1    4950 1350
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -567,4 +394,17 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/MCP2542FD-4FD-MCP2542WFD-4W
 	1    8350 3900
 	1    0    0    -1  
 $EndComp
+$Comp
+L F1_Microchip_MCUs:dsPIC33EV32GM102 U?
+U 1 1 5D3ED3E3
+P 4900 5350
+F 0 "U?" H 3600 6650 50  0000 R CNN
+F 1 "dsPIC33EV32GM102" H 3650 6550 50  0000 R CNN
+F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 4900 5350 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EVXXXGM00X-10X-Family-Data-Sheet-DS70005144H.pdf" H 4900 5350 50  0001 C CNN
+	1    4900 5350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 2100 3450 2100
 $EndSCHEMATC
