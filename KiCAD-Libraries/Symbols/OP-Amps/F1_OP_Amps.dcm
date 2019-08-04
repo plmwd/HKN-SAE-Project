@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NCV2007x
+D 4 OP Amp Rail-to-Rail
+K OP Amp
+F https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF
+$ENDCMP
+#
+#End Doc Library
