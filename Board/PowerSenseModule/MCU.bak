@@ -128,8 +128,6 @@ PDEC
 Wire Wire Line
 	8875 1375 9275 1375
 Wire Wire Line
-	975  800  5075 800 
-Wire Wire Line
 	975  1900 975  800 
 Wire Wire Line
 	9175 1875 9175 1925
@@ -397,8 +395,6 @@ F 3 "~" H 3275 1250 50  0001 C CNN
 	1    3275 1250
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	8875 1125 8875 1375
 Wire Wire Line
 	8500 2400 8500 1675
 Wire Wire Line
@@ -913,4 +909,8 @@ Wire Wire Line
 Connection ~ 3125 4475
 Wire Wire Line
 	3125 4475 3350 4475
+Wire Wire Line
+	975  800  8875 800 
+Wire Wire Line
+	8875 800  8875 1375
 $EndSCHEMATC
