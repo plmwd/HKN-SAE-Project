@@ -421,7 +421,7 @@ U 1 1 5D49D215
 P 900 6025
 F 0 "J4" H 1008 6206 50  0000 C CNN
 F 1 "Conn_01x02_Male" H 1008 6115 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical_SMD_Pin1Left" H 900 6025 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 900 6025 50  0001 C CNN
 F 3 "~" H 900 6025 50  0001 C CNN
 	1    900  6025
 	1    0    0    -1  

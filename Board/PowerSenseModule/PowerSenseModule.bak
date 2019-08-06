@@ -514,10 +514,10 @@ Wire Wire Line
 Wire Wire Line
 	1625 3100 1200 3100
 $Comp
-L Connector:Conn_01x06_Male J?
+L Connector:Conn_01x06_Male J1
 U 1 1 5D4A20AB
 P 1000 2800
-F 0 "J?" H 1108 3181 50  0000 C CNN
+F 0 "J1" H 1108 3181 50  0000 C CNN
 F 1 "Conn_01x06_Male" H 1108 3090 50  0000 C CNN
 F 2 "Connector_TE:DT13-6P" H 1000 2800 50  0001 C CNN
 F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FDT13-4P%7FC%7Fpdf%7FEnglish%7FENG_CD_DT13-4P_C.pdf%7FDT13-4P" H 1000 2800 50  0001 C CNN
