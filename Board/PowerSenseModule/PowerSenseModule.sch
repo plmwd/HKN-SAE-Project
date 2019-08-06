@@ -14,21 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L Connector:Conn_01x02_Male J2
-U 1 1 5D28FA5A
-P 1000 4500
-F 0 "J2" H 1108 4681 50  0000 C CNN
-F 1 "CAN IO" H 1108 4590 50  0000 C CNN
-F 2 "Connector_TE:DT13-6P" H 1000 4500 50  0001 C CNN
-F 3 "~" H 1000 4500 50  0001 C CNN
-	1    1000 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1200 4600 1250 4600
-Wire Wire Line
-	1250 4600 1250 4650
 Wire Wire Line
 	1950 2800 1200 2800
 Wire Wire Line
@@ -41,19 +26,19 @@ Wire Wire Line
 Wire Wire Line
 	1200 2900 1400 2900
 Wire Wire Line
-	1400 2900 1400 3000
+	1400 2900 1400 3500
 $Comp
 L power:GND #PWR01
 U 1 1 5D342EEF
-P 1400 3000
-F 0 "#PWR01" H 1400 2750 50  0001 C CNN
-F 1 "GND" H 1405 2827 50  0000 C CNN
-F 2 "" H 1400 3000 50  0001 C CNN
-F 3 "" H 1400 3000 50  0001 C CNN
-	1    1400 3000
+P 1400 3500
+F 0 "#PWR01" H 1400 3250 50  0001 C CNN
+F 1 "GND" H 1405 3327 50  0000 C CNN
+F 2 "" H 1400 3500 50  0001 C CNN
+F 3 "" H 1400 3500 50  0001 C CNN
+	1    1400 3500
 	1    0    0    -1  
 $EndComp
-Text Notes 500  2900 0    50   ~ 0
+Text Notes 525  2925 0    50   ~ 0
 Neutral_OUT
 Text Notes 650  2900 0    50   ~ 0
 Live_OUT\n\n
@@ -61,17 +46,6 @@ Text Notes 550  2700 0    50   ~ 0
 Neutral_IN\n
 Text Notes 700  2600 0    50   ~ 0
 Live_IN\n
-$Comp
-L Connector:Conn_01x04_Male J1
-U 1 1 5D2865FC
-P 1000 2700
-F 0 "J1" H 1108 2981 50  0000 C CNN
-F 1 "Power IO" H 1108 2890 50  0000 C CNN
-F 2 "Connector_TE:DT13-6P" H 1000 2700 50  0001 C CNN
-F 3 "~" H 1000 2700 50  0001 C CNN
-	1    1000 2700
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:Net-Tie_3_Tee NT1
 U 1 1 5D4008D3
@@ -488,10 +462,6 @@ F 3 "~" H 4850 1950 50  0001 C CNN
 	1    4850 1950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1250 4650 3150 4650
-Wire Wire Line
-	1200 4500 3150 4500
 $Sheet
 S 3150 3800 1700 1550
 U 5D226D6E
@@ -531,4 +501,31 @@ Wire Wire Line
 	3150 4150 1950 4150
 Wire Wire Line
 	1950 4150 1950 2800
+Wire Wire Line
+	3150 4500 1750 4500
+Wire Wire Line
+	1750 4500 1750 3000
+Wire Wire Line
+	1750 3000 1200 3000
+Wire Wire Line
+	3150 4650 1625 4650
+Wire Wire Line
+	1625 4650 1625 3100
+Wire Wire Line
+	1625 3100 1200 3100
+$Comp
+L Connector:Conn_01x06_Male J1
+U 1 1 5D4A20AB
+P 1000 2800
+F 0 "J1" H 1108 3181 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 1108 3090 50  0000 C CNN
+F 2 "Connector_TE:DT13-6P" H 1000 2800 50  0001 C CNN
+F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FDT13-4P%7FC%7Fpdf%7FEnglish%7FENG_CD_DT13-4P_C.pdf%7FDT13-4P" H 1000 2800 50  0001 C CNN
+	1    1000 2800
+	1    0    0    -1  
+$EndComp
+Text Notes 675  3025 0    50   ~ 0
+CAN_HI\n
+Text Notes 675  3125 0    50   ~ 0
+CAN_LO
 $EndSCHEMATC
