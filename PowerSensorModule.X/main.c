@@ -46,20 +46,69 @@
   Section: Included Files
 */
 #include "mcc_generated_files/system.h"
+#include "mcc_generated_files/adc1.h"
+
+uint16_t current_calibration[10];
+uint16_t voltage_calibration[10];
 
 /*
                          Main application
  */
 int main(void)
 {
+    uint16_t current_readings[ADC_BUF_SIZE / 2];
+    uint16_t voltage_readings[ADC_BUF_SIZE / 2];
+    
+    uint16_t current_avg;
+    uint16_t voltage_avg;
+    
     // initialize the device
     SYSTEM_Initialize();
     while (1)
     {
-        // Add your application code
+        if (data_ready == 1) {
+            data_ready = 0;    
+            
+            // process sampled data
+            uint16_t buffer_index = 0;
+            for (uint16_t i = 0; i < ADC_BUF_SIZE / 2; i++) {
+                buffer_index = i * 2;
+                current_readings[i] = calibrate_data(adc_buffer[buffer_index], 'I');    
+                voltage_readings[i] = calibrate_data(adc_buffer[buffer_index + 1], 'V');  
+            }
+            
+            // average data
+            for (int i = 0; i < ADC_BUF_SIZE / 2; i++) {
+                current_avg += current_readings[i];
+                voltage_avg += voltage_readings[i];
+            }
+            current_avg /= ADC_BUF_SIZE / 2;
+            voltage_avg /= ADC_BUF_SIZE / 2;
+                
+            // send data over CAN
+            CAN_send(current_avg);
+            CAN_send(voltage_avg);
+        }
     }
     return 1; 
 }
+
+uint16_t calibrate_data(uint16_t data, char type) {
+    // current
+    if (type == 'I') {
+        return data;        // CHANGE ME
+    }
+    else if (type == 'V') {
+        return data;        // CHANGE ME
+    }
+    else 
+        return data;
+}
+
+void CAN_send(uint16_t data) {
+    return;
+}
+
 /**
  End of File
 */

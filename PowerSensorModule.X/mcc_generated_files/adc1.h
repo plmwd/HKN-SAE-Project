@@ -63,7 +63,12 @@
   Section: ISR Helper Macros
 */
 
+#define ADC1_ISR_FUNCTION_HEADER    void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt
+#define ADC_BUF_SIZE 16
 
+extern uint8_t data_ready;
+extern uint16_t adc_buffer[ADC_BUF_SIZE];
+       
 /**
   Section: Data Types
 */
@@ -81,8 +86,8 @@
  */
 typedef enum 
 {
-    ADC1_CHANNEL_AN2 =  0x2,
-    ADC1_CHANNEL_AN3 =  0x3,
+    ADC1_VIN =  0x2,
+    ADC1_IIN =  0x3,
     ADC1_CHANNEL_INTERNAL_BAND_GAP_REFERENCE =  0x3D,
     ADC1_CHANNEL_CTMU =  0x3E,
     ADC1_MAX_CHANNEL_COUNT = 4
@@ -180,16 +185,16 @@ typedef enum
  */
 typedef enum 
 {
-    ADC1_SAMPLING_SOURCE_PWM1  =  0x0,
-    ADC1_SAMPLING_SOURCE_TMR5  =  0x4,
-    ADC1_SAMPLING_SOURCE_CTMU  =  0x6,
-    ADC1_SAMPLING_SOURCE_AUTO  =  0x7,
-    ADC1_SAMPLING_SOURCE_INT0  =  0x1,
-    ADC1_SAMPLING_SOURCE_PWM3  =  0x2,
-    ADC1_SAMPLING_SOURCE_TMR3  =  0x2,
     ADC1_SAMPLING_SOURCE_PWM  =  0x3,
     ADC1_SAMPLING_SOURCE_MANUAL  =  0x0,
+    ADC1_SAMPLING_SOURCE_AUTO  =  0x7,
     ADC1_SAMPLING_SOURCE_PWM2  =  0x1,
+    ADC1_SAMPLING_SOURCE_CTMU  =  0x6,
+    ADC1_SAMPLING_SOURCE_PWM3  =  0x2,
+    ADC1_SAMPLING_SOURCE_TMR5  =  0x4,
+    ADC1_SAMPLING_SOURCE_PWM1  =  0x0,
+    ADC1_SAMPLING_SOURCE_INT0  =  0x1,
+    ADC1_SAMPLING_SOURCE_TMR3  =  0x2,
 } ADC1_SAMPLING_SOURCE;
 
 /** ADC Conversion Channel Type Definition
@@ -1023,28 +1028,6 @@ inline static void ADC1_InterruptPrioritySet( uint16_t priorityValue )
 */
 void ADC1_CallBack(void);
 
-/**
-  @Summary
-    Polled implementation
-
-  @Description
-    This routine is used to implement the tasks for polled implementations.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns 
-    None
- 
-  @Param
-    None
- 
-  @Example
-    Refer to ADC1_Initialize(); for an example
-    
-*/
-void ADC1_Tasks(void);
         
 #ifdef __cplusplus  // Provide C++ Compatibility
 

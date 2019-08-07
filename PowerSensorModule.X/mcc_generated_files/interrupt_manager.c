@@ -52,4 +52,10 @@
 */
 void INTERRUPT_Initialize (void)
 {
+    //    TI: Timer 3
+    //    Priority: 1
+        IPC2bits.T3IP = 1;
+    //    ADI: ADC1 Convert Done
+    //    Priority: 1
+        IPC3bits.AD1IP = 1;
 }

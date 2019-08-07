@@ -65,7 +65,7 @@
 #pragma config POSCMD = NONE    //Primary Oscillator Mode Select Bits->Primary Oscillator disabled
 #pragma config OSCIOFNC = ON    //OSC2 Pin I/O Function Enable Bit->OSC2 is general purpose digital I/O pin
 #pragma config IOL1WAY = ON    //Peripheral Pin Select Configuration Bit->Allow Only One reconfiguration
-#pragma config FCKSM = CSDCMD    //Clock Switching Mode Bits->Both Clock Switching and Fail-safe Clock Monitor are disabled
+#pragma config FCKSM = CSECMD    //Clock Switching Mode Bits->Clock Switching is enabled,Fail-safe Clock Monitor is disabled
 #pragma config PLLKEN = ON    //PLL Lock Enable Bit->Clock switch to PLL source will wait until the PLL lock signal is valid
 
 // FWDT

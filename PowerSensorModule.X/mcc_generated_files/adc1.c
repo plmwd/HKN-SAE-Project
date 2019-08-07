@@ -49,6 +49,7 @@
 
 #include "adc1.h"
 
+
 /**
   Section: Data Type Definitions
 */
@@ -79,17 +80,17 @@ static ADC_OBJECT adc1_obj;
 
 void ADC1_Initialize (void)
 {
-    // ASAM disabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC Clearing sample bit ends sampling and starts conversion; AD12B 10-bit; ADON enabled; SSRCG disabled; 
+    // ASAM disabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
 
-   AD1CON1 = 0x8008;
+   AD1CON1 = 0x8048;
 
-    // CSCNA disabled; VCFG0 AVDD; VCFG1 VREF-; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
+    // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
 
    AD1CON2 = 0x100;
 
-    // SAMC 0; ADRC FOSC/2; ADCS 0; 
+    // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
-   AD1CON3 = 0x00;
+   AD1CON3 = 0x500;
 
     // CH0SA AN32; CH0SB AN32; CH0NB VREFL; CH0NA VREFL; 
 
@@ -114,6 +115,11 @@ void ADC1_Initialize (void)
    
    adc1_obj.intSample = AD1CON2bits.SMPI;
    
+   data_ready = 0;
+           
+   // Enabling ADC1 interrupt.
+   IEC0bits.AD1IE = 1;
+
 }
 
 void __attribute__ ((weak)) ADC1_CallBack(void)
@@ -121,16 +127,33 @@ void __attribute__ ((weak)) ADC1_CallBack(void)
     // Add your custom callback code here
 }
 
-void ADC1_Tasks ( void )
+void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 {
-	if(IFS0bits.AD1IF)
-	{
-		// ADC1 callback function 
-		ADC1_CallBack();
+	// ADC1 callback function 
+	//ADC1_CallBack();
 	
-		// clear the ADC interrupt flag
-		IFS0bits.AD1IF = false;
-	}
+    adc_buffer[0] = ADC1BUF0;
+    adc_buffer[1] = ADC1BUF1;
+    adc_buffer[2] = ADC1BUF2;
+    adc_buffer[3] = ADC1BUF3;
+    adc_buffer[4] = ADC1BUF4;
+    adc_buffer[5] = ADC1BUF5;
+    adc_buffer[6] = ADC1BUF6;
+    adc_buffer[7] = ADC1BUF7;
+    adc_buffer[8] = ADC1BUF8;
+    adc_buffer[9] = ADC1BUF9;
+    adc_buffer[10] = ADC1BUFA;
+    adc_buffer[11] = ADC1BUFB;
+    adc_buffer[12] = ADC1BUFC;
+    adc_buffer[13] = ADC1BUFD;
+    adc_buffer[14] = ADC1BUFE;
+    adc_buffer[15] = ADC1BUFF;
+    
+    
+    data_ready == 1;
+    
+    // clear the ADC interrupt flag
+    IFS0bits.AD1IF = false;
 }
 
 

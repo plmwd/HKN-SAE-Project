@@ -48,16 +48,16 @@
 #include "system_types.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "tmr3.h"
 #include "adc1.h"
-#include "can1.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    CLOCK_Initialize();
     INTERRUPT_Initialize();
+    CLOCK_Initialize();
     ADC1_Initialize();
-    CAN1_Initialize();
+    TMR3_Initialize();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }
