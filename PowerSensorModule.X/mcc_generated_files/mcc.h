@@ -54,10 +54,10 @@
 #include <stdbool.h>
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "tmr3.h"
-#include "adc1.h"
 #include "watchdog.h"
 #include "reset.h"
+#include "adc1.h"
+#include "tmr3.h"
 
 #ifndef _XTAL_FREQ
 #define _XTAL_FREQ  7370000UL

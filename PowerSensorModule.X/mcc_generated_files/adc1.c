@@ -49,6 +49,9 @@
 
 #include "adc1.h"
 
+bool data_ready = 0;
+uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
+
 
 /**
   Section: Data Type Definitions
@@ -80,21 +83,21 @@ static ADC_OBJECT adc1_obj;
 
 void ADC1_Initialize (void)
 {
-    // ASAM disabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
+    // ASAM enabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
 
-   AD1CON1 = 0x8048;
+   AD1CON1 = 0b1000000001001100;
 
     // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
 
-   AD1CON2 = 0x100;
+   AD1CON2 = 0b000000100000000;
 
     // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
    AD1CON3 = 0x500;
 
-    // CH0SA AN32; CH0SB AN32; CH0NB VREFL; CH0NA VREFL; 
+    // CH0SA AN2; CH0SB AN2; CH0NB VREFL; CH0NA VREFL; 
 
-   AD1CHS0 = 0x2020;
+   AD1CHS0 = 0b0000001000000010;
 
     // CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
 
@@ -150,13 +153,23 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     adc_buffer[15] = ADC1BUFF;
     
     
-    data_ready == 1;
+    data_ready = true;
     
     // clear the ADC interrupt flag
     IFS0bits.AD1IF = false;
 }
 
+uint16_t* ADC1_Get_Buffer_Ptr(void) {
+    return &adc_buffer;
+}
 
+bool ADC1_Is_Data_Ready(void) {
+    return data_ready;
+}
+
+void ADC1_Acknowledge_Data_Ready(void) {
+    data_ready = false;
+}
 
 /**
   End of File

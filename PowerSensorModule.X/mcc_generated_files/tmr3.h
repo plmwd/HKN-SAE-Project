@@ -59,7 +59,6 @@
 
 #endif
 
-#define TMR3_INTERRUPT_TICKER_FACTOR    1
 
 /**
   Section: Interface Routines
@@ -109,6 +108,25 @@
 */
 void TMR3_Initialize (void);
 
+/**
+  @Summary
+    Used to maintain the driver's state machine and implement its ISR
+
+  @Description
+    This routine is used to maintain the driver's internal state machine and
+    implement its ISR for interrupt-driven implementations.
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+  @Example 
+    Refer to the example of TMR3_Initialize();
+*/
+
+void TMR3_Tasks_16BitOperation( void );
 
 /**
   @Summary
@@ -200,26 +218,6 @@ void TMR3_Counter16BitSet ( uint16_t value );
 
 uint16_t TMR3_Counter16BitGet( void );
 
-/**
-  @Summary
-    Assigns a function pointer with a callback address.
-
-  @Description
-    This routine assigns a function pointer with a callback address.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-        TMR3_SetInterruptHandler(&TMR3_CallBack);
-    </code>
-*/
-
-void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
 
 /**
   @Summary

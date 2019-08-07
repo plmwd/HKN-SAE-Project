@@ -48,8 +48,8 @@
 #include "system_types.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "tmr3.h"
 #include "adc1.h"
+#include "tmr3.h"
 
 void SYSTEM_Initialize(void)
 {

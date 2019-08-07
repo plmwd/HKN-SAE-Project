@@ -66,8 +66,6 @@
 #define ADC1_ISR_FUNCTION_HEADER    void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt
 #define ADC_BUF_SIZE 16
 
-extern uint8_t data_ready;
-extern uint16_t adc_buffer[ADC_BUF_SIZE];
        
 /**
   Section: Data Types
@@ -264,6 +262,66 @@ typedef enum
 */
 
 void ADC1_Initialize (void);
+
+/**
+  @Summary
+    This function gets the "adc_buffer" pointer
+
+  @Description
+    
+
+  @Preconditions
+    None.
+
+  @Param
+    None.
+
+  @Returns
+    The pointer of "adc_buffer"
+
+*/
+uint16_t* ADC1_Get_Buffer_Ptr(void);
+
+/**
+  @Summary
+    This function gets the status of the "data_ready" variable
+
+  @Description
+    
+
+  @Preconditions
+    None.
+
+  @Param
+    None.
+
+  @Returns
+    "data_ready"
+
+*/
+bool ADC1_Is_Data_Ready(void);
+
+
+/**
+  @Summary
+    This function clears "data_ready" to acknowledge that the data in the buffer
+    is ready.
+
+  @Description
+    
+
+  @Preconditions
+    None.
+
+  @Param
+    None.
+
+  @Returns
+    None.
+
+*/
+void ADC1_Acknowledge_Data_Ready(void);
+
 
 /**
   @Summary

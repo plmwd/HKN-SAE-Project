@@ -52,6 +52,7 @@ uint16_t process_current(uint16_t);
 uint16_t process_voltage(uint16_t);
 uint16_t calibrate_current(uint16_t);
 uint16_t calibrate_voltage(uint16_t);
+void CAN_send(uint16_t);
 
 
 uint16_t current_calibration[10];
@@ -65,26 +66,31 @@ int main(void)
     uint16_t current_readings[ADC_BUF_SIZE / 2];
     uint16_t voltage_readings[ADC_BUF_SIZE / 2];
     
-    uint16_t current_avg;
-    uint16_t voltage_avg;
+    uint16_t current_avg = 0;
+    uint16_t voltage_avg = 0;
     
     // initialize the device
     SYSTEM_Initialize();
+    ADC1_Enable();
+    
     while (1)
     {
-        if (data_ready == 1) {
-            data_ready = 0;    
+        if (ADC1_Is_Data_Ready() == true) {
+            ADC1_Acknowledge_Data_Ready();  
+            
+            uint16_t *data = ADC1_Get_Buffer_Ptr(); 
             
             // process sampled data
             uint16_t buffer_index = 0;
-            for (uint16_t i = 0; i < ADC_BUF_SIZE / 2; i++) {
+            uint16_t i;
+            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
                 buffer_index = i * 2;
-                current_readings[i] = process_current(adc_buffer[buffer_index]);    
-                voltage_readings[i] = process_voltage(adc_buffer[buffer_index + 1]);  
+                current_readings[i] = process_current(data[buffer_index]);    
+                voltage_readings[i] = process_voltage(data[buffer_index + 1]);  
             }
             
             // average data
-            for (int i = 0; i < ADC_BUF_SIZE / 2; i++) {
+            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
                 current_avg += current_readings[i];
                 voltage_avg += voltage_readings[i];
             }
