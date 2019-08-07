@@ -280,7 +280,7 @@ void ADC1_Initialize (void);
     The pointer of "adc_buffer"
 
 */
-uint16_t* ADC1_Get_Buffer_Ptr(void);
+uint16_t* ADC1_GetBufferPtr(void);
 
 /**
   @Summary
@@ -299,7 +299,7 @@ uint16_t* ADC1_Get_Buffer_Ptr(void);
     "data_ready"
 
 */
-bool ADC1_Is_Data_Ready(void);
+bool ADC1_IsDataReady(void);
 
 
 /**
@@ -320,7 +320,7 @@ bool ADC1_Is_Data_Ready(void);
     None.
 
 */
-void ADC1_Acknowledge_Data_Ready(void);
+void ADC1_AcknowledgeDataReady(void);
 
 
 /**

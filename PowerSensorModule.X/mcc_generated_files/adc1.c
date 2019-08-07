@@ -159,15 +159,15 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     IFS0bits.AD1IF = false;
 }
 
-uint16_t* ADC1_Get_Buffer_Ptr(void) {
+uint16_t* ADC1_GetBufferPtr(void) {
     return &adc_buffer;
 }
 
-bool ADC1_Is_Data_Ready(void) {
+bool ADC1_IsDataReady(void) {
     return data_ready;
 }
 
-void ADC1_Acknowledge_Data_Ready(void) {
+void ADC1_AcknowledgeDataReady(void) {
     data_ready = false;
 }
 

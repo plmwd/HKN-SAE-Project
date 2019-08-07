@@ -47,16 +47,18 @@
 */
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/adc1.h"
+#include "calibration.h"
 
-uint16_t process_current(uint16_t);
-uint16_t process_voltage(uint16_t);
-uint16_t calibrate_current(uint16_t);
-uint16_t calibrate_voltage(uint16_t);
-void CAN_send(uint16_t);
+#define NUM_CAL_POINTS      10              // Number of calibration points
 
+// dummy functions for now - test basic functionality
+uint16_t ProcessCurrent(uint16_t);
+uint16_t ProcessVoltage(uint16_t);
+void CAN_send(uint16_t);    
 
-uint16_t current_calibration[10];
-uint16_t voltage_calibration[10];
+// current and voltage calibration data - ideal points need to be set
+cal_point_t current_cal_data[NUM_CAL_POINTS];
+cal_point_t voltage_cal_data[NUM_CAL_POINTS];
 
 /*
                          Main application
@@ -75,18 +77,18 @@ int main(void)
     
     while (1)
     {
-        if (ADC1_Is_Data_Ready() == true) {
-            ADC1_Acknowledge_Data_Ready();  
+        if (ADC1_IsDataReady() == true) {
+            ADC1_AcknowledgeDataReady();  
             
-            uint16_t *data = ADC1_Get_Buffer_Ptr(); 
+            uint16_t *data = ADC1_GetBufferPtr(); 
             
             // process sampled data
             uint16_t buffer_index = 0;
             uint16_t i;
             for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
                 buffer_index = i * 2;
-                current_readings[i] = process_current(data[buffer_index]);    
-                voltage_readings[i] = process_voltage(data[buffer_index + 1]);  
+                current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], &current_cal_data));   
+                voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], &voltage_cal_data));  
             }
             
             // average data
@@ -105,27 +107,19 @@ int main(void)
     return 1; 
 }
 
-uint16_t process_current(uint16_t data) {
+uint16_t ProcessCurrent(uint16_t data) {
     // STUFF
-     return calibrate_current(data);
+     return;
 }
 
-uint16_t calibrate_current(uint16_t data) {
+
+uint16_t ProcessVoltage(uint16_t data) {
     // STUFF
-    return data;
+     return;
 }
 
-uint16_t process_voltage(uint16_t data) {
-    // STUFF
-     return calibrate_voltage(data);
-}
 
-uint16_t calibrate_voltage(uint16_t data) {
-    // STUFF
-    return data;
-}
-
-void CAN_send(uint16_t data) {
+void CAN_Send(uint16_t data) {
     return;
 }
 
