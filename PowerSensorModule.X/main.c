@@ -48,6 +48,12 @@
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/adc1.h"
 
+uint16_t process_current(uint16_t);
+uint16_t process_voltage(uint16_t);
+uint16_t calibrate_current(uint16_t);
+uint16_t calibrate_voltage(uint16_t);
+
+
 uint16_t current_calibration[10];
 uint16_t voltage_calibration[10];
 
@@ -73,8 +79,8 @@ int main(void)
             uint16_t buffer_index = 0;
             for (uint16_t i = 0; i < ADC_BUF_SIZE / 2; i++) {
                 buffer_index = i * 2;
-                current_readings[i] = calibrate_data(adc_buffer[buffer_index], 'I');    
-                voltage_readings[i] = calibrate_data(adc_buffer[buffer_index + 1], 'V');  
+                current_readings[i] = process_current(adc_buffer[buffer_index]);    
+                voltage_readings[i] = process_voltage(adc_buffer[buffer_index + 1]);  
             }
             
             // average data
@@ -93,16 +99,24 @@ int main(void)
     return 1; 
 }
 
-uint16_t calibrate_data(uint16_t data, char type) {
-    // current
-    if (type == 'I') {
-        return data;        // CHANGE ME
-    }
-    else if (type == 'V') {
-        return data;        // CHANGE ME
-    }
-    else 
-        return data;
+uint16_t process_current(uint16_t data) {
+    // STUFF
+     return calibrate_current(data);
+}
+
+uint16_t calibrate_current(uint16_t data) {
+    // STUFF
+    return data;
+}
+
+uint16_t process_voltage(uint16_t data) {
+    // STUFF
+     return calibrate_voltage(data);
+}
+
+uint16_t calibrate_voltage(uint16_t data) {
+    // STUFF
+    return data;
 }
 
 void CAN_send(uint16_t data) {
