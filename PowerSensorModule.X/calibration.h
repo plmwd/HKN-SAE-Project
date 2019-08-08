@@ -17,7 +17,7 @@ extern "C" {
     Calibration data point struct. Houses the ideal point to be calibrated, the measured
     (from another instrument), the measured data from the unit, and the difference
     between the actual and measured.
- * 
+ 
  */
 typedef struct {
     uint16_t ideal;
@@ -43,8 +43,8 @@ typedef struct {
     |
     |
     |    *
-    | 
-    |         *              *
+    |  /   \
+    |/        *              *
     -----1----2----3----*----5----> Voltage
     |              *    
     |
