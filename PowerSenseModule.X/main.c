@@ -50,6 +50,11 @@
 #include "calibration.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
+#define DIFFAMP_GAIN        80
+#define OPAMP_UNITY_GAIN    1
+#define R_SHUNT             0.004
+
+#define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
 
 // dummy functions for now - test basic functionality
 uint16_t ProcessCurrent(uint16_t);
@@ -108,7 +113,6 @@ int main(void)
 }
 
 uint16_t ProcessCurrent(uint16_t data) {
-    // STUFF
      return;
 }
 
