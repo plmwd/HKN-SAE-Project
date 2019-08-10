@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>PowerSensorModule</name>
+            <name>PowerSenseModule</name>
             <creation-uuid>1eb75d31-2762-41fe-98ed-09d62de3f41a</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

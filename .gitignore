@@ -55,7 +55,6 @@ dkms.conf
 \PowerSenseModule.X\nbproject
 \PowerSenseModule.X\debug
 \PowerSenseModule.X\Makefile
-\PowerSenseModule.X\nbproject
 
 #KiCAD
 \Board\PowerSenseModule\fp-info-cache
