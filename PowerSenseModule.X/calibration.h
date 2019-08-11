@@ -12,6 +12,10 @@
 extern "C" {
 #endif
 
+#include "xc.h"
+#include <stdint.h>
+#include <stdlib.h>
+    
 /**
   @Description
     Calibration data point struct. Houses the ideal point to be calibrated, the measured
@@ -19,7 +23,7 @@ extern "C" {
     between the actual and measured.
  
  */
-typedef struct {
+typedef struct cal_point_t {
     uint16_t ideal;
     uint16_t actual;
     uint16_t measured;

@@ -49,7 +49,9 @@
 #include "interrupt_manager.h"
 #include "traps.h"
 #include "adc1.h"
+#include "tmr1.h"
 #include "tmr3.h"
+
 
 void SYSTEM_Initialize(void)
 {
@@ -57,6 +59,7 @@ void SYSTEM_Initialize(void)
     INTERRUPT_Initialize();
     CLOCK_Initialize();
     ADC1_Initialize();
+    TMR1_Initialize();
     TMR3_Initialize();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);

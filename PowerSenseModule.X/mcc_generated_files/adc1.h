@@ -66,167 +66,12 @@
 #define ADC1_ISR_FUNCTION_HEADER    void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt
 #define ADC_BUF_SIZE 16
 
-       
-/**
-  Section: Data Types
-*/
-
-/** ADC Channel Definition
- 
- @Summary 
-   Defines the channels available for conversion
- 
- @Description
-   This routine defines the channels that are available conversion.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_VIN =  0x2,
-    ADC1_IIN =  0x3,
-    ADC1_CHANNEL_INTERNAL_BAND_GAP_REFERENCE =  0x3D,
-    ADC1_CHANNEL_CTMU =  0x3E,
-    ADC1_MAX_CHANNEL_COUNT = 4
-} ADC1_CHANNEL;
-
-/** ADC Positive 123 Channels Definition
- 
- @Summary 
-   Defines the positive 123 channels available for conversion
- 
- @Description
-   This routine defines the positive 123 channels that are available for the 
-   module to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_POS_123_CHANNEL_0 = 0x0,
-    ADC1_POS_123_CHANNEL_1 = 0x1,   
-    ADC1_POS_123_CHANNEL_2 = 0x8,
-    ADC1_POS_123_CHANNEL_3 = 0x9,
-    ADC1_POS_123_CHANNEL_4 = 0x10
-} ADC1_POS_123_CHANNEL;
-
-/** ADC Negative 123 Channels Definition
- 
- @Summary 
-   Defines the negative 123 channels available for conversion
- 
- @Description
-   This routine defines the negative 123 channels that are available for the 
-   module to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-   ADC1_NEG_123_CHANNEL_0 = 0x0,
-   ADC1_NEG_123_CHANNEL_1 = 0x2,
-   ADC1_NEG_123_CHANNEL_2 = 0x3
-} ADC1_NEG_123_CHANNEL;
-
-/** ADC Data Format Type Definition
- 
- @Summary 
-   Defines the data format types available
- 
- @Description
-   This routine defines the data format types that are available for the module 
-   to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_FORM_UNSIGNED_INT   = 0, /* Unsigned Integer */
-    ADC1_FORM_SIGNED_INT     = 1, /* Signed Integer */
-    ADC1_FORM_UNSIGNED_FRACT = 2, /* Unsigned Fraction */
-    ADC1_FORM_SIGNED_FRACT   = 3  /* Signed Integer */
-} ADC1_FORM_TYPE;
-
-/** ADC Resolution Type Definition
- 
- @Summary 
-   Defines the resolution types available
- 
- @Description
-   This routine defines the resolution types that are available for the module 
-   to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_RESOLUTION_10_BIT   = 0, /* 10-bit, 4-channel ADC operation */
-    ADC1_RESOLUTION_12_BIT   = 1  /* 12-bit, 1-channel ADC operation */
-} ADC1_RESOLUTION_TYPE;
-
-/** ADC Sampling Source Definition
- 
- @Summary 
-   Defines the sampling sources available
- 
- @Description
-   This routine defines the sampling sources that are available for the module 
-   to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_SAMPLING_SOURCE_PWM  =  0x3,
-    ADC1_SAMPLING_SOURCE_MANUAL  =  0x0,
-    ADC1_SAMPLING_SOURCE_AUTO  =  0x7,
-    ADC1_SAMPLING_SOURCE_PWM2  =  0x1,
-    ADC1_SAMPLING_SOURCE_CTMU  =  0x6,
-    ADC1_SAMPLING_SOURCE_PWM3  =  0x2,
-    ADC1_SAMPLING_SOURCE_TMR5  =  0x4,
-    ADC1_SAMPLING_SOURCE_PWM1  =  0x0,
-    ADC1_SAMPLING_SOURCE_INT0  =  0x1,
-    ADC1_SAMPLING_SOURCE_TMR3  =  0x2,
-} ADC1_SAMPLING_SOURCE;
-
-/** ADC Conversion Channel Type Definition
- 
- @Summary 
-   Defines the conversion channel types available
- 
- @Description
-   This routine defines the conversion channels types that are available for the 
-   module to use.
- 
- Remarks:
-   None
- */
-typedef enum 
-{
-    ADC1_CONVERSION_CHANNELS_CH0    = 0, /* Converts only CH0 */
-    ADC1_CONVERSION_CHANNELS_CH01   = 1, /* Converts CH0 and CH1 */
-    ADC1_CONVERSION_CHANNELS_CH0123 = 2  /* Converts CH0, CH1, CH2 and CH3 */
-} ADC1_CONVERSION_CHANNELS_TYPE;
-
-/**
-  Section: Interface Routines
-*/
-
-
+   
 /**
   @Summary
-    This function initializes ADC instance : 1
+    This function initializes ADC instance for the low current configuration
 
   @Description
-    This routine initializes the ADC driver instance for : 1
-    index, making it ready for clients to open and use it. It also initializes any
-    internal data structures.
     This routine must be called before any other ADC routine is called. 
 
   @Preconditions
@@ -238,30 +83,34 @@ typedef enum
   @Returns
     None.
 
-  @Comment
-    
  
-  @Example
-    <code>
-        int conversion;
-        ADC1_Initialize();
-        ADC1_ChannelSelect(AN1_Channel);
-        ADC1_SamplingStart();
-        //Provide Delay
-        for(int i=0;i <1000;i++)
-        {
-        }
-        ADC1_SamplingStop();
-        while(!ADC1_IsConversionComplete())
-        {
-            ADC1_Tasks();   
-        }
-        conversion = ADC1_ConversionResultGet();
-    </code>
 
 */
 
 void ADC1_Initialize (void);
+
+
+/**
+  @Summary
+    This function initializes ADC instance for the high current configuration
+
+  @Description
+    This routine must be called before any other ADC routine is called. 
+
+  @Preconditions
+    None.
+
+  @Param
+    None.
+
+  @Returns
+    None.
+
+ 
+
+*/
+void ADC1_Initialize_HIMode (void);
+
 
 /**
   @Summary
@@ -672,32 +521,6 @@ inline static bool ADC1_IsConversionComplete( void )
     return AD1CON1bits.DONE; //Wait for conversion to complete   
 }
 
-/**
-  @Summary
-    Allows selection of a channel for conversion
-
-  @Description
-    This routine is used to select desired channel for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required channel from the ADC1_CHANNEL list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- 
-*/
-
-inline static void ADC1_ChannelSelectSet( ADC1_CHANNEL channel )
-{
-    AD1CHS0bits.CH0SA = channel;
-}
 
 /**
   @Summary
@@ -726,57 +549,7 @@ inline static uint16_t ADC1_ChannelSelectGet( void )
     return AD1CHS0bits.CH0SA ;
 }
 
-/**
-  @Summary
-    Allows selection of a data format type for conversion
 
-  @Description
-    This routine is used to select desired data format for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required data format type from the ADC1_FORM_TYPE list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
-*/
-
-inline static void ADC1_FormatDataSet( ADC1_FORM_TYPE form )
-{
-    AD1CON1bits.FORM = form;
-}
-
-/**
-  @Summary
-    Allows selection of a resolution mode for conversion
-
-  @Description
-    This routine is used to select desired resolution mode for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required resolution mode from the ADC1_RESOLUTION_TYPE list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
-*/
-
-inline static void ADC1_ResolutionModeSet( ADC1_RESOLUTION_TYPE resolution )
-{
-    AD1CON1bits.AD12B = resolution;
-}
 
 /**
   @Summary
@@ -960,86 +733,7 @@ inline static void ADC1_Disable(void)
     AD1CON1bits.ADON = 0;
 }
 
-/**
-  @Summary
-    Allows selection of a positive 123 channel for conversion
 
-  @Description
-    This routine is used to select desired positive 123 channel for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required channel from the ADC1_POS_123_CHANNEL list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- 
-*/
-
-inline static void ADC1_Positive123ChannelSelect( ADC1_POS_123_CHANNEL channel )
-{
-    AD1CHS123 = (AD1CHS123 & 0xFF06) | channel;
-}
-
-/**
-  @Summary
-    Allows selection of a negative 123 channel for conversion
-
-  @Description
-    This routine is used to select desired negative 123 channel for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required channel from the ADC1_NEG_123_CHANNEL list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- 
-*/
-
-inline static void ADC1_Negative123ChannelSelect( ADC1_NEG_123_CHANNEL channel )
-{
-    AD1CHS123bits.CH123NA = channel;
-}
-
-/**
-  @Summary
-    Allows selection of conversion channels
-
-  @Description
-    This routine is used to select conversion channel for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    Pass in required channel from the ADC1_CONVERSION_CHANNELS_TYPE list
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- 
-*/
-
-inline static void ADC1_ConversionChannelsSet( ADC1_CONVERSION_CHANNELS_TYPE channel )
-{
-    AD1CON2bits.CHPS = channel;
-}
 
 /**
   @Summary

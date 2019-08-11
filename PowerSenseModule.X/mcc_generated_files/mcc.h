@@ -44,7 +44,7 @@
 
 #ifndef MCC_H
 #define	MCC_H
-#include <xc.h>
+#include "xc.h"
 #include "reset.h"
 #include "system.h"
 #include "system_types.h"
@@ -57,6 +57,7 @@
 #include "watchdog.h"
 #include "reset.h"
 #include "adc1.h"
+#include "tmr1.h"
 #include "tmr3.h"
 
 #ifndef _XTAL_FREQ

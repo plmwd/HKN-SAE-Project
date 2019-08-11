@@ -49,7 +49,7 @@
 /**
     Section: Includes
 */
-#include <xc.h>
+#include "xc.h"
 
 /**
     Section: Device Pin Macros

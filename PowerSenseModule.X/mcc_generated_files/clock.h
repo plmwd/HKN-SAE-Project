@@ -66,6 +66,19 @@
     CLOCK_Initialize(void);
  */
 void CLOCK_Initialize(void);
+
+uint16_t ADC1CLOCK_GENMultiplier(void);
+
+uint16_t ADC1CLOCK_GetPeriodns(void);
+
+uint16_t ADC1CLOCK_GetMultiplier(void);
+
+
+//MUST RE-INITIALIZE ADC
+void ADC1CLOCK_SetPeriodns(uint16_t);
+
+void ADC1CLOCK_SetMultiplier(uint16_t);
+
 #endif	/* CLOCK_H */
 /**
  End of File

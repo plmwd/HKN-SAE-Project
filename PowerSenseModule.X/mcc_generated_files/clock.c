@@ -45,6 +45,13 @@
 #include <stdint.h>
 #include "xc.h"
 #include "clock.h"
+#include <math.h>
+
+// ADC clock variables
+#define TAD_MIN_US      75     
+uint16_t TAD_ns;            // nanoseconds
+uint16_t TAD_multiplier;
+
 
 void CLOCK_Initialize(void)
 {
@@ -74,3 +81,37 @@ void CLOCK_Initialize(void)
     __builtin_write_OSCCONH((uint8_t) (0x07));
     __builtin_write_OSCCONL((uint8_t) (0x00));
 }
+
+
+uint16_t ADC1CLOCK_GENMultiplier(void) {
+    uint16_t T_instruction_ns = ceil(1 / (CLOCK_InstructionFrequencyGet() * 0.000000001));
+    if (T_instruction_ns < TAD_MIN_US) {
+        TAD_multiplier = ceil(TAD_MIN_US / T_instruction_ns);
+    }
+    else {
+        TAD_multiplier = 1;
+    }
+    
+    return TAD_multiplier;
+}
+
+
+uint16_t ADC1CLOCK_GetPeriodns(void) {
+    return TAD_ns;
+}
+
+uint16_t ADC1CLOCK_GetMultiplier(void) {
+    return TAD_multiplier;
+}
+
+void ADC1CLOCK_SetPeriodns(uint16_t period_ns) {
+    TAD_ns = period_ns;
+}
+
+void ADC1CLOCK_SetMultiplier(uint16_t multiplier) {
+    TAD_multiplier = multiplier;
+}
+
+
+
+

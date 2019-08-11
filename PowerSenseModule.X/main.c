@@ -48,6 +48,8 @@
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/adc1.h"
 #include "calibration.h"
+#include "mcc_generated_files/tmr1.h"
+#include "mcc_generated_files/tmr3.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
 #define DIFFAMP_GAIN        80
@@ -56,6 +58,8 @@
 
 #define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
 
+
+void TMR1_InterruptHandler_ADC1GO (void);
 // dummy functions for now - test basic functionality
 uint16_t ProcessCurrent(uint16_t);
 uint16_t ProcessVoltage(uint16_t);
@@ -78,7 +82,7 @@ int main(void)
     
     // initialize the device
     SYSTEM_Initialize();
-    ADC1_Enable();
+    TMR1_SetInterruptHandler(&TMR1_InterruptHandler_ADC1GO);
     
     while (1)
     {
@@ -92,8 +96,8 @@ int main(void)
             uint16_t i;
             for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
                 buffer_index = i * 2;
-                current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], &current_cal_data));   
-                voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], &voltage_cal_data));  
+                current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], current_cal_data, NUM_CAL_POINTS));   
+                voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], voltage_cal_data, NUM_CAL_POINTS));  
             }
             
             // average data
@@ -105,21 +109,30 @@ int main(void)
             voltage_avg /= ADC_BUF_SIZE / 2;
                 
             // send data over CAN
-            CAN_send(current_avg);
-            CAN_send(voltage_avg);
+            //CAN_send(current_avg);
+            //CAN_send(voltage_avg);
         }
     }
     return 1; 
 }
 
+
+void TMR1_InterruptHandler_ADC1GO (void) {
+    // clears and starts timer 3 (stopped in ADC interrupt)
+    // timer 3 is the ADC conversion trigger (set for 15 TAD)
+    TMR3_SoftwareCounterClear();
+    TMR3_Start();
+}
+
+
 uint16_t ProcessCurrent(uint16_t data) {
-     return;
+     return 0;
 }
 
 
 uint16_t ProcessVoltage(uint16_t data) {
     // STUFF
-     return;
+     return 0;
 }
 
 
