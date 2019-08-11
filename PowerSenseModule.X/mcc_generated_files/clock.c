@@ -83,32 +83,39 @@ void CLOCK_Initialize(void)
 }
 
 
+uint16_t CLOCK_PeriodnsGet(void) {
+    return ceil(1 / (CLOCK_InstructionFrequencyGet() * 0.000000001));
+}
+
+
 uint16_t ADC1CLOCK_GENMultiplier(void) {
-    uint16_t T_instruction_ns = ceil(1 / (CLOCK_InstructionFrequencyGet() * 0.000000001));
+    uint16_t T_instruction_ns = CLOCK_PeriodnsGet();
     if (T_instruction_ns < TAD_MIN_US) {
         TAD_multiplier = ceil(TAD_MIN_US / T_instruction_ns);
     }
     else {
-        TAD_multiplier = 1;
+        TAD_multiplier = 0;
     }
+    
+    TAD_ns = T_instruction_ns * (1 + TAD_multiplier);
     
     return TAD_multiplier;
 }
 
 
-uint16_t ADC1CLOCK_GetPeriodns(void) {
+uint16_t ADC1CLOCK_PeriodnsGet(void) {
     return TAD_ns;
 }
 
-uint16_t ADC1CLOCK_GetMultiplier(void) {
+uint16_t ADC1CLOCK_MultiplierGet(void) {
     return TAD_multiplier;
 }
 
-void ADC1CLOCK_SetPeriodns(uint16_t period_ns) {
+void ADC1CLOCK_PeriodnsSet(uint16_t period_ns) {
     TAD_ns = period_ns;
 }
 
-void ADC1CLOCK_SetMultiplier(uint16_t multiplier) {
+void ADC1CLOCK_MultiplierSet(uint16_t multiplier) {
     TAD_multiplier = multiplier;
 }
 

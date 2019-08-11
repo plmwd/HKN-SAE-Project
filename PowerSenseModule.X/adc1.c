@@ -48,6 +48,8 @@
 */
 
 #include "mcc_generated_files/adc1.h"
+#include "mcc_generated_files/tmr3.h"
+#include "mcc_generated_files/clock.h"
 
 bool data_ready = 0;
 uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
@@ -82,7 +84,7 @@ static ADC_OBJECT adc1_obj;
 
 
 void ADC1_Initialize (void)
-{
+{   
     // ASAM enabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
 
    AD1CON1 = 0b1000000001001100;
@@ -90,10 +92,12 @@ void ADC1_Initialize (void)
     // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
 
    AD1CON2 = 0b000000100000000;
+   AD1CON2bits.SMPI = 2;
 
     // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
-   AD1CON3 = 0x500;
+   AD1CON3 = 0x000;
+   AD1CON3bits.ADCS = ADC1CLOCK_GENMultiplier();
 
     // CH0SA AN2; CH0SB AN2; CH0NB VREFL; CH0NA VREFL; 
 
@@ -135,6 +139,9 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 	// ADC1 callback function 
 	//ADC1_CallBack();
 	
+    T3CONbits.TON = false;
+    IFS0bits.T3IF = 0;
+    
     adc_buffer[0] = ADC1BUF0;
     adc_buffer[1] = ADC1BUF1;
     adc_buffer[2] = ADC1BUF2;

@@ -49,6 +49,8 @@
 
 #include <stdio.h>
 #include "tmr3.h"
+#include "clock.h"
+#include "adc1.h"   
 
 /**
  Section: File specific functions
@@ -90,8 +92,8 @@ void TMR3_Initialize (void)
 {
     //TMR3 0; 
     TMR3 = 0x00;
-    //Period = 0.0000040706 s; Frequency = 3685000 Hz; PR3 14; 
-    PR3 = 0x20;
+  
+    PR3 = ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet() + 2;
     //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
     T3CON = 0x0000;
 

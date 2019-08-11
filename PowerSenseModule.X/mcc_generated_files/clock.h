@@ -67,17 +67,19 @@
  */
 void CLOCK_Initialize(void);
 
+uint16_t CLOCK_PeriodnsGet(void);
+
 uint16_t ADC1CLOCK_GENMultiplier(void);
 
-uint16_t ADC1CLOCK_GetPeriodns(void);
+uint16_t ADC1CLOCK_PeriodnsGet(void);
 
-uint16_t ADC1CLOCK_GetMultiplier(void);
+uint16_t ADC1CLOCK_MultiplierGet(void);
 
 
 //MUST RE-INITIALIZE ADC
-void ADC1CLOCK_SetPeriodns(uint16_t);
+void ADC1CLOCK_PeriodnsSet(uint16_t);
 
-void ADC1CLOCK_SetMultiplier(uint16_t);
+void ADC1CLOCK_MultiplierSet(uint16_t);
 
 #endif	/* CLOCK_H */
 /**
