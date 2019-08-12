@@ -73,21 +73,11 @@
     None.
 */
 
-typedef struct _TMR_OBJ_STRUCT
-{
-    /* Timer Elapsed */
-    volatile bool           timerElapsed;
-    /*Software Counter value*/
-    volatile uint8_t        count;
-
-} TMR_OBJ;
-
 static TMR_OBJ tmr3_obj;
 
 /**
   Section: Driver Interface
 */
-
 
 // Initialize after ADC
 void TMR3_Initialize (void)
@@ -102,90 +92,6 @@ void TMR3_Initialize (void)
     //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
     T3CON = 0x0000;
 
-	
-    tmr3_obj.timerElapsed = false;
-
-}
-
-
-void TMR3_Tasks_16BitOperation( void )
-{
-    /* Check if the Timer Interrupt/Status is set */
-    if(IFS0bits.T3IF)
-    {
-        tmr3_obj.count++;
-        tmr3_obj.timerElapsed = true;
-        IFS0bits.T3IF = false;
-    }
-}
-
-void TMR3_Period16BitSet( uint16_t value )
-{
-    /* Update the counter values */
-    PR3 = value;
-    /* Reset the status information */
-    tmr3_obj.timerElapsed = false;
-}
-
-uint16_t TMR3_Period16BitGet( void )
-{
-    return( PR3 );
-}
-
-void TMR3_Counter16BitSet ( uint16_t value )
-{
-    /* Update the counter values */
-    TMR3 = value;
-    /* Reset the status information */
-    tmr3_obj.timerElapsed = false;
-}
-
-uint16_t TMR3_Counter16BitGet( void )
-{
-    return( TMR3 );
-}
-
-
-
-
-void TMR3_Start( void )
-{
-    /* Reset the status information */
-    tmr3_obj.timerElapsed = false;
-
-
-    /* Start the Timer */
-    T3CONbits.TON = 1;
-}
-
-void TMR3_Stop( void )
-{
-    /* Stop the Timer */
-    T3CONbits.TON = false;
-
-}
-
-bool TMR3_GetElapsedThenClear(void)
-{
-    bool status;
-    
-    status = tmr3_obj.timerElapsed;
-
-    if(status == true)
-    {
-        tmr3_obj.timerElapsed = false;
-    }
-    return status;
-}
-
-int TMR3_SoftwareCounterGet(void)
-{
-    return tmr3_obj.count;
-}
-
-void TMR3_SoftwareCounterClear(void)
-{
-    tmr3_obj.count = 0; 
 }
 
 /**

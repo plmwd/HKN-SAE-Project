@@ -59,7 +59,7 @@
 #define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
 
 
-void TMR1_InterruptHandler_ADC1GO (void);
+void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
 uint16_t ProcessCurrent(uint16_t);
 uint16_t ProcessVoltage(uint16_t);
@@ -82,8 +82,6 @@ int main(void)
     
     // initialize the device
     SYSTEM_Initialize();
-    TMR1_SetInterruptHandler(&TMR1_InterruptHandler_ADC1GO);
-    
     
     while (1)
     {
@@ -115,14 +113,6 @@ int main(void)
         }
     }
     return 1; 
-}
-
-
-void TMR1_InterruptHandler_ADC1GO (void) {
-    // clears and starts timer 3 (stopped in ADC interrupt)
-    // timer 3 is the ADC conversion trigger (set for 15 TAD)
-    TMR3_SoftwareCounterClear();
-    TMR3_Start();
 }
 
 

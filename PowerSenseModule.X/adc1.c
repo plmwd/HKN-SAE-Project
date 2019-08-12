@@ -142,8 +142,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 	// ADC1 callback function 
 	//ADC1_CallBack();
 	
-    T3CONbits.TON = false;
-    IFS0bits.T3IF = 0;
+    TMR3_Stop();
     
     adc_buffer[0] = ADC1BUF0;
     adc_buffer[1] = ADC1BUF1;
@@ -162,7 +161,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     adc_buffer[14] = ADC1BUFE;
     adc_buffer[15] = ADC1BUFF;
     
-    
+    // tell main loop to process data
     data_ready = true;
     
     // clear the ADC interrupt flag

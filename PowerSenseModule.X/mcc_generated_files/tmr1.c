@@ -49,6 +49,7 @@
 
 #include <stdio.h>
 #include "tmr1.h"
+#include "tmr3.h"
 
 /**
  Section: File specific functions
@@ -73,17 +74,6 @@ void TMR1_CallBack(void);
     None.
 */
 
-typedef struct _TMR_OBJ_STRUCT
-{
-    /* Timer Elapsed */
-    volatile bool           timerElapsed;
-    /*Software Counter value*/
-    volatile uint8_t        count;
-
-} TMR_OBJ;
-
-static TMR_OBJ tmr1_obj;
-
 /**
   Section: Driver Interface
 */
@@ -97,120 +87,18 @@ void TMR1_Initialize (void)
     //TCKPS 1:1; TON enabled; TSIDL disabled; TCS FOSC/2; TSYNC disabled; TGATE disabled; 
     T1CON = 0x8000;
 
-    if(TMR1_InterruptHandler == NULL)
-    {
-        TMR1_SetInterruptHandler(&TMR1_CallBack);
-    }
-
-    IFS0bits.T1IF = false;
-    IEC0bits.T1IE = true;
-	
-    tmr1_obj.timerElapsed = false;
+    TMR1_ClearInterruptFlag();
+    TMR1_InterruptEnable();
 
 }
 
 
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
 {
-    /* Check if the Timer Interrupt/Status is set */
-
-    //***User Area Begin
-
-    // ticker function call;
-    // ticker is 1 -> Callback function gets called everytime this ISR executes
-    if(TMR1_InterruptHandler) 
-    { 
-           TMR1_InterruptHandler(); 
-    }
-
-    //***User Area End
-
-    tmr1_obj.count++;
-    tmr1_obj.timerElapsed = true;
-    IFS0bits.T1IF = false;
-}
-
-void TMR1_Period16BitSet( uint16_t value )
-{
-    /* Update the counter values */
-    PR1 = value;
-    /* Reset the status information */
-    tmr1_obj.timerElapsed = false;
-}
-
-uint16_t TMR1_Period16BitGet( void )
-{
-    return( PR1 );
-}
-
-void TMR1_Counter16BitSet ( uint16_t value )
-{
-    /* Update the counter values */
-    TMR1 = value;
-    /* Reset the status information */
-    tmr1_obj.timerElapsed = false;
-}
-
-uint16_t TMR1_Counter16BitGet( void )
-{
-    return( TMR1 );
-}
-
-
-void __attribute__ ((weak)) TMR1_CallBack(void)
-{
-    // Add your custom callback code here
-}
-
-void  TMR1_SetInterruptHandler(void (* InterruptHandler)(void))
-{ 
-    IEC0bits.T1IE = false;
-    TMR1_InterruptHandler = InterruptHandler; 
-    IEC0bits.T1IE = true;
-}
-
-void TMR1_Start( void )
-{
-    /* Reset the status information */
-    tmr1_obj.timerElapsed = false;
-
-    /*Enable the interrupt*/
-    IEC0bits.T1IE = true;
-
-    /* Start the Timer */
-    T1CONbits.TON = 1;
-}
-
-void TMR1_Stop( void )
-{
-    /* Stop the Timer */
-    T1CONbits.TON = false;
-
-    /*Disable the interrupt*/
-    IEC0bits.T1IE = false;
-}
-
-bool TMR1_GetElapsedThenClear(void)
-{
-    bool status;
     
-    status = tmr1_obj.timerElapsed;
-
-    if(status == true)
-    {
-        tmr1_obj.timerElapsed = false;
-    }
-    return status;
-}
-
-int TMR1_SoftwareCounterGet(void)
-{
-    return tmr1_obj.count;
-}
-
-void TMR1_SoftwareCounterClear(void)
-{
-    tmr1_obj.count = 0; 
+    TMR3 = 0;
+    TMR3_Start();   
+    
 }
 
 /**

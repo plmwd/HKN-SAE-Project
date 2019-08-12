@@ -51,7 +51,6 @@
 #include "adc1.h"
 #include "tmr1.h"
 #include "tmr3.h"
-#include <libpic30.h>
 
 
 void SYSTEM_Initialize(void)
