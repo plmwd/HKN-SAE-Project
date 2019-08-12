@@ -66,6 +66,7 @@
 #define ADC1_ISR_FUNCTION_HEADER    void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt
 #define ADC_BUF_SIZE 16
 #define ADC_CONV_TIME_TAD 12
+#define ADC_SAMPLE_TIME_TAD_MIN 2
 
    
 /**

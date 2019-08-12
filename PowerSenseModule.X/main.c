@@ -84,6 +84,7 @@ int main(void)
     SYSTEM_Initialize();
     TMR1_SetInterruptHandler(&TMR1_InterruptHandler_ADC1GO);
     
+    
     while (1)
     {
         if (ADC1_IsDataReady() == true) {

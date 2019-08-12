@@ -51,6 +51,7 @@
 #include "adc1.h"
 #include "tmr1.h"
 #include "tmr3.h"
+#include <libpic30.h>
 
 
 void SYSTEM_Initialize(void)
@@ -59,6 +60,11 @@ void SYSTEM_Initialize(void)
     INTERRUPT_Initialize();
     CLOCK_Initialize();
     ADC1_Initialize();
+    // delay TMR init 20us for ADC to stabalize
+    int i;
+    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}
+    
+    
     TMR1_Initialize();
     TMR3_Initialize();
     INTERRUPT_GlobalEnable();

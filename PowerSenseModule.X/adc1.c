@@ -92,16 +92,22 @@ void ADC1_Initialize (void)
     // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
 
    AD1CON2 = 0b000000100000000;
-   AD1CON2bits.SMPI = 2;
+   AD1CON2bits.SMPI = 15;
+   AD1CON2bits.CHPS = 1;
+   AD1CON2bits.BUFM = 0;
 
     // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
    AD1CON3 = 0x000;
    AD1CON3bits.ADCS = ADC1CLOCK_GENMultiplier();
 
-    // CH0SA AN2; CH0SB AN2; CH0NB VREFL; CH0NA VREFL; 
+   AD1CHS0 = 0b0000000000000010;
 
-   AD1CHS0 = 0b0000001000000010;
+   AD1CHS123bits.CH123SA0 = 1;
+   AD1CHS123bits.CH123SA1 = 0;
+   AD1CHS123bits.CH123SA2 = 0;
+   AD1CHS123bits.CH123NA = 0;
+   
 
     // CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
 
@@ -115,9 +121,6 @@ void ADC1_Initialize (void)
 
    AD1CON4 = 0x00;
 
-    // CH123SA2 CH1=OA1/AN3; CH123SB2 CH1=OA1/AN3; CH123NA CH1=VREF-; CH123NB CH1=VREF-; 
-
-   AD1CHS123 = 0x101;
 
    
    adc1_obj.intSample = AD1CON2bits.SMPI;

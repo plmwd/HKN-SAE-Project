@@ -3,17 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/calibration.c</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/pin_manager.c</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/adc1.c</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/system.h</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr1.h</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr3.h</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/system.c</file>
             <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr3.c</file>
             <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr1.c</file>
             <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/main.c</file>
-            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/adc1.h</file>
+            <file>file:/C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/adc1.c</file>
         </group>
     </open-files>
 </project-private>

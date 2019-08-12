@@ -88,12 +88,17 @@ static TMR_OBJ tmr3_obj;
   Section: Driver Interface
 */
 
+
+// Initialize after ADC
 void TMR3_Initialize (void)
 {
     //TMR3 0; 
     TMR3 = 0x00;
   
-    PR3 = ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet() + 2;
+    // tmr3 triggers conversion - so needs enough time to same and convert, plus a fudge factor
+    // TAD: ADC clock period = multiplier * TCY
+    // every trigger converts each channel 0 then 1 then 2... sequentially so the period needs to account for that sample time
+    PR3 = (ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet()) * (AD1CON2bits.CHPS + 1) + ADC_SAMPLE_TIME_TAD_MIN + 4;
     //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
     T3CON = 0x0000;
 
