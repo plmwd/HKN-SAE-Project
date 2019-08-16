@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/debug/PowerSenseModule.X.debug.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>4096</length>
+      <used>248</used>
+      <free>3848</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>32832</length>
+      <used>4440</used>
+      <free>28392</free>
+    </memory>
+  </executable>
+</project>

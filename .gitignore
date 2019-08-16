@@ -52,10 +52,28 @@ Mkfile.old
 dkms.conf
 
 # MPLAB
-\PowerSenseModule.X\nbproject
-\PowerSenseModule.X\debug
-\PowerSenseModule.X\Makefile
-PowerSenseModule\.X/nbproject/
+PowerSenseModule.X\*.d
+PowerSenseModule.X\*.pre
+PowerSenseModule.X\*.p1
+PowerSenseModule.X\*.lst
+PowerSenseModule.X\*.sym
+PowerSenseModule.X\*.obj
+PowerSenseModule.X\*.o
+PowerSenseModule.X\*.sdb
+PowerSenseModule.X\*.obj.dmp
+PowerSenseModule.X\html/
+PowerSenseModule.X\nbproject/private/
+PowerSenseModule.X\nbproject/Package-*.bash
+PowerSenseModule.X\build/
+PowerSenseModule.X\nbbuild/
+PowerSenseModule.X\dist/
+PowerSenseModule.X\nbdist/
+PowerSenseModule.X\nbactions.xml
+PowerSenseModule.X\nb-configuration.xml
+PowerSenseModule.X\funclist
+PowerSenseModule.X\nbproject/Makefile-*
+PowerSenseModule.X\disassembly/
+PowerSenseModule.X\*.map
 
 #KiCAD
 \Board\PowerSenseModule\fp-info-cache
