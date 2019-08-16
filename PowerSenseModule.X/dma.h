@@ -75,11 +75,11 @@ typedef struct DMAxINIT_struct {
 /**
  * Channel allocations
  */
-#define DMA_ADC_CH      0
-#define DMA_CANTX_CH    1
-#define DMA_CANRX_CH    2
-#define DMA_UARTTX_CH   1       // UART and CAN must be reinitialized 
-#define DMA_UARTRX_CH   2
+//#define DMA_ADC_CH      0
+#define DMA_CANTX_CH    0
+#define DMA_CANRX_CH    1
+#define DMA_UARTTX_CH   2       // UART and CAN must be reinitialized 
+#define DMA_UARTRX_CH   3
 
 
 

@@ -1,100 +1,6 @@
 #include "dma.h"
 //#include <string.h>
 
-/*
-volatile DMAxREGS DMA0REGS = {  \
-                                .CONbits    = &DMA0CONbits,  \
-                                .REQbits    = &DMA0REQbits,  \
-                                .STAH       = &DMA0STAHbits, \
-                                .STAL       = &DMA0STAL,     \
-                                .STBH       = &DMA0STBHbits, \
-                                .STBL       = &DMA0STBL,     \
-                                .PAD        = &DMA0PAD,      \
-                                .CNT        = &DMA0CNTbits  \
-                                };
-
-volatile DMAxREGS DMA1REGS = {  \
-                                .CONbits    = &DMA1CONbits,  \
-                                .REQbits    = &DMA1REQbits,  \
-                                .STAH       = &DMA1STAHbits, \
-                                .STAL       = &DMA1STAL,     \
-                                .STBH       = &DMA1STBHbits, \
-                                .STBL       = &DMA1STBL,     \
-                                .PAD        = &DMA1PAD,      \
-                                .CNT        = &DMA1CNTbits  \
-                                };
-
-volatile DMAxREGS DMA2REGS = {  \
-                                .CONbits    = &DMA2CONbits,  \
-                                .REQbits    = &DMA2REQbits,  \
-                                .STAH       = &DMA2STAHbits, \
-                                .STAL       = &DMA2STAL,     \
-                                .STBH       = &DMA2STBHbits, \
-                                .STBL       = &DMA2STBL,     \
-                                .PAD        = &DMA2PAD,      \
-                                .CNT        = &DMA2CNTbits,  \
-                                };
-
-volatile DMAxREGS DMA3REGS = {  .name = "", \
-                                .CONbits    = &DMA3CONbits,  \
-                                .REQbits    = &DMA3REQbits,  \
-                                .STAH       = &DMA3STAHbits, \
-                                .STAL       = &DMA3STAL,     \
-                                .STBH       = &DMA3STBHbits, \
-                                .STBL       = &DMA3STBL,     \
-                                .PAD        = &DMA3PAD,      \
-                                .CNT        = &DMA3CNTbits  \
-                                };
-
-
-volatile DMAxREGS DMA_CHList[NUM_DMA_CH] = {
-                            {   .name       = ""            \
-                                .CONbits    = &DMA0CONbits,  \
-                                .REQbits    = &DMA0REQbits,  \
-                                .STAH       = &DMA0STAHbits, \
-                                .STAL       = &DMA0STAL,     \
-                                .STBH       = &DMA0STBHbits, \
-                                .STBL       = &DMA0STBL,     \
-                                .PAD        = &DMA0PAD,      \
-                                .CNT        = &DMA0CNTbits  \
-                                },
-                            {   .name       = ""            \
-                                .CONbits    = &DMA1CONbits,  \
-                                .REQbits    = &DMA1REQbits,  \
-                                .STAH       = &DMA1STAHbits, \
-                                .STAL       = &DMA1STAL,     \
-                                .STBH       = &DMA1STBHbits, \
-                                .STBL       = &DMA1STBL,     \
-                                .PAD        = &DMA1PAD,      \
-                                .CNT        = &DMA1CNTbits  \
-                                },
-                            {   .name       = ""            \
-                                .CONbits    = &DMA2CONbits,  \
-                                .REQbits    = &DMA2REQbits,  \
-                                .STAH       = &DMA2STAHbits, \
-                                .STAL       = &DMA2STAL,     \
-                                .STBH       = &DMA2STBHbits, \
-                                .STBL       = &DMA2STBL,     \
-                                .PAD        = &DMA2PAD,      \
-                                .CNT        = &DMA2CNTbits,  \
-                                },
-                            {   .name       = ""            \
-                                .CONbits    = &DMA3CONbits,  \
-                                .REQbits    = &DMA3REQbits,  \
-                                .STAH       = &DMA3STAHbits, \
-                                .STAL       = &DMA3STAL,     \
-                                .STBH       = &DMA3STBHbits, \
-                                .STBL       = &DMA3STBL,     \
-                                .PAD        = &DMA3PAD,      \
-                                .CNT        = &DMA3CNTbits  \
-                            }
-                        };
-*/
-
-/*
- *      PERIPHERAL CONFIGURATION DATA
- */
-
 DMAxINIT DMA_ADC_INIT = {   .CHEN   = 1,     \
                             .SIZE   = 1,     \
                             .DIR    = 1,     \
@@ -112,12 +18,12 @@ DMAxINIT DMA_ADC_INIT = {   .CHEN   = 1,     \
                             };
 
 
-DMAxINIT DMA_CANRX_INIT = { .CHEN   = 0,     \
+DMAxINIT DMA_CANRX_INIT = { .CHEN   = 1,     \
                             .SIZE   = 0,     \
                             .DIR    = 0,     \
                             .HALF   = 0,     \
                             .NULLW  = 0,     \
-                            .AMODE  = 0,     \
+                            .AMODE  = 2,     \
                             .MODE   = 0,     \
                             .IRQSEL = 0,     \
                             .STAH   = 0,     \
@@ -149,7 +55,6 @@ uint8_t active_chs[NUM_DMA_CH] = { 0 };
 
 
 void DMA_Initialize() {
-    DMA_InitializeCH(DMA_ADC_CH, DMA_ADC_INIT);
     DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_INIT);
     DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_INIT);
 }

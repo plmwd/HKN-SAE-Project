@@ -8,16 +8,10 @@
 #ifndef DEVICE_CONFIGURATION_H
 #define	DEVICE_CONFIGURATION_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+
 
     
 
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* DEVICE_CONFIGURATION_H */
 

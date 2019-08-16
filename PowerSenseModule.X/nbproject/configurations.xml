@@ -23,6 +23,7 @@
       <itemPath>calibration.h</itemPath>
       <itemPath>device_configuration.h</itemPath>
       <itemPath>dma.h</itemPath>
+      <itemPath>globals.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
