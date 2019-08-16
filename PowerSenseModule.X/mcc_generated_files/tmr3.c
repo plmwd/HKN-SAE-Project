@@ -60,20 +60,6 @@
   Section: Data Type Definitions
 */
 
-/** TMR Driver Hardware Instance Object
-
-  @Summary
-    Defines the object required for the maintenance of the hardware instance.
-
-  @Description
-    This defines the object required for the maintenance of the hardware
-    instance. This object exists once per hardware instance of the peripheral.
-
-  Remarks:
-    None.
-*/
-
-static TMR_OBJ tmr3_obj;
 
 /**
   Section: Driver Interface
