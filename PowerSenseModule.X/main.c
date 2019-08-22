@@ -74,11 +74,11 @@ cal_point_t voltage_cal_data[NUM_CAL_POINTS];
  */
 int main(void)
 {
-    uint16_t current_readings[ADC_BUF_SIZE / 2];
-    uint16_t voltage_readings[ADC_BUF_SIZE / 2];
+    double current_readings[ADC_BUF_SIZE / 2];
+    double voltage_readings[ADC_BUF_SIZE / 2];
     
-    uint16_t current_avg = 0;
-    uint16_t voltage_avg = 0;
+    double current_avg = 0;
+    double voltage_avg = 0;
     
     // initialize the device
     SYSTEM_Initialize();
