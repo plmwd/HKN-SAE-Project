@@ -55,28 +55,6 @@ bool data_ready = 0;
 uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
 
 
-/**
-  Section: Data Type Definitions
-*/
-
-/* ADC Driver Hardware Instance Object
-
-  @Summary
-    Defines the object required for the maintenance of the hardware instance.
-
-  @Description
-    This defines the object required for the maintenance of the hardware
-    instance. This object exists once per hardware instance of the peripheral.
-
- */
-typedef struct
-{
-	uint8_t intSample;
-}
-
-ADC_OBJECT;
-
-static ADC_OBJECT adc1_obj;
 
 /**
   Section: Driver Interface
@@ -121,9 +99,6 @@ void ADC1_Initialize (void)
 
    AD1CON4 = 0x00;
 
-
-   
-   adc1_obj.intSample = AD1CON2bits.SMPI;
    
    data_ready = 0;
            

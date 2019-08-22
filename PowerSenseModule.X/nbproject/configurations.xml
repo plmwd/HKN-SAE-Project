@@ -24,6 +24,7 @@
       <itemPath>device_configuration.h</itemPath>
       <itemPath>dma.h</itemPath>
       <itemPath>globals.h</itemPath>
+      <itemPath>can.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -48,6 +49,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>calibration.c</itemPath>
       <itemPath>dma.c</itemPath>
+      <itemPath>can.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -66,7 +68,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.36</languageToolchainVersion>
+        <languageToolchainVersion>1.40</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -112,7 +114,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value="..\..\..\..\..\..\Program Files (x86)\Microchip\xc16\v1.36\include"/>
+                  value="..\..\..\..\..\..\Program Files (x86)\Microchip\xc16\v1.40\include"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
