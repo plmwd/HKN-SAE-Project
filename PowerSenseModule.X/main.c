@@ -121,9 +121,19 @@ uint16_t ProcessCurrent(uint16_t data) {
 }
 
 
+
+// The following function takes the value read by the
+// ADC and returns the voltage of the F1 battery
 uint16_t ProcessVoltage(uint16_t data) {
-    // STUFF
-     return 0;
+    double adcVoltage, fOneBatteryVoltage = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting voltage of actual battery using circuit analysis
+   
+    
+    return fOneBatteryVoltage;
 }
 
 
