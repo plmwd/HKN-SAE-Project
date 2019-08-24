@@ -16,11 +16,6 @@
 
 void CAN_Initialize(void) {
     
-    //testing CAN_WriteBuf
-    
-    
-    //end
-    
     enum opmode mode = OP_Normal;
     
     C1CTRL1bits.REQOP   = OP_Config;             // request configuration operation - module acknowledges request in OPMODE
@@ -73,21 +68,23 @@ void CAN_Initialize(void) {
     }
 }
 
-void CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_t starting_byte) {
+uint16_t CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
     char* data_byte_addr = (char*)&(buffer->word3_data0);
     
     //if number of bytes is longer than the max data field
     if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
-        return;
+        return 1;   // error
     
     //add offset to select byte
     data_byte_addr += starting_byte;
     
     //copy data to location
     memcpy(data_byte_addr, data, num_bytes);
+    
+    return 0;
 }
 
-void CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes) {
+uint16_t CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes) {
 
 }

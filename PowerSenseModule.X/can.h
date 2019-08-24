@@ -37,22 +37,22 @@ typedef struct can_msg_word2_struct {
 
 typedef struct msg_word3_struct {
     uint8_t byte0; 
-    uint8_t byte1 __attribute((packed)); 
+    uint8_t byte1; 
 } can_msg_word3_t;
 
 typedef struct msg_word4_struct {
     uint8_t byte2;
-    uint8_t byte3 __attribute((packed)); 
+    uint8_t byte3; 
 } can_msg_word4_t;
 
 typedef struct msg_word5_struct {
     uint8_t byte4; 
-    uint8_t byte5 __attribute((packed)); 
+    uint8_t byte5; 
 } can_msg_word5_t;
 
 typedef struct msg_word6_struct {
     uint8_t byte6; 
-    uint8_t byte7 __attribute((packed)); 
+    uint8_t byte7; 
 } can_msg_word6_t;
 
 typedef struct can_msg_word7_struct {  // receive only
@@ -87,8 +87,9 @@ void CAN_Initialize(void);
  * @param sid: standard identifier - device address to send to 
  * @param num_bytes: number of bytes to transmit
  * 
+ * @return 1 if error, 0 if successful
  */
-void CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes);
+uint16_t CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes);
 
 /**
  * Writes data of any type to a specified CAN TX buffer
@@ -98,8 +99,9 @@ void CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes);
  * @param buffer: buffer to write to
  * @param num_bytes: number of bytes of data
  * 
+ * @return 1 if error, 0 if successful
  */
-void CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_t starting_byte);
+uint16_t CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_t starting_byte);
 
 #endif	/* CAN_H */
 

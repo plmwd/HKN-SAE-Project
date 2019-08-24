@@ -51,6 +51,7 @@
 #include "tmr1.h"
 #include "tmr3.h"
 #include "../dma.h"
+#include "../can.h"
 
 
 void SYSTEM_Initialize(void)
@@ -63,10 +64,10 @@ void SYSTEM_Initialize(void)
     int i;
     for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}
     
-    
     TMR1_Initialize();
     TMR3_Initialize();
     DMA_Initialize();
+    CAN_Initialize();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }
