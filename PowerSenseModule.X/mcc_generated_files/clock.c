@@ -55,14 +55,20 @@ uint16_t TAD_multiplier;
 
 void CLOCK_Initialize(void)
 {
-    // FRCDIV FRC/1; PLLPRE 2; DOZE 1:8; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
-    CLKDIV = 0x3000;
+    // Clock divider register
+    CLKDIVbits.ROI      = 0;        // interrupts have no effect on DOZEN bit
+    CLKDIVbits.DOZEN    = 0;        // doze mode disabled
+    CLKDIVbits.FRCDIV   = 0;        // FRC / 1
+    CLKDIVbits.PLLPOST  = 3;        // N2 = 8; PLL output / N2
+    CLKDIVbits.PLLPRE   = 7;        // N1 = 8; PLL phase detector input / N1
+    
+    // PLL Feedback Divisor Register
+    PLLFBD              = 346;      // M = 348
+    
     // TUN Center frequency; 
     OSCTUN = 0x00;
     // ROON disabled; ROSEL FOSC; RODIV 0; ROSSLP disabled; 
     REFOCON = 0x00;
-    // PLLDIV 50; 
-    PLLFBD = 0x32;
     // AD1MD enabled; PWMMD enabled; T3MD enabled; T4MD enabled; T1MD enabled; U2MD enabled; T2MD enabled; U1MD enabled; SPI2MD enabled; SPI1MD enabled; C1MD enabled; T5MD enabled; I2C1MD enabled; 
     PMD1 = 0x00;
     // IC4MD enabled; IC3MD enabled; OC1MD enabled; IC2MD enabled; OC2MD enabled; IC1MD enabled; OC3MD enabled; OC4MD enabled; 

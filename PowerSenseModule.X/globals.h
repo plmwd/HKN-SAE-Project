@@ -8,11 +8,13 @@
 #ifndef GLOBALS_H
 #define	GLOBALS_H
 
+#include "can.h"
+
 #define CAN_MSG_SIZE        8        // num words per can message
 #define NUM_CANTX_MSGS      1       // num messages for can tx buffer
 #define NUM_CANRX_MSGS      8       // num messages for can rx buffer
 
-uint16_t canTXBuffer[NUM_CANTX_MSGS][CAN_MSG_SIZE] __attribute__((aligned, space(dma)));
-uint16_t canRXBuffer[NUM_CANRX_MSGS][CAN_MSG_SIZE] __attribute__((aligned, space(dma)));
+can_msg_t canTXBuffer[NUM_CANTX_MSGS] __attribute__((aligned));
+can_msg_t canRXBuffer[NUM_CANRX_MSGS] __attribute__((aligned));
 
 #endif	/* GLOBALS_H */

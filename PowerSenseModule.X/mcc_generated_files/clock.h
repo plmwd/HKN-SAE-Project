@@ -46,14 +46,21 @@
 #define	CLOCK_H
 
 #ifndef _XTAL_FREQ
-#define _XTAL_FREQ  7370000UL
+#define _XTAL_FREQ  400744000UL
+#define FCY         _XTAL_FREQ / 2
 #endif
 
-#define CLOCK_SystemFrequencyGet()        (7370000UL)
+/* CAN */
+#define FTQ         1000000UL   
+
+#define CLOCK_SystemFrequencyGet()        (_XTAL_FREQ)
 
 #define CLOCK_PeripheralFrequencyGet()    (CLOCK_SystemFrequencyGet() / 2)
 
 #define CLOCK_InstructionFrequencyGet()   (CLOCK_SystemFrequencyGet() / 2)
+
+
+
 /**
  * @Param
     none
@@ -69,17 +76,19 @@ void CLOCK_Initialize(void);
 
 uint16_t CLOCK_PeriodnsGet(void);
 
+/* ADC */
 uint16_t ADC1CLOCK_GENMultiplier(void);
 
 uint16_t ADC1CLOCK_PeriodnsGet(void);
 
 uint16_t ADC1CLOCK_MultiplierGet(void);
 
-
 //MUST RE-INITIALIZE ADC
 void ADC1CLOCK_PeriodnsSet(uint16_t);
-
+//MUST RE-INITIALIZE ADC
 void ADC1CLOCK_MultiplierSet(uint16_t);
+
+
 
 #endif	/* CLOCK_H */
 /**
