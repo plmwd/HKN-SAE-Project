@@ -15,6 +15,12 @@
 
 
 void CAN_Initialize(void) {
+    //test
+//    float d = 69.420;
+//    CAN_ConfigBufForStandardDataFrame(0);
+//    CAN_WriteBuf((void*)&d, 0, sizeof(d), 2);
+//    CAN_TransmitData(0,789,sizeof(d));
+    //end
     
     enum opmode mode = OP_Normal;
     
@@ -40,8 +46,6 @@ void CAN_Initialize(void) {
     
     
     // control registers
-    C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
-    while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
     C1CTRL1bits.CSIDL   = 0;                // continue in idle mode
     C1CTRL1bits.CANCAP  = 0;                // disable timestamping 
     C1CTRL1bits.WIN     = 1;                // use message filter
@@ -66,11 +70,14 @@ void CAN_Initialize(void) {
         C1TR67CONbits.TXEN6 = 1;
         C1TR67CONbits.TXEN7 = 1;       
     }
+    
+    C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
+    while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
 }
 
-uint16_t CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_t starting_byte) {
+uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
-    char* data_byte_addr = (char*)&(buffer->word3_data0);
+    char* data_byte_addr = (char*)&(canTXBuffer[buf_num].data_byte0);
     
     //if number of bytes is longer than the max data field
     if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
@@ -85,6 +92,63 @@ uint16_t CAN_WriteBuf(void* data, can_msg_t* buffer, uint16_t num_bytes, uint16_
     return 0;
 }
 
-uint16_t CAN_TransmitData(uint16_t buffer, uint16_t sid, uint16_t num_bytes) {
+void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num) {
+    can_msg_t* buffer = &canTXBuffer[buf_num];
+    buffer->SRR = 0;        // normal message
+    buffer->IDE = 0;        // standard frame
+    buffer->EIDH = 0;       // extended ID high
+    buffer->EIDL = 0;       // extended ID high
+    buffer->RTR = 0;        // normal message
+    buffer->RB0 = 0;
+    buffer->RB1 = 0;
+}
 
+uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes) {
+    can_msg_t* buffer = &canTXBuffer[buf_num];
+    
+    //SID must be an 11-bit number - 2^11 = 2048
+    if (sid > 2028)
+        return 1;   // not an 11-bit number
+    
+    if (num_bytes > 8)
+        return 1;   // max 8 bytes
+    
+    if (buf_num >= NUM_CANTX_MSGS)
+        return 1;   
+    
+    buffer->SID = sid;          // bus peripheral address
+    buffer->DLC = num_bytes;    // number of bytes in buffer to send (starting from byte 0)
+    
+    //request transmission
+    switch(buf_num) {
+        case 0:
+            C1TR01CONbits.TXREQ0 = 1;
+            break;
+        case 1:
+            C1TR01CONbits.TXREQ1 = 1;
+            break;
+        case 2:
+            C1TR23CONbits.TXREQ2 = 1;
+            break;
+        case 3:
+            C1TR23CONbits.TXREQ3 = 1;
+            break;
+        case 4:
+            C1TR45CONbits.TXREQ4 = 1;
+            break;
+        case 5:
+            C1TR45CONbits.TXREQ5 = 1;
+            break;
+        case 6:
+            C1TR67CONbits.TXREQ6 = 1;
+            break;
+        case 7:
+            C1TR67CONbits.TXREQ7 = 1;
+            break;
+        default:
+            return 1;   // invalid buffer number
+    }
+    
+    // successful
+    return 0;
 }
