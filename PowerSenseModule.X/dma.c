@@ -9,9 +9,7 @@ DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
                                     .NULLW  = 0,    // normal operation 
                                     .AMODE  = 2,    // peripheral controls address 
                                     .MODE   = 0,    // continuous, ping-pong disabled
-                                    .IRQSEL = 0x22, 
-                                    .STAH   = (uint16_t*)&canRXBuffer,
-                                    .STAL   = (uint16_t*)&canRXBuffer,     
+                                    .IRQSEL = 0x22,  
                                     .STBH   = 0,     
                                     .STBL   = 0,     
                                     .PAD    = (volatile uint16_t*)&C1RXD,     
@@ -25,9 +23,7 @@ DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled
                                     .NULLW  = 0,    // normal operation 
                                     .AMODE  = 2,    // peripheral controls address 
                                     .MODE   = 0,    // continuous, ping-pong disabled
-                                    .IRQSEL = 0x46,     
-                                    .STAH   = (uint16_t*)&canTXBuffer,     
-                                    .STAL   = (uint16_t*)&canTXBuffer,     
+                                    .IRQSEL = 0x46,         
                                     .STBH   = 0,     
                                     .STBL   = 0,     
                                     .PAD    = (volatile uint16_t*)&C1TXD,    
@@ -39,12 +35,12 @@ uint8_t active_chs[NUM_DMA_CH] = { 0 };
 
 
 void DMA_Initialize() {
-    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig);
-    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig);
+    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig, (void*)&canRXBuffer, (void*)&canRXBuffer);
+    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig, (void*)&canTXBuffer, (void*)&canTXBuffer);
 }
 
 
-uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
+uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* stal) {
     if ((ch >= NUM_DMA_CH) || (ch < 0))
         return 1;
     
@@ -64,8 +60,8 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA0CONbits.AMODE = init_data.AMODE;
             DMA0CONbits.MODE = init_data.MODE;
             DMA0REQbits.IRQSEL = init_data.IRQSEL;
-            DMA0STAHbits.STA = init_data.STAH;
-            DMA0STAL = init_data.STAL;
+            DMA0STAHbits.STA = stah;
+            DMA0STAL = stal;
             DMA0STBHbits.STB = init_data.STBH;
             DMA0STBL = init_data.STBL;
             DMA0PAD = init_data.PAD;
@@ -80,8 +76,8 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA1CONbits.AMODE = init_data.AMODE;
             DMA1CONbits.MODE = init_data.MODE;
             DMA1REQbits.IRQSEL = init_data.IRQSEL;
-            DMA1STAHbits.STA = init_data.STAH;
-            DMA1STAL = init_data.STAL;
+            DMA1STAHbits.STA = stah;
+            DMA1STAL = stal;
             DMA1STBHbits.STB = init_data.STBH;
             DMA1STBL = init_data.STBL;
             DMA1PAD = init_data.PAD;
@@ -96,8 +92,8 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA2CONbits.AMODE = init_data.AMODE;
             DMA2CONbits.MODE = init_data.MODE;
             DMA2REQbits.IRQSEL = init_data.IRQSEL;
-            DMA2STAHbits.STA = init_data.STAH;
-            DMA2STAL = init_data.STAL;
+            DMA2STAHbits.STA = stah;
+            DMA2STAL = stal;
             DMA2STBHbits.STB = init_data.STBH;
             DMA2STBL = init_data.STBL;
             DMA2PAD = init_data.PAD;
@@ -112,8 +108,8 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA3CONbits.AMODE = init_data.AMODE;
             DMA3CONbits.MODE = init_data.MODE;
             DMA3REQbits.IRQSEL = init_data.IRQSEL;
-            DMA3STAHbits.STA = init_data.STAH;
-            DMA3STAL = init_data.STAL;
+            DMA3STAHbits.STA = stah;
+            DMA3STAL = stal;
             DMA3STBHbits.STB = init_data.STBH;
             DMA3STBL = init_data.STBL;
             DMA3PAD = init_data.PAD;

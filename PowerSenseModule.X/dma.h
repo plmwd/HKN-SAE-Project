@@ -13,18 +13,14 @@
 
 #define NUM_DMA_CH      4
 
+/**
+ * Channel allocations
+ */
+#define DMA_CANTX_CH    0
+#define DMA_CANRX_CH    1
+#define DMA_UARTTX_CH   2       // UART and CAN must be reinitialized 
+#define DMA_UARTRX_CH   3s
 
-//typedef struct DMAxREGS_struct {
-//    char name[NAME_LENGTH];
-//    volatile DMA0CONBITS*   CONbits;
-//    volatile DMA0REQBITS*   REQbits;
-//    volatile DMA0STAHBITS*  STAH;
-//    volatile uint16_t*      STAL;
-//    volatile DMA0STBHBITS*  STBH;
-//    volatile uint16_t*      STBL;
-//    volatile uint16_t*      PAD;
-//    volatile DMA0CNTBITS    CNT;
-//} DMAxREGS;
 
 typedef struct DMAxINIT_struct {
 // DMAxCON
@@ -62,29 +58,6 @@ typedef struct DMAxINIT_struct {
     
 } DMAxINIT;
 
-/*
- * USE THESE FOR ACCESSING DMA CHANNEL SFR
- */
-//#define DMA_CONBITS(ch)     ( (*(DMA_CHList[ch].CONbits)) )
-//#define DMA_REQBITS(ch)     ( (*(DMA_CHList[ch].REQbits)) )
-//#define DMA_STAH(ch)        ( (*(DMA_CHList[ch].STAH)).STA )
-//#define DMA_STAL(ch)           *(DMA_CHList[ch].STAL)
-//#define DMA_STBH(ch)        ( (*(DMA_CHList[ch].STBH)).STB )
-//#define DMA_STBL(ch)           *(DMA_CHList[ch].STBL) 
-//#define DMA_PAD(ch)            *(DMA_CHList[ch].PAD)
-//#define DMA_CNT(ch)         ( (*(DMA_CHList[ch].CNT)).CNT )
-
-
-/**
- * Channel allocations
- */
-//#define DMA_ADC_CH      0
-#define DMA_CANTX_CH    0
-#define DMA_CANRX_CH    1
-#define DMA_UARTTX_CH   2       // UART and CAN must be reinitialized 
-#define DMA_UARTRX_CH   3
-
-
 
 /**
  * Main initialization function
@@ -95,14 +68,17 @@ void DMA_Initialize(void);
  * Initializes the specified DMA channel with initialization data. 
  * Also will block reinitialization if channel is initialized and active.
  * Must terminate channel before reinitialization.
+ * A channel is marked as active through "active_chs" array
+ * 
  * @param ch            channel to be initialized
  * @param init_data     initialization data
  * @return              0 if successful, 1 if failure
  */
-uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data);
+uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* stal);
 
 /**
- * Terminates channel - deactivates it.
+ * Terminates channel - deactivates it and removes association to peripheral.
+ * 
  * @param ch            channel to be initialized
  * @return              0 if successful, 1 if failure
  */
