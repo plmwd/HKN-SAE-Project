@@ -68,10 +68,13 @@ void DMA_Initialize(void);
  * Initializes the specified DMA channel with initialization data. 
  * Also will block reinitialization if channel is initialized and active.
  * Must terminate channel before reinitialization.
- * A channel is marked as active through "active_chs" array
+ * A channel is marked as active through "active_chs" array.
+ * Buffer address must be passed through initialization function.
  * 
  * @param ch            channel to be initialized
  * @param init_data     initialization data
+ * @param stah          buffer start address high
+ * @param stal          buffer start address low
  * @return              0 if successful, 1 if failure
  */
 uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* stal);

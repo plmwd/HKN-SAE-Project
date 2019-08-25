@@ -4,7 +4,38 @@
 #include <string.h>
 #include "mcc_generated_files/pin_manager.h"
 
+/**************************************************************************
+ * 
+ *                              ISRs
+ * 
+ **************************************************************************/
+/**
+ * CAN1 Receieve Data Ready Interrupt
+ */
+void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
 
+}
+
+/**
+ * CAN1 Transmit Data Request Interrupt
+ */
+void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
+
+}
+
+/**
+ * CAN1 Event Interrupt
+ */
+void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
+
+}
+
+
+/**************************************************************************
+ * 
+ *                              INIT
+ * 
+ **************************************************************************/
 void CAN_Initialize(void) {
     //test
 //    float d = 69.420;
@@ -62,11 +93,27 @@ void CAN_Initialize(void) {
         C1TR67CONbits.TXEN7 = 1;       
     }
     
+    // enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
+    IEC2bits.C1RXIE = 1;
+    IEC4bits.C1TXIE = 1;
+    IEC2bits.C1IE = 0;
+    
+    // clear flags
+    IFS2bits.C1IF = 0;
+    IFS2bits.C1RXIF = 0;
+    IFS4bits.C1TXIF = 0;
+    
+    
     C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
     while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
 }
 
 
+/**************************************************************************
+ * 
+ *                             FUNCTIONS
+ * 
+ **************************************************************************/
 uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
     char* data_byte_addr = (char*)&(canTXBuffer[buf_num].data_byte0);
