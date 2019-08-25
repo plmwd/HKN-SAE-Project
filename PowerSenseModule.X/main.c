@@ -50,6 +50,7 @@
 #include "calibration.h"
 #include "mcc_generated_files/tmr1.h"
 #include "mcc_generated_files/tmr3.h"
+#include "can.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
 #define DIFFAMP_GAIN        80
@@ -82,6 +83,15 @@ int main(void)
     
     // initialize the device
     SYSTEM_Initialize();
+    
+    //debug - disable tmrs 
+    double test = 69.420;
+    CAN_ConfigBufForStandardDataFrame(0);
+    CAN_WriteBuf((void*)&test, 0, sizeof(test), 0);
+    CAN_TransmitData(0, 1023, sizeof(test));
+    
+    while(1);
+    //end
     
     while (1)
     {

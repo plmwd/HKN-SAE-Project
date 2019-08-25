@@ -13,21 +13,24 @@
  * CAN1 Receieve Data Ready Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
-
+    
+    IFS2bits.C1RXIF = 0;        // clear interrupt flag
 }
 
 /**
  * CAN1 Transmit Data Request Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
-
+    
+    IFS4bits.C1TXIF = 0;        // clear interrupt flag
 }
 
 /**
  * CAN1 Event Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
-
+    
+    IFS2bits.C1IF = 0;      // clear interrup flag
 }
 
 
@@ -93,19 +96,24 @@ void CAN_Initialize(void) {
         C1TR67CONbits.TXEN7 = 1;       
     }
     
-    // enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
+    //set DMA buffer size
+    C1FCTRLbits.DMABS = 2;      // 8 message buffer
+    
+    //enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
     IEC2bits.C1RXIE = 1;
     IEC4bits.C1TXIE = 1;
-    IEC2bits.C1IE = 0;
+    IEC2bits.C1IE = 1;
     
-    // clear flags
+    //clear flags
     IFS2bits.C1IF = 0;
     IFS2bits.C1RXIF = 0;
     IFS4bits.C1TXIF = 0;
     
-    
-    C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
-    while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
+    // simulator doesnt support CAN
+    #ifndef __MPLAB_DEBUGGER_SIMULATOR
+        C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
+        while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
+    #endif
 }
 
 

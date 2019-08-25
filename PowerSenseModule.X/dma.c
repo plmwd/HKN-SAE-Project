@@ -14,7 +14,7 @@ DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
                                     .AMODE  = 2,    // peripheral controls address 
                                     .MODE   = 0,    // continuous, ping-pong disabled
                                     .IRQSEL = 0x22,    
-                                    .PAD    = (uint16_t)&C1RXD,     
+                                    .PAD    = 0x440,     
                                     .CNT    = CAN_MSG_SIZE - 1 
                                     };
 
@@ -26,7 +26,7 @@ DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled
                                     .AMODE  = 2,    // peripheral controls address 
                                     .MODE   = 0,    // continuous, ping-pong disabled
                                     .IRQSEL = 0x46,             
-                                    .PAD    = (uint16_t)&C1TXD,    
+                                    .PAD    = 0x442,    
                                     .CNT    = CAN_MSG_SIZE - 1
                                     };
 

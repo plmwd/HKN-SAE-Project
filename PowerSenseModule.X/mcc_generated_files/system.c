@@ -65,8 +65,8 @@ void SYSTEM_Initialize(void)
     int i;
     for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
     
-    TMR1_Initialize();
-    TMR3_Initialize();
+    //TMR1_Initialize();
+    //TMR3_Initialize();
     DMA_Initialize();
     CAN_Initialize();
     CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
