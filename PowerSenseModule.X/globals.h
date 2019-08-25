@@ -14,7 +14,8 @@
 #define NUM_CANTX_MSGS      1       // num messages for can tx buffer
 #define NUM_CANRX_MSGS      8       // num messages for can rx buffer
 
-can_msg_t canTXBuffer[NUM_CANTX_MSGS] __attribute__((aligned));
-can_msg_t canRXBuffer[NUM_CANRX_MSGS] __attribute__((aligned));
+extern can_msg_t canTXBuffer[NUM_CANTX_MSGS] __attribute__((aligned));
+extern can_msg_t canRXBuffer[NUM_CANRX_MSGS] __attribute__((aligned));
+
 
 #endif	/* GLOBALS_H */

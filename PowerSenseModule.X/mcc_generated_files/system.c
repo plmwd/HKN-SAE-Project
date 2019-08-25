@@ -63,7 +63,7 @@ void SYSTEM_Initialize(void)
     ADC1_Initialize();
     // delay TMR init 20us for ADC to stabilize
     int i;
-    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}
+    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
     
     TMR1_Initialize();
     TMR3_Initialize();
