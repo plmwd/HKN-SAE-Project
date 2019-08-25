@@ -123,6 +123,7 @@ typedef struct can_msg_struct {
  */
 void CAN_Initialize(void);
 
+
 /**
  * Transmit standard data frame over bus
  * 
@@ -133,6 +134,7 @@ void CAN_Initialize(void);
  * @return 1 if error, 0 if successful
  */
 uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes);
+
 
 /**
  * Writes data of any type to a specified CAN TX buffer
@@ -152,6 +154,13 @@ uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes);
  */
 uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte);
 
+
+/**
+ * CAN messages can take on different formats. This function configures the buffer to be a 
+ * standard data message.
+ * 
+ * @param buf_num: TX buffer to setup for a standard data frame
+ */
 void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num);
 
 #endif	/* CAN_H */

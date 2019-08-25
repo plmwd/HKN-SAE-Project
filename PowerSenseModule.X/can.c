@@ -2,16 +2,7 @@
 #include "can.h"
 #include "globals.h"
 #include <string.h>
-
-/**
- * TODO:
- * TX abort: ABAT bit
- * CAN timing
- * change device clk speed
- * setup RP pins
- * exception handing?
- *  - NUM_CAN(TX/RX) out of range?
- */
+#include "mcc_generated_files/pin_manager.h"
 
 
 void CAN_Initialize(void) {
@@ -75,6 +66,7 @@ void CAN_Initialize(void) {
     while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
 }
 
+
 uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
     char* data_byte_addr = (char*)&(canTXBuffer[buf_num].data_byte0);
@@ -92,6 +84,7 @@ uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t
     return 0;
 }
 
+
 void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num) {
     can_msg_t* buffer = &canTXBuffer[buf_num];
     buffer->SRR = 0;        // normal message
@@ -102,6 +95,7 @@ void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num) {
     buffer->RB0 = 0;
     buffer->RB1 = 0;
 }
+
 
 uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes) {
     can_msg_t* buffer = &canTXBuffer[buf_num];

@@ -1,62 +1,46 @@
 #include "dma.h"
-//#include <string.h>
-
-DMAxINIT DMA_ADC_INIT = {   .CHEN   = 1,     \
-                            .SIZE   = 1,     \
-                            .DIR    = 1,     \
-                            .HALF   = 1,     \
-                            .NULLW  = 1,     \
-                            .AMODE  = 1,     \
-                            .MODE   = 1,     \
-                            .IRQSEL = 1,     \
-                            .STAH   = 1,     \
-                            .STAL   = 1,     \
-                            .STBH   = 1,     \
-                            .STBL   = 1,     \
-                            .PAD    = 1,     \
-                            .CNT    = 1     \
-                            };
+#include "globals.h"
 
 
-DMAxINIT DMA_CANRX_INIT = { .CHEN   = 1,     \
-                            .SIZE   = 0,     \
-                            .DIR    = 0,     \
-                            .HALF   = 0,     \
-                            .NULLW  = 0,     \
-                            .AMODE  = 2,     \
-                            .MODE   = 0,     \
-                            .IRQSEL = 0,     \
-                            .STAH   = 0,     \
-                            .STAL   = 0,     \
-                            .STBH   = 0,     \
-                            .STBL   = 0,     \
-                            .PAD    = 0,     \
-                            .CNT    = 0     \
-                            };
+DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
+                                    .SIZE   = 0,    // word transfer
+                                    .DIR    = 0,    // peripheral to RAM direction  
+                                    .HALF   = 0,    // interrupt after all transfers
+                                    .NULLW  = 0,    // normal operation 
+                                    .AMODE  = 2,    // peripheral controls address 
+                                    .MODE   = 0,    // continuous, ping-pong disabled
+                                    .IRQSEL = 0x22, 
+                                    .STAH   = (uint16_t*)&canRXBuffer,
+                                    .STAL   = (uint16_t*)&canRXBuffer,     
+                                    .STBH   = 0,     
+                                    .STBL   = 0,     
+                                    .PAD    = (volatile uint16_t*)&C1RXD,     
+                                    .CNT    = CAN_MSG_SIZE - 1 
+                                    };
 
-DMAxINIT DMA_CANTX_INIT = { .CHEN   = 0,     \
-                            .SIZE   = 0,     \
-                            .DIR    = 0,     \
-                            .HALF   = 0,     \
-                            .NULLW  = 0,     \
-                            .AMODE  = 0,     \
-                            .MODE   = 0,     \
-                            .IRQSEL = 0,     \
-                            .STAH   = 0,     \
-                            .STAL   = 0,     \
-                            .STBH   = 0,     \
-                            .STBL   = 0,     \
-                            .PAD    = 0,     \
-                            .CNT    = 0     \
-                            };
+DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled  
+                                    .SIZE   = 0,    // word transfer
+                                    .DIR    = 1,    // RAM to peripheral
+                                    .HALF   = 0,    // interrupt after all transfers
+                                    .NULLW  = 0,    // normal operation 
+                                    .AMODE  = 2,    // peripheral controls address 
+                                    .MODE   = 0,    // continuous, ping-pong disabled
+                                    .IRQSEL = 0x46,     
+                                    .STAH   = (uint16_t*)&canTXBuffer,     
+                                    .STAL   = (uint16_t*)&canTXBuffer,     
+                                    .STBH   = 0,     
+                                    .STBL   = 0,     
+                                    .PAD    = (volatile uint16_t*)&C1TXD,    
+                                    .CNT    = CAN_MSG_SIZE - 1
+                                    };
 
 
 uint8_t active_chs[NUM_DMA_CH] = { 0 };
 
 
 void DMA_Initialize() {
-    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_INIT);
-    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_INIT);
+    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig);
+    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig);
 }
 
 
@@ -69,10 +53,10 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
     else 
         active_chs[ch] = 1;
     
+    // channel enabling needs to be last
     switch (ch)
     {
         case 0:
-            DMA0CONbits.CHEN = init_data.CHEN;
             DMA0CONbits.SIZE = init_data.SIZE;
             DMA0CONbits.DIR = init_data.DIR;
             DMA0CONbits.HALF = init_data.HALF;
@@ -86,9 +70,9 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA0STBL = init_data.STBL;
             DMA0PAD = init_data.PAD;
             DMA0CNTbits.CNT = init_data.CNT;
+            DMA0CONbits.CHEN = init_data.CHEN;
             break;
         case 1:
-            DMA1CONbits.CHEN = init_data.CHEN;
             DMA1CONbits.SIZE = init_data.SIZE;
             DMA1CONbits.DIR = init_data.DIR;
             DMA1CONbits.HALF = init_data.HALF;
@@ -102,9 +86,9 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA1STBL = init_data.STBL;
             DMA1PAD = init_data.PAD;
             DMA1CNTbits.CNT = init_data.CNT;
+            DMA1CONbits.CHEN = init_data.CHEN;
             break;
         case 2:
-            DMA2CONbits.CHEN = init_data.CHEN;
             DMA2CONbits.SIZE = init_data.SIZE;
             DMA2CONbits.DIR = init_data.DIR;
             DMA2CONbits.HALF = init_data.HALF;
@@ -118,9 +102,9 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA2STBL = init_data.STBL;
             DMA2PAD = init_data.PAD;
             DMA2CNTbits.CNT = init_data.CNT;
+            DMA2CONbits.CHEN = init_data.CHEN;
             break;
         case 3:
-            DMA3CONbits.CHEN = init_data.CHEN;
             DMA3CONbits.SIZE = init_data.SIZE;
             DMA3CONbits.DIR = init_data.DIR;
             DMA3CONbits.HALF = init_data.HALF;
@@ -134,6 +118,7 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data) {
             DMA3STBL = init_data.STBL;
             DMA3PAD = init_data.PAD;
             DMA3CNTbits.CNT = init_data.CNT;
+            DMA3CONbits.CHEN = init_data.CHEN;
             break;
         default:
             return 1;

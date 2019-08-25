@@ -28,34 +28,37 @@
 
 typedef struct DMAxINIT_struct {
 // DMAxCON
-    uint8_t CHEN:1;
-    uint8_t SIZE:1;
-    uint8_t DIR:1;
-    uint8_t HALF:1;
-    uint8_t NULLW:1;
-    uint8_t AMODE:2;
-    uint8_t MODE:2;
+    uint8_t CHEN:1;     // 0: channel disabled, 1: channel enabled
+    uint8_t SIZE:1;     // transfer size - 0: word, 1: byte
+    uint8_t DIR:1;      // transfer direction - 0: peripheral -> RAM, 1: RAM -> peripheral
+    uint8_t HALF:1;     // generate interrupt when... 0: all data, 1: half data
+    uint8_t NULLW:1;    // 0: normal operation, 1: null data write (DIR = 0)
+    uint8_t AMODE:2;    // DMA channel addr mode - 0: indirect w post increment, 
+                        // 1: indirect wo post increment, 2: indirect (peripheral addresses)
+    uint8_t MODE:2;     // DMA operating mode - 0: continuous, ping-pong disabled
+                        // 1: one-shot, ping-pong disabled, 2: continuous, ping-pong enabled 
+                        // 3: one-shot, ping-pong enabled
     
 //DMAxRREQ
-    uint8_t IRQSEL:8;
+    uint8_t IRQSEL:8;   // peripheral IRQ number
     
 //DMAxSTAH
-    uint8_t STAH:8;
+    uint8_t STAH:8;     // primary start address high
     
 //DMAxSTAL
-    uint16_t STAL;
+    uint16_t STAL;      // primary start address low
     
 //DMAxSTBH
-    uint8_t STBH:8;
+    uint8_t STBH:8;     // secondary start address high
     
 //DMAxSTBL
-    uint16_t STBL;
+    uint16_t STBL;      // secondary start address low
     
 //DMAxPAD
-    uint16_t PAD;
+    uint16_t PAD;       // peripheral address
     
 //DMAxCNT
-    uint16_t CNT:14;
+    uint16_t CNT:14;    // transfer count - 1
     
 } DMAxINIT;
 
