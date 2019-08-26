@@ -58,6 +58,12 @@
 
 #define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
 
+#define R_V_DIV_1           1000000.0           // 1MOhm
+#define R_V_DIV_2           499000.0            // 499kOhm
+#define R_DIFF_1            1200.0              // 1.2kOhm
+#define R_DIFF_2            75000.0             // 75kOhm
+#define R_S                 0.004               // 4mOhm
+
 
 void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
@@ -117,7 +123,16 @@ int main(void)
 
 
 uint16_t ProcessCurrent(uint16_t data) {
-     return 0;
+    
+    double adcVoltage, fOneBatteryCurrent = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting current going through battery
+    fOneBatteryCurrent =  R_DIFF_1 / (R_DIFF_2 * R_S) * adcVoltage;
+    
+    return fOneBatteryCurrent;
 }
 
 
@@ -125,13 +140,14 @@ uint16_t ProcessCurrent(uint16_t data) {
 // The following function takes the value read by the
 // ADC and returns the voltage of the F1 battery
 uint16_t ProcessVoltage(uint16_t data) {
+    
     double adcVoltage, fOneBatteryVoltage = 0;
     
     // Converting to actual voltage
     adcVoltage = 5.0 * (data / 1023.0);
     
     // Getting voltage of actual battery using circuit analysis
-   
+    fOneBatteryVoltage = adcVoltage * ( R_V_DIV_1 / R_V_DIV_2 + 1);
     
     return fOneBatteryVoltage;
 }
