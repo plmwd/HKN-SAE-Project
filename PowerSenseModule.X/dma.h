@@ -38,23 +38,12 @@ typedef struct DMAxINIT_struct {
 //DMAxRREQ
     uint8_t IRQSEL:8;   // peripheral IRQ number
     
-//DMAxSTAH
-    uint8_t STAH:8;     // primary start address high
-    
-//DMAxSTAL
-    uint16_t STAL;      // primary start address low
-    
-//DMAxSTBH
-    uint8_t STBH:8;     // secondary start address high
-    
-//DMAxSTBL
-    uint16_t STBL;      // secondary start address low
-    
 //DMAxPAD
     uint16_t PAD;       // peripheral address
     
 //DMAxCNT
     uint16_t CNT:14;    // transfer count - 1
+    
     
 } DMAxINIT;
 

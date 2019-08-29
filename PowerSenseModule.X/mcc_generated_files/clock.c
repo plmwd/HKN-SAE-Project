@@ -63,7 +63,7 @@ void CLOCK_Initialize(void)
     CLKDIVbits.PLLPRE   = 7;        // N1 = 8; PLL phase detector input / N1
     
     // PLL Feedback Divisor Register
-    PLLFBD              = 346;      // M = 348
+    PLLFBD              = 345;      // M = 347
     
     // TUN Center frequency; 
     OSCTUN = 0x00;
@@ -83,9 +83,16 @@ void CLOCK_Initialize(void)
     PMD7 = 0x00;
     // DMTMD enabled; SENT2MD enabled; SENT1MD enabled; 
     PMD8 = 0x00;
-    // CF no clock failure; NOSC FRCDIV; CLKLOCK unlocked; OSWEN Switch is Complete; 
-    __builtin_write_OSCCONH((uint8_t) (0x07));
-    __builtin_write_OSCCONL((uint8_t) (0x00));
+    
+    //switch to FRC with PLL
+    __builtin_write_OSCCONH((uint8_t) (0x01));
+    __builtin_write_OSCCONL((uint8_t) (OSCCON | 0x01));
+    
+    //wait for clock to switch
+    while(OSCCONbits.COSC != 1);
+    
+    //wait for PLL to lock
+    while(OSCCONbits.LOCK != 1);
 }
 
 

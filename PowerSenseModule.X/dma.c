@@ -69,8 +69,6 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA0REQbits.IRQSEL = init_data.IRQSEL;
             DMA0STAHbits.STA = (uint16_t)stah;
             DMA0STAL = (uint16_t)stal;
-            DMA0STBHbits.STB = init_data.STBH;
-            DMA0STBL = init_data.STBL;
             DMA0PAD = init_data.PAD;
             DMA0CNTbits.CNT = init_data.CNT;
             DMA0CONbits.CHEN = init_data.CHEN;
@@ -85,8 +83,6 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA1REQbits.IRQSEL = init_data.IRQSEL;
             DMA1STAHbits.STA = (uint16_t)stah;
             DMA1STAL = (uint16_t)stal;
-            DMA1STBHbits.STB = init_data.STBH;
-            DMA1STBL = init_data.STBL;
             DMA1PAD = init_data.PAD;
             DMA1CNTbits.CNT = init_data.CNT;
             DMA1CONbits.CHEN = init_data.CHEN;
@@ -101,8 +97,6 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA2REQbits.IRQSEL = init_data.IRQSEL;
             DMA2STAHbits.STA = (uint16_t)stah;
             DMA2STAL = (uint16_t)stal;
-            DMA2STBHbits.STB = init_data.STBH;
-            DMA2STBL = init_data.STBL;
             DMA2PAD = init_data.PAD;
             DMA2CNTbits.CNT = init_data.CNT;
             DMA2CONbits.CHEN = init_data.CHEN;
@@ -117,8 +111,6 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA3REQbits.IRQSEL = init_data.IRQSEL;
             DMA3STAHbits.STA = (uint16_t)stah;
             DMA3STAL = (uint16_t)stal;
-            DMA3STBHbits.STB = init_data.STBH;
-            DMA3STBL = init_data.STBL;
             DMA3PAD = init_data.PAD;
             DMA3CNTbits.CNT = init_data.CNT;
             DMA3CONbits.CHEN = init_data.CHEN;

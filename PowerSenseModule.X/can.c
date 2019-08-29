@@ -73,8 +73,6 @@ void CAN_Initialize(void) {
     // control registers
     C1CTRL1bits.CSIDL   = 0;                // continue in idle mode
     C1CTRL1bits.CANCAP  = 0;                // disable timestamping 
-    C1CTRL1bits.WIN     = 1;                // use message filter
-    
     C1CTRL2bits.DNCNT   = 0;                // no DeviceNet data filtering
     
     // configure TX/RX message buffers 
@@ -103,11 +101,17 @@ void CAN_Initialize(void) {
     IEC2bits.C1RXIE = 1;
     IEC4bits.C1TXIE = 1;
     IEC2bits.C1IE = 1;
+    C1INTEbits.ERRIE = 1;
+    C1INTEbits.TBIE = 1;
+    C1INTEbits.RBIE = 1;
+    IEC0bits.DMA0IE = 1;
     
     //clear flags
     IFS2bits.C1IF = 0;
     IFS2bits.C1RXIF = 0;
     IFS4bits.C1TXIF = 0;
+    
+    C1CTRL1bits.WIN     = 1;                // use message filter, must be last since some regs arent visible when this is set
     
     // simulator doesnt support CAN
     #ifndef __MPLAB_DEBUGGER_SIMULATOR
