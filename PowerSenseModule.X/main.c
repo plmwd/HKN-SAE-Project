@@ -84,13 +84,17 @@ int main(void)
     // initialize the device
     SYSTEM_Initialize();
     
+    
+    
     //debug - disable tmrs 
     double test = 69.420;
     CAN_ConfigBufForStandardDataFrame(0);
     CAN_WriteBuf((void*)&test, 0, sizeof(test), 0);
-    CAN_TransmitData(0, 1023, sizeof(test));
     
-    while(1);
+    while (1) {
+        CAN_TransmitData(0, 1023, sizeof(test));
+        while(C1TR01CONbits.TXREQ0 == 1);
+    }
     //end
     
     while (1)

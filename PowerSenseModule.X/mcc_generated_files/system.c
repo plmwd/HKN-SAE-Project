@@ -72,6 +72,11 @@ void SYSTEM_Initialize(void)
     CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
+    
+    CAN_TX_SetHigh();
+    CAN_TX_SetLow();
+    CAN_TX_SetHigh();
+    CAN_TX_SetLow();
 }
 
 /**

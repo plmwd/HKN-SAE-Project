@@ -59,11 +59,11 @@ void CLOCK_Initialize(void)
     CLKDIVbits.ROI      = 0;        // interrupts have no effect on DOZEN bit
     CLKDIVbits.DOZEN    = 0;        // doze mode disabled
     CLKDIVbits.FRCDIV   = 0;        // FRC / 1
-    CLKDIVbits.PLLPOST  = 3;        // N2 = 8; PLL output / N2
-    CLKDIVbits.PLLPRE   = 7;        // N1 = 8; PLL phase detector input / N1
+    CLKDIVbits.PLLPOST  = 1;        // N2 = 4; PLL output / N2
+    CLKDIVbits.PLLPRE   = 4;        // N1 = 6; PLL phase detector input / N1
     
     // PLL Feedback Divisor Register
-    PLLFBD              = 345;      // M = 347
+    PLLFBD              = 0x103;      // M = 259
     
     // TUN Center frequency; 
     OSCTUN = 0x00;

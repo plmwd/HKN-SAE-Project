@@ -46,7 +46,7 @@
 #define	CLOCK_H
 
 #ifndef _XTAL_FREQ
-#define _XTAL_FREQ  400744000UL
+#define _XTAL_FREQ  80148750UL
 #define FCY         _XTAL_FREQ / 2
 #endif
 

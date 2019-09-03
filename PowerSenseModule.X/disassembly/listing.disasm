@@ -1,7 +1,3288 @@
-Unable to generate the disassembly listing file. 
-Please make sure that you have built the project with symbol information. 
-1. Open the Project Properties.
-2. Select the "Loading" node under "Conf: [your current configuration]".
-3. Check "Load Symbols when Programming or building for production".
+Disassembly Listing for PowerSenseModule
+Generated From:
+C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/dist/default/debug/PowerSenseModule.X.debug.elf
+Sep 2, 2019 11:00:59 PM
 
-Double click on this editor pane to set.
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr3.c  ---------
+1:                 
+2:                 /**
+3:                   TMR3 Generated Driver API Source File 
+4:                 
+5:                   @Company
+6:                     Microchip Technology Inc.
+7:                 
+8:                   @File Name
+9:                     tmr3.c
+10:                
+11:                  @Summary
+12:                    This is the generated source file for the TMR3 driver using PIC24 / dsPIC33 / PIC32MM MCUs
+13:                
+14:                  @Description
+15:                    This source file provides APIs for driver for TMR3. 
+16:                    Generation Information : 
+17:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+18:                        Device            :  dsPIC33EV32GM102
+19:                    The generated drivers are tested against the following:
+20:                        Compiler          :  XC16 v1.36B
+21:                        MPLAB             :  MPLAB X v5.20
+22:                */
+23:                
+24:                /*
+25:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+26:                    software and any derivatives exclusively with Microchip products.
+27:                
+28:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+29:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+30:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+31:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+32:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+33:                
+34:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+35:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+36:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+37:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+38:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+39:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+40:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+41:                
+42:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+43:                    TERMS.
+44:                */
+45:                
+46:                /**
+47:                  Section: Included Files
+48:                */
+49:                
+50:                #include <stdio.h>
+51:                #include "tmr3.h"
+52:                #include "clock.h"
+53:                #include "adc1.h"   
+54:                
+55:                /**
+56:                 Section: File specific functions
+57:                */
+58:                
+59:                /**
+60:                  Section: Data Type Definitions
+61:                */
+62:                
+63:                
+64:                /**
+65:                  Section: Driver Interface
+66:                */
+67:                
+68:                // Initialize after ADC
+69:                void TMR3_Initialize (void)
+70:                {
+000F68  FA0000     LNK #0x0
+71:                    //TMR3 0; 
+72:                    TMR3 = 0x00;
+000F6A  EF210A     CLR TMR3
+73:                  
+74:                    // tmr3 triggers conversion - so needs enough time to same and convert, plus a fudge factor
+75:                    // TAD: ADC clock period = multiplier * TCY
+76:                    // every trigger converts each channel 0 then 1 then 2... sequentially so the period needs to account for that sample time
+77:                    PR3 = (ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet()) * (AD1CON2bits.CHPS + 1) + ADC_SAMPLE_TIME_TAD_MIN + 4;
+000F6C  07FF04     RCALL ADC1CLOCK_MultiplierGet
+000F6E  4000EC     ADD W0, #0xC, W1
+000F70  801910     MOV AD1CON2, W0
+000F72  DE0048     LSR W0, #8, W0
+000F74  604063     AND.B W0, #0x3, W0
+000F76  FB8000     ZE W0, W0
+000F78  E80000     INC W0, W0
+000F7A  B98880     MULW.SS W1, W0, W0
+000F7C  400066     ADD W0, #0x6, W0
+000F7E  880870     MOV W0, PR3
+78:                    //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
+79:                    T3CON = 0x0000;
+000F80  EF2112     CLR T3CON
+80:                
+81:                }
+000F82  FA8000     ULNK
+000F84  060000     RETURN
+82:                
+83:                /**
+84:                 End of File
+85:                */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/tmr1.c  ---------
+1:                 
+2:                 /**
+3:                   TMR1 Generated Driver API Source File 
+4:                 
+5:                   @Company
+6:                     Microchip Technology Inc.
+7:                 
+8:                   @File Name
+9:                     tmr1.c
+10:                
+11:                  @Summary
+12:                    This is the generated source file for the TMR1 driver using PIC24 / dsPIC33 / PIC32MM MCUs
+13:                
+14:                  @Description
+15:                    This source file provides APIs for driver for TMR1. 
+16:                    Generation Information : 
+17:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+18:                        Device            :  dsPIC33EV32GM102
+19:                    The generated drivers are tested against the following:
+20:                        Compiler          :  XC16 v1.36B
+21:                        MPLAB             :  MPLAB X v5.20
+22:                */
+23:                
+24:                /*
+25:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+26:                    software and any derivatives exclusively with Microchip products.
+27:                
+28:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+29:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+30:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+31:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+32:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+33:                
+34:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+35:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+36:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+37:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+38:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+39:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+40:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+41:                
+42:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+43:                    TERMS.
+44:                */
+45:                
+46:                /**
+47:                  Section: Included Files
+48:                */
+49:                
+50:                #include <stdio.h>
+51:                #include "tmr1.h"
+52:                #include "tmr3.h"
+53:                
+54:                /**
+55:                 Section: File specific functions
+56:                */
+57:                void (*TMR1_InterruptHandler)(void) = NULL;
+58:                void TMR1_CallBack(void);
+59:                
+60:                /**
+61:                  Section: Data Type Definitions
+62:                */
+63:                
+64:                /** TMR Driver Hardware Instance Object
+65:                
+66:                  @Summary
+67:                    Defines the object required for the maintenance of the hardware instance.
+68:                
+69:                  @Description
+70:                    This defines the object required for the maintenance of the hardware
+71:                    instance. This object exists once per hardware instance of the peripheral.
+72:                
+73:                  Remarks:
+74:                    None.
+75:                */
+76:                
+77:                /**
+78:                  Section: Driver Interface
+79:                */
+80:                
+81:                void TMR1_Initialize (void)
+82:                {
+000FBC  FA0000     LNK #0x0
+83:                    //TMR1 0; 
+84:                    TMR1 = 0x00;
+000FBE  EF2100     CLR TMR1
+85:                    //Period = 0.002 s;  
+86:                    PR1 = 0x1CC9;
+000FC0  21CC90     MOV #0x1CC9, W0
+000FC2  880810     MOV W0, PR1
+87:                    //TCKPS 1:1; TON enabled; TSIDL disabled; TCS FOSC/2; TSYNC disabled; TGATE disabled; 
+88:                    T1CON = 0x8000;
+000FC4  280000     MOV #0x8000, W0
+000FC6  880820     MOV W0, T1CON
+89:                
+90:                    TMR1_ClearInterruptFlag();
+000FC8  A96800     BCLR IFS0, #3
+91:                    TMR1_InterruptEnable();
+000FCA  A86820     BSET IEC0, #3
+92:                
+93:                }
+000FCC  FA8000     ULNK
+000FCE  060000     RETURN
+94:                
+95:                
+96:                void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
+97:                {
+0002FA  FA0000     LNK #0x0
+98:                    
+99:                    TMR3 = 0;
+0002FC  EF210A     CLR TMR3
+100:                   TMR3_Start();   
+0002FE  A8E113     BSET 0x113, #7
+101:                   
+102:               }
+000300  FA8000     ULNK
+000302  064000     RETFIE
+103:               
+104:               /**
+105:                End of File
+106:               */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/system.h  -------
+1:                 /**
+2:                   @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     system.h
+9:                 
+10:                  @Summary:
+11:                    This is the system.h file generated using PIC24 / dsPIC33 / PIC32MM MCUs
+12:                
+13:                  @Description:
+14:                    This header file provides implementations for driver APIs for all modules selected in the GUI.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB             :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                #include "xc.h"
+46:                #include "stdint.h"
+47:                #include "system_types.h"
+48:                
+49:                #ifndef SYSTEM_H
+50:                #define	SYSTEM_H
+51:                /**
+52:                 * Initializes the CPU core control register.
+53:                 * @example
+54:                 * <code>
+55:                 * SYSTEM_CORCONInitialize();
+56:                 * </code>
+57:                 */
+58:                inline static void SYSTEM_CORCONInitialize()
+59:                {
+60:                    CORCON = (CORCON & 0x00F2) | CORCON_MODE_PORVALUES;    // POR value
+61:                }
+62:                
+63:                /**
+64:                 * Sets the CPU core control register operating mode to a value that is decided by the
+65:                 * SYSTEM_CORCON_MODES argument.
+66:                 * @param modeValue SYSTEM_CORCON_MODES initialization mode specifier
+67:                 * @example
+68:                 * <code>
+69:                 * SYSTEM_CORCONModeOperatingSet(CORCON_MODE_ENABLEALLSATNORMAL_ROUNDUNBIASED);
+70:                 * </code>
+71:                 */
+72:                inline static void SYSTEM_CORCONModeOperatingSet(SYSTEM_CORCON_MODES modeValue)
+73:                {
+000DF8  FA0002     LNK #0x2
+000DFA  780F00     MOV W0, [W14]
+74:                    CORCON = (CORCON & 0x00F2) | modeValue;
+000DFC  800221     MOV CORCON, W1
+000DFE  200F20     MOV #0xF2, W0
+000E00  608000     AND W1, W0, W0
+000E02  70001E     IOR W0, [W14], W0
+000E04  880220     MOV W0, CORCON
+75:                }
+000E06  FA8000     ULNK
+000E08  060000     RETURN
+76:                
+77:                /**
+78:                 * Sets the value of CPU core control register.
+79:                 * @param value value that needs to be written to the CPU core control register
+80:                 * @example
+81:                 * <code>
+82:                 *  SYSTEM_CORCONRegisterValueSet(0x00E2);
+83:                 * </code>
+84:                 */
+85:                inline static void SYSTEM_CORCONRegisterValueSet(uint16_t value)
+86:                {
+87:                    CORCON = value;
+88:                }
+89:                
+90:                /**
+91:                 * Gets the value of CPU core control register.
+92:                 * @return value of the CPU core control register
+93:                 * @example
+94:                 * <code>
+95:                 * corconSave = SYSTEM_CORCONRegisterValueGet();
+96:                 * </code>
+97:                 */
+98:                inline static uint16_t SYSTEM_CORCONRegisterValueGet(void)
+99:                {    
+100:                   return CORCON;
+101:               }
+102:               
+103:               
+104:               /**
+105:                * Gets the base address of the DEVID register for the currently selected device
+106:                * @return base address of the DEVID register
+107:                * @example
+108:                * <code>
+109:                * uint32_t devIdAddress;
+110:                * devIdAddress = SYSTEM_DeviceIdRegisterAddressGet();
+111:                * </code>
+112:                */
+113:               inline static uint32_t SYSTEM_DeviceIdRegisterAddressGet(void)
+114:               {
+115:                   return __DEVID_BASE;
+116:               }
+117:               
+118:               /**
+119:                * @Param
+120:                   none
+121:                * @Returns
+122:                   none
+123:                * @Description
+124:                   Initializes the device to the default states configured in the
+125:                *                  MCC GUI
+126:                * @Example
+127:                   SYSTEM_Initialize(void);
+128:                */
+129:               void SYSTEM_Initialize(void);
+130:               #endif	/* SYSTEM_H */
+131:               /**
+132:                End of File
+133:               */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/system.c  -------
+1:                 /**
+2:                   @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     system.h
+9:                 
+10:                  @Summary:
+11:                    This is the sysetm.h file generated using PIC24 / dsPIC33 / PIC32MM MCUs
+12:                
+13:                  @Description:
+14:                    This header file provides implementations for driver APIs for all modules selected in the GUI.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB             :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                #include "pin_manager.h"
+46:                #include "clock.h"
+47:                #include "system.h"
+48:                #include "system_types.h"
+49:                #include "interrupt_manager.h"
+50:                #include "adc1.h"
+51:                #include "tmr1.h"
+52:                #include "tmr3.h"
+53:                #include "../dma.h"
+54:                #include "../can.h"
+55:                
+56:                
+57:                void SYSTEM_Initialize(void)
+58:                {
+000E16  FA0002     LNK #0x2
+000E18  781F88     MOV W8, [W15++]
+59:                    PIN_MANAGER_Initialize();
+000E1A  07001D     RCALL PIN_MANAGER_Initialize
+60:                    CAN_STBY_SetHigh();     // put the CAN transceiver in low power mode until all inits are done
+000E1C  A8AE19     BSET 0xE19, #5
+61:                    INTERRUPT_Initialize();
+000E1E  0700C1     RCALL INTERRUPT_Initialize
+62:                    CLOCK_Initialize();
+000E20  07FF4A     RCALL CLOCK_Initialize
+63:                    ADC1_Initialize();
+000E22  07FFB9     RCALL ADC1_Initialize
+64:                    // delay TMR init 20us for ADC to stabilize
+65:                    int i;
+66:                    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
+000E24  EB0000     CLR W0
+000E26  780F00     MOV W0, [W14]
+000E28  370001     BRA .L4
+000E2A  E80F1E     INC [W14], [W14]
+000E2C  78041E     MOV [W14], W8
+000E2E  07FF7F     RCALL CLOCK_PeriodnsGet
+000E30  24E201     MOV #0x4E20, W1
+000E32  780100     MOV W0, W2
+000E34  090011     REPEAT #0x11
+000E36  D88082     DIV.UW W1, W2
+000E38  540F80     SUB W8, W0, [W15]
+000E3A  39FFF7     BRA NC, .L5
+67:                    
+68:                    //TMR1_Initialize();
+69:                    //TMR3_Initialize();
+70:                    DMA_Initialize();
+000E3C  07FBFC     RCALL DMA_Initialize
+71:                    CAN_Initialize();
+000E3E  07FDC5     RCALL CAN_Initialize
+72:                    CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
+000E40  A9AE19     BCLR 0xE19, #5
+73:                    INTERRUPT_GlobalEnable();
+000E42  07FFE3     RCALL INTERRUPT_GlobalEnable
+74:                    SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
+000E44  200200     MOV #0x20, W0
+000E46  07FFD8     RCALL SYSTEM_CORCONModeOperatingSet
+75:                    
+76:                    CAN_TX_SetHigh();
+000E48  A86E19     BSET 0xE19, #3
+77:                    CAN_TX_SetLow();
+000E4A  A96E19     BCLR 0xE19, #3
+78:                    CAN_TX_SetHigh();
+000E4C  A86E19     BSET 0xE19, #3
+79:                    CAN_TX_SetLow();
+000E4E  A96E19     BCLR 0xE19, #3
+80:                }
+000E50  78044F     MOV [--W15], W8
+000E52  FA8000     ULNK
+000E54  060000     RETURN
+81:                
+82:                /**
+83:                 End of File
+84:                */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/reset.c  --------
+1:                 /**
+2:                   RESET Generated Driver File
+3:                 
+4:                   @Company
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name
+8:                     reset.c
+9:                 
+10:                  @Summary
+11:                    This is the generated driver implementation file for the RESET driver using PIC24 / dsPIC33 / PIC32MM MCUs
+12:                
+13:                  @Description
+14:                    This header file provides implementations for driver APIs for RESET.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB             :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                #include <stdbool.h>
+46:                #include <stdint.h>
+47:                #include "xc.h"
+48:                #include "reset.h"
+49:                
+50:                /**
+51:                 Section: Local Variables
+52:                */
+53:                
+54:                /**
+55:                 Section: Function prototypes
+56:                */
+57:                static bool RESET_CauseFromSoftware(uint16_t resetCause);
+58:                static bool RESET_CauseFromWatchdogTimer(uint16_t resetCause);
+59:                static bool RESET_CauseFromConfigurationMismatch(uint16_t resetCause);
+60:                static bool RESET_CauseFromIllegalOpcode(uint16_t resetCause);
+61:                static bool RESET_CauseFromExternal(uint16_t resetCause);
+62:                static bool RESET_CauseFromTrap(uint16_t resetCause);
+63:                static void RESET_CauseClear(RESET_MASKS resetFlagMask);
+64:                
+65:                uint16_t RESET_GetCause(void)
+66:                {
+000BA2  FA0000     LNK #0x0
+67:                    return RCON;
+000BA4  803A00     MOV RCON, W0
+68:                }
+000BA6  FA8000     ULNK
+000BA8  060000     RETURN
+69:                
+70:                void __attribute__ ((weak)) RESET_CauseHandler(void)
+71:                {
+000BAA  FA0002     LNK #0x2
+72:                    uint16_t resetCause = RESET_GetCause();
+000BAC  07FFFA     RCALL RESET_GetCause
+000BAE  780F00     MOV W0, [W14]
+73:                    if(RESET_CauseFromTrap(resetCause))
+000BB0  78001E     MOV [W14], W0
+000BB2  070024     RCALL _RESET_CauseFromTrap, .LFE1, .LFB2
+000BB4  E00400     CP0.B W0
+000BB6  320002     BRA Z, .L3
+74:                    { 
+75:                      RESET_CauseClear(RESET_MASK_TRAPR); 
+000BB8  280000     MOV #0x8000, W0
+000BBA  070071     RCALL _RESET_CauseClear, .LFE7, .LFB8
+76:                      //Do something 
+77:                    }
+78:                    if(RESET_CauseFromIllegalOpcode(resetCause))
+000BBC  78001E     MOV [W14], W0
+000BBE  07002A     RCALL _RESET_CauseFromIllegalOpcode, .LFE2, .LFB3
+000BC0  E00400     CP0.B W0
+000BC2  320002     BRA Z, .L4
+79:                    { 
+80:                      RESET_CauseClear(RESET_MASK_IOPUWR); 
+000BC4  240000     MOV #0x4000, W0
+000BC6  07006B     RCALL _RESET_CauseClear, .LFE7, .LFB8
+81:                      //Do something 
+82:                    }
+83:                    if(RESET_CauseFromConfigurationMismatch(resetCause))
+000BC8  78001E     MOV [W14], W0
+000BCA  070032     RCALL _RESET_CauseFromConfigurationMismatch, .LFE3, .LFB4
+000BCC  E00400     CP0.B W0
+000BCE  320002     BRA Z, .L5
+84:                    { 
+85:                      RESET_CauseClear(RESET_MASK_CM); 
+000BD0  202000     MOV #0x200, W0
+000BD2  070065     RCALL _RESET_CauseClear, .LFE7, .LFB8
+86:                      //Do something 
+87:                    }
+88:                    if(RESET_CauseFromExternal(resetCause))
+000BD4  78001E     MOV [W14], W0
+000BD6  07003A     RCALL _RESET_CauseFromExternal, .LFE4, .LFB5
+000BD8  E00400     CP0.B W0
+000BDA  320002     BRA Z, .L6
+89:                    { 
+90:                      RESET_CauseClear(RESET_MASK_EXTR); 
+000BDC  200800     MOV #0x80, W0
+000BDE  07005F     RCALL _RESET_CauseClear, .LFE7, .LFB8
+91:                      //Do something 
+92:                    }
+93:                    if(RESET_CauseFromSoftware(resetCause))
+000BE0  78001E     MOV [W14], W0
+000BE2  070042     RCALL _RESET_CauseFromSoftware, .LFE5, .LFB6
+000BE4  E00400     CP0.B W0
+000BE6  320002     BRA Z, .L7
+94:                    { 
+95:                      RESET_CauseClear(RESET_MASK_SWR); 
+000BE8  200400     MOV #0x40, W0
+000BEA  070059     RCALL _RESET_CauseClear, .LFE7, .LFB8
+96:                      //Do something 
+97:                    }
+98:                    if(RESET_CauseFromWatchdogTimer(resetCause))
+000BEC  78001E     MOV [W14], W0
+000BEE  07004A     RCALL _RESET_CauseFromWatchdogTimer, .LFE6, .LFB7
+000BF0  E00400     CP0.B W0
+000BF2  320002     BRA Z, .L2
+99:                    { 
+100:                     RESET_CauseClear(RESET_MASK_WDTO); 
+000BF4  200100     MOV #0x10, W0
+000BF6  070053     RCALL _RESET_CauseClear, .LFE7, .LFB8
+101:                     //Do something 
+102:                   }
+103:               }
+000BF8  FA8000     ULNK
+000BFA  060000     RETURN
+104:               
+105:               static bool RESET_CauseFromTrap(uint16_t resetCause)
+106:               {
+000BFC  FA0004     LNK #0x4
+000BFE  980710     MOV W0, [W14+2]
+107:                   bool resetStatus = false;
+000C00  EB4000     CLR.B W0
+000C02  784F00     MOV.B W0, [W14]
+108:                   if(resetCause & RESET_MASK_TRAPR)
+000C04  90001E     MOV [W14+2], W0
+000C06  E00000     CP0 W0
+000C08  3D0002     BRA GE, .L10
+109:                   { 
+110:                     resetStatus = true; 
+000C0A  B3C010     MOV.B #0x1, W0
+000C0C  784F00     MOV.B W0, [W14]
+111:                   }
+112:                   return resetStatus;
+000C0E  78401E     MOV.B [W14], W0
+113:               }
+000C10  FA8000     ULNK
+000C12  060000     RETURN
+114:               
+115:               static bool RESET_CauseFromIllegalOpcode(uint16_t resetCause)
+116:               {
+000C14  FA0004     LNK #0x4
+000C16  980710     MOV W0, [W14+2]
+117:                   bool resetStatus = false;
+000C18  EB4000     CLR.B W0
+000C1A  784F00     MOV.B W0, [W14]
+118:                   if(resetCause & RESET_MASK_IOPUWR)
+000C1C  90009E     MOV [W14+2], W1
+000C1E  240000     MOV #0x4000, W0
+000C20  608000     AND W1, W0, W0
+000C22  E00000     CP0 W0
+000C24  320002     BRA Z, .L12
+119:                   { 
+120:                     resetStatus = true; 
+000C26  B3C010     MOV.B #0x1, W0
+000C28  784F00     MOV.B W0, [W14]
+121:                   }
+122:                   return resetStatus;
+000C2A  78401E     MOV.B [W14], W0
+123:               }
+000C2C  FA8000     ULNK
+000C2E  060000     RETURN
+124:               
+125:               static bool RESET_CauseFromConfigurationMismatch(uint16_t resetCause)
+126:               {
+000C30  FA0004     LNK #0x4
+000C32  980710     MOV W0, [W14+2]
+127:                   bool resetStatus = false;
+000C34  EB4000     CLR.B W0
+000C36  784F00     MOV.B W0, [W14]
+128:                   if(resetCause & RESET_MASK_CM)
+000C38  90009E     MOV [W14+2], W1
+000C3A  202000     MOV #0x200, W0
+000C3C  608000     AND W1, W0, W0
+000C3E  E00000     CP0 W0
+000C40  320002     BRA Z, .L14
+129:                   { 
+130:                     resetStatus = true; 
+000C42  B3C010     MOV.B #0x1, W0
+000C44  784F00     MOV.B W0, [W14]
+131:                   }
+132:                   return resetStatus;
+000C46  78401E     MOV.B [W14], W0
+133:               }
+000C48  FA8000     ULNK
+000C4A  060000     RETURN
+134:               
+135:               static bool RESET_CauseFromExternal(uint16_t resetCause)
+136:               {
+000C4C  FA0004     LNK #0x4
+000C4E  980710     MOV W0, [W14+2]
+137:                   bool resetStatus = false;
+000C50  EB4000     CLR.B W0
+000C52  784F00     MOV.B W0, [W14]
+138:                   if(resetCause & RESET_MASK_EXTR)
+000C54  90009E     MOV [W14+2], W1
+000C56  200800     MOV #0x80, W0
+000C58  608000     AND W1, W0, W0
+000C5A  E00000     CP0 W0
+000C5C  320002     BRA Z, .L16
+139:                   { 
+140:                     resetStatus = true; 
+000C5E  B3C010     MOV.B #0x1, W0
+000C60  784F00     MOV.B W0, [W14]
+141:                   }
+142:                   return resetStatus;
+000C62  78401E     MOV.B [W14], W0
+143:               }
+000C64  FA8000     ULNK
+000C66  060000     RETURN
+144:               
+145:               static bool RESET_CauseFromSoftware(uint16_t resetCause)
+146:               {
+000C68  FA0004     LNK #0x4
+000C6A  980710     MOV W0, [W14+2]
+147:                   bool resetStatus = false;
+000C6C  EB4000     CLR.B W0
+000C6E  784F00     MOV.B W0, [W14]
+148:                   if(resetCause & RESET_MASK_SWR)
+000C70  90009E     MOV [W14+2], W1
+000C72  200400     MOV #0x40, W0
+000C74  608000     AND W1, W0, W0
+000C76  E00000     CP0 W0
+000C78  320002     BRA Z, .L18
+149:                   { 
+150:                     resetStatus = true; 
+000C7A  B3C010     MOV.B #0x1, W0
+000C7C  784F00     MOV.B W0, [W14]
+151:                   }
+152:                   return resetStatus;
+000C7E  78401E     MOV.B [W14], W0
+153:               }
+000C80  FA8000     ULNK
+000C82  060000     RETURN
+154:               
+155:               static bool RESET_CauseFromWatchdogTimer(uint16_t resetCause)
+156:               {
+000C84  FA0004     LNK #0x4
+000C86  980710     MOV W0, [W14+2]
+157:                   bool resetStatus = false;
+000C88  EB4000     CLR.B W0
+000C8A  784F00     MOV.B W0, [W14]
+158:                   if(resetCause & RESET_MASK_WDTO)
+000C8C  90001E     MOV [W14+2], W0
+000C8E  600070     AND W0, #0x10, W0
+000C90  E00000     CP0 W0
+000C92  320002     BRA Z, .L20
+159:                   { 
+160:                     resetStatus = true;
+000C94  B3C010     MOV.B #0x1, W0
+000C96  784F00     MOV.B W0, [W14]
+161:                   }
+162:                   return resetStatus;
+000C98  78401E     MOV.B [W14], W0
+163:               }
+000C9A  FA8000     ULNK
+000C9C  060000     RETURN
+164:               
+165:               static void RESET_CauseClear(RESET_MASKS resetFlagMask)
+166:               { 
+000C9E  FA0002     LNK #0x2
+000CA0  780F00     MOV W0, [W14]
+167:                    RCON = RCON & (~resetFlagMask); 
+000CA2  EA809E     COM [W14], W1
+000CA4  803A00     MOV RCON, W0
+000CA6  608000     AND W1, W0, W0
+000CA8  883A00     MOV W0, RCON
+168:               } 
+000CAA  FA8000     ULNK
+000CAC  060000     RETURN
+169:               
+170:               void RESET_CauseClearAll()
+171:               { 
+000CAE  FA0000     LNK #0x0
+172:                   RCON = 0x00; 
+000CB0  EF2740     CLR RCON
+173:               }
+000CB2  FA8000     ULNK
+000CB4  060000     RETURN
+174:               /**
+175:                End of File
+176:               */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/pin_manager.c  --
+1:                 /**
+2:                   PIN MANAGER Generated Driver File
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     pin_manager.c
+9:                 
+10:                  @Summary:
+11:                    This is the generated manager file for the PIC24 / dsPIC33 / PIC32MM MCUs device.  This manager
+12:                    configures the pins direction, initial state, analog setting.
+13:                    The peripheral pin select, PPS, configuration is also handled by this manager.
+14:                
+15:                  @Description:
+16:                    This source file provides implementations for PIN MANAGER.
+17:                    Generation Information :
+18:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+19:                        Device            :  dsPIC33EV32GM102
+20:                    The generated drivers are tested against the following:
+21:                        Compiler          :  XC16 v1.36B
+22:                        MPLAB 	          :  MPLAB X v5.20
+23:                */
+24:                
+25:                /*
+26:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+27:                    software and any derivatives exclusively with Microchip products.
+28:                
+29:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+30:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+31:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+32:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+33:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+34:                
+35:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+36:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+37:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+38:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+39:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+40:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+41:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+42:                
+43:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+44:                    TERMS.
+45:                */
+46:                
+47:                
+48:                /**
+49:                    Section: Includes
+50:                */
+51:                
+52:                #include "xc.h"
+53:                #include <stdio.h>
+54:                #include "pin_manager.h"
+55:                
+56:                /**
+57:                 Section: File specific functions
+58:                */
+59:                
+60:                /**
+61:                 Section: Driver Interface Function Definitions
+62:                */
+63:                void PIN_MANAGER_Initialize (void)
+64:                {
+000E56  FA0000     LNK #0x0
+65:                    /****************************************************************************
+66:                     * Configure General Peripheral Inputs
+67:                     ***************************************************************************/
+68:                    //DCME (Debug/calibrate mode enable) - RA0 - digital input - pull down
+69:                    TRISAbits.TRISA0 = 1;    
+000E58  A80E00     BSET TRISA, #0
+70:                    CNPDAbits.CNPDA0 = 1;
+000E5A  A80E0C     BSET CNPDA, #0
+71:                    CNPUAbits.CNPUA0 = 0;
+000E5C  A90E0A     BCLR CNPUA, #0
+72:                    ANSELAbits.ANSA0 = 0;
+000E5E  A90E0E     BCLR ANSELA, #0
+73:                    
+74:                    //HIGH_IE (High current mode enable) - RA1 - digital input
+75:                    TRISAbits.TRISA1 = 1;
+000E60  A82E00     BSET TRISA, #1
+76:                    CNPDAbits.CNPDA1 = 0;
+000E62  A92E0C     BCLR CNPDA, #1
+77:                    CNPUAbits.CNPUA1 = 0;
+000E64  A92E0A     BCLR CNPUA, #1
+78:                    ANSELAbits.ANSA1 = 0;
+000E66  A92E0E     BCLR ANSELA, #1
+79:                    
+80:                    //IIN (ADC current measurement) - RB0 - analog input
+81:                    TRISBbits.TRISB0 = 1;
+000E68  A80E14     BSET TRISB, #0
+82:                    CNPDBbits.CNPDB0 = 0;
+000E6A  A90E20     BCLR CNPDB, #0
+83:                    CNPUBbits.CNPUB0 = 0;
+000E6C  A90E1E     BCLR CNPUB, #0
+84:                    ANSELBbits.ANSB0 = 1;
+000E6E  A80E22     BSET ANSELB, #0
+85:                    
+86:                    //VIN (ADC voltage measurement) - RB1 - analog input
+87:                    TRISBbits.TRISB1 = 1;
+000E70  A82E14     BSET TRISB, #1
+88:                    CNPDBbits.CNPDB1 = 0;
+000E72  A92E20     BCLR CNPDB, #1
+89:                    CNPUBbits.CNPUB1 = 0;
+000E74  A92E1E     BCLR CNPUB, #1
+90:                    ANSELBbits.ANSB1 = 1;
+000E76  A82E22     BSET ANSELB, #1
+91:                    
+92:                    
+93:                    /****************************************************************************
+94:                     * Configure General Peripheral Outputs
+95:                     ***************************************************************************/
+96:                    //LED_R (Red LED) - RB14 - digital output - pull down
+97:                    TRISBbits.TRISB14 = 0;
+000E78  A9CE15     BCLR 0xE15, #6
+98:                    CNPDBbits.CNPDB14 = 1;
+000E7A  A8CE21     BSET 0xE21, #6
+99:                    CNPUBbits.CNPUB14 = 0;
+000E7C  A9CE1F     BCLR 0xE1F, #6
+100:                   
+101:                   //LED_G (Green LED) - RB15 - digital output - pull down
+102:                   TRISBbits.TRISB15 = 0;
+000E7E  A9EE15     BCLR 0xE15, #7
+103:                   CNPDBbits.CNPDB15 = 1;
+000E80  A8EE21     BSET 0xE21, #7
+104:                   CNPUBbits.CNPUB15 = 0;
+000E82  A9EE1F     BCLR 0xE1F, #7
+105:                   
+106:                   //CAN_STBY (CAN standby) - RB13 - digital output 
+107:                   TRISBbits.TRISB13 = 0;
+000E84  A9AE15     BCLR 0xE15, #5
+108:                   CNPDBbits.CNPDB13 = 0;
+000E86  A9AE21     BCLR 0xE21, #5
+109:                   CNPUBbits.CNPUB13 = 0;
+000E88  A9AE1F     BCLR 0xE1F, #5
+110:                   
+111:                   //CAN_TX (CAN transmit) - RB11
+112:                   TRISBbits.TRISB11 = 0;
+000E8A  A96E15     BCLR 0xE15, #3
+113:                   CNPDBbits.CNPDB11 = 0;
+000E8C  A96E21     BCLR 0xE21, #3
+114:                   CNPUBbits.CNPUB11 = 0;
+000E8E  A96E1F     BCLR 0xE1F, #3
+115:                   
+116:                   //CAN_RX (CAN receive) - RB12
+117:                   TRISBbits.TRISB12 = 0;
+000E90  A98E15     BCLR 0xE15, #4
+118:                   CNPDBbits.CNPDB12 = 0;
+000E92  A98E21     BCLR 0xE21, #4
+119:                   CNPUBbits.CNPUB12 = 0;
+000E94  A98E1F     BCLR 0xE1F, #4
+120:                   
+121:                   /****************************************************************************
+122:                    * Configure Configurable Peripheral Outputs
+123:                    ***************************************************************************/
+124:                   CAN_TX_SetHigh();
+000E96  A86E19     BSET 0xE19, #3
+125:                   CAN_TX_SetLow();
+000E98  A96E19     BCLR 0xE19, #3
+126:                   CAN_TX_SetHigh();
+000E9A  A86E19     BSET 0xE19, #3
+127:                   CAN_TX_SetLow();
+000E9C  A96E19     BCLR 0xE19, #3
+128:                   
+129:                   //__builtin_write_OSCCONL(OSCCON & ~(1<<6));      // Unlock Registers
+130:                   
+131:                   RPINR26bits.C1RXR = 0x2C;       // Configure Input Functions - RB12 - RPI44 - CAN RX
+000E9E  B3C2C0     MOV.B #0x2C, W0
+000EA0  B7E6D4     MOV.B WREG, RPINR26
+132:                   
+133:                   RPOR4bits.RP42R = 0b110001;         // Configure Output Functions - RB11 - RP43 - CAN TX
+000EA2  8033C1     MOV RPOR4, W1
+000EA4  2FFC00     MOV #0xFFC0, W0
+000EA6  608080     AND W1, W0, W1
+000EA8  200310     MOV #0x31, W0
+000EAA  700001     IOR W0, W1, W0
+000EAC  8833C0     MOV W0, RPOR4
+134:                   
+135:                   //__builtin_write_OSCCONL(OSCCON | (1<<6));       // Lock Registers
+136:               
+137:               //    /****************************************************************************
+138:               //     * Setting the Output Latch SFR(s)
+139:               //     ***************************************************************************/
+140:               //    LATA = 0x0000;
+141:               //    LATB = 0x0000;
+142:               //
+143:               //    /****************************************************************************
+144:               //     * Setting the GPIO Direction SFR(s)
+145:               //     ***************************************************************************/
+146:               //    TRISA = 0x0017;
+147:               //    TRISB = 0x0FFF;
+148:               //
+149:               //    /****************************************************************************
+150:               //     * Setting the Weak Pull Up and Weak Pull Down SFR(s)
+151:               //     ***************************************************************************/
+152:               //    CNPDA = 0x000D;
+153:               //    CNPDB = 0x0000;
+154:               //    CNPUA = 0x0000;
+155:               //    CNPUB = 0x0000;
+156:               //
+157:               //    /****************************************************************************
+158:               //     * Setting the Open Drain SFR(s)
+159:               //     ***************************************************************************/
+160:               //    ODCA = 0x0000;
+161:               //    ODCB = 0x0000;
+162:               //
+163:               //    /****************************************************************************
+164:               //     * Setting the Analog/Digital Configuration SFR(s)
+165:               //     ***************************************************************************/
+166:               //    ANSELA = 0x0010;
+167:               //    ANSELB = 0x0383;
+168:               }
+000EAE  FA8000     ULNK
+000EB0  060000     RETURN
+169:               
+170:               
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/mcc.c  ----------
+1:                 /**
+2:                   @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     mcc.c
+9:                 
+10:                  @Summary:
+11:                    This is the mcc.c file generated using PIC24 / dsPIC33 / PIC32MM MCUs
+12:                
+13:                  @Description:
+14:                    This header file provides implementations for driver APIs for all modules selected in the GUI.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB             :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                // DSPIC33EV32GM102 Configuration Bit Settings
+46:                
+47:                // 'C' source line config statements
+48:                
+49:                // FSEC
+50:                #pragma config BWRP = OFF    //Boot Segment Write-Protect Bit->Boot Segment may be written
+51:                #pragma config BSS = DISABLED    //Boot Segment Code-Protect Level bits->No Protection (other than BWRP)
+52:                #pragma config BSS2 = OFF    //Boot Segment Control Bit->No Boot Segment
+53:                #pragma config GWRP = OFF    //General Segment Write-Protect Bit->General Segment may be written
+54:                #pragma config GSS = DISABLED    //General Segment Code-Protect Level bits->No Protection (other than GWRP)
+55:                #pragma config CWRP = OFF    //Configuration Segment Write-Protect Bit->Configuration Segment may be written
+56:                #pragma config CSS = DISABLED    //Configuration Segment Code-Protect Level bits->No Protection (other than CWRP)
+57:                #pragma config AIVTDIS = DISABLE    //Alternate Interrupt Vector Table Disable Bit ->Disable Alternate Vector Table
+58:                
+59:                // FBSLIM
+60:                #pragma config BSLIM = 8191            // Boot Segment Code Flash Page Address Limit Bits (Boot Segment Flash Page Address Limit (0-0x1FFF))
+61:                
+62:                // FOSCSEL
+63:                #pragma config FNOSC = FRC              // Initial oscillator Source Selection Bits (Internal Fast RC (FRC))
+64:                #pragma config IESO = OFF               // Two Speed Oscillator Start-Up Bit (Start up device with user selected oscillator source)
+65:                
+66:                // FOSC
+67:                #pragma config POSCMD = NONE            // Primary Oscillator Mode Select Bits (Primary Oscillator disabled)
+68:                #pragma config OSCIOFNC = OFF           // OSC2 Pin I/O Function Enable Bit (OSC2 is clock output)
+69:                #pragma config IOL1WAY = OFF            // Peripheral Pin Select Configuration Bit (Allow Multiple reconfigurations)
+70:                #pragma config FCKSM = CSECME           // Clock Switching Mode Bits (Both Clock Switching and Fail-safe Clock Monitor are enabled)
+71:                #pragma config PLLKEN = ON              // PLL Lock Enable Bit (Clock switch to PLL source will wait until the PLL lock signal is valid)
+72:                
+73:                // FWDT
+74:                #pragma config WDTPOST = PS16384        // Watchdog Timer Postscaler Bits (1:16,384)
+75:                #pragma config WDTPRE = PR32            // Watchdog Timer Prescaler Bit (1:32)
+76:                #pragma config FWDTEN = OFF             // Watchdog Timer Enable Bits (WDT and SWDTEN Disabled)
+77:                #pragma config WINDIS = OFF             // Watchdog Timer Window Enable Bit (Watchdog timer in Non-Window Mode)
+78:                #pragma config WDTWIN = WIN50           // Watchdog Window Select Bits (WDT Window is 50% of WDT period)
+79:                
+80:                // FPOR
+81:                #pragma config BOREN0 = OFF             // Brown Out Reset Detection Bit (BOR is Disabled)
+82:                
+83:                // FICD
+84:                #pragma config ICS = PGD1               // ICD Communication Channel Select Bits (Communicate on PGEC1 and PGED1)
+85:                
+86:                // FDMTINTVL
+87:                #pragma config DMTIVTL = 0x428A         // Lower 16 Bits of 32 Bit DMT Window Interval (Lower 16 bits of 32 bit DMT window interval (0-0xFFFF))
+88:                
+89:                // FDMTINTVH
+90:                #pragma config DMTIVTH = 0x120          // Upper 16 Bits of 32 Bit DMT Window Interval (Upper 16 bits of 32 bit DMT window interval (0-0xFFFF))
+91:                
+92:                // FDMTCNTL
+93:                #pragma config DMTCNTL = 0x4000         // Lower 16 Bits of 32 Bit DMT Instruction Count Time-Out Value (Lower 16 bits of 32 bit DMT instruction count time-out value (0-0xFFFF))
+94:                
+95:                // FDMTCNTH
+96:                #pragma config DMTCNTH = 0x4000         // Upper 16 Bits of 32 Bit DMT Instruction Count Time-Out Value (Upper 16 bits of 32 bit DMT instruction count time-out value (0-0xFFFF))
+97:                
+98:                // FDMT
+99:                #pragma config DMTEN = DISABLE          // Dead Man Timer Enable Bit (Dead Man Timer is Disabled and can be enabled by software)
+100:               
+101:               // FDEVOPT
+102:               #pragma config PWMLOCK = OFF            // PWM Lock Enable Bit (PWM registers may be written without key sequence)
+103:               #pragma config ALTI2C1 = ON             // Alternate I2C1 Pins Selection Bit (I2C1 mapped to ASDA1/ASCL1 pins)
+104:               
+105:               // FALTREG
+106:               #pragma config CTXT1 = NONE             // Interrupt Priority Level (IPL) Selection Bits For Alternate Working Register Set 1 (Not Assigned)
+107:               #pragma config CTXT2 = NONE             // Interrupt Priority Level (IPL) Selection Bits For Alternate Working Register Set 2 (Not Assigned)
+108:               
+109:               // #pragma config statements should precede project file includes.
+110:               // Use project enums instead of #define for ON and OFF.
+111:               
+112:               #include "mcc.h"
+113:               #include "reset.h"
+114:               #include "clock.h"
+115:               
+116:               /**
+117:                Section: Local Variables
+118:               */
+119:               
+120:               /**
+121:                Section: Function prototypes
+122:               */
+123:               
+124:               /**
+125:               * a private place to store the error code if we run into a severe error
+126:               */
+127:               
+128:               void OSCILLATOR_Initialize(void)
+129:               {
+000F48  FA0000     LNK #0x0
+130:                   CLOCK_Initialize();
+000F4A  07FEB5     RCALL CLOCK_Initialize
+131:               }
+000F4C  FA8000     ULNK
+000F4E  060000     RETURN
+132:               
+133:               uint16_t SYSTEM_GetResetCause(void)
+134:               {
+000F50  FA0000     LNK #0x0
+135:                   return RCON;
+000F52  803A00     MOV RCON, W0
+136:               }
+000F54  FA8000     ULNK
+000F56  060000     RETURN
+137:               
+138:               void __attribute__ ((weak)) SYSTEM_ResetCauseHandler(void)
+139:               {
+000F58  FA0000     LNK #0x0
+140:                   RESET_CauseHandler();
+000F5A  07FE27     RCALL RESET_CauseHandler
+141:               }
+000F5C  FA8000     ULNK
+000F5E  060000     RETURN
+142:               
+143:               void SYSTEM_ResetCauseClearAll()
+144:               { 
+000F60  FA0000     LNK #0x0
+145:                   RESET_CauseClearAll();
+000F62  07FEA5     RCALL RESET_CauseClearAll
+146:               }
+000F64  FA8000     ULNK
+000F66  060000     RETURN
+147:               /**
+148:                End of File
+149:               */
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/interrupt_manager.h
+1:                 /**
+2:                   System Interrupts Generated Driver File 
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     interrupt_manager.h
+9:                 
+10:                  @Summary:
+11:                    This is the generated driver implementation file for setting up the
+12:                    interrupts using PIC24 / dsPIC33 / PIC32MM MCUs
+13:                
+14:                  @Description:
+15:                    This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs interrupts.
+16:                    Generation Information : 
+17:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+18:                        Device            :  dsPIC33EV32GM102
+19:                    The generated drivers are tested against the following:
+20:                        Compiler          :  XC16 v1.36B
+21:                        MPLAB             :  MPLAB X v5.20
+22:                */
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                #ifndef _INTERRUPT_MANAGER_H
+46:                #define _INTERRUPT_MANAGER_H
+47:                
+48:                /**
+49:                  @Summary
+50:                    Initializes the interrupt priorities of the dsPIC33EV32GM102
+51:                
+52:                  @Description
+53:                    This routine sets the interrupt priorities of the modules that have been configured
+54:                    for the dsPIC33EV32GM102
+55:                
+56:                  @Preconditions
+57:                    None.
+58:                
+59:                  @Returns
+60:                    None.
+61:                
+62:                  @Param
+63:                    None.
+64:                
+65:                  @Example
+66:                    <code>
+67:                    void SYSTEM_Initialize(void)
+68:                    {
+69:                        // Other initializers are called from this function
+70:                        INTERRUPT_Initialize ();
+71:                    }
+72:                    </code>
+73:                
+74:                */
+75:                void INTERRUPT_Initialize(void);
+76:                
+77:                /**
+78:                  @Summary
+79:                    Enables global interrupts of the dsPIC33EV32GM102
+80:                
+81:                  @Description
+82:                    This routine enables the global interrupt bit for the dsPIC33EV32GM102
+83:                
+84:                  @Preconditions
+85:                    None.
+86:                
+87:                  @Returns
+88:                    None.
+89:                
+90:                  @Param
+91:                    None.
+92:                
+93:                  @Example
+94:                    <code>
+95:                    void SYSTEM_Initialize(void)
+96:                    {
+97:                        // Other initializers are called from this function
+98:                        INTERRUPT_GlobalEnable ();
+99:                    }
+100:                   </code>
+101:               
+102:               */
+103:               inline static void INTERRUPT_GlobalEnable(void)
+104:               {
+000E0A  FA0000     LNK #0x0
+105:                   __builtin_enable_interrupts();
+000E0C  A8E8C3     BSET 0x8C3, #7
+000E0E  000000     NOP
+000E10  000000     NOP
+106:               }
+000E12  FA8000     ULNK
+000E14  060000     RETURN
+107:               
+108:               /**
+109:                 @Summary
+110:                   Disables global interrupts of the dsPIC33EV32GM102
+111:               
+112:                 @Description
+113:                   This routine disables the global interrupt bit for the dsPIC33EV32GM102
+114:               
+115:                 @Preconditions
+116:                   None.
+117:               
+118:                 @Returns
+119:                   None.
+120:               
+121:                 @Param
+122:                   None.
+123:               
+124:                 @Example
+125:                   <code>
+126:                   void SYSTEM_Initialize(void)
+127:                   {
+128:                       // Other initializers are called from this function
+129:                       INTERRUPT_GlobalDisable ();
+130:                   }
+131:                   </code>
+132:               
+133:               */
+134:               inline static void INTERRUPT_GlobalDisable(void)
+135:               {
+136:                   __builtin_disable_interrupts();
+137:               }
+138:               
+139:               
+140:               #endif
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/interrupt_manager.c
+1:                 /**
+2:                   System Interrupts Generated Driver File 
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     interrupt_manager.h
+9:                 
+10:                  @Summary:
+11:                    This is the generated driver implementation file for setting up the
+12:                    interrupts using PIC24 / dsPIC33 / PIC32MM MCUs
+13:                
+14:                  @Description:
+15:                    This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs interrupts.
+16:                    Generation Information : 
+17:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+18:                        Device            :  dsPIC33EV32GM102
+19:                    The generated drivers are tested against the following:
+20:                        Compiler          :  XC16 v1.36B
+21:                        MPLAB             :  MPLAB X v5.20
+22:                */
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                /**
+46:                    Section: Includes
+47:                */
+48:                #include <xc.h>
+49:                
+50:                /**
+51:                    void INTERRUPT_Initialize (void)
+52:                */
+53:                void INTERRUPT_Initialize (void)
+54:                {
+000FA2  FA0000     LNK #0x0
+55:                    //    ADI: ADC1 Convert Done
+56:                    //    Priority: 1
+57:                        IPC3bits.AD1IP = 1;
+000FA4  804231     MOV IPC3, W1
+000FA6  2FF8F0     MOV #0xFF8F, W0
+000FA8  608000     AND W1, W0, W0
+000FAA  A04000     BSET W0, #4
+000FAC  884230     MOV W0, IPC3
+58:                    //    TI: Timer 1
+59:                    //    Priority: 1
+60:                        IPC0bits.T1IP = 1;
+000FAE  804201     MOV IPC0, W1
+000FB0  28FFF0     MOV #0x8FFF, W0
+000FB2  608000     AND W1, W0, W0
+000FB4  A0C000     BSET W0, #12
+000FB6  884200     MOV W0, IPC0
+61:                }
+000FB8  FA8000     ULNK
+000FBA  060000     RETURN
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/mcc_generated_files/clock.c  --------
+1:                 /**
+2:                   @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
+3:                 
+4:                   @Company:
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name:
+8:                     clock.c
+9:                 
+10:                  @Summary:
+11:                    This is the clock.c file generated using PIC24 / dsPIC33 / PIC32MM MCUs
+12:                
+13:                  @Description:
+14:                    This header file provides implementations for driver APIs for all modules selected in the GUI.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB             :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                #include <stdint.h>
+46:                #include "xc.h"
+47:                #include "clock.h"
+48:                #include <math.h>
+49:                
+50:                // ADC clock variables
+51:                #define TAD_MIN_US      75     
+52:                uint16_t TAD_ns;            // nanoseconds
+53:                uint16_t TAD_multiplier;
+54:                
+55:                
+56:                void CLOCK_Initialize(void)
+57:                {
+000CB6  FA0000     LNK #0x0
+58:                    // Clock divider register
+59:                    CLKDIVbits.ROI      = 0;        // interrupts have no effect on DOZEN bit
+000CB8  A9E745     BCLR 0x745, #7
+60:                    CLKDIVbits.DOZEN    = 0;        // doze mode disabled
+000CBA  A96745     BCLR 0x745, #3
+61:                    CLKDIVbits.FRCDIV   = 0;        // FRC / 1
+000CBC  803A21     MOV CLKDIV, W1
+000CBE  2F8FF0     MOV #0xF8FF, W0
+000CC0  608000     AND W1, W0, W0
+000CC2  883A20     MOV W0, CLKDIV
+62:                    CLKDIVbits.PLLPOST  = 1;        // N2 = 4; PLL output / N2
+000CC4  803A21     MOV CLKDIV, W1
+000CC6  2FF3F0     MOV #0xFF3F, W0
+000CC8  608000     AND W1, W0, W0
+000CCA  A06000     BSET W0, #6
+000CCC  883A20     MOV W0, CLKDIV
+63:                    CLKDIVbits.PLLPRE   = 4;        // N1 = 6; PLL phase detector input / N1
+000CCE  803A21     MOV CLKDIV, W1
+000CD0  2FFE00     MOV #0xFFE0, W0
+000CD2  608000     AND W1, W0, W0
+000CD4  A02000     BSET W0, #2
+000CD6  883A20     MOV W0, CLKDIV
+64:                    
+65:                    // PLL Feedback Divisor Register
+66:                    PLLFBD              = 0x103;      // M = 259
+000CD8  201030     MOV #0x103, W0
+000CDA  883A30     MOV W0, PLLFBD
+67:                    
+68:                    // TUN Center frequency; 
+69:                    OSCTUN = 0x00;
+000CDC  EF2748     CLR OSCTUN
+70:                    // ROON disabled; ROSEL FOSC; RODIV 0; ROSSLP disabled; 
+71:                    REFOCON = 0x00;
+000CDE  EF274E     CLR REFOCON
+72:                    // AD1MD enabled; PWMMD enabled; T3MD enabled; T4MD enabled; T1MD enabled; U2MD enabled; T2MD enabled; U1MD enabled; SPI2MD enabled; SPI1MD enabled; C1MD enabled; T5MD enabled; I2C1MD enabled; 
+73:                    PMD1 = 0x00;
+000CE0  EF2760     CLR PMD1
+74:                    // IC4MD enabled; IC3MD enabled; OC1MD enabled; IC2MD enabled; OC2MD enabled; IC1MD enabled; OC3MD enabled; OC4MD enabled; 
+75:                    PMD2 = 0x00;
+000CE2  EF2762     CLR PMD2
+76:                    // CMPMD enabled; 
+77:                    PMD3 = 0x00;
+000CE4  EF2764     CLR PMD3
+78:                    // CTMUMD enabled; REFOMD enabled; 
+79:                    PMD4 = 0x00;
+000CE6  EF2766     CLR PMD4
+80:                    // PWM2MD enabled; PWM1MD enabled; PWM3MD enabled; 
+81:                    PMD6 = 0x00;
+000CE8  EF276A     CLR PMD6
+82:                    // DMA0MD enabled; 
+83:                    PMD7 = 0x00;
+000CEA  EF276C     CLR PMD7
+84:                    // DMTMD enabled; SENT2MD enabled; SENT1MD enabled; 
+85:                    PMD8 = 0x00;
+000CEC  EF276E     CLR PMD8
+86:                    
+87:                    //switch to FRC with PLL
+88:                    __builtin_write_OSCCONH((uint8_t) (0x01));
+000CEE  200012     MOV #0x1, W2
+000CF0  200780     MOV #0x78, W0
+000CF2  2009A1     MOV #0x9A, W1
+000CF4  207433     MOV #0x743, W3
+000CF6  784980     MOV.B W0, [W3]
+000CF8  784981     MOV.B W1, [W3]
+000CFA  784982     MOV.B W2, [W3]
+89:                    __builtin_write_OSCCONL((uint8_t) (OSCCON | 0x01));
+000CFC  803A10     MOV OSCCON, W0
+000CFE  784000     MOV.B W0, W0
+000D00  A00400     BSET.B W0, #0
+000D02  FB8100     ZE W0, W2
+000D04  200460     MOV #0x46, W0
+000D06  200571     MOV #0x57, W1
+000D08  207423     MOV #0x742, W3
+000D0A  784980     MOV.B W0, [W3]
+000D0C  784981     MOV.B W1, [W3]
+000D0E  784982     MOV.B W2, [W3]
+90:                    
+91:                    //wait for clock to switch
+92:                    while(OSCCONbits.COSC != 1);
+000D10  000000     NOP
+000D12  803A11     MOV OSCCON, W1
+000D14  270000     MOV #0x7000, W0
+000D16  608080     AND W1, W0, W1
+000D18  210000     MOV #0x1000, W0
+000D1A  508F80     SUB W1, W0, [W15]
+000D1C  3AFFFA     BRA NZ, .L2
+93:                    
+94:                    //wait for PLL to lock
+95:                    while(OSCCONbits.LOCK != 1);
+000D1E  000000     NOP
+000D20  803A11     MOV OSCCON, W1
+000D22  200200     MOV #0x20, W0
+000D24  608000     AND W1, W0, W0
+000D26  E00000     CP0 W0
+000D28  32FFFB     BRA Z, .L3
+96:                }
+000D2A  FA8000     ULNK
+000D2C  060000     RETURN
+97:                
+98:                
+99:                uint16_t CLOCK_PeriodnsGet(void) {
+000D2E  FA0000     LNK #0x0
+100:                   return ceil(1 / (CLOCK_InstructionFrequencyGet() * 0.000000001));
+000D30  200190     MOV #0x19, W0
+101:               }
+000D32  FA8000     ULNK
+000D34  060000     RETURN
+102:               
+103:               
+104:               uint16_t ADC1CLOCK_GENMultiplier(void) {
+000D36  FA0002     LNK #0x2
+105:                   uint16_t T_instruction_ns = CLOCK_PeriodnsGet();
+000D38  07FFFA     RCALL CLOCK_PeriodnsGet
+000D3A  780F00     MOV W0, [W14]
+106:                   if (T_instruction_ns < TAD_MIN_US) {
+000D3C  2004A0     MOV #0x4A, W0
+000D3E  78009E     MOV [W14], W1
+000D40  508F80     SUB W1, W0, [W15]
+000D42  3E000C     BRA GTU, .L6
+107:                       TAD_multiplier = ceil(TAD_MIN_US / T_instruction_ns);
+000D44  2004B1     MOV #0x4B, W1
+000D46  78001E     MOV [W14], W0
+000D48  780100     MOV W0, W2
+000D4A  090011     REPEAT #0x11
+000D4C  D88082     DIV.UW W1, W2
+000D4E  EB0080     CLR W1
+000D50  07FB89     RCALL ___floatunsisf
+000D52  07FB3E     RCALL _ceilf
+000D54  07FB6C     RCALL ___fixunssfsi
+000D56  780000     MOV W0, W0
+000D58  888D20     MOV W0, TAD_multiplier
+000D5A  370001     BRA .L7
+108:                   }
+109:                   else {
+110:                       TAD_multiplier = 0;
+000D5C  EF31A4     CLR TAD_multiplier
+111:                   }
+112:                   
+113:                   TAD_ns = T_instruction_ns * (1 + TAD_multiplier);
+000D5E  808D20     MOV TAD_multiplier, W0
+000D60  E80080     INC W0, W1
+000D62  78001E     MOV [W14], W0
+000D64  B98880     MULW.SS W1, W0, W0
+000D66  888D10     MOV W0, TAD_ns
+114:                   
+115:                   return TAD_multiplier;
+000D68  808D20     MOV TAD_multiplier, W0
+116:               }
+000D6A  FA8000     ULNK
+000D6C  060000     RETURN
+117:               
+118:               
+119:               uint16_t ADC1CLOCK_PeriodnsGet(void) {
+000D6E  FA0000     LNK #0x0
+120:                   return TAD_ns;
+000D70  808D10     MOV TAD_ns, W0
+121:               }
+000D72  FA8000     ULNK
+000D74  060000     RETURN
+122:               
+123:               uint16_t ADC1CLOCK_MultiplierGet(void) {
+000D76  FA0000     LNK #0x0
+124:                   return TAD_multiplier;
+000D78  808D20     MOV TAD_multiplier, W0
+125:               }
+000D7A  FA8000     ULNK
+000D7C  060000     RETURN
+126:               
+127:               void ADC1CLOCK_PeriodnsSet(uint16_t period_ns) {
+000D7E  FA0002     LNK #0x2
+000D80  780F00     MOV W0, [W14]
+128:                   TAD_ns = period_ns;
+000D82  78009E     MOV [W14], W1
+000D84  888D11     MOV W1, TAD_ns
+129:               }
+000D86  FA8000     ULNK
+000D88  060000     RETURN
+130:               
+131:               void ADC1CLOCK_MultiplierSet(uint16_t multiplier) {
+000D8A  FA0002     LNK #0x2
+000D8C  780F00     MOV W0, [W14]
+132:                   TAD_multiplier = multiplier;
+000D8E  78009E     MOV [W14], W1
+000D90  888D21     MOV W1, TAD_multiplier
+133:               }
+000D92  FA8000     ULNK
+000D94  060000     RETURN
+134:               
+135:               
+136:               
+137:               
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/main.c  -----------------------------
+1:                 /**
+2:                   Generated main.c file from MPLAB Code Configurator
+3:                 
+4:                   @Company
+5:                     Microchip Technology Inc.
+6:                 
+7:                   @File Name
+8:                     main.c
+9:                 
+10:                  @Summary
+11:                    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
+12:                
+13:                  @Description
+14:                    This source file provides main entry point for system initialization and application code development.
+15:                    Generation Information :
+16:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+17:                        Device            :  dsPIC33EV32GM102
+18:                    The generated drivers are tested against the following:
+19:                        Compiler          :  XC16 v1.36B
+20:                        MPLAB 	          :  MPLAB X v5.20
+21:                */
+22:                
+23:                /*
+24:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+25:                    software and any derivatives exclusively with Microchip products.
+26:                
+27:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+28:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+29:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+30:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+31:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+32:                
+33:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+34:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+35:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+36:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+37:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+38:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+39:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+40:                
+41:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+42:                    TERMS.
+43:                */
+44:                
+45:                /**
+46:                  Section: Included Files
+47:                */
+48:                #include "mcc_generated_files/system.h"
+49:                #include "mcc_generated_files/adc1.h"
+50:                #include "calibration.h"
+51:                #include "mcc_generated_files/tmr1.h"
+52:                #include "mcc_generated_files/tmr3.h"
+53:                #include "can.h"
+54:                
+55:                #define NUM_CAL_POINTS      10              // Number of calibration points
+56:                #define DIFFAMP_GAIN        80
+57:                #define OPAMP_UNITY_GAIN    1
+58:                #define R_SHUNT             0.004
+59:                
+60:                #define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
+61:                
+62:                
+63:                void TMR1_InterruptCallback (void);
+64:                // dummy functions for now - test basic functionality
+65:                uint16_t ProcessCurrent(uint16_t);
+66:                uint16_t ProcessVoltage(uint16_t);
+67:                void CAN_send(uint16_t);    
+68:                
+69:                // current and voltage calibration data - ideal points need to be set
+70:                cal_point_t current_cal_data[NUM_CAL_POINTS];
+71:                cal_point_t voltage_cal_data[NUM_CAL_POINTS];
+72:                
+73:                /*
+74:                                         Main application
+75:                 */
+76:                int main(void)
+77:                {
+000EB2  FA0028     LNK #0x28
+78:                    uint16_t current_readings[ADC_BUF_SIZE / 2];
+79:                    uint16_t voltage_readings[ADC_BUF_SIZE / 2];
+80:                    
+81:                    uint16_t current_avg = 0;
+000EB4  EB0000     CLR W0
+000EB6  780F00     MOV W0, [W14]
+82:                    uint16_t voltage_avg = 0;
+000EB8  EB0000     CLR W0
+000EBA  980710     MOV W0, [W14+2]
+83:                    
+84:                    // initialize the device
+85:                    SYSTEM_Initialize();
+000EBC  07FFAC     RCALL SYSTEM_Initialize
+86:                    
+87:                    
+88:                    
+89:                    //debug - disable tmrs 
+90:                    double test = 69.420;
+000EBE  2D70A0     MOV #0xD70A, W0
+000EC0  2428A1     MOV #0x428A, W1
+000EC2  981720     MOV W0, [W14+36]
+000EC4  981731     MOV W1, [W14+38]
+91:                    CAN_ConfigBufForStandardDataFrame(0);
+000EC6  EB0000     CLR W0
+000EC8  07FDEF     RCALL CAN_ConfigBufForStandardDataFrame
+92:                    CAN_WriteBuf((void*)&test, 0, sizeof(test), 0);
+000ECA  200240     MOV #0x24, W0
+000ECC  40000E     ADD W0, W14, W0
+000ECE  EB0180     CLR W3
+000ED0  200042     MOV #0x4, W2
+000ED2  EB0080     CLR W1
+000ED4  07FDCD     RCALL CAN_WriteBuf
+93:                    
+94:                    while (1) {
+95:                        CAN_TransmitData(0, 1023, sizeof(test));
+000ED6  200042     MOV #0x4, W2
+000ED8  203FF1     MOV #0x3FF, W1
+000EDA  EB0000     CLR W0
+000EDC  07FE0B     RCALL CAN_TransmitData
+96:                        while(C1TR01CONbits.TXREQ0 == 1);
+000EDE  000000     NOP
+000EE0  802180     MOV C1TR01CON, W0
+000EE2  600068     AND W0, #0x8, W0
+000EE4  E00000     CP0 W0
+000EE6  3AFFFC     BRA NZ, .L2
+97:                    }
+000EE8  37FFF6     BRA .L3
+98:                    //end
+99:                    
+100:                   while (1)
+101:                   {
+102:                       if (ADC1_IsDataReady() == true) {
+103:                           ADC1_AcknowledgeDataReady();  
+104:                           
+105:                           uint16_t *data = ADC1_GetBufferPtr(); 
+106:                           
+107:                           // process sampled data
+108:                           uint16_t buffer_index = 0;
+109:                           uint16_t i;
+110:                           for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
+111:                               buffer_index = i * 2;
+112:                               current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], current_cal_data, NUM_CAL_POINTS));   
+113:                               voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], voltage_cal_data, NUM_CAL_POINTS));  
+114:                           }
+115:                           
+116:                           // average data
+117:                           for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
+118:                               current_avg += current_readings[i];
+119:                               voltage_avg += voltage_readings[i];
+120:                           }
+121:                           current_avg /= ADC_BUF_SIZE / 2;
+122:                           voltage_avg /= ADC_BUF_SIZE / 2;
+123:                               
+124:                           // send data over CAN
+125:                           //CAN_send(current_avg);
+126:                           //CAN_send(voltage_avg);
+127:                       }
+128:                   }
+129:                   return 1; 
+130:               }
+131:               
+132:               
+133:               uint16_t ProcessCurrent(uint16_t data) {
+000EEA  FA0002     LNK #0x2
+000EEC  780F00     MOV W0, [W14]
+134:                    return 0;
+000EEE  EB0000     CLR W0
+135:               }
+000EF0  FA8000     ULNK
+000EF2  060000     RETURN
+136:               
+137:               
+138:               uint16_t ProcessVoltage(uint16_t data) {
+000EF4  FA0002     LNK #0x2
+000EF6  780F00     MOV W0, [W14]
+139:                   // STUFF
+140:                    return 0;
+000EF8  EB0000     CLR W0
+141:               }
+000EFA  FA8000     ULNK
+000EFC  060000     RETURN
+142:               
+143:               
+144:               void CAN_Send(uint16_t data) {
+000EFE  FA0002     LNK #0x2
+000F00  780F00     MOV W0, [W14]
+145:                   return;
+146:               }
+000F02  FA8000     ULNK
+000F04  060000     RETURN
+147:               
+148:               /**
+149:                End of File
+150:               */
+151:               
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/dma.c  ------------------------------
+1:                 #include "dma.h"
+2:                 #include "globals.h"
+3:                 
+4:                 /**************************************************************************
+5:                  * 
+6:                  *                            INIT CONFIGS
+7:                  * 
+8:                  **************************************************************************/
+9:                 DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
+10:                                                    .SIZE   = 0,    // word transfer
+11:                                                    .DIR    = 0,    // peripheral to RAM direction  
+12:                                                    .HALF   = 0,    // interrupt after all transfers
+13:                                                    .NULLW  = 0,    // normal operation 
+14:                                                    .AMODE  = 2,    // peripheral controls address 
+15:                                                    .MODE   = 0,    // continuous, ping-pong disabled
+16:                                                    .IRQSEL = 0x22,    
+17:                                                    .PAD    = 0x440,     
+18:                                                    .CNT    = CAN_MSG_SIZE - 1 
+19:                                                    };
+20:                
+21:                DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled  
+22:                                                    .SIZE   = 0,    // word transfer
+23:                                                    .DIR    = 1,    // RAM to peripheral
+24:                                                    .HALF   = 0,    // interrupt after all transfers
+25:                                                    .NULLW  = 0,    // normal operation 
+26:                                                    .AMODE  = 2,    // peripheral controls address 
+27:                                                    .MODE   = 0,    // continuous, ping-pong disabled
+28:                                                    .IRQSEL = 0x46,             
+29:                                                    .PAD    = 0x442,    
+30:                                                    .CNT    = CAN_MSG_SIZE - 1
+31:                                                    };
+32:                
+33:                
+34:                void __attribute__((__interrupt__,no_auto_psv)) _DMACError(void) {
+000368  FA0000     LNK #0x0
+35:                    INTCON1bits.DMACERR = 0;
+00036A  A9A8C0     BCLR INTCON1, #5
+36:                }
+00036C  FA8000     ULNK
+00036E  064000     RETFIE
+37:                
+38:                /**************************************************************************
+39:                 * 
+40:                 *                              INIT
+41:                 * 
+42:                 **************************************************************************/
+43:                uint8_t active_chs[NUM_DMA_CH] = { 0 };
+44:                
+45:                void DMA_Initialize() {
+000636  FA0000     LNK #0x0
+46:                    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig, (void*)&canRXBuffer[0], (void*)&canRXBuffer[0]);
+000638  808D61     MOV 0x11AC, W1
+00063A  808D60     MOV 0x11AC, W0
+00063C  211923     MOV #0x1192, W3
+00063E  780101     MOV W1, W2
+000640  780080     MOV W0, W1
+000642  780213     MOV [W3], W4
+000644  900293     MOV [W3+2], W5
+000646  900323     MOV [W3+4], W6
+000648  9003B3     MOV [W3+6], W7
+00064A  200010     MOV #0x1, W0
+00064C  07000D     RCALL DMA_InitializeCH
+47:                    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig, (void*)&canTXBuffer[0], (void*)&canTXBuffer[0]);
+00064E  808D51     MOV 0x11AA, W1
+000650  808D50     MOV 0x11AA, W0
+000652  2119A3     MOV #0x119A, W3
+000654  780101     MOV W1, W2
+000656  780080     MOV W0, W1
+000658  780213     MOV [W3], W4
+00065A  900293     MOV [W3+2], W5
+00065C  900323     MOV [W3+4], W6
+00065E  9003B3     MOV [W3+6], W7
+000660  EB0000     CLR W0
+000662  070002     RCALL DMA_InitializeCH
+48:                }
+000664  FA8000     ULNK
+000666  060000     RETURN
+49:                
+50:                
+51:                uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* stal) {
+000668  FA000E     LNK #0xE
+00066A  780F00     MOV W0, [W14]
+00066C  980714     MOV W4, [W14+2]
+00066E  980725     MOV W5, [W14+4]
+000670  980736     MOV W6, [W14+6]
+000672  980747     MOV W7, [W14+8]
+000674  980751     MOV W1, [W14+10]
+000676  980762     MOV W2, [W14+12]
+52:                    // check for invalid channel number
+53:                    if ((ch >= NUM_DMA_CH) || (ch < 0))
+000678  78001E     MOV [W14], W0
+00067A  500FE3     SUB W0, #0x3, [W15]
+00067C  360002     BRA LEU, .L4
+54:                        return 1;
+00067E  200010     MOV #0x1, W0
+000680  37017D     BRA .L5
+55:                    
+56:                    // if channel is active, then return error, if not, then set active
+57:                    if (active_chs[ch] == 1)
+000682  211A60     MOV #0x11A6, W0
+000684  40001E     ADD W0, [W14], W0
+000686  784010     MOV.B [W0], W0
+000688  504FE1     SUB.B W0, #0x1, [W15]
+00068A  3A0002     BRA NZ, .L6
+58:                        return 1;
+00068C  200010     MOV #0x1, W0
+00068E  370176     BRA .L5
+59:                    else 
+60:                        active_chs[ch] = 1;
+000690  211A60     MOV #0x11A6, W0
+000692  40001E     ADD W0, [W14], W0
+000694  B3C011     MOV.B #0x1, W1
+000696  784801     MOV.B W1, [W0]
+61:                    
+62:                    // channel enabling needs to be last
+63:                    switch (ch)
+000698  78001E     MOV [W14], W0
+00069A  500FE1     SUB W0, #0x1, [W15]
+00069C  320061     BRA Z, .L9
+00069E  500FE1     SUB W0, #0x1, [W15]
+0006A0  390005     BRA NC, .L8
+0006A2  500FE2     SUB W0, #0x2, [W15]
+0006A4  3200B6     BRA Z, .L10
+0006A6  500FE3     SUB W0, #0x3, [W15]
+0006A8  32010D     BRA Z, .L11
+0006AA  370165     BRA .L13
+64:                    {
+65:                        case 0:
+66:                            DMA0CONbits.SIZE = init_data.SIZE;
+0006AC  90001E     MOV [W14+2], W0
+0006AE  D10000     LSR W0, W0
+0006B0  604061     AND.B W0, #0x1, W0
+0006B2  FB8000     ZE W0, W0
+0006B4  600061     AND W0, #0x1, W0
+0006B6  DD004E     SL W0, #14, W0
+0006B8  805801     MOV DMA0CON, W1
+0006BA  A1E001     BCLR W1, #14
+0006BC  700001     IOR W0, W1, W0
+0006BE  885800     MOV W0, DMA0CON
+67:                            DMA0CONbits.DIR = init_data.DIR;
+0006C0  90001E     MOV [W14+2], W0
+0006C2  DE0042     LSR W0, #2, W0
+0006C4  604061     AND.B W0, #0x1, W0
+0006C6  FB8000     ZE W0, W0
+0006C8  600061     AND W0, #0x1, W0
+0006CA  DD004D     SL W0, #13, W0
+0006CC  805801     MOV DMA0CON, W1
+0006CE  A1D001     BCLR W1, #13
+0006D0  700001     IOR W0, W1, W0
+0006D2  885800     MOV W0, DMA0CON
+68:                            DMA0CONbits.HALF = init_data.HALF;
+0006D4  90001E     MOV [W14+2], W0
+0006D6  DE0043     LSR W0, #3, W0
+0006D8  604061     AND.B W0, #0x1, W0
+0006DA  FB8000     ZE W0, W0
+0006DC  600061     AND W0, #0x1, W0
+0006DE  DD004C     SL W0, #12, W0
+0006E0  805801     MOV DMA0CON, W1
+0006E2  A1C001     BCLR W1, #12
+0006E4  700001     IOR W0, W1, W0
+0006E6  885800     MOV W0, DMA0CON
+69:                            DMA0CONbits.NULLW = init_data.NULLW;
+0006E8  90001E     MOV [W14+2], W0
+0006EA  DE0044     LSR W0, #4, W0
+0006EC  604061     AND.B W0, #0x1, W0
+0006EE  FB8000     ZE W0, W0
+0006F0  600061     AND W0, #0x1, W0
+0006F2  DD004B     SL W0, #11, W0
+0006F4  805801     MOV DMA0CON, W1
+0006F6  A1B001     BCLR W1, #11
+0006F8  700001     IOR W0, W1, W0
+0006FA  885800     MOV W0, DMA0CON
+70:                            DMA0CONbits.AMODE = init_data.AMODE;
+0006FC  90001E     MOV [W14+2], W0
+0006FE  DE0045     LSR W0, #5, W0
+000700  604063     AND.B W0, #0x3, W0
+000702  FB8000     ZE W0, W0
+000704  600063     AND W0, #0x3, W0
+000706  DD0044     SL W0, #4, W0
+000708  805802     MOV DMA0CON, W2
+00070A  2FFCF1     MOV #0xFFCF, W1
+00070C  610081     AND W2, W1, W1
+00070E  700001     IOR W0, W1, W0
+000710  885800     MOV W0, DMA0CON
+71:                            DMA0CONbits.MODE = init_data.MODE;
+000712  90001E     MOV [W14+2], W0
+000714  DE0048     LSR W0, #8, W0
+000716  604063     AND.B W0, #0x3, W0
+000718  FB8000     ZE W0, W0
+00071A  600063     AND W0, #0x3, W0
+00071C  805802     MOV DMA0CON, W2
+00071E  2FFFC1     MOV #0xFFFC, W1
+000720  610081     AND W2, W1, W1
+000722  700001     IOR W0, W1, W0
+000724  885800     MOV W0, DMA0CON
+72:                            DMA0REQbits.IRQSEL = init_data.IRQSEL;
+000726  90404E     MOV.B [W14+4], W0
+000728  B7EB02     MOV.B WREG, DMA0REQ
+73:                            DMA0STAL = (uint16_t)stal;
+00072A  90006E     MOV [W14+12], W0
+00072C  885820     MOV W0, DMA0STAL
+74:                            DMA0STAHbits.STA = (uint16_t)stah;
+00072E  90005E     MOV [W14+10], W0
+000730  784000     MOV.B W0, W0
+000732  B7EB06     MOV.B WREG, DMA0STAH
+75:                            DMA0PAD = init_data.PAD;
+000734  90003E     MOV [W14+6], W0
+000736  885860     MOV W0, DMA0PAD
+76:                            DMA0CNTbits.CNT = init_data.CNT;
+000738  9000CE     MOV [W14+8], W1
+00073A  23FFF0     MOV #0x3FFF, W0
+00073C  608080     AND W1, W0, W1
+00073E  23FFF0     MOV #0x3FFF, W0
+000740  608000     AND W1, W0, W0
+000742  805872     MOV DMA0CNT, W2
+000744  2C0001     MOV #0xC000, W1
+000746  610081     AND W2, W1, W1
+000748  700001     IOR W0, W1, W0
+00074A  885870     MOV W0, DMA0CNT
+77:                            DMA0CONbits.CHEN = init_data.CHEN;
+00074C  90001E     MOV [W14+2], W0
+00074E  604061     AND.B W0, #0x1, W0
+000750  FB8000     ZE W0, W0
+000752  DD004F     SL W0, #15, W0
+000754  805801     MOV DMA0CON, W1
+000756  A1F001     BCLR W1, #15
+000758  700001     IOR W0, W1, W0
+00075A  885800     MOV W0, DMA0CON
+78:                            IEC0bits.DMA0IE = 1;
+00075C  A88820     BSET IEC0, #4
+79:                            break;
+00075E  37010D     BRA .L12
+80:                        case 1:
+81:                            DMA1CONbits.SIZE = init_data.SIZE;
+000760  90001E     MOV [W14+2], W0
+000762  D10000     LSR W0, W0
+000764  604061     AND.B W0, #0x1, W0
+000766  FB8000     ZE W0, W0
+000768  600061     AND W0, #0x1, W0
+00076A  DD004E     SL W0, #14, W0
+00076C  805881     MOV DMA1CON, W1
+00076E  A1E001     BCLR W1, #14
+000770  700001     IOR W0, W1, W0
+000772  885880     MOV W0, DMA1CON
+82:                            DMA1CONbits.DIR = init_data.DIR;
+000774  90001E     MOV [W14+2], W0
+000776  DE0042     LSR W0, #2, W0
+000778  604061     AND.B W0, #0x1, W0
+00077A  FB8000     ZE W0, W0
+00077C  600061     AND W0, #0x1, W0
+00077E  DD004D     SL W0, #13, W0
+000780  805881     MOV DMA1CON, W1
+000782  A1D001     BCLR W1, #13
+000784  700001     IOR W0, W1, W0
+000786  885880     MOV W0, DMA1CON
+83:                            DMA1CONbits.HALF = init_data.HALF;
+000788  90001E     MOV [W14+2], W0
+00078A  DE0043     LSR W0, #3, W0
+00078C  604061     AND.B W0, #0x1, W0
+00078E  FB8000     ZE W0, W0
+000790  600061     AND W0, #0x1, W0
+000792  DD004C     SL W0, #12, W0
+000794  805881     MOV DMA1CON, W1
+000796  A1C001     BCLR W1, #12
+000798  700001     IOR W0, W1, W0
+00079A  885880     MOV W0, DMA1CON
+84:                            DMA1CONbits.NULLW = init_data.NULLW;
+00079C  90001E     MOV [W14+2], W0
+00079E  DE0044     LSR W0, #4, W0
+0007A0  604061     AND.B W0, #0x1, W0
+0007A2  FB8000     ZE W0, W0
+0007A4  600061     AND W0, #0x1, W0
+0007A6  DD004B     SL W0, #11, W0
+0007A8  805881     MOV DMA1CON, W1
+0007AA  A1B001     BCLR W1, #11
+0007AC  700001     IOR W0, W1, W0
+0007AE  885880     MOV W0, DMA1CON
+85:                            DMA1CONbits.AMODE = init_data.AMODE;
+0007B0  90001E     MOV [W14+2], W0
+0007B2  DE0045     LSR W0, #5, W0
+0007B4  604063     AND.B W0, #0x3, W0
+0007B6  FB8000     ZE W0, W0
+0007B8  600063     AND W0, #0x3, W0
+0007BA  DD0044     SL W0, #4, W0
+0007BC  805882     MOV DMA1CON, W2
+0007BE  2FFCF1     MOV #0xFFCF, W1
+0007C0  610081     AND W2, W1, W1
+0007C2  700001     IOR W0, W1, W0
+0007C4  885880     MOV W0, DMA1CON
+86:                            DMA1CONbits.MODE = init_data.MODE;
+0007C6  90001E     MOV [W14+2], W0
+0007C8  DE0048     LSR W0, #8, W0
+0007CA  604063     AND.B W0, #0x3, W0
+0007CC  FB8000     ZE W0, W0
+0007CE  600063     AND W0, #0x3, W0
+0007D0  805882     MOV DMA1CON, W2
+0007D2  2FFFC1     MOV #0xFFFC, W1
+0007D4  610081     AND W2, W1, W1
+0007D6  700001     IOR W0, W1, W0
+0007D8  885880     MOV W0, DMA1CON
+87:                            DMA1REQbits.IRQSEL = init_data.IRQSEL;
+0007DA  90404E     MOV.B [W14+4], W0
+0007DC  B7EB12     MOV.B WREG, DMA1REQ
+88:                            DMA1STAHbits.STA = (uint16_t)stah;
+0007DE  90005E     MOV [W14+10], W0
+0007E0  784000     MOV.B W0, W0
+0007E2  B7EB16     MOV.B WREG, DMA1STAH
+89:                            DMA1STAL = (uint16_t)stal;
+0007E4  90006E     MOV [W14+12], W0
+0007E6  8858A0     MOV W0, DMA1STAL
+90:                            DMA1PAD = init_data.PAD;
+0007E8  90003E     MOV [W14+6], W0
+0007EA  8858E0     MOV W0, DMA1PAD
+91:                            DMA1CNTbits.CNT = init_data.CNT;
+0007EC  9000CE     MOV [W14+8], W1
+0007EE  23FFF0     MOV #0x3FFF, W0
+0007F0  608080     AND W1, W0, W1
+0007F2  23FFF0     MOV #0x3FFF, W0
+0007F4  608000     AND W1, W0, W0
+0007F6  8058F2     MOV DMA1CNT, W2
+0007F8  2C0001     MOV #0xC000, W1
+0007FA  610081     AND W2, W1, W1
+0007FC  700001     IOR W0, W1, W0
+0007FE  8858F0     MOV W0, DMA1CNT
+92:                            DMA1CONbits.CHEN = init_data.CHEN;
+000800  90001E     MOV [W14+2], W0
+000802  604061     AND.B W0, #0x1, W0
+000804  FB8000     ZE W0, W0
+000806  DD004F     SL W0, #15, W0
+000808  805881     MOV DMA1CON, W1
+00080A  A1F001     BCLR W1, #15
+00080C  700001     IOR W0, W1, W0
+00080E  885880     MOV W0, DMA1CON
+93:                            break;
+000810  3700B4     BRA .L12
+94:                        case 2:
+95:                            DMA2CONbits.SIZE = init_data.SIZE;
+000812  90001E     MOV [W14+2], W0
+000814  D10000     LSR W0, W0
+000816  604061     AND.B W0, #0x1, W0
+000818  FB8000     ZE W0, W0
+00081A  600061     AND W0, #0x1, W0
+00081C  DD004E     SL W0, #14, W0
+00081E  805901     MOV DMA2CON, W1
+000820  A1E001     BCLR W1, #14
+000822  700001     IOR W0, W1, W0
+000824  885900     MOV W0, DMA2CON
+96:                            DMA2CONbits.DIR = init_data.DIR;
+000826  90001E     MOV [W14+2], W0
+000828  DE0042     LSR W0, #2, W0
+00082A  604061     AND.B W0, #0x1, W0
+00082C  FB8000     ZE W0, W0
+00082E  600061     AND W0, #0x1, W0
+000830  DD004D     SL W0, #13, W0
+000832  805901     MOV DMA2CON, W1
+000834  A1D001     BCLR W1, #13
+000836  700001     IOR W0, W1, W0
+000838  885900     MOV W0, DMA2CON
+97:                            DMA2CONbits.HALF = init_data.HALF;
+00083A  90001E     MOV [W14+2], W0
+00083C  DE0043     LSR W0, #3, W0
+00083E  604061     AND.B W0, #0x1, W0
+000840  FB8000     ZE W0, W0
+000842  600061     AND W0, #0x1, W0
+000844  DD004C     SL W0, #12, W0
+000846  805901     MOV DMA2CON, W1
+000848  A1C001     BCLR W1, #12
+00084A  700001     IOR W0, W1, W0
+00084C  885900     MOV W0, DMA2CON
+98:                            DMA2CONbits.NULLW = init_data.NULLW;
+00084E  90001E     MOV [W14+2], W0
+000850  DE0044     LSR W0, #4, W0
+000852  604061     AND.B W0, #0x1, W0
+000854  FB8000     ZE W0, W0
+000856  600061     AND W0, #0x1, W0
+000858  DD004B     SL W0, #11, W0
+00085A  805901     MOV DMA2CON, W1
+00085C  A1B001     BCLR W1, #11
+00085E  700001     IOR W0, W1, W0
+000860  885900     MOV W0, DMA2CON
+99:                            DMA2CONbits.AMODE = init_data.AMODE;
+000862  90001E     MOV [W14+2], W0
+000864  DE0045     LSR W0, #5, W0
+000866  604063     AND.B W0, #0x3, W0
+000868  FB8000     ZE W0, W0
+00086A  600063     AND W0, #0x3, W0
+00086C  DD0044     SL W0, #4, W0
+00086E  805902     MOV DMA2CON, W2
+000870  2FFCF1     MOV #0xFFCF, W1
+000872  610081     AND W2, W1, W1
+000874  700001     IOR W0, W1, W0
+000876  885900     MOV W0, DMA2CON
+100:                           DMA2CONbits.MODE = init_data.MODE;
+000878  90001E     MOV [W14+2], W0
+00087A  DE0048     LSR W0, #8, W0
+00087C  604063     AND.B W0, #0x3, W0
+00087E  FB8000     ZE W0, W0
+000880  600063     AND W0, #0x3, W0
+000882  805902     MOV DMA2CON, W2
+000884  2FFFC1     MOV #0xFFFC, W1
+000886  610081     AND W2, W1, W1
+000888  700001     IOR W0, W1, W0
+00088A  885900     MOV W0, DMA2CON
+101:                           DMA2REQbits.IRQSEL = init_data.IRQSEL;
+00088C  90404E     MOV.B [W14+4], W0
+00088E  B7EB22     MOV.B WREG, DMA2REQ
+102:                           DMA2STAHbits.STA = (uint16_t)stah;
+000890  90005E     MOV [W14+10], W0
+000892  784000     MOV.B W0, W0
+000894  B7EB26     MOV.B WREG, DMA2STAH
+103:                           DMA2STAL = (uint16_t)stal;
+000896  90006E     MOV [W14+12], W0
+000898  885920     MOV W0, DMA2STAL
+104:                           DMA2PAD = init_data.PAD;
+00089A  90003E     MOV [W14+6], W0
+00089C  885960     MOV W0, DMA2PAD
+105:                           DMA2CNTbits.CNT = init_data.CNT;
+00089E  9000CE     MOV [W14+8], W1
+0008A0  23FFF0     MOV #0x3FFF, W0
+0008A2  608080     AND W1, W0, W1
+0008A4  23FFF0     MOV #0x3FFF, W0
+0008A6  608000     AND W1, W0, W0
+0008A8  805972     MOV DMA2CNT, W2
+0008AA  2C0001     MOV #0xC000, W1
+0008AC  610081     AND W2, W1, W1
+0008AE  700001     IOR W0, W1, W0
+0008B0  885970     MOV W0, DMA2CNT
+106:                           DMA2CONbits.CHEN = init_data.CHEN;
+0008B2  90001E     MOV [W14+2], W0
+0008B4  604061     AND.B W0, #0x1, W0
+0008B6  FB8000     ZE W0, W0
+0008B8  DD004F     SL W0, #15, W0
+0008BA  805901     MOV DMA2CON, W1
+0008BC  A1F001     BCLR W1, #15
+0008BE  700001     IOR W0, W1, W0
+0008C0  885900     MOV W0, DMA2CON
+107:                           break;
+0008C2  37005B     BRA .L12
+108:                       case 3:
+109:                           DMA3CONbits.SIZE = init_data.SIZE;
+0008C4  90001E     MOV [W14+2], W0
+0008C6  D10000     LSR W0, W0
+0008C8  604061     AND.B W0, #0x1, W0
+0008CA  FB8000     ZE W0, W0
+0008CC  600061     AND W0, #0x1, W0
+0008CE  DD004E     SL W0, #14, W0
+0008D0  805981     MOV DMA3CON, W1
+0008D2  A1E001     BCLR W1, #14
+0008D4  700001     IOR W0, W1, W0
+0008D6  885980     MOV W0, DMA3CON
+110:                           DMA3CONbits.DIR = init_data.DIR;
+0008D8  90001E     MOV [W14+2], W0
+0008DA  DE0042     LSR W0, #2, W0
+0008DC  604061     AND.B W0, #0x1, W0
+0008DE  FB8000     ZE W0, W0
+0008E0  600061     AND W0, #0x1, W0
+0008E2  DD004D     SL W0, #13, W0
+0008E4  805981     MOV DMA3CON, W1
+0008E6  A1D001     BCLR W1, #13
+0008E8  700001     IOR W0, W1, W0
+0008EA  885980     MOV W0, DMA3CON
+111:                           DMA3CONbits.HALF = init_data.HALF;
+0008EC  90001E     MOV [W14+2], W0
+0008EE  DE0043     LSR W0, #3, W0
+0008F0  604061     AND.B W0, #0x1, W0
+0008F2  FB8000     ZE W0, W0
+0008F4  600061     AND W0, #0x1, W0
+0008F6  DD004C     SL W0, #12, W0
+0008F8  805981     MOV DMA3CON, W1
+0008FA  A1C001     BCLR W1, #12
+0008FC  700001     IOR W0, W1, W0
+0008FE  885980     MOV W0, DMA3CON
+112:                           DMA3CONbits.NULLW = init_data.NULLW;
+000900  90001E     MOV [W14+2], W0
+000902  DE0044     LSR W0, #4, W0
+000904  604061     AND.B W0, #0x1, W0
+000906  FB8000     ZE W0, W0
+000908  600061     AND W0, #0x1, W0
+00090A  DD004B     SL W0, #11, W0
+00090C  805981     MOV DMA3CON, W1
+00090E  A1B001     BCLR W1, #11
+000910  700001     IOR W0, W1, W0
+000912  885980     MOV W0, DMA3CON
+113:                           DMA3CONbits.AMODE = init_data.AMODE;
+000914  90001E     MOV [W14+2], W0
+000916  DE0045     LSR W0, #5, W0
+000918  604063     AND.B W0, #0x3, W0
+00091A  FB8000     ZE W0, W0
+00091C  600063     AND W0, #0x3, W0
+00091E  DD0044     SL W0, #4, W0
+000920  805982     MOV DMA3CON, W2
+000922  2FFCF1     MOV #0xFFCF, W1
+000924  610081     AND W2, W1, W1
+000926  700001     IOR W0, W1, W0
+000928  885980     MOV W0, DMA3CON
+114:                           DMA3CONbits.MODE = init_data.MODE;
+00092A  90001E     MOV [W14+2], W0
+00092C  DE0048     LSR W0, #8, W0
+00092E  604063     AND.B W0, #0x3, W0
+000930  FB8000     ZE W0, W0
+000932  600063     AND W0, #0x3, W0
+000934  805982     MOV DMA3CON, W2
+000936  2FFFC1     MOV #0xFFFC, W1
+000938  610081     AND W2, W1, W1
+00093A  700001     IOR W0, W1, W0
+00093C  885980     MOV W0, DMA3CON
+115:                           DMA3REQbits.IRQSEL = init_data.IRQSEL;
+00093E  90404E     MOV.B [W14+4], W0
+000940  B7EB32     MOV.B WREG, DMA3REQ
+116:                           DMA3STAHbits.STA = (uint16_t)stah;
+000942  90005E     MOV [W14+10], W0
+000944  784000     MOV.B W0, W0
+000946  B7EB36     MOV.B WREG, DMA3STAH
+117:                           DMA3STAL = (uint16_t)stal;
+000948  90006E     MOV [W14+12], W0
+00094A  8859A0     MOV W0, DMA3STAL
+118:                           DMA3PAD = init_data.PAD;
+00094C  90003E     MOV [W14+6], W0
+00094E  8859E0     MOV W0, DMA3PAD
+119:                           DMA3CNTbits.CNT = init_data.CNT;
+000950  9000CE     MOV [W14+8], W1
+000952  23FFF0     MOV #0x3FFF, W0
+000954  608080     AND W1, W0, W1
+000956  23FFF0     MOV #0x3FFF, W0
+000958  608000     AND W1, W0, W0
+00095A  8059F2     MOV DMA3CNT, W2
+00095C  2C0001     MOV #0xC000, W1
+00095E  610081     AND W2, W1, W1
+000960  700001     IOR W0, W1, W0
+000962  8859F0     MOV W0, DMA3CNT
+120:                           DMA3CONbits.CHEN = init_data.CHEN;
+000964  90001E     MOV [W14+2], W0
+000966  604061     AND.B W0, #0x1, W0
+000968  FB8000     ZE W0, W0
+00096A  DD004F     SL W0, #15, W0
+00096C  805981     MOV DMA3CON, W1
+00096E  A1F001     BCLR W1, #15
+000970  700001     IOR W0, W1, W0
+000972  885980     MOV W0, DMA3CON
+121:                           break;
+000974  370002     BRA .L12
+122:                       default:
+123:                           return 1;
+000976  200010     MOV #0x1, W0
+000978  370001     BRA .L5
+124:                   }
+125:                   
+126:                   return 0;
+00097A  EB0000     CLR W0
+127:               }
+00097C  FA8000     ULNK
+00097E  060000     RETURN
+128:               
+129:               uint16_t DMA_TerminateCH(uint16_t ch) {
+000980  FA0002     LNK #0x2
+000982  780F00     MOV W0, [W14]
+130:                   
+131:                   switch (ch)
+000984  78001E     MOV [W14], W0
+000986  500FE1     SUB W0, #0x1, [W15]
+000988  32000B     BRA Z, .L17
+00098A  500FE1     SUB W0, #0x1, [W15]
+00098C  390005     BRA NC, .L16
+00098E  500FE2     SUB W0, #0x2, [W15]
+000990  32000B     BRA Z, .L18
+000992  500FE3     SUB W0, #0x3, [W15]
+000994  32000D     BRA Z, .L19
+000996  370010     BRA .L22
+132:                   {
+133:                       case 0:
+134:                           DMA0CONbits.CHEN = 0;       // channel enable
+000998  A9EB01     BCLR 0xB01, #7
+135:                           DMA0REQbits.IRQSEL = 0;     // interrupt address link
+00099A  EF6B02     CLR.B DMA0REQ
+136:                           DMA0PAD = 0;                // peripheral register address link
+00099C  EF2B0C     CLR DMA0PAD
+137:                           break;
+00099E  37000E     BRA .L20
+138:                       case 1:
+139:                           DMA1CONbits.CHEN = 0;
+0009A0  A9EB11     BCLR 0xB11, #7
+140:                           DMA1REQbits.IRQSEL = 0;
+0009A2  EF6B12     CLR.B DMA1REQ
+141:                           DMA1PAD = 0;
+0009A4  EF2B1C     CLR DMA1PAD
+142:                           break;
+0009A6  37000A     BRA .L20
+143:                       case 2:
+144:                           DMA2CONbits.CHEN = 0;
+0009A8  A9EB21     BCLR 0xB21, #7
+145:                           DMA2REQbits.IRQSEL = 0;
+0009AA  EF6B22     CLR.B DMA2REQ
+146:                           DMA2PAD = 0;
+0009AC  EF2B2C     CLR DMA2PAD
+147:                           break;
+0009AE  370006     BRA .L20
+148:                       case 3:
+149:                           DMA3CONbits.CHEN = 0;
+0009B0  A9EB31     BCLR 0xB31, #7
+150:                           DMA3REQbits.IRQSEL = 0;
+0009B2  EF6B32     CLR.B DMA3REQ
+151:                           DMA3PAD = 0;
+0009B4  EF2B3C     CLR DMA3PAD
+152:                           break;
+0009B6  370002     BRA .L20
+153:                       default:
+154:                           return 1;
+0009B8  200010     MOV #0x1, W0
+0009BA  370005     BRA .L21
+155:                           
+156:                   }
+157:                   
+158:                   active_chs[ch] = 0;
+0009BC  211A60     MOV #0x11A6, W0
+0009BE  40001E     ADD W0, [W14], W0
+0009C0  EB4080     CLR.B W1
+0009C2  784801     MOV.B W1, [W0]
+159:                       
+160:                   return 0;
+0009C4  EB0000     CLR W0
+161:               }
+0009C6  FA8000     ULNK
+0009C8  060000     RETURN
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/can.c  ------------------------------
+1:                 
+2:                 #include "can.h"
+3:                 #include "globals.h"
+4:                 #include <string.h>
+5:                 #include "mcc_generated_files/pin_manager.h"
+6:                 
+7:                 /**************************************************************************
+8:                  * 
+9:                  *                              ISRs
+10:                 * 
+11:                 **************************************************************************/
+12:                /**
+13:                 * CAN1 Receieve Data Ready Interrupt
+14:                 */
+15:                void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
+000370  F80032     PUSH DSRPAG
+000372  F80034     PUSH DSWPAG
+000374  781F88     MOV W8, [W15++]
+000376  200018     MOV #0x1, W8
+000378  8801A8     MOV W8, DSWPAG
+00037A  200018     MOV #0x1, W8
+00037C  880198     MOV W8, DSRPAG
+00037E  000000     NOP
+000380  78044F     MOV [--W15], W8
+000382  FA0000     LNK #0x0
+16:                    
+17:                    IFS2bits.C1RXIF = 0;        // clear interrupt flag
+000384  A94804     BCLR IFS2, #2
+18:                }
+000386  FA8000     ULNK
+000388  F90034     POP DSWPAG
+00038A  F90032     POP DSRPAG
+00038C  064000     RETFIE
+19:                
+20:                /**
+21:                 * CAN1 Transmit Data Request Interrupt
+22:                 */
+23:                void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
+00038E  F80032     PUSH DSRPAG
+000390  F80034     PUSH DSWPAG
+000392  781F88     MOV W8, [W15++]
+000394  200018     MOV #0x1, W8
+000396  8801A8     MOV W8, DSWPAG
+000398  200018     MOV #0x1, W8
+00039A  880198     MOV W8, DSRPAG
+00039C  000000     NOP
+00039E  78044F     MOV [--W15], W8
+0003A0  FA0000     LNK #0x0
+24:                    IFS4bits.C1TXIF = 0;        // clear interrupt flag
+0003A2  A9C808     BCLR IFS4, #6
+25:                }
+0003A4  FA8000     ULNK
+0003A6  F90034     POP DSWPAG
+0003A8  F90032     POP DSRPAG
+0003AA  064000     RETFIE
+26:                
+27:                /**
+28:                 * CAN1 Event Interrupt
+29:                 */
+30:                void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
+0003AC  F80032     PUSH DSRPAG
+0003AE  F80034     PUSH DSWPAG
+0003B0  781F88     MOV W8, [W15++]
+0003B2  200018     MOV #0x1, W8
+0003B4  8801A8     MOV W8, DSWPAG
+0003B6  200018     MOV #0x1, W8
+0003B8  880198     MOV W8, DSRPAG
+0003BA  000000     NOP
+0003BC  78044F     MOV [--W15], W8
+0003BE  FA0000     LNK #0x0
+31:                    
+32:                    IFS2bits.C1IF = 0;      // clear interrupt flag
+0003C0  A96804     BCLR IFS2, #3
+33:                }
+0003C2  FA8000     ULNK
+0003C4  F90034     POP DSWPAG
+0003C6  F90032     POP DSRPAG
+0003C8  064000     RETFIE
+34:                
+35:                
+36:                /**************************************************************************
+37:                 * 
+38:                 *                              INIT
+39:                 * 
+40:                 **************************************************************************/
+41:                void CAN_Initialize(void) {
+0009CA  FA0002     LNK #0x2
+42:                    //test
+43:                //    float d = 69.420;
+44:                //    CAN_ConfigBufForStandardDataFrame(0);
+45:                //    CAN_TransmitData(0,789,sizeof(d));
+46:                    //end
+47:                    
+48:                    enum opmode mode = OP_Normal;
+0009CC  EB0000     CLR W0
+0009CE  780F00     MOV W0, [W14]
+49:                    
+50:                    C1CTRL1bits.REQOP   = OP_Config;             // request configuration operation - module acknowledges request in OPMODE
+0009D0  802001     MOV C1CTRL1, W1
+0009D2  2F8FF0     MOV #0xF8FF, W0
+0009D4  608000     AND W1, W0, W0
+0009D6  A0A000     BSET W0, #10
+0009D8  882000     MOV W0, C1CTRL1
+51:                    while (C1CTRL1bits.OPMODE != OP_Config);     // wait for mode request to be acknowledged
+0009DA  000000     NOP
+0009DC  802001     MOV C1CTRL1, W1
+0009DE  200E00     MOV #0xE0, W0
+0009E0  608080     AND W1, W0, W1
+0009E2  200800     MOV #0x80, W0
+0009E4  508F80     SUB W1, W0, [W15]
+0009E6  3AFFFA     BRA NZ, .L5
+52:                    
+53:                    // bit timing configuration - time quanta factor, N = 20
+54:                    C1CTRL1bits.CANCKS = 0x0;
+0009E8  A96401     BCLR 0x401, #3
+55:                    /* Phase Segment 1 time is 9 TQ */
+56:                    C1CFG2bits.SEG1PH = 0x8;
+0009EA  802091     MOV C1CFG2, W1
+0009EC  2FFC70     MOV #0xFFC7, W0
+0009EE  608000     AND W1, W0, W0
+0009F0  882090     MOV W0, C1CFG2
+57:                    /* Phase Segment 2 time is set to be programmable */
+58:                    C1CFG2bits.SEG2PHTS = 0x1;
+0009F2  A8E412     BSET C1CFG2, #7
+59:                    /* Phase Segment 2 time is 6 TQ */
+60:                    C1CFG2bits.SEG2PH = 0x5;
+0009F4  802091     MOV C1CFG2, W1
+0009F6  2F8FF0     MOV #0xF8FF, W0
+0009F8  608080     AND W1, W0, W1
+0009FA  205000     MOV #0x500, W0
+0009FC  700001     IOR W0, W1, W0
+0009FE  882090     MOV W0, C1CFG2
+61:                    /* Propagation Segment time is 5 TQ */
+62:                    C1CFG2bits.PRSEG = 0x4;
+000A00  802091     MOV C1CFG2, W1
+000A02  2FFF80     MOV #0xFFF8, W0
+000A04  608000     AND W1, W0, W0
+000A06  A02000     BSET W0, #2
+000A08  882090     MOV W0, C1CFG2
+63:                    /* Bus line is sampled three times at the sample point */
+64:                    C1CFG2bits.SAM = 0x1;
+000A0A  A8C412     BSET C1CFG2, #6
+65:                    /* Synchronization Jump Width set to 4 TQ */
+66:                    C1CFG1bits.SJW = 0x3;
+000A0C  802081     MOV C1CFG1, W1
+000A0E  200C00     MOV #0xC0, W0
+000A10  700001     IOR W0, W1, W0
+000A12  882080     MOV W0, C1CFG1
+67:                    /* Baud Rate pre-scaler bits set to 1:2 */
+68:                    C1CFG1bits.BRP = 0x1;
+000A14  802081     MOV C1CFG1, W1
+000A16  2FFC00     MOV #0xFFC0, W0
+000A18  608000     AND W1, W0, W0
+000A1A  A00000     BSET W0, #0
+000A1C  882080     MOV W0, C1CFG1
+69:                    
+70:                //    C1CFG1 = 0x47; // BRP = 8 SJW = 2 Tq
+71:                //    C1CFG2 = 0x2D2;
+72:                //    C1FCTRL = 0xC01F; // No FIFO, 32 Buffers
+73:                    
+74:                    //set DMA buffer size
+75:                    C1FCTRLbits.DMABS = 2;      // 8 message buffer
+000A1E  802031     MOV C1FCTRL, W1
+000A20  21FFF0     MOV #0x1FFF, W0
+000A22  608000     AND W1, W0, W0
+000A24  A0E000     BSET W0, #14
+000A26  882030     MOV W0, C1FCTRL
+76:                    
+77:                    //enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
+78:                    IEC2bits.C1RXIE = 1;
+000A28  A84824     BSET IEC2, #2
+79:                    IEC4bits.C1TXIE = 1;
+000A2A  A8C828     BSET IEC4, #6
+80:                    IEC2bits.C1IE = 1;
+000A2C  A86824     BSET IEC2, #3
+81:                    C1INTEbits.ERRIE = 1;
+000A2E  A8A40C     BSET C1INTE, #5
+82:                    C1INTEbits.TBIE = 1;
+000A30  A8040C     BSET C1INTE, #0
+83:                    C1INTEbits.RBIE = 1;
+000A32  A8240C     BSET C1INTE, #1
+84:                    IEC0bits.DMA0IE = 1;
+000A34  A88820     BSET IEC0, #4
+85:                    
+86:                    //clear flags
+87:                    IFS2bits.C1IF = 0;
+000A36  A96804     BCLR IFS2, #3
+88:                    IFS2bits.C1RXIF = 0;
+000A38  A94804     BCLR IFS2, #2
+89:                    IFS4bits.C1TXIF = 0;
+000A3A  A9C808     BCLR IFS4, #6
+90:                    
+91:                    //C1CTRL1bits.WIN     = 1;                // use message filter, must be last since some regs arent visible when this is set
+92:                    
+93:                    // simulator doesnt support CAN
+94:                    //#ifndef __MPLAB_DEBUGGER_SIMULATOR
+95:                        C1CTRL1bits.REQOP   = OP_Loopback;             // request normal operation - module acknowledges request in OPMODE
+000A3C  802001     MOV C1CTRL1, W1
+000A3E  2F8FF0     MOV #0xF8FF, W0
+000A40  608000     AND W1, W0, W0
+000A42  A09000     BSET W0, #9
+000A44  882000     MOV W0, C1CTRL1
+96:                        while (C1CTRL1bits.OPMODE != OP_Loopback);     // wait for mode request to be acknowledged
+000A46  000000     NOP
+000A48  802001     MOV C1CTRL1, W1
+000A4A  200E00     MOV #0xE0, W0
+000A4C  608080     AND W1, W0, W1
+000A4E  200400     MOV #0x40, W0
+000A50  508F80     SUB W1, W0, [W15]
+000A52  3AFFFA     BRA NZ, .L6
+97:                    //#endif
+98:                        
+99:                        
+100:                   // control registers
+101:                   C1CTRL1bits.CSIDL   = 0;                // continue in idle mode
+000A54  A9A401     BCLR 0x401, #5
+102:                   C1CTRL1bits.CANCAP  = 0;                // disable timestamping 
+000A56  A96400     BCLR C1CTRL1, #3
+103:                   C1CTRL2bits.DNCNT   = 0;                // no DeviceNet data filtering
+000A58  802011     MOV C1CTRL2, W1
+000A5A  2FFE00     MOV #0xFFE0, W0
+000A5C  608000     AND W1, W0, W0
+000A5E  882010     MOV W0, C1CTRL2
+104:                   
+105:                   // configure TX/RX message buffers 
+106:                   C1TR01CONbits.TXEN0 = 1;                
+000A60  A8E430     BSET C1TR01CON, #7
+107:                   if (NUM_CANTX_MSGS > 1)
+108:                       C1TR01CONbits.TXEN1 = 1;            // set buffer for TX
+109:                   if (NUM_CANTX_MSGS > 2)
+110:                       C1TR23CONbits.TXEN2 = 1;
+111:                   if (NUM_CANTX_MSGS > 3)
+112:                       C1TR23CONbits.TXEN3 = 1;
+113:                   if (NUM_CANTX_MSGS > 4)
+114:                       C1TR45CONbits.TXEN4 = 1;
+115:                   if (NUM_CANTX_MSGS > 5)
+116:                       C1TR45CONbits.TXEN5 = 1;
+117:                   if (NUM_CANTX_MSGS == 6)
+118:                       C1TR67CONbits.TXEN6 = 1;
+119:                   else {
+120:                       C1TR67CONbits.TXEN6 = 1;
+000A62  A8E436     BSET C1TR67CON, #7
+121:                       C1TR67CONbits.TXEN7 = 1;       
+000A64  A8E437     BSET 0x437, #7
+122:                   }
+123:                   
+124:                   //buffer priority
+125:                   C1TR01CONbits.TX0PRI = 3;
+000A66  802180     MOV C1TR01CON, W0
+000A68  B30030     IOR #0x3, W0
+000A6A  882180     MOV W0, C1TR01CON
+126:               }
+000A6C  FA8000     ULNK
+000A6E  060000     RETURN
+127:               
+128:               
+129:               /**************************************************************************
+130:                * 
+131:                *                             FUNCTIONS
+132:                * 
+133:                **************************************************************************/
+134:               uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte) {
+000A70  FA000A     LNK #0xA
+000A72  980710     MOV W0, [W14+2]
+000A74  980721     MOV W1, [W14+4]
+000A76  980732     MOV W2, [W14+6]
+000A78  980743     MOV W3, [W14+8]
+135:                   //get byte addressable pointer
+136:                   char* data_byte_addr = (char*)&(canTXBuffer[buf_num].data_byte0);
+000A7A  808D51     MOV 0x11AA, W1
+000A7C  90002E     MOV [W14+4], W0
+000A7E  DD0044     SL W0, #4, W0
+000A80  408000     ADD W1, W0, W0
+000A82  400066     ADD W0, #0x6, W0
+000A84  780F00     MOV W0, [W14]
+137:                   
+138:                   //if number of bytes is longer than the max data field
+139:                   if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
+000A86  90003E     MOV [W14+6], W0
+000A88  500FE7     SUB W0, #0x7, [W15]
+000A8A  3E0003     BRA GTU, .L8
+000A8C  90004E     MOV [W14+8], W0
+000A8E  500FE7     SUB W0, #0x7, [W15]
+000A90  360002     BRA LEU, .L9
+140:                       return 1;   // error
+000A92  200010     MOV #0x1, W0
+000A94  370007     BRA .L10
+141:                   
+142:                   //add offset to select byte
+143:                   data_byte_addr += starting_byte;
+000A96  90004E     MOV [W14+8], W0
+000A98  400F1E     ADD W0, [W14], [W14]
+144:                   
+145:                   //copy data to location
+146:                   memcpy(data_byte_addr, data, num_bytes);
+000A9A  90013E     MOV [W14+6], W2
+000A9C  90009E     MOV [W14+2], W1
+000A9E  78001E     MOV [W14], W0
+000AA0  07FDC3     RCALL _memcpy
+147:                   
+148:                   return 0;
+000AA2  EB0000     CLR W0
+149:               }
+000AA4  FA8000     ULNK
+000AA6  060000     RETURN
+150:               
+151:               
+152:               void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num) {
+000AA8  FA0004     LNK #0x4
+000AAA  980710     MOV W0, [W14+2]
+153:                   can_msg_t* buffer = &canTXBuffer[buf_num];
+000AAC  808D51     MOV 0x11AA, W1
+000AAE  90001E     MOV [W14+2], W0
+000AB0  DD0044     SL W0, #4, W0
+000AB2  408F00     ADD W1, W0, [W14]
+154:                   buffer->SRR = 0;        // normal message
+000AB4  78001E     MOV [W14], W0
+000AB6  780090     MOV [W0], W1
+000AB8  A11001     BCLR W1, #1
+000ABA  780801     MOV W1, [W0]
+155:                   buffer->IDE = 0;        // standard frame
+000ABC  78001E     MOV [W14], W0
+000ABE  780090     MOV [W0], W1
+000AC0  A10001     BCLR W1, #0
+000AC2  780801     MOV W1, [W0]
+156:                   buffer->EIDH = 0;       // extended ID high
+000AC4  78001E     MOV [W14], W0
+000AC6  900110     MOV [W0+2], W2
+000AC8  2F0001     MOV #0xF000, W1
+000ACA  610081     AND W2, W1, W1
+000ACC  980011     MOV W1, [W0+2]
+157:                   buffer->EIDL = 0;       // extended ID high
+000ACE  78001E     MOV [W14], W0
+000AD0  900120     MOV [W0+4], W2
+000AD2  203FF1     MOV #0x3FF, W1
+000AD4  610081     AND W2, W1, W1
+000AD6  980021     MOV W1, [W0+4]
+158:                   buffer->RTR = 0;        // normal message
+000AD8  78001E     MOV [W14], W0
+000ADA  9000A0     MOV [W0+4], W1
+000ADC  A19001     BCLR W1, #9
+000ADE  980021     MOV W1, [W0+4]
+159:                   buffer->RB0 = 0;
+000AE0  78001E     MOV [W14], W0
+000AE2  9000A0     MOV [W0+4], W1
+000AE4  A14001     BCLR W1, #4
+000AE6  980021     MOV W1, [W0+4]
+160:                   buffer->RB1 = 0;
+000AE8  78001E     MOV [W14], W0
+000AEA  9000A0     MOV [W0+4], W1
+000AEC  A18001     BCLR W1, #8
+000AEE  980021     MOV W1, [W0+4]
+161:               }
+000AF0  FA8000     ULNK
+000AF2  060000     RETURN
+162:               
+163:               
+164:               uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes) {
+000AF4  FA0008     LNK #0x8
+000AF6  980710     MOV W0, [W14+2]
+000AF8  980721     MOV W1, [W14+4]
+000AFA  980732     MOV W2, [W14+6]
+165:                   can_msg_t* buffer = &canTXBuffer[buf_num];
+000AFC  808D51     MOV 0x11AA, W1
+000AFE  90001E     MOV [W14+2], W0
+000B00  DD0044     SL W0, #4, W0
+000B02  408F00     ADD W1, W0, [W14]
+166:                   
+167:                   //SID must be an 11-bit number - 2^11 = 2048
+168:                   if (sid > 2028)
+000B04  9000AE     MOV [W14+4], W1
+000B06  207EC0     MOV #0x7EC, W0
+000B08  508F80     SUB W1, W0, [W15]
+000B0A  360002     BRA LEU, .L13
+169:                       return 1;   // not an 11-bit number
+000B0C  200010     MOV #0x1, W0
+000B0E  370047     BRA .L14
+170:                   
+171:                   if (num_bytes > 8)
+000B10  90003E     MOV [W14+6], W0
+000B12  500FE8     SUB W0, #0x8, [W15]
+000B14  360002     BRA LEU, .L15
+172:                       return 1;   // max 8 bytes
+000B16  200010     MOV #0x1, W0
+000B18  370042     BRA .L14
+173:                   
+174:                   if (buf_num >= NUM_CANTX_MSGS)
+000B1A  90001E     MOV [W14+2], W0
+000B1C  E00000     CP0 W0
+000B1E  320002     BRA Z, .L16
+175:                       return 1;   
+000B20  200010     MOV #0x1, W0
+000B22  37003D     BRA .L14
+176:                   
+177:                   buffer->SID = sid;          // bus peripheral address
+000B24  9000AE     MOV [W14+4], W1
+000B26  207FF0     MOV #0x7FF, W0
+000B28  608100     AND W1, W0, W2
+000B2A  78001E     MOV [W14], W0
+000B2C  207FF1     MOV #0x7FF, W1
+000B2E  610081     AND W2, W1, W1
+000B30  DD08C2     SL W1, #2, W1
+000B32  780190     MOV [W0], W3
+000B34  2E0032     MOV #0xE003, W2
+000B36  618102     AND W3, W2, W2
+000B38  708082     IOR W1, W2, W1
+000B3A  780801     MOV W1, [W0]
+178:                   buffer->DLC = num_bytes;    // number of bytes in buffer to send (starting from byte 0)
+000B3C  90003E     MOV [W14+6], W0
+000B3E  784000     MOV.B W0, W0
+000B40  6040EF     AND.B W0, #0xF, W1
+000B42  78001E     MOV [W14], W0
+000B44  FB8081     ZE W1, W1
+000B46  6080EF     AND W1, #0xF, W1
+000B48  9001A0     MOV [W0+4], W3
+000B4A  2FFF02     MOV #0xFFF0, W2
+000B4C  618102     AND W3, W2, W2
+000B4E  708082     IOR W1, W2, W1
+000B50  980021     MOV W1, [W0+4]
+179:                   
+180:                   //request transmission
+181:                   switch(buf_num) {
+000B52  90001E     MOV [W14+2], W0
+000B54  500FE3     SUB W0, #0x3, [W15]
+000B56  320016     BRA Z, .L21
+000B58  500FE3     SUB W0, #0x3, [W15]
+000B5A  3E0005     BRA GTU, .L26
+000B5C  500FE1     SUB W0, #0x1, [W15]
+000B5E  32000E     BRA Z, .L19
+000B60  500FE1     SUB W0, #0x1, [W15]
+000B62  3E000E     BRA GTU, .L20
+000B64  370009     BRA .L28
+000B66  500FE5     SUB W0, #0x5, [W15]
+000B68  320011     BRA Z, .L23
+000B6A  500FE5     SUB W0, #0x5, [W15]
+000B6C  39000D     BRA NC, .L22
+000B6E  500FE6     SUB W0, #0x6, [W15]
+000B70  32000F     BRA Z, .L24
+000B72  500FE7     SUB W0, #0x7, [W15]
+000B74  32000F     BRA Z, .L25
+000B76  370010     BRA .L29
+182:                       case 0:
+183:                           C1TR01CONbits.TXREQ0 = 1;
+000B78  A86430     BSET C1TR01CON, #3
+184:                           break;
+000B7A  370010     BRA .L27
+185:                       case 1:
+186:                           C1TR01CONbits.TXREQ1 = 1;
+000B7C  A86431     BSET 0x431, #3
+187:                           break;
+000B7E  37000E     BRA .L27
+188:                       case 2:
+189:                           C1TR23CONbits.TXREQ2 = 1;
+000B80  A86432     BSET C1TR23CON, #3
+190:                           break;
+000B82  37000C     BRA .L27
+191:                       case 3:
+192:                           C1TR23CONbits.TXREQ3 = 1;
+000B84  A86433     BSET 0x433, #3
+193:                           break;
+000B86  37000A     BRA .L27
+194:                       case 4:
+195:                           C1TR45CONbits.TXREQ4 = 1;
+000B88  A86434     BSET C1TR45CON, #3
+196:                           break;
+000B8A  370008     BRA .L27
+197:                       case 5:
+198:                           C1TR45CONbits.TXREQ5 = 1;
+000B8C  A86435     BSET 0x435, #3
+199:                           break;
+000B8E  370006     BRA .L27
+200:                       case 6:
+201:                           C1TR67CONbits.TXREQ6 = 1;
+000B90  A86436     BSET C1TR67CON, #3
+202:                           break;
+000B92  370004     BRA .L27
+203:                       case 7:
+204:                           C1TR67CONbits.TXREQ7 = 1;
+000B94  A86437     BSET 0x437, #3
+205:                           break;
+000B96  370002     BRA .L27
+206:                       default:
+207:                           return 1;   // invalid buffer number
+000B98  200010     MOV #0x1, W0
+000B9A  370001     BRA .L14
+208:                   }
+209:                   
+210:                   // successful
+211:                   return 0;
+000B9C  EB0000     CLR W0
+212:               }
+000B9E  FA8000     ULNK
+000BA0  060000     RETURN
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/calibration.c  ----------------------
+1:                 
+2:                 #include "calibration.h"
+3:                 
+4:                 uint16_t CalibrateData(uint16_t data, cal_point_t* cal_data_points, uint16_t num_points){
+000F86  FA0006     LNK #0x6
+000F88  780F00     MOV W0, [W14]
+000F8A  980711     MOV W1, [W14+2]
+000F8C  980722     MOV W2, [W14+4]
+5:                     return 0;
+000F8E  EB0000     CLR W0
+6:                 }
+000F90  FA8000     ULNK
+000F92  060000     RETURN
+7:                 
+8:                 uint16_t RunCalibrationSetup(cal_point_t* cal_data_points, uint16_t num_points, uint16_t tolerance){
+000F94  FA0006     LNK #0x6
+000F96  780F00     MOV W0, [W14]
+000F98  980711     MOV W1, [W14+2]
+000F9A  980722     MOV W2, [W14+4]
+9:                     return 0;
+000F9C  EB0000     CLR W0
+10:                }
+000F9E  FA8000     ULNK
+000FA0  060000     RETURN
+11:                
+12:                
+13:                //void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
+14:                //{
+15:                //    // Disable timer 3 (ADC conversion trigger)
+16:                //    TMR3_Stop();
+17:                //    
+18:                //	// ADC1 callback function 
+19:                //	//ADC1_CallBack();
+20:                //	
+21:                //    // transfer ADC samples to buffer (could use DMA in the future)
+22:                //    adc_buffer[0] = ADC1BUF0;
+23:                //    adc_buffer[1] = ADC1BUF1;
+24:                //    adc_buffer[2] = ADC1BUF2;
+25:                //    adc_buffer[3] = ADC1BUF3;
+26:                //    adc_buffer[4] = ADC1BUF4;
+27:                //    adc_buffer[5] = ADC1BUF5;
+28:                //    adc_buffer[6] = ADC1BUF6;
+29:                //    adc_buffer[7] = ADC1BUF7;
+30:                //    adc_buffer[8] = ADC1BUF8;
+31:                //    adc_buffer[9] = ADC1BUF9;
+32:                //    adc_buffer[10] = ADC1BUFA;
+33:                //    adc_buffer[11] = ADC1BUFB;
+34:                //    adc_buffer[12] = ADC1BUFC;
+35:                //    adc_buffer[13] = ADC1BUFD;
+36:                //    adc_buffer[14] = ADC1BUFE;
+37:                //    adc_buffer[15] = ADC1BUFF;
+38:                //    
+39:                //    
+40:                //    data_ready = true;
+41:                //    
+42:                //    // clear the ADC interrupt flag
+43:                //    IFS0bits.AD1IF = false;
+44:                //}
+---  C:/Users/Paul/Documents/Git/HKN-SAE-Project/PowerSenseModule.X/adc1.c  -----------------------------
+1:                 
+2:                 /**
+3:                   ADC1 Generated Driver File
+4:                 
+5:                   @Company
+6:                     Microchip Technology Inc.
+7:                 
+8:                   @File Name
+9:                     adc1.c
+10:                
+11:                  @Summary
+12:                    This is the generated header file for the ADC1 driver using PIC24 / dsPIC33 / PIC32MM MCUs
+13:                
+14:                  @Description
+15:                    This header file provides APIs for driver for ADC1.
+16:                    Generation Information :
+17:                        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+18:                        Device            :  dsPIC33EV32GM102
+19:                    The generated drivers are tested against the following:
+20:                        Compiler          :  XC16 v1.36B
+21:                        MPLAB 	          :  MPLAB X v5.20
+22:                */
+23:                
+24:                /*
+25:                    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
+26:                    software and any derivatives exclusively with Microchip products.
+27:                
+28:                    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+29:                    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+30:                    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+31:                    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
+32:                    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
+33:                
+34:                    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+35:                    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+36:                    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+37:                    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+38:                    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+39:                    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+40:                    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+41:                
+42:                    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
+43:                    TERMS.
+44:                */
+45:                
+46:                /**
+47:                  Section: Included Files
+48:                */
+49:                
+50:                #include "mcc_generated_files/adc1.h"
+51:                #include "mcc_generated_files/tmr3.h"
+52:                #include "mcc_generated_files/clock.h"
+53:                
+54:                bool data_ready = 0;
+55:                uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
+56:                
+57:                
+58:                
+59:                /**
+60:                  Section: Driver Interface
+61:                */
+62:                
+63:                
+64:                void ADC1_Initialize (void)
+65:                {   
+000D96  FA0000     LNK #0x0
+66:                    // ASAM enabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
+67:                
+68:                   AD1CON1 = 0b1000000001001100;
+000D98  2804C0     MOV #0x804C, W0
+000D9A  881900     MOV W0, AD1CON1
+69:                
+70:                    // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
+71:                
+72:                   AD1CON2 = 0b000000100000000;
+000D9C  201000     MOV #0x100, W0
+000D9E  881910     MOV W0, AD1CON2
+73:                   AD1CON2bits.SMPI = 15;
+000DA0  801911     MOV AD1CON2, W1
+000DA2  2FF830     MOV #0xFF83, W0
+000DA4  608080     AND W1, W0, W1
+000DA6  2003C0     MOV #0x3C, W0
+000DA8  700001     IOR W0, W1, W0
+000DAA  881910     MOV W0, AD1CON2
+74:                   AD1CON2bits.CHPS = 1;
+000DAC  801911     MOV AD1CON2, W1
+000DAE  2FCFF0     MOV #0xFCFF, W0
+000DB0  608000     AND W1, W0, W0
+000DB2  A08000     BSET W0, #8
+000DB4  881910     MOV W0, AD1CON2
+75:                   AD1CON2bits.BUFM = 0;
+000DB6  A92322     BCLR AD1CON2, #1
+76:                
+77:                    // SAMC 5; ADRC FOSC/2; ADCS 0; 
+78:                
+79:                   AD1CON3 = 0x000;
+000DB8  EF2324     CLR AD1CON3
+80:                   AD1CON3bits.ADCS = ADC1CLOCK_GENMultiplier();
+000DBA  07FFBD     RCALL ADC1CLOCK_GENMultiplier
+000DBC  784000     MOV.B W0, W0
+000DBE  B7E324     MOV.B WREG, AD1CON3
+81:                
+82:                   AD1CHS0 = 0b0000000000000010;
+000DC0  200020     MOV #0x2, W0
+000DC2  881940     MOV W0, AD1CHS0
+83:                
+84:                   AD1CHS123bits.CH123SA0 = 1;
+000DC4  A80326     BSET AD1CHS123, #0
+85:                   AD1CHS123bits.CH123SA1 = 0;
+000DC6  A96326     BCLR AD1CHS123, #3
+86:                   AD1CHS123bits.CH123SA2 = 0;
+000DC8  A98326     BCLR AD1CHS123, #4
+87:                   AD1CHS123bits.CH123NA = 0;
+000DCA  801931     MOV AD1CHS123, W1
+000DCC  2FFF90     MOV #0xFFF9, W0
+000DCE  608000     AND W1, W0, W0
+000DD0  881930     MOV W0, AD1CHS123
+88:                   
+89:                
+90:                    // CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
+91:                
+92:                   AD1CSSH = 0x00;
+000DD2  EF232E     CLR AD1CSSH
+93:                
+94:                    // CSS2 disabled; CSS1 disabled; CSS0 disabled; CSS5 disabled; CSS4 disabled; CSS3 disabled; 
+95:                
+96:                   AD1CSSL = 0x00;
+000DD4  EF2330     CLR AD1CSSL
+97:                
+98:                    // DMABL Allocates 1 word of buffer to each analog input; ADDMAEN disabled; 
+99:                
+100:                  AD1CON4 = 0x00;
+000DD6  EF2332     CLR AD1CON4
+101:               
+102:                  
+103:                  data_ready = 0;
+000DD8  EF7170     CLR.B data_ready
+104:                          
+105:                  // Enabling ADC1 interrupt.
+106:                  IEC0bits.AD1IE = 1;
+000DDA  A8A821     BSET 0x821, #5
+107:               
+108:               }
+000DDC  FA8000     ULNK
+000DDE  060000     RETURN
+109:               
+110:               
+111:               void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
+112:               {
+000304  781F80     MOV W0, [W15++]
+000306  F80032     PUSH DSRPAG
+000308  F80034     PUSH DSWPAG
+00030A  200010     MOV #0x1, W0
+00030C  8801A0     MOV W0, DSWPAG
+00030E  200010     MOV #0x1, W0
+000310  880190     MOV W0, DSRPAG
+000312  000000     NOP
+000314  FA0000     LNK #0x0
+113:               	// ADC1 callback function 
+114:               	//ADC1_CallBack();
+115:               	
+116:                   TMR3_Stop();
+000316  A9E113     BCLR 0x113, #7
+117:                   
+118:                   // samples alternate in order of analog input number, ANx
+119:                   // current is AN2
+120:                   // voltage is AN3
+121:                   adc_buffer[0] = ADC1BUF0;
+000318  801800     MOV ADC1BUF0, W0
+00031A  888B90     MOV W0, adc_buffer
+122:                   adc_buffer[1] = ADC1BUF1;
+00031C  801810     MOV ADC1BUF1, W0
+00031E  888BA0     MOV W0, 0x1174
+123:                   adc_buffer[2] = ADC1BUF2;
+000320  801820     MOV ADC1BUF2, W0
+000322  888BB0     MOV W0, 0x1176
+124:                   adc_buffer[3] = ADC1BUF3;
+000324  801830     MOV ADC1BUF3, W0
+000326  888BC0     MOV W0, 0x1178
+125:                   adc_buffer[4] = ADC1BUF4;
+000328  801840     MOV ADC1BUF4, W0
+00032A  888BD0     MOV W0, 0x117A
+126:                   adc_buffer[5] = ADC1BUF5;
+00032C  801850     MOV ADC1BUF5, W0
+00032E  888BE0     MOV W0, 0x117C
+127:                   adc_buffer[6] = ADC1BUF6;
+000330  801860     MOV ADC1BUF6, W0
+000332  888BF0     MOV W0, 0x117E
+128:                   adc_buffer[7] = ADC1BUF7;
+000334  801870     MOV ADC1BUF7, W0
+000336  888C00     MOV W0, 0x1180
+129:                   adc_buffer[8] = ADC1BUF8;
+000338  801880     MOV ADC1BUF8, W0
+00033A  888C10     MOV W0, 0x1182
+130:                   adc_buffer[9] = ADC1BUF9;
+00033C  801890     MOV ADC1BUF9, W0
+00033E  888C20     MOV W0, 0x1184
+131:                   adc_buffer[10] = ADC1BUFA;
+000340  8018A0     MOV ADC1BUFA, W0
+000342  888C30     MOV W0, 0x1186
+132:                   adc_buffer[11] = ADC1BUFB;
+000344  8018B0     MOV ADC1BUFB, W0
+000346  888C40     MOV W0, 0x1188
+133:                   adc_buffer[12] = ADC1BUFC;
+000348  8018C0     MOV ADC1BUFC, W0
+00034A  888C50     MOV W0, 0x118A
+134:                   adc_buffer[13] = ADC1BUFD;
+00034C  8018D0     MOV ADC1BUFD, W0
+00034E  888C60     MOV W0, 0x118C
+135:                   adc_buffer[14] = ADC1BUFE;
+000350  8018E0     MOV ADC1BUFE, W0
+000352  888C70     MOV W0, 0x118E
+136:                   adc_buffer[15] = ADC1BUFF;
+000354  8018F0     MOV ADC1BUFF, W0
+000356  888C80     MOV W0, 0x1190
+137:                   
+138:                   // tell main loop to process data
+139:                   data_ready = true;
+000358  B3C010     MOV.B #0x1, W0
+00035A  B7F170     MOV.B WREG, data_ready
+140:                   
+141:                   // clear the ADC interrupt flag
+142:                   IFS0bits.AD1IF = false;
+00035C  A9A801     BCLR 0x801, #5
+143:               }
+00035E  FA8000     ULNK
+000360  F90034     POP DSWPAG
+000362  F90032     POP DSRPAG
+000364  78004F     MOV [--W15], W0
+000366  064000     RETFIE
+144:               
+145:               uint16_t* ADC1_GetBufferPtr(void) {
+000DE0  FA0000     LNK #0x0
+146:                   return &adc_buffer;
+000DE2  211720     MOV #0x1172, W0
+147:               }
+000DE4  FA8000     ULNK
+000DE6  060000     RETURN
+148:               
+149:               bool ADC1_IsDataReady(void) {
+000DE8  FA0000     LNK #0x0
+150:                   return data_ready;
+000DEA  BFD170     MOV.B data_ready, WREG
+151:               }
+000DEC  FA8000     ULNK
+000DEE  060000     RETURN
+152:               
+153:               void ADC1_AcknowledgeDataReady(void) {
+000DF0  FA0000     LNK #0x0
+154:                   data_ready = false;
+000DF2  EF7170     CLR.B data_ready
+155:               }
+000DF4  FA8000     ULNK
+000DF6  060000     RETURN
+156:               
+157:               /**
+158:                 End of File
+159:               */

@@ -31,6 +31,9 @@ DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled
                                     };
 
 
+void __attribute__((__interrupt__,no_auto_psv)) _DMACError(void) {
+    INTCON1bits.DMACERR = 0;
+}
 
 /**************************************************************************
  * 
@@ -40,8 +43,8 @@ DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled
 uint8_t active_chs[NUM_DMA_CH] = { 0 };
 
 void DMA_Initialize() {
-    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig, (void*)&canRXBuffer, (void*)&canRXBuffer);
-    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig, (void*)&canTXBuffer, (void*)&canTXBuffer);
+    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig, (void*)&canRXBuffer[0], (void*)&canRXBuffer[0]);
+    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig, (void*)&canTXBuffer[0], (void*)&canTXBuffer[0]);
 }
 
 
@@ -67,11 +70,12 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA0CONbits.AMODE = init_data.AMODE;
             DMA0CONbits.MODE = init_data.MODE;
             DMA0REQbits.IRQSEL = init_data.IRQSEL;
-            DMA0STAHbits.STA = (uint16_t)stah;
             DMA0STAL = (uint16_t)stal;
+            DMA0STAHbits.STA = (uint16_t)stah;
             DMA0PAD = init_data.PAD;
             DMA0CNTbits.CNT = init_data.CNT;
             DMA0CONbits.CHEN = init_data.CHEN;
+            IEC0bits.DMA0IE = 1;
             break;
         case 1:
             DMA1CONbits.SIZE = init_data.SIZE;

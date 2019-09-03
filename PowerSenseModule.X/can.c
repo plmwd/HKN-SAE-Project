@@ -21,7 +21,6 @@ void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
  * CAN1 Transmit Data Request Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
-    
     IFS4bits.C1TXIF = 0;        // clear interrupt flag
 }
 
@@ -30,7 +29,7 @@ void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
  */
 void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
     
-    IFS2bits.C1IF = 0;      // clear interrup flag
+    IFS2bits.C1IF = 0;      // clear interrupt flag
 }
 
 
@@ -43,7 +42,6 @@ void CAN_Initialize(void) {
     //test
 //    float d = 69.420;
 //    CAN_ConfigBufForStandardDataFrame(0);
-//    CAN_WriteBuf((void*)&d, 0, sizeof(d), 2);
 //    CAN_TransmitData(0,789,sizeof(d));
     //end
     
@@ -54,8 +52,8 @@ void CAN_Initialize(void) {
     
     // bit timing configuration - time quanta factor, N = 20
     C1CTRL1bits.CANCKS = 0x0;
-    /* Phase Segment 1 time is 8 TQ */
-    C1CFG2bits.SEG1PH = 0x7;
+    /* Phase Segment 1 time is 9 TQ */
+    C1CFG2bits.SEG1PH = 0x8;
     /* Phase Segment 2 time is set to be programmable */
     C1CFG2bits.SEG2PHTS = 0x1;
     /* Phase Segment 2 time is 6 TQ */
@@ -66,10 +64,39 @@ void CAN_Initialize(void) {
     C1CFG2bits.SAM = 0x1;
     /* Synchronization Jump Width set to 4 TQ */
     C1CFG1bits.SJW = 0x3;
-    /* Baud Rate pre-scaler bits set to 1:1, (i.e., TQ = (2*1*1)/FCAN) */
-    C1CFG1bits.BRP = 0x0;
+    /* Baud Rate pre-scaler bits set to 1:2 */
+    C1CFG1bits.BRP = 0x1;
     
+//    C1CFG1 = 0x47; // BRP = 8 SJW = 2 Tq
+//    C1CFG2 = 0x2D2;
+//    C1FCTRL = 0xC01F; // No FIFO, 32 Buffers
     
+    //set DMA buffer size
+    C1FCTRLbits.DMABS = 2;      // 8 message buffer
+    
+    //enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
+    IEC2bits.C1RXIE = 1;
+    IEC4bits.C1TXIE = 1;
+    IEC2bits.C1IE = 1;
+    C1INTEbits.ERRIE = 1;
+    C1INTEbits.TBIE = 1;
+    C1INTEbits.RBIE = 1;
+    IEC0bits.DMA0IE = 1;
+    
+    //clear flags
+    IFS2bits.C1IF = 0;
+    IFS2bits.C1RXIF = 0;
+    IFS4bits.C1TXIF = 0;
+    
+    //C1CTRL1bits.WIN     = 1;                // use message filter, must be last since some regs arent visible when this is set
+    
+    // simulator doesnt support CAN
+    //#ifndef __MPLAB_DEBUGGER_SIMULATOR
+        C1CTRL1bits.REQOP   = OP_Loopback;             // request normal operation - module acknowledges request in OPMODE
+        while (C1CTRL1bits.OPMODE != OP_Loopback);     // wait for mode request to be acknowledged
+    //#endif
+        
+        
     // control registers
     C1CTRL1bits.CSIDL   = 0;                // continue in idle mode
     C1CTRL1bits.CANCAP  = 0;                // disable timestamping 
@@ -94,30 +121,8 @@ void CAN_Initialize(void) {
         C1TR67CONbits.TXEN7 = 1;       
     }
     
-    //set DMA buffer size
-    C1FCTRLbits.DMABS = 2;      // 8 message buffer
-    
-    //enable CAN event, RX, and TX interrupts TODO: event disabled until implementation created, assign priorities
-    IEC2bits.C1RXIE = 1;
-    IEC4bits.C1TXIE = 1;
-    IEC2bits.C1IE = 1;
-    C1INTEbits.ERRIE = 1;
-    C1INTEbits.TBIE = 1;
-    C1INTEbits.RBIE = 1;
-    IEC0bits.DMA0IE = 1;
-    
-    //clear flags
-    IFS2bits.C1IF = 0;
-    IFS2bits.C1RXIF = 0;
-    IFS4bits.C1TXIF = 0;
-    
-    C1CTRL1bits.WIN     = 1;                // use message filter, must be last since some regs arent visible when this is set
-    
-    // simulator doesnt support CAN
-    #ifndef __MPLAB_DEBUGGER_SIMULATOR
-        C1CTRL1bits.REQOP   = mode;             // request normal operation - module acknowledges request in OPMODE
-        while (C1CTRL1bits.OPMODE != mode);     // wait for mode request to be acknowledged
-    #endif
+    //buffer priority
+    C1TR01CONbits.TX0PRI = 3;
 }
 
 
