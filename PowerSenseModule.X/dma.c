@@ -6,8 +6,7 @@
  *                            INIT CONFIGS
  * 
  **************************************************************************/
-DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
-                                    .SIZE   = 0,    // word transfer
+DMAINIT DMA_CANRX_InitConfig =   {  .SIZE   = 0,    // word transfer
                                     .DIR    = 0,    // peripheral to RAM direction  
                                     .HALF   = 0,    // interrupt after all transfers
                                     .NULLW  = 0,    // normal operation 
@@ -18,8 +17,7 @@ DMAxINIT DMA_CANRX_InitConfig =   { .CHEN   = 1,    // enabled
                                     .CNT    = CAN_MSG_SIZE - 1 
                                     };
 
-DMAxINIT DMA_CANTX_InitConfig =   { .CHEN   = 1,    // enabled  
-                                    .SIZE   = 0,    // word transfer
+DMAINIT DMA_CANTX_InitConfig =   {  .SIZE   = 0,    // word transfer
                                     .DIR    = 1,    // RAM to peripheral
                                     .HALF   = 0,    // interrupt after all transfers
                                     .NULLW  = 0,    // normal operation 
@@ -43,12 +41,12 @@ void __attribute__((__interrupt__,no_auto_psv)) _DMACError(void) {
 uint8_t active_chs[NUM_DMA_CH] = { 0 };
 
 void DMA_Initialize() {
-    DMA_InitializeCH(DMA_CANRX_CH, DMA_CANRX_InitConfig, (void*)&canRXBuffer[0], (void*)&canRXBuffer[0]);
-    DMA_InitializeCH(DMA_CANTX_CH, DMA_CANTX_InitConfig, (void*)&canTXBuffer[0], (void*)&canTXBuffer[0]);
+    DMA_InitializeChannel(DMA_CANRX_CHANNEL, DMA_CANRX_InitConfig, (void*)canRXBuffer);
+    DMA_InitializeChannel(DMA_CANTX_CHANNEL, DMA_CANTX_InitConfig, (void*)canTXBuffer);
 }
 
 
-uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* stal) {
+uint16_t DMA_InitializeChannel(DMA_CHANNEL ch, DMAINIT init_data, void* addr) {
     // check for invalid channel number
     if ((ch >= NUM_DMA_CH) || (ch < 0))
         return 1;
@@ -62,7 +60,7 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
     // channel enabling needs to be last
     switch (ch)
     {
-        case 0:
+        case DMA_CHANNEL_0:
             DMA0CONbits.SIZE = init_data.SIZE;
             DMA0CONbits.DIR = init_data.DIR;
             DMA0CONbits.HALF = init_data.HALF;
@@ -70,14 +68,12 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA0CONbits.AMODE = init_data.AMODE;
             DMA0CONbits.MODE = init_data.MODE;
             DMA0REQbits.IRQSEL = init_data.IRQSEL;
-            DMA0STAL = (uint16_t)stal;
-            DMA0STAHbits.STA = (uint16_t)stah;
+            DMA0STAL = (uint16_t)addr;
             DMA0PAD = init_data.PAD;
             DMA0CNTbits.CNT = init_data.CNT;
-            DMA0CONbits.CHEN = init_data.CHEN;
             IEC0bits.DMA0IE = 1;
             break;
-        case 1:
+        case DMA_CHANNEL_1:
             DMA1CONbits.SIZE = init_data.SIZE;
             DMA1CONbits.DIR = init_data.DIR;
             DMA1CONbits.HALF = init_data.HALF;
@@ -85,13 +81,12 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA1CONbits.AMODE = init_data.AMODE;
             DMA1CONbits.MODE = init_data.MODE;
             DMA1REQbits.IRQSEL = init_data.IRQSEL;
-            DMA1STAHbits.STA = (uint16_t)stah;
-            DMA1STAL = (uint16_t)stal;
+            DMA1STAL = (uint16_t)addr;
             DMA1PAD = init_data.PAD;
             DMA1CNTbits.CNT = init_data.CNT;
-            DMA1CONbits.CHEN = init_data.CHEN;
+            IEC0bits.DMA1IE = 1;
             break;
-        case 2:
+        case DMA_CHANNEL_2:
             DMA2CONbits.SIZE = init_data.SIZE;
             DMA2CONbits.DIR = init_data.DIR;
             DMA2CONbits.HALF = init_data.HALF;
@@ -99,13 +94,11 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA2CONbits.AMODE = init_data.AMODE;
             DMA2CONbits.MODE = init_data.MODE;
             DMA2REQbits.IRQSEL = init_data.IRQSEL;
-            DMA2STAHbits.STA = (uint16_t)stah;
-            DMA2STAL = (uint16_t)stal;
+            DMA2STAL = (uint16_t)addr;
             DMA2PAD = init_data.PAD;
             DMA2CNTbits.CNT = init_data.CNT;
-            DMA2CONbits.CHEN = init_data.CHEN;
             break;
-        case 3:
+        case DMA_CHANNEL_3:
             DMA3CONbits.SIZE = init_data.SIZE;
             DMA3CONbits.DIR = init_data.DIR;
             DMA3CONbits.HALF = init_data.HALF;
@@ -113,11 +106,9 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
             DMA3CONbits.AMODE = init_data.AMODE;
             DMA3CONbits.MODE = init_data.MODE;
             DMA3REQbits.IRQSEL = init_data.IRQSEL;
-            DMA3STAHbits.STA = (uint16_t)stah;
-            DMA3STAL = (uint16_t)stal;
+            DMA3STAL = (uint16_t)addr;
             DMA3PAD = init_data.PAD;
             DMA3CNTbits.CNT = init_data.CNT;
-            DMA3CONbits.CHEN = init_data.CHEN;
             break;
         default:
             return 1;
@@ -126,7 +117,7 @@ uint16_t DMA_InitializeCH(uint16_t ch, DMAxINIT init_data, void* stah, void* sta
     return 0;
 }
 
-uint16_t DMA_TerminateCH(uint16_t ch) {
+uint16_t DMA_TerminateChannel(DMA_CHANNEL ch) {
     
     switch (ch)
     {

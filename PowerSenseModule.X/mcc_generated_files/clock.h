@@ -46,12 +46,13 @@
 #define	CLOCK_H
 
 #ifndef _XTAL_FREQ
-#define _XTAL_FREQ  80148750UL
+#define _XTAL_FREQ  79395351UL
 #define FCY         _XTAL_FREQ / 2
 #endif
 
 /* CAN */
-#define FTQ         1000000UL   
+#define TQ          20
+#define FTQ         (FCY / 2) / TQ
 
 #define CLOCK_SystemFrequencyGet()        (_XTAL_FREQ)
 

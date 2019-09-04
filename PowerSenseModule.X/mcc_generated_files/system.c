@@ -58,25 +58,20 @@ void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
     CAN_STBY_SetHigh();     // put the CAN transceiver in low power mode until all inits are done
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
-    ADC1_Initialize();
-    // delay TMR init 20us for ADC to stabilize
-    int i;
-    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
+//    ADC1_Initialize();
+//    // delay TMR init 20us for ADC to stabilize
+//    int i;
+//    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
     
     //TMR1_Initialize();
     //TMR3_Initialize();
+    CAN_Initialize(CAN_NORMAL_OPERATION_MODE);
     DMA_Initialize();
-    CAN_Initialize();
     CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
-    INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
-    
-    CAN_TX_SetHigh();
-    CAN_TX_SetLow();
-    CAN_TX_SetHigh();
-    CAN_TX_SetLow();
+    INTERRUPT_GlobalEnable();
+    INTERRUPT_Initialize();
 }
 
 /**

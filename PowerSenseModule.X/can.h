@@ -11,70 +11,49 @@
 #include <xc.h>
 #include <stdint.h>
 
-enum opmode{OP_Normal = 0, OP_Disable = 1, OP_Loopback = 2, OP_ListenOnly = 3, OP_Config = 4, OP_Listen = 7};
+#define DEBUG_SID 1234
 
-//typedef struct can_msg_word0_struct {
-//    uint16_t IDE:1;         // extended identifier bit; 1: use extended frames, 0: use standard frame
-//    uint16_t SRR:1;         // substitute remote request; if IDE = 0 - 1: remote frame, 0: normal frame, if IDE = 1, SRR = 1
-//    uint16_t SID:11;        // standard identifier bits 
-//    uint16_t :3;            // unimplemented
-//} can_msg_word0_t;
-//
-//typedef struct can_msg_word1_struct {
-//    uint16_t EIDH:12;       // extended identifier high
-//    uint16_t :4;            // unimplemented
-//} can_msg_word1_t;
-//
-//typedef struct can_msg_word2_struct {
-//    uint16_t DLC:4;         // data length code bits
-//    uint16_t RB0:1;         // CAN protocol reserved bit - MUST BE SET TO 0
-//    uint16_t :3;            // unimplemented
-//    uint16_t RB1:1;         // CAN protocol reserved bit - MUST BE SET TO 0
-//    uint16_t RTR:1;         // remote transfer request; if IDE = 0 - 1: remote frame, 0: normal frame, if IDE = 1, SRR = 1
-//                            // same as SRR but for extended data frames to work with message priority
-//    uint16_t EIDL:6;        // extended identifier low
-//} can_msg_word2_t;
-//
-//typedef struct msg_word3_struct {
-//    uint8_t byte0; 
-//    uint8_t byte1; 
-//} can_msg_word3_t;
-//
-//typedef struct msg_word4_struct {
-//    uint8_t byte2;
-//    uint8_t byte3; 
-//} can_msg_word4_t;
-//
-//typedef struct msg_word5_struct {
-//    uint8_t byte4; 
-//    uint8_t byte5; 
-//} can_msg_word5_t;
-//
-//typedef struct msg_word6_struct {
-//    uint8_t byte6; 
-//    uint8_t byte7; 
-//} can_msg_word6_t;
-//
-//typedef struct can_msg_word7_struct {  // receive only
-//    uint16_t :8;            // unimplemented
-//    uint16_t FILHIT:5;      // filter hit code - indicates which filter message was received through
-//    uint16_t :3;            // unimplemented
-//} can_msg_word7_t;
+typedef enum
+{
+	CAN_NORMAL_OPERATION_MODE = 0,
+	CAN_DISABLE_MODE = 1,
+	CAN_LOOPBACK_MODE = 2,
+	CAN_LISTEN_ONLY_MODE = 3,
+	CAN_CONFIGURATION_MODE = 4,
+	CAN_LISTEN_ALL_MESSAGES_MODE = 7
+} CAN_OP_MODES;
 
+typedef enum{
+    CAN_PRIORITY_HIGH = 0b11,
+    CAN_PRIORITY_MEDIUM = 0b10,
+    CAN_PRIORITY_LOW = 0b01,
+    CAN_PRIORITY_NONE = 0b00
+} CAN_TX_PRIOIRTY;
 
+typedef enum{
+    CAN_TXBUF_0 = 0,
+//    CAN_TXBUF_1 = 1,
+//    CAN_TXBUF_2 = 2,
+//    CAN_TXBUF_3 = 3,
+//    CAN_TXBUF_4 = 4,
+//    CAN_TXBUF_5 = 5,
+//    CAN_TXBUF_6 = 6,
+//    CAN_TXBUF_7 = 7,
+} CAN_TXBUF;
 
-//typedef struct can_msg_struct {
-//    can_msg_word0_t word0;
-//    can_msg_word1_t word1;
-//    can_msg_word2_t word2;
-//    can_msg_word3_t word3_data0;
-//    can_msg_word4_t word4_data1;
-//    can_msg_word5_t word5_data2;
-//    can_msg_word6_t word6_data3;
-//    can_msg_word7_t word7;
-//}can_msg_t;
+typedef enum{
+    CAN_SUCCESS,
+    CAN_ERROR,
+    CAN_ERR_INVALID_TXBUF,
+    CAN_ERR_INVALID_SID,
+    CAN_ERR_MSG_SIZE_OVERFLOW,
+    CAN_ERR_TXBUF_DISABLED,
+    CAN_ERR_TXBUF_FULL,
+    CAN_ERR_MSG_ABORTED,
+    CAN_ERR_MSG_LOST_ARBITRATION
+} CAN_ERR;
 
-typedef struct can_msg_struct {
+typedef struct __attribute__((packed))can_msg_struct{
     //order of word, then LSB to MSB
     //word 0
     uint16_t IDE:1;         // extended identifier bit; 1: use extended frames, 0: use standard frame
@@ -121,7 +100,7 @@ typedef struct can_msg_struct {
 /*
  * Initializes the CAN module
  */
-void CAN_Initialize(void);
+void CAN_Initialize(CAN_OP_MODES mode);
 
 
 /**
@@ -133,7 +112,7 @@ void CAN_Initialize(void);
  * 
  * @return 1 if error, 0 if successful
  */
-uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes);
+CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, uint16_t num_bytes);
 
 
 /**
@@ -152,7 +131,7 @@ uint16_t CAN_TransmitData(uint16_t buf_num, uint16_t sid, uint16_t num_bytes);
  * 
  * @return 1 if error, 0 if successful
  */
-uint16_t CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte);
+CAN_ERR CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte);
 
 
 /**

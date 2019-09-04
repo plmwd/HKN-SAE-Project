@@ -19,6 +19,7 @@
         <itemPath>mcc_generated_files/adc1.h</itemPath>
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
         <itemPath>mcc_generated_files/tmr3.h</itemPath>
+        <itemPath>traps.h</itemPath>
       </logicalFolder>
       <itemPath>calibration.h</itemPath>
       <itemPath>device_configuration.h</itemPath>
@@ -45,6 +46,7 @@
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/tmr3.c</itemPath>
         <itemPath>adc1.c</itemPath>
+        <itemPath>traps.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>calibration.c</itemPath>
@@ -253,6 +255,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

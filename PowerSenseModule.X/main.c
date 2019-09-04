@@ -51,14 +51,11 @@
 #include "mcc_generated_files/tmr1.h"
 #include "mcc_generated_files/tmr3.h"
 #include "can.h"
+#include "dma.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
-#define DIFFAMP_GAIN        80
-#define OPAMP_UNITY_GAIN    1
-#define R_SHUNT             0.004
 
-#define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
-
+#define VPTR(var)   (void*)&var
 
 void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
@@ -83,18 +80,25 @@ int main(void)
     
     // initialize the device
     SYSTEM_Initialize();
-    
-    
+    DMA_ChannelEnable(DMA_CANTX_CHANNEL);
+    DMA_ChannelEnable(DMA_CANRX_CHANNEL);
     
     //debug - disable tmrs 
     double test = 69.420;
     CAN_ConfigBufForStandardDataFrame(0);
-    CAN_WriteBuf((void*)&test, 0, sizeof(test), 0);
+    CAN_WriteBuf(VPTR(test), 0, sizeof(test), 0);
     
-    while (1) {
-        CAN_TransmitData(0, 1023, sizeof(test));
-        while(C1TR01CONbits.TXREQ0 == 1);
-    }
+    
+    CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
+    while(C1TR01CONbits.TXREQ0 == 1);
+
+    return 0;
+    
+//        /* Message was received. */
+//        while (C1RXFUL1bits.RXFUL10 == 0);
+//        C1RXFUL1bits.RXFUL10 = 0;
+        
+ 
     //end
     
     while (1)

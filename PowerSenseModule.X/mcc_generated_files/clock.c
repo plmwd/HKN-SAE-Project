@@ -55,20 +55,14 @@ uint16_t TAD_multiplier;
 
 void CLOCK_Initialize(void)
 {
-    // Clock divider register
-    CLKDIVbits.ROI      = 0;        // interrupts have no effect on DOZEN bit
-    CLKDIVbits.DOZEN    = 0;        // doze mode disabled
-    CLKDIVbits.FRCDIV   = 0;        // FRC / 1
-    CLKDIVbits.PLLPOST  = 1;        // N2 = 4; PLL output / N2
-    CLKDIVbits.PLLPRE   = 4;        // N1 = 6; PLL phase detector input / N1
-    
-    // PLL Feedback Divisor Register
-    PLLFBD              = 0x103;      // M = 259
-    
-    // TUN Center frequency; 
-    OSCTUN = 0x00;
-    // ROON disabled; ROSEL FOSC; RODIV 0; ROSSLP disabled; 
+    // FRCDIV FRC/1; PLLPRE 2; DOZE 1:8; PLLPOST 1:4; DOZEN disabled; ROI disabled; 
+    CLKDIV = 0x3040;
+    // TUN Center Frequency-0.940%; 
+    OSCTUN = 0x2C;
+    // ROON disabled; ROSEL disabled; RODIV Base clock value; ROSSLP disabled; 
     REFOCON = 0x00;
+    // PLLDIV 85; 
+    PLLFBD = 0x55;
     // AD1MD enabled; PWMMD enabled; T3MD enabled; T4MD enabled; T1MD enabled; U2MD enabled; T2MD enabled; U1MD enabled; SPI2MD enabled; SPI1MD enabled; C1MD enabled; T5MD enabled; I2C1MD enabled; 
     PMD1 = 0x00;
     // IC4MD enabled; IC3MD enabled; OC1MD enabled; IC2MD enabled; OC2MD enabled; IC1MD enabled; OC3MD enabled; OC4MD enabled; 
@@ -83,16 +77,51 @@ void CLOCK_Initialize(void)
     PMD7 = 0x00;
     // DMTMD enabled; SENT2MD enabled; SENT1MD enabled; 
     PMD8 = 0x00;
+    // CF no clock failure; NOSC FRCPLL; CLKLOCK unlocked; OSWEN Switch is Complete; 
+    __builtin_write_OSCCONH((uint8_t) (( 0x01 << _OSCCON_NOSC_POSITION ) >> 0x08 ));
+    __builtin_write_OSCCONL((uint8_t) ((0x100 | _OSCCON_OSWEN_MASK) & 0xFF));
+    // Wait for Clock switch to occur
+    while (OSCCONbits.OSWEN != 0);
+    while (OSCCONbits.LOCK != 1);
     
-    //switch to FRC with PLL
-    __builtin_write_OSCCONH((uint8_t) (0x01));
-    __builtin_write_OSCCONL((uint8_t) (OSCCON | 0x01));
-    
-    //wait for clock to switch
-    while(OSCCONbits.COSC != 1);
-    
-    //wait for PLL to lock
-    while(OSCCONbits.LOCK != 1);
+//    // Clock divider register
+//    CLKDIVbits.ROI      = 0;        // interrupts have no effect on DOZEN bit
+//    CLKDIVbits.DOZEN    = 0;        // doze mode disabled
+//    CLKDIVbits.FRCDIV   = 0;        // FRC / 1
+//    CLKDIVbits.PLLPOST  = 1;        // N2 = 4; PLL output / N2
+//    CLKDIVbits.PLLPRE   = 4;        // N1 = 6; PLL phase detector input / N1
+//    
+//    // PLL Feedback Divisor Register
+//    PLLFBD              = 0x103;      // M = 259
+//    
+//    // TUN Center frequency; 
+//    OSCTUN = 0x00;
+//    // ROON disabled; ROSEL FOSC; RODIV 0; ROSSLP disabled; 
+//    REFOCON = 0x00;
+//    // AD1MD enabled; PWMMD enabled; T3MD enabled; T4MD enabled; T1MD enabled; U2MD enabled; T2MD enabled; U1MD enabled; SPI2MD enabled; SPI1MD enabled; C1MD enabled; T5MD enabled; I2C1MD enabled; 
+//    PMD1 = 0x00;
+//    // IC4MD enabled; IC3MD enabled; OC1MD enabled; IC2MD enabled; OC2MD enabled; IC1MD enabled; OC3MD enabled; OC4MD enabled; 
+//    PMD2 = 0x00;
+//    // CMPMD enabled; 
+//    PMD3 = 0x00;
+//    // CTMUMD enabled; REFOMD enabled; 
+//    PMD4 = 0x00;
+//    // PWM2MD enabled; PWM1MD enabled; PWM3MD enabled; 
+//    PMD6 = 0x00;
+//    // DMA0MD enabled; 
+//    PMD7 = 0x00;
+//    // DMTMD enabled; SENT2MD enabled; SENT1MD enabled; 
+//    PMD8 = 0x00;
+//    
+//    //switch to FRC with PLL
+//    __builtin_write_OSCCONH((uint8_t) (0x01));
+//    __builtin_write_OSCCONL((uint8_t) (OSCCON | 0x01));
+//    
+//    //wait for clock to switch
+//    while(OSCCONbits.COSC != 1);
+//    
+//    //wait for PLL to lock
+//    while(OSCCONbits.LOCK != 1);
 }
 
 
