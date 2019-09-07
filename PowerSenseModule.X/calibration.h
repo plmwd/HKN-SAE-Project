@@ -24,10 +24,10 @@ extern "C" {
  
  */
 typedef struct cal_point_t {
-    uint16_t ideal;
-    uint16_t actual;
-    uint16_t measured;
-    uint16_t difference;
+    double ideal;
+    double actual;
+    double measured;
+    double offset;
 } cal_point_t;
 
 
@@ -66,7 +66,7 @@ typedef struct cal_point_t {
     Calibrated data ( calibrated_data = data + offset)
 
 */
-uint16_t CalibrateData(uint16_t data, cal_point_t* cal_data_points, uint16_t num_points);
+double CalibrateData(double data, cal_point_t* cal_data_points, uint16_t num_points);
 
 
 /**
