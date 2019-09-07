@@ -45,6 +45,7 @@
 /**
   Section: Included Files
 */
+#include <stdio.h>
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/adc1.h"
 #include "calibration.h"
@@ -67,8 +68,8 @@
 
 void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
-uint16_t ProcessCurrent(uint16_t);
-uint16_t ProcessVoltage(uint16_t);
+double ProcessCurrent(uint16_t);
+double ProcessVoltage(uint16_t);
 void CAN_send(uint16_t);    
 
 // current and voltage calibration data - ideal points need to be set
@@ -78,6 +79,7 @@ cal_point_t voltage_cal_data[NUM_CAL_POINTS];
 /*
                          Main application
  */
+
 int main(void)
 {
     double current_readings[ADC_BUF_SIZE / 2];
@@ -122,7 +124,23 @@ int main(void)
 }
 
 
-uint16_t ProcessCurrent(uint16_t data) {
+// TESTER MAIN FUNCTION
+/*
+int main (void)
+{
+    uint16_t adcVoltageRead = 1023;
+    double batteryVoltage = 0;
+    double batteryCurrent = 0;
+    batteryVoltage = ProcessVoltage(adcVoltageRead);
+    batteryCurrent = ProcessCurrent(adcVoltageRead);
+   
+    
+    return 0;
+}
+ 
+ */
+
+double ProcessCurrent(uint16_t data) {
     
     double adcVoltage, fOneBatteryCurrent = 0;
     
@@ -139,7 +157,7 @@ uint16_t ProcessCurrent(uint16_t data) {
 
 // The following function takes the value read by the
 // ADC and returns the voltage of the F1 battery
-uint16_t ProcessVoltage(uint16_t data) {
+double ProcessVoltage(uint16_t data) {
     
     double adcVoltage, fOneBatteryVoltage = 0;
     
