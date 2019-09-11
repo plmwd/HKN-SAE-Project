@@ -665,52 +665,28 @@ F 3 "" H 7425 5250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small_US R15
-U 1 1 5D529372
-P 7500 1450
-F 0 "R15" H 7568 1496 50  0000 L CNN
-F 1 "10k" H 7568 1405 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7500 1450 50  0001 C CNN
-F 3 "~" H 7500 1450 50  0001 C CNN
-	1    7500 1450
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_Small_US R16
 U 1 1 5D52A243
-P 7500 1925
-F 0 "R16" H 7568 1971 50  0000 L CNN
-F 1 "10k" H 7568 1880 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7500 1925 50  0001 C CNN
-F 3 "~" H 7500 1925 50  0001 C CNN
-	1    7500 1925
+P 5530 1650
+F 0 "R16" H 5598 1696 50  0000 L CNN
+F 1 "10k" H 5598 1605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5530 1650 50  0001 C CNN
+F 3 "~" H 5530 1650 50  0001 C CNN
+	1    5530 1650
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GNDD #PWR033
 U 1 1 5D53513F
-P 7500 2200
-F 0 "#PWR033" H 7500 1950 50  0001 C CNN
-F 1 "GNDD" H 7504 2045 50  0000 C CNN
-F 2 "" H 7500 2200 50  0001 C CNN
-F 3 "" H 7500 2200 50  0001 C CNN
-	1    7500 2200
+P 5530 1815
+F 0 "#PWR033" H 5530 1565 50  0001 C CNN
+F 1 "GNDD" H 5534 1660 50  0000 C CNN
+F 2 "" H 5530 1815 50  0001 C CNN
+F 3 "" H 5530 1815 50  0001 C CNN
+	1    5530 1815
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+5V #PWR032
-U 1 1 5D5394EC
-P 7500 1300
-F 0 "#PWR032" H 7500 1150 50  0001 C CNN
-F 1 "+5V" H 7515 1473 50  0000 C CNN
-F 2 "" H 7500 1300 50  0001 C CNN
-F 3 "" H 7500 1300 50  0001 C CNN
-	1    7500 1300
-	1    0    0    -1  
-$EndComp
-Text Notes 6330 1500 0    50   ~ 0
-Configuration resistors
-Text Notes 6430 1600 0    50   ~ 0
+Text Notes 6480 1090 0    50   ~ 0
 Only one soldered\n
 Text Notes 1725 7750 0    50   ~ 0
 These 0 ohm resistors should be unsoldered when used with the secondary high-current sensing board\n
@@ -832,8 +808,6 @@ F 3 "~" H 1225 2380 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4425 3500 8225 3500
-Wire Wire Line
-	7500 1300 7500 1350
 $Comp
 L power:GNDD #PWR0105
 U 1 1 5D4D1DB2
@@ -922,8 +896,6 @@ Green
 Text Notes 5375 4000 0    50   ~ 0
 Red\n
 Wire Wire Line
-	7500 2025 7500 2200
-Wire Wire Line
 	1225 2200 1225 2230
 Wire Wire Line
 	800  700  800  2200
@@ -932,8 +904,6 @@ Wire Wire Line
 Connection ~ 1225 2200
 Wire Wire Line
 	800  700  4800 700 
-Wire Wire Line
-	8875 800  975  800 
 Wire Wire Line
 	8675 1775 8675 2600
 Wire Wire Line
@@ -946,23 +916,6 @@ Wire Wire Line
 	9050 1875 9275 1875
 Wire Wire Line
 	9050 1575 9275 1575
-$Comp
-L F1_Microchip_MCUs:dsPIC33EV32GM102 U3
-U 1 1 5D3ED3E3
-P 3175 5150
-F 0 "U3" H 1875 6450 50  0000 R CNN
-F 1 "dsPIC33EV32GM102" H 1925 6350 50  0000 R CNN
-F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 3175 5150 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EVXXXGM00X-10X-Family-Data-Sheet-DS70005144H.pdf" H 3175 5150 50  0001 C CNN
-	1    3175 5150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7500 1670 7300 1670
-Wire Wire Line
-	7300 1670 7300 2000
-Wire Wire Line
-	4425 2000 7300 2000
 Wire Wire Line
 	4800 700  4800 1900
 Wire Wire Line
@@ -1005,28 +958,13 @@ Wire Wire Line
 Connection ~ 6175 3300
 Wire Wire Line
 	6175 3300 6175 3400
-Wire Wire Line
-	4425 2100 6175 2100
 Connection ~ 6175 2800
 Wire Wire Line
 	6175 2800 6175 2900
 Wire Wire Line
-	4425 2200 6175 2200
-Wire Wire Line
-	6175 2100 6175 2200
-Connection ~ 6175 2200
-Wire Wire Line
-	6175 2200 6175 2300
-Wire Wire Line
 	4425 2300 6175 2300
-Connection ~ 6175 2300
 Wire Wire Line
 	6175 2300 6175 2800
-Wire Wire Line
-	7500 1670 7500 1550
-Wire Wire Line
-	7500 1670 7500 1825
-Connection ~ 7500 1670
 Wire Wire Line
 	5300 6025 7090 6025
 Wire Wire Line
@@ -1098,4 +1036,121 @@ Wire Wire Line
 Wire Wire Line
 	3300 4925 3300 5475
 Connection ~ 3300 5475
+$Comp
+L Device:Crystal Y1
+U 1 1 5D7A06C0
+P 6640 2050
+F 0 "Y1" V 6686 1919 50  0000 R CNN
+F 1 "Crystal" V 6595 1919 50  0000 R CNN
+F 2 "Crystal_SMD_2520-4Pin_2.5x2.0mm.kicad_mod_IEEE.kicad_mod" H 6640 2050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/3/ABM10AIG-783578.pdf" H 6640 2050 50  0001 C CNN
+	1    6640 2050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8875 800  975  800 
+Text Notes 6380 990  0    50   ~ 0
+Configuration resistors
+Wire Wire Line
+	5820 1205 5770 1205
+$Comp
+L power:+5V #PWR032
+U 1 1 5D5394EC
+P 5820 1205
+F 0 "#PWR032" H 5820 1055 50  0001 C CNN
+F 1 "+5V" H 5835 1378 50  0000 C CNN
+F 2 "" H 5820 1205 50  0001 C CNN
+F 3 "" H 5820 1205 50  0001 C CNN
+	1    5820 1205
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small_US R15
+U 1 1 5D529372
+P 5670 1205
+F 0 "R15" H 5738 1251 50  0000 L CNN
+F 1 "10k" H 5738 1160 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5670 1205 50  0001 C CNN
+F 3 "~" H 5670 1205 50  0001 C CNN
+	1    5670 1205
+	0    1    1    0   
+$EndComp
+$Comp
+L F1_Microchip_MCUs:dsPIC33EV32GM102 U3
+U 1 1 5D3ED3E3
+P 3175 5150
+F 0 "U3" H 1875 6450 50  0000 R CNN
+F 1 "dsPIC33EV32GM102" H 1925 6350 50  0000 R CNN
+F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 3175 5150 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EVXXXGM00X-10X-Family-Data-Sheet-DS70005144H.pdf" H 3175 5150 50  0001 C CNN
+	1    3175 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4425 2000 5210 2000
+Wire Wire Line
+	5210 2000 5210 1390
+Wire Wire Line
+	5210 1390 5530 1390
+Wire Wire Line
+	5530 1390 5530 1550
+Wire Wire Line
+	5530 1205 5530 1390
+Connection ~ 5530 1390
+Wire Wire Line
+	5530 1205 5570 1205
+Wire Wire Line
+	5530 1750 5530 1815
+Wire Wire Line
+	4425 2100 6110 2100
+Wire Wire Line
+	6110 2100 6110 1900
+Wire Wire Line
+	6110 1900 6640 1900
+Wire Wire Line
+	4425 2200 6640 2200
+Connection ~ 6640 1900
+Connection ~ 6640 2200
+$Comp
+L Device:C C17
+U 1 1 5D7A1F19
+P 7345 1900
+F 0 "C17" H 7460 1946 50  0000 L CNN
+F 1 "10uF" H 7460 1855 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7383 1750 50  0001 C CNN
+F 3 "~" H 7345 1900 50  0001 C CNN
+	1    7345 1900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6640 2200 7195 2200
+$Comp
+L Device:C C18
+U 1 1 5D95386F
+P 7345 2200
+F 0 "C18" V 7093 2200 50  0000 C CNN
+F 1 "10uF" V 7184 2200 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7383 2050 50  0001 C CNN
+F 3 "~" H 7345 2200 50  0001 C CNN
+	1    7345 2200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6640 1900 7195 1900
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D9832AA
+P 7495 2045
+F 0 "#PWR?" H 7495 1795 50  0001 C CNN
+F 1 "GNDA" V 7500 1917 50  0000 R CNN
+F 2 "" H 7495 2045 50  0001 C CNN
+F 3 "" H 7495 2045 50  0001 C CNN
+	1    7495 2045
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7495 1900 7495 2045
+Connection ~ 7495 2045
+Wire Wire Line
+	7495 2045 7495 2200
 $EndSCHEMATC
