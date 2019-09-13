@@ -63,38 +63,98 @@
 void PIN_MANAGER_Initialize (void)
 {
     /****************************************************************************
-     * Setting the Output Latch SFR(s)
+     * Configure General Peripheral Inputs
      ***************************************************************************/
-    LATA = 0x0000;
-    LATB = 0x0000;
-
+    //DCME (Debug/calibrate mode enable) - RA0 - digital input - pull down
+    TRISAbits.TRISA0 = 1;    
+    CNPDAbits.CNPDA0 = 1;
+    CNPUAbits.CNPUA0 = 0;
+    ANSELAbits.ANSA0 = 0;
+    
+    //HIGH_IE (High current mode enable) - RA1 - digital input
+    TRISAbits.TRISA1 = 1;
+    CNPDAbits.CNPDA1 = 0;
+    CNPUAbits.CNPUA1 = 0;
+    ANSELAbits.ANSA1 = 0;
+    
+    //IIN (ADC current measurement) - RB0 - analog input
+    TRISBbits.TRISB0 = 1;
+    CNPDBbits.CNPDB0 = 0;
+    CNPUBbits.CNPUB0 = 0;
+    ANSELBbits.ANSB0 = 1;
+    
+    //VIN (ADC voltage measurement) - RB1 - analog input
+    TRISBbits.TRISB1 = 1;
+    CNPDBbits.CNPDB1 = 0;
+    CNPUBbits.CNPUB1 = 0;
+    ANSELBbits.ANSB1 = 1;
+    
+    
     /****************************************************************************
-     * Setting the GPIO Direction SFR(s)
+     * Configure General Peripheral Outputs
      ***************************************************************************/
-    TRISA = 0x0017;
-    TRISB = 0x0FFF;
-
+    //LED_R (Red LED) - RB14 - digital output - pull down
+    TRISBbits.TRISB14 = 0;
+    CNPDBbits.CNPDB14 = 1;
+    CNPUBbits.CNPUB14 = 0;
+    
+    //LED_G (Green LED) - RB15 - digital output - pull down
+    TRISBbits.TRISB15 = 0;
+    CNPDBbits.CNPDB15 = 1;
+    CNPUBbits.CNPUB15 = 0;
+    
+    //CAN_STBY (CAN standby) - RB13 - digital output 
+    TRISBbits.TRISB13 = 0;
+    CNPDBbits.CNPDB13 = 0;
+    CNPUBbits.CNPUB13 = 0;
+    
+    //CAN_TX (CAN transmit) - RB11
+//    TRISBbits.TRISB11 = 0;
+    CNPDBbits.CNPDB11 = 0;
+    CNPUBbits.CNPUB11 = 0;
+    
+    //CAN_RX (CAN receive) - RB12
+//    TRISBbits.TRISB12 = 0;
+    CNPDBbits.CNPDB12 = 0;
+    CNPUBbits.CNPUB12 = 0;
+    
+    //debug
+    TRISAbits.TRISA4 = 0;
+    ANSELAbits.ANSA4 = 0;
+    
     /****************************************************************************
-     * Setting the Weak Pull Up and Weak Pull Down SFR(s)
+     * Configure Configurable Peripheral Outputs
      ***************************************************************************/
-    CNPDA = 0x000D;
-    CNPDB = 0x0000;
-    CNPUA = 0x0000;
-    CNPUB = 0x0000;
+//    CAN_TX_SetHigh();       //RB11
+//    CAN_TX_SetLow();
+//    CAN_TX_SetHigh();
+//    CAN_TX_SetLow();
+    
+    //debug
+    _LATA4 = 1;
+    _LATA4 = 0;
+    _LATA4 = 1;
+    _LATA4 = 0;
+    
+    __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
-    /****************************************************************************
-     * Setting the Open Drain SFR(s)
-     ***************************************************************************/
-    ODCA = 0x0000;
-    ODCB = 0x0000;
+    RPINR26bits.C1RXR = 0x002C;    //RB12->ECAN1:C1RX
+    RPOR4bits.RP43R = 0x000E;    //RB11->ECAN1:C1TX
 
-    /****************************************************************************
-     * Setting the Analog/Digital Configuration SFR(s)
-     ***************************************************************************/
-    ANSELA = 0x0010;
-    ANSELB = 0x0383;
-
-
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
+    
+//    CAN_TX_SetHigh();
+//    CAN_TX_SetLow();
+//    CAN_TX_SetHigh();
+//    CAN_TX_SetLow();
+    
+    //debug
+    _LATA4 = 1;
+    _LATA4 = 0;
+    _LATA4 = 1;
+    _LATA4 = 0;
+    
+    //__builtin_write_OSCCONL(OSCCON | (1<<6));       // Lock Registers
 
 }
 

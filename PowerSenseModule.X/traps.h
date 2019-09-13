@@ -1,24 +1,24 @@
 /**
-  System Interrupts Generated Driver File 
+  System Traps Generated Driver File 
 
   @Company:
     Microchip Technology Inc.
 
   @File Name:
-    interrupt_manager.h
+    traps.h
 
   @Summary:
-    This is the generated driver implementation file for setting up the
-    interrupts using PIC24 / dsPIC33 / PIC32MM MCUs
+    This is the generated driver implementation file for handling traps
+    using PIC24 / dsPIC33 / PIC32MM MCUs
 
   @Description:
-    This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs interrupts.
+    This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs traps.
     Generation Information : 
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36B
-        MPLAB             :  MPLAB X v5.20
+        Compiler          :  XC16 v1.36
+        MPLAB             :  MPLAB X v5.10
 */
 /*
     (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
@@ -42,36 +42,47 @@
     TERMS.
 */
 
-/**
-    Section: Includes
-*/
-#include <xc.h>
+#ifndef _TRAPS_H
+#define _TRAPS_H
+
+#include <stdint.h>
 
 /**
-    void INTERRUPT_Initialize (void)
-*/
-void INTERRUPT_Initialize (void)
+ * Error codes
+ */
+typedef enum 
 {
-    //    ADI: ADC1 Convert Done
-    //    Priority: 1
-        IPC3bits.AD1IP = 1;
-    //    TI: Timer 1
-    //    Priority: 1
-        IPC0bits.T1IP = 1;
-        
-        // CAN1 event
-        IEC2bits.C1IE = 1;
-        // set priority
-        
-        // CAN1 RX data ready
-        IEC2bits.C1RXIE = 1;
-        // set priority
-        
-        //CAN1 TX data request
-        IEC4bits.C1TXIE = 1;
-        // set priority
-        
-        /* CAN1 event interrupts - enable all */
-        C1INTE = 0xFFFF;  
-        IPC8bits.C1IP = 7;      // highest priority
-}
+    /* ----- Traps ----- */
+    TRAPS_OSC_FAIL = 0, /** Oscillator Fail Trap vector */
+    TRAPS_STACK_ERR = 1, /** Stack Error Trap Vector */
+    TRAPS_ADDRESS_ERR = 2, /** Address error Trap vector */
+    TRAPS_MATH_ERR = 3, /** Math Error Trap vector */
+    TRAPS_DMAC_ERR = 4, /** DMAC Error Trap vector */
+    TRAPS_HARD_ERR = 7, /** Generic Hard Trap vector */
+    TRAPS_DOOVR_ERR = 10, /** Generic Soft Trap vector */
+} TRAPS_ERROR_CODE;
+/**
+  @Summary
+    Default handler for the traps
+
+  @Description
+    This routine will be called whenever a trap happens. It stores the trap
+    error code and waits forever.
+    This routine has a weak attribute and can be over written.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    None.
+
+*/
+void __attribute__((naked, noreturn, weak)) TRAPS_halt_on_error(uint16_t code);
+
+#endif

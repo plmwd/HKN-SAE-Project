@@ -30,7 +30,6 @@ typedef struct cal_point_t {
     uint16_t difference;
 } cal_point_t;
 
-
 /**
   @Summary
     This function calibrates data based on calibration data points
@@ -57,10 +56,10 @@ typedef struct cal_point_t {
     |
 
 
-  @Param
-    uint16_t data: data to be calibrated
-    cal_point_t* cal_data_points: array of calibration data points
-    uint16_t num_points: number of data points
+  
+   @Param uint16_t data: data to be calibrated
+   @Paramcal_point_t* cal_data_points: array of calibration data points
+   @Paramuint16_t num_points: number of data points
 
   @Returns
     Calibrated data ( calibrated_data = data + offset)
@@ -77,10 +76,10 @@ uint16_t CalibrateData(uint16_t data, cal_point_t* cal_data_points, uint16_t num
     Runs calibration setup routine and makes sure that the actual and ideal points are
     within a certain tolerance to make sure that random points aren't used.
  
-  @Params
-    cal_point_t* cal_data_points: calibration data points array to be filled
-    uint16_t num_points: number of data points
-    uint16_t tolerance: tolerance for calibration setup
+  
+  @Paramscal_point_t* cal_data_points: calibration data points array to be filled
+  @Paramsuint16_t num_points: number of data points
+  @Paramsuint16_t tolerance: tolerance for calibration setup
  
   @Returns
     TODO: calibration setup status (errors or whatever)

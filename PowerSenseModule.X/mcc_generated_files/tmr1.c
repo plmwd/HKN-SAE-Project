@@ -50,6 +50,8 @@
 #include <stdio.h>
 #include "tmr1.h"
 #include "tmr3.h"
+#include "../device_configuration.h"
+#include "clock.h"
 
 /**
  Section: File specific functions
@@ -80,12 +82,28 @@ void TMR1_CallBack(void);
 
 void TMR1_Initialize (void)
 {
+    
+#define TMR1_TCS
+#ifdef ADC1_BURST_FREQ
+#if (FCY/ADC1_BURST_FREQ < 65535)
+    PR1 = FCY/ADC1_BURST_FREQ;
+    T1CON = 0x8000;
+#else
+    T1CON = 0x8000;
+    T1CONbits.TCS = (uint16_t)(FCY/(ADC1_BURST_FREQ * 65535) + 1);
+    PR1 = FCY/ADC1_BURST_FREQ;
+#endif
+#else
     //TMR1 0; 
+    //default
     TMR1 = 0x00;
     //Period = 0.002 s;  
     PR1 = 0x1CC9;
     //TCKPS 1:1; TON enabled; TSIDL disabled; TCS FOSC/2; TSYNC disabled; TGATE disabled; 
     T1CON = 0x8000;
+#endif
+    
+    
 
     TMR1_ClearInterruptFlag();
     TMR1_InterruptEnable();
