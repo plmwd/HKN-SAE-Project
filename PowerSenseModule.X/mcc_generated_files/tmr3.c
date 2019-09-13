@@ -76,15 +76,20 @@ void TMR3_Initialize (void)
     // TAD: ADC clock period = multiplier * TCY
     // every trigger converts each channel 0 then 1 then 2... sequentially so the period needs to account for that sample time
 
+#define TMR3_TCS
 #ifdef ADC1_BURST_SMPL_FREQ
+#if (FCY/ADC1_BURST_SMPL_FREQ < 65535)
     PR3 = FCY/ADC1_BURST_SMPL_FREQ;
+    T3CON = 0x0000;
+#else
+    #define TMR3_TCS = FCY/(ADC1_BURST_SMPL_FREQ * 65535) + 1
+    T3CON =0;
+    T3CONbits.TCS = TMR3_TCS;
+#endif
 #else
     PR3 = (ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet()) * (AD1CON2bits.CHPS + 1) + ADC_SAMPLE_TIME_TAD_MIN + 4;
-#endif
-    
-    //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
     T3CON = 0x0000;
-
+#endif
 }
 
 /**

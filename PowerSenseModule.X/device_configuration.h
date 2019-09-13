@@ -19,7 +19,7 @@
  * error will be generated for invalid options (ie two options from CLOCK)
  * 
  ***********************************************************************
- * CLOCK
+ * CLOCK (needs testing)
  ***********************************************************************
  * FRC_NORMAL : unaltered FRC oscillator, FCY = 7.37MHz / 2 = 3.685MHz
  * FRC_40MHz: closest cycle frequency to 40MHz (39.698MHz)
@@ -30,8 +30,8 @@
  ***********************************************************************
  * CAN BAUD RATE
  ***********************************************************************
- * CAN1BR_1MHz
- * CAN1BR_125KHz
+ * CAN1BR_1MHz          (needs testing)
+ * CAN1BR_125KHz        (needs testing)
  * CAN1_ENABLE: enable CAN initialization at startup
  * 
  ***********************************************************************
@@ -47,9 +47,9 @@
  ***********************************************************************
  * ADC OPTIONS 
  ***********************************************************************
- * ADC1_BURST: enable ADC burst sampling operation
- * ADC1_BURST_FREQ: if ADC_BURST is defined, define a burst frequency
- * ADC1_BURST_SMPL_FREQ: unsigned long, if ADC_BURST is defined, don't define for fastest frequency and define user defined sample frequency
+ * ADC1_BURST: enable ADC burst sampling operation 
+ * ADC1_BURST_FREQ: if ADC_BURST is defined, optionally can define a burst frequency (needs testing)
+ * ADC1_BURST_SMPL_FREQ: unsigned long, if ADC_BURST is defined, don't define for fastest frequency and define user defined sample frequency (not implemented)
  * 
  * ADC1_CONTINUOUS: enable ADC for continuous sampling (not implemented)
  * 
