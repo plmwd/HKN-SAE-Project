@@ -30,7 +30,6 @@ typedef struct cal_point_t {
     uint16_t difference;
 } cal_point_t;
 
-
 /**
   @Summary
     This function calibrates data based on calibration data points

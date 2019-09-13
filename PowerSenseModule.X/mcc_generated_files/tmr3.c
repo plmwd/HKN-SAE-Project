@@ -51,6 +51,7 @@
 #include "tmr3.h"
 #include "clock.h"
 #include "adc1.h"   
+#include "../device_configuration.h"
 
 /**
  Section: File specific functions
@@ -74,7 +75,13 @@ void TMR3_Initialize (void)
     // tmr3 triggers conversion - so needs enough time to same and convert, plus a fudge factor
     // TAD: ADC clock period = multiplier * TCY
     // every trigger converts each channel 0 then 1 then 2... sequentially so the period needs to account for that sample time
+
+#ifdef ADC1_BURST_SMPL_FREQ
+    PR3 = FCY/ADC1_BURST_SMPL_FREQ;
+#else
     PR3 = (ADC_CONV_TIME_TAD + ADC1CLOCK_MultiplierGet()) * (AD1CON2bits.CHPS + 1) + ADC_SAMPLE_TIME_TAD_MIN + 4;
+#endif
+    
     //TCKPS 1:1; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
     T3CON = 0x0000;
 

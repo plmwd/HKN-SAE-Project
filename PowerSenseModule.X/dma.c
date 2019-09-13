@@ -28,10 +28,28 @@ DMAINIT DMA_CANTX_InitConfig =   {  .SIZE   = 0,    // word transfer
                                     .CNT    = CAN_MSG_SIZE - 1
                                     };
 
+DMAINIT DMA_UARTTX_InitConfig =  {  .SIZE   = 0,    // 
+                                    .DIR    = 0,    // 
+                                    .HALF   = 0,    // 
+                                    .NULLW  = 0,    // 
+                                    .AMODE  = 0,    // 
+                                    .MODE   = 0,    // 
+                                    .IRQSEL = 0,    //         
+                                    .PAD    = 0,    //
+                                    .CNT    = 0     //
+                                    };
 
-void __attribute__((__interrupt__,no_auto_psv)) _DMACError(void) {
-    INTCON1bits.DMACERR = 0;
-}
+DMAINIT DMA_UARTRX_InitConfig =  {  .SIZE   = 0,    // 
+                                    .DIR    = 0,    // 
+                                    .HALF   = 0,    // 
+                                    .NULLW  = 0,    // 
+                                    .AMODE  = 0,    // 
+                                    .MODE   = 0,    // 
+                                    .IRQSEL = 0,    //         
+                                    .PAD    = 0,    //
+                                    .CNT    = 0     //
+                                    };
+
 
 /**************************************************************************
  * 
@@ -43,6 +61,8 @@ uint8_t active_chs[NUM_DMA_CH] = { 0 };
 void DMA_Initialize() {
     DMA_InitializeChannel(DMA_CANRX_CHANNEL, DMA_CANRX_InitConfig, (void*)canRXBuffer);
     DMA_InitializeChannel(DMA_CANTX_CHANNEL, DMA_CANTX_InitConfig, (void*)canTXBuffer);
+    //DMA_InitializeChannel(DMA_UARTTX_CHANNEL, DMA_UARTTX_InitConfig, (void*));
+    //DMA_InitializeChannel(DMA_UARTRX_CHANNEL, DMA_UARTRX_InitConfig, (void*));
 }
 
 

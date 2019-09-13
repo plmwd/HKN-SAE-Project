@@ -88,10 +88,11 @@ int main(void)
     CAN_ConfigBufForStandardDataFrame(0);
     CAN_WriteBuf(VPTR(test), 0, sizeof(test), 0);
     
-    
-    CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
-    while(C1TR01CONbits.TXREQ0 == 1);
-
+    while (1) {
+        //CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
+        //while(C1TR01CONbits.TXREQ0 == 1);
+    }
+        
     return 0;
     
 //        /* Message was received. */

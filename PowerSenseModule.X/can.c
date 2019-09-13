@@ -3,6 +3,7 @@
 #include "globals.h"
 #include <string.h>
 #include "mcc_generated_files/pin_manager.h"
+#include "device_configuration.h"
 
 
 typedef struct __attribute__((packed))
@@ -22,7 +23,7 @@ typedef struct __attribute__((packed))
  * 
  **************************************************************************/
 /**
- * CAN1 Receieve Data Ready Interrupt
+ * CAN1 Receive Data Ready Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
     
@@ -33,9 +34,6 @@ void __attribute__((interrupt, auto_psv)) _C1RxRdyInterrupt(void) {
  * CAN1 Transmit Data Request Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
-#ifdef DEBUG
-    C1TR01CONbits.TXREQ0 = 0;
-#endif
     
     IFS4bits.C1TXIF = 0;        // clear interrupt flag
 }
@@ -44,6 +42,8 @@ void __attribute__((interrupt, auto_psv)) _C1TXInterrupt(void) {
  * CAN1 Event Interrupt
  */
 void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
+    if (C1ECbits.TERRCNT >= 127)
+        C1TR01CONbits.TXREQ0 = 0;
     
     IFS2bits.C1IF = 0;      // clear interrupt flag
 }
@@ -54,17 +54,20 @@ void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
  *                              INIT
  * 
  **************************************************************************/
-void CAN_Initialize(CAN_OP_MODES mode) {
+CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
+    if (NUM_CANTX_MSGS <= 0 || NUM_CANTX_MSGS > 8)
+        return CAN_ERR_INVALID_TXBUF;
+    
     /* put the module in configuration mode */
     C1CTRL1bits.REQOP = CAN_CONFIGURATION_MODE;
     while(C1CTRL1bits.OPMODE != CAN_CONFIGURATION_MODE);
 
-    /* Set up the baud rate*/	
-    C1CFG1 = 0x00;	//BRP TQ = (2 x 1)/FCAN; SJW 1 x TQ; 
-    C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM Once at the sample point; 
-    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
-    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
-    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+    // replace below baud config with inline function
+#if defined(CAN1BR_1MHz)
+    CAN1BR_1MHz_Initialize();
+#elif defined(CAN1BR_125KHz)
+    CAN1BR_125KHz_Initialize();
+#endif
 
     /* Filter configuration */
     /* enable window to access the filter configuration registers */
@@ -97,10 +100,11 @@ void CAN_Initialize(CAN_OP_MODES mode) {
     /* clear window bit to access ECAN control registers */
     C1CTRL1bits.WIN=0;    
 
-    // configure TX/RX message buffers 
-    C1TR01CONbits.TXEN0 = 1;                
+    // configure TX/RX message buffers    
+    if (NUM_CANTX_MSGS > 0)
+        C1TR01CONbits.TXEN0 = 1;                
     if (NUM_CANTX_MSGS > 1)
-        C1TR01CONbits.TXEN1 = 1;            // set buffer for TX
+        C1TR01CONbits.TXEN1 = 1;            
     if (NUM_CANTX_MSGS > 2)
         C1TR23CONbits.TXEN2 = 1;
     if (NUM_CANTX_MSGS > 3)
@@ -109,10 +113,9 @@ void CAN_Initialize(CAN_OP_MODES mode) {
         C1TR45CONbits.TXEN4 = 1;
     if (NUM_CANTX_MSGS > 5)
         C1TR45CONbits.TXEN5 = 1;
-    if (NUM_CANTX_MSGS == 6)
+    if (NUM_CANTX_MSGS > 6)
         C1TR67CONbits.TXEN6 = 1;
-    else {
-        C1TR67CONbits.TXEN6 = 1;
+    if (NUM_CANTX_MSGS > 7){
         C1TR67CONbits.TXEN7 = 1;       
     }
 
@@ -130,6 +133,7 @@ void CAN_Initialize(CAN_OP_MODES mode) {
     C1CTRL1bits.REQOP = mode;
     while(C1CTRL1bits.OPMODE != mode);	
 
+    return CAN_SUCCESS;
 }
 
 
@@ -144,7 +148,7 @@ CAN_ERR CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t 
     
     //if number of bytes is longer than the max data field
     if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
-        return CAN_ERR_MSG_SIZE_OVERFLOW;   // error
+        return CAN_ERR_INVALID_DATA_SIZE;   // error
     
     //add offset to select byte
     data_byte_addr += starting_byte;
@@ -173,8 +177,8 @@ CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, ui
     if (sid > 2028)
         return CAN_ERR_INVALID_SID;   // not an 11-bit number
     
-    if (num_bytes > 8)
-        return CAN_ERR_MSG_SIZE_OVERFLOW;   // max 8 bytes
+    if (num_bytes > 8 || num_bytes < 1)
+        return CAN_ERR_INVALID_DATA_SIZE;   // max 8 bytes
      
     CAN_TX_CONTROLS* TXControls;
     
@@ -205,4 +209,68 @@ CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, ui
     
     // successful
     return (TXControls->error) ? CAN_ERROR : CAN_SUCCESS;
+}
+
+
+void CAN1BR_1MHz_Initialize(void) {
+#if defined(FRC_40MHz)
+#warning CAN 1MHZ WITH INTERNAL FRC 40MHZ WILL BE UNRELIABLE AND BAUD WILL BE OFF
+    
+    /* Set up the baud rate*/	
+    C1CFG1 = 0x00;	//BRP TQ = (2 x 1)/FCAN; SJW 1 x TQ; 
+    C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM 3 times at the sample point; 
+    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
+    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
+    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+
+#elif defined (POSC_24MHz)
+    /* Set up the baud rate*/	
+    C1CFG1 = 0x00;	//BRP TQ = (2 x 1)/FCAN; SJW 1 x TQ; 
+    C1CFG2 = 0x06BF;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 7 x TQ; SEG1PH 8 x TQ; PRSEG 8 x TQ; SAM 3 times at the sample point; 
+    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
+    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
+    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+
+    C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
+    
+#else
+#error CAN 1MHZ WITH CURRENT CLOCK NOT REALIZABLE
+#endif
+}
+
+void CAN1BR_125KHz_Initialize(void) {
+#if defined(FRC_40MHz)
+#warning CAN 1MHZ WITH INTERNAL FRC 40MHZ WILL BE UNRELIABLE
+    
+    /* Set up the baud rate*/	
+    C1CFG1 = 0x07;	//BRP TQ = (2 x 8)/FCAN; SJW 1 x TQ; 
+    C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM 3 times at the sample point; 
+    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
+    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
+    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+
+#elif defined (POSC_24MHz)
+    /* Set up the baud rate*/	
+    C1CFG1 = 0x07;      //BRP TQ = (2 x 8)/FCAN; SJW 1 x TQ; 
+    C1CFG2 = 0x06BF;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 7 x TQ; SEG1PH 8 x TQ; PRSEG 8 x TQ; SAM 3 times at the sample point; 
+    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
+    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
+    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+    
+    C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
+    
+#elif defined(FRC_NORMAL)
+#warning CAN 125KHZ WITH INTERNAL FRC 7.37MHZ WILL BE UNRELIABLE AND BAUD WILL BE OFF
+    /* Set up the baud rate*/	
+    C1CFG1 = 0x02;      //BRP TQ = (2 x 3)/FCAN; SJW 1 x TQ; 
+    C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM 3 times at the sample point; 
+    C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
+    C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
+    C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+    
+    C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
+    
+#else
+#error CAN 1MHZ WITH CURRENT CLOCK NOT REALIZABLE
+#endif
 }

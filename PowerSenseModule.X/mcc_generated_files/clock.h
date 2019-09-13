@@ -41,18 +41,33 @@
     MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
     TERMS.
 */
+#include "../device_configuration.h"
 
 #ifndef CLOCK_H
 #define	CLOCK_H
 
 #ifndef _XTAL_FREQ
+#if defined(FRC_40MHz)
+
 #define _XTAL_FREQ  79395351UL
+
+#elif defined(FRC_NORMAL)
+
+#define _XTAL_FREQ  7370000UL
+
+#elif defined(FRC_SLOWEST)
+
+#define _XTAL_FREQ  14395UL
+
+#elif defined(POSC_24MHz)
+
+#define _XTAL_FREQ  24000000UL
+
+#else
+#error NO CLOCK DEFINED
+#endif
 #define FCY         _XTAL_FREQ / 2
 #endif
-
-/* CAN */
-#define TQ          20
-#define FTQ         (FCY / 2) / TQ
 
 #define CLOCK_SystemFrequencyGet()        (_XTAL_FREQ)
 
@@ -73,7 +88,10 @@
  * @Example
     CLOCK_Initialize(void);
  */
-void CLOCK_Initialize(void);
+void CLOCK_Initialize_FRC_NORMAL(void);
+void CLOCK_Initialize_FRC_SLOWEST(void);
+void CLOCK_Initialize_FRC_40MHz(void);
+void CLOCK_Initialize_POSC_24MHz(void);
 
 uint16_t CLOCK_PeriodnsGet(void);
 

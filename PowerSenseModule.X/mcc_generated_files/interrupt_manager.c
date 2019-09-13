@@ -72,5 +72,6 @@ void INTERRUPT_Initialize (void)
         // set priority
         
         /* CAN1 event interrupts - enable all */
-        C1INTE = 0xFF;  
+        C1INTE = 0xFFFF;  
+        IPC8bits.C1IP = 7;      // highest priority
 }

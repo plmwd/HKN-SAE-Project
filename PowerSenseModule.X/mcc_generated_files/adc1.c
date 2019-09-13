@@ -55,28 +55,6 @@ bool data_ready = 0;
 uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
 
 
-/**
-  Section: Data Type Definitions
-*/
-
-/* ADC Driver Hardware Instance Object
-
-  @Summary
-    Defines the object required for the maintenance of the hardware instance.
-
-  @Description
-    This defines the object required for the maintenance of the hardware
-    instance. This object exists once per hardware instance of the peripheral.
-
- */
-typedef struct
-{
-	uint8_t intSample;
-}
-
-ADC_OBJECT;
-
-static ADC_OBJECT adc1_obj;
 
 /**
   Section: Driver Interface
@@ -84,34 +62,30 @@ static ADC_OBJECT adc1_obj;
 
 
 void ADC1_Initialize (void)
-{
-   
-   AD1CON1bits.ADON     = 1;    // Enable ADC
-   AD1CON1bits.ADSIDL   = 0;    // Keep ADC running when system idle
-   AD1CON1bits.ADDMABM  = 1;    // Buffer written in order of conversion
-   AD1CON1bits.AD12B    = 0;    // 10-bit operation
-   AD1CON1bits.FORM     = 0;    // Unsigned integer
-   AD1CON1bits.SSRC     = 2;    // TMR3 starts conversion
-   AD1CON1bits.SSRCG    = 0;    // 0 clock source group
-   AD1CON1bits.SIMSAM   = 1;    // Sample channels simultaneously
-   AD1CON1bits.ASAM     = 1;    // Auto sample after last conversion
-   AD1CON1bits.SAMP     = 1;
-   
-   AD1CON2bits.CSCNA    = 0;    // Don't scan input
-   AD1CON2bits.SMPI     = 7;    // Generate interrupt after 16 total samples (8 per CH)
-   AD1CON2bits.CHPS     = 1;    // Converts CH0 and CH1
-   AD1CON2bits.BUFM     = 0;    // Always fill buffer from the beginning
-   AD1CON2bits.ALTS     = 0;    // Always sample MUX A 
-   
+{   
+    // ASAM enabled; ADDMABM disabled; ADSIDL disabled; DONE disabled; SIMSAM Simultaneous; FORM Absolute decimal result, unsigned, right-justified; SAMP disabled; SSRC TMR3; AD12B 10-bit; ADON enabled; SSRCG disabled; 
+
+   AD1CON1 = 0b1000000001001100;
+
+    // CSCNA disabled; VCFG0 AVDD; VCFG1 AVSS; ALTS disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; CHPS 2 Channel; 
+
+   AD1CON2 = 0b000000100000000;
+   AD1CON2bits.SMPI = 15;
+   AD1CON2bits.CHPS = 1;
+   AD1CON2bits.BUFM = 0;
 
     // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
-   AD1CON3bits.ADRC = 0;        // Use system clock
+   AD1CON3 = 0x000;
    AD1CON3bits.ADCS = ADC1CLOCK_GENMultiplier();
 
-    // CH0SA AN2; CH0SB AN2; CH0NB VREFL; CH0NA VREFL; 
+   AD1CHS0 = 0b0000000000000010;
 
-   AD1CHS0 = 0b0000001000000010;
+   AD1CHS123bits.CH123SA0 = 1;
+   AD1CHS123bits.CH123SA1 = 0;
+   AD1CHS123bits.CH123SA2 = 0;
+   AD1CHS123bits.CH123NA = 0;
+   
 
     // CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
 
@@ -121,16 +95,10 @@ void ADC1_Initialize (void)
 
    AD1CSSL = 0x00;
 
-    // DMABL Allocates 8 word of buffer to each analog input; ADDMAEN disabled; 
+    // DMABL Allocates 1 word of buffer to each analog input; ADDMAEN disabled; 
 
-   AD1CON4 = 0x04;
+   AD1CON4 = 0x00;
 
-    // CH123SA2 CH1=OA1/AN3; CH123SB2 CH1=OA1/AN3; CH123NA CH1=VREF-; CH123NB CH1=VREF-; 
-
-   AD1CHS123 = 0x101;
-
-   
-   adc1_obj.intSample = AD1CON2bits.SMPI;
    
    data_ready = 0;
            
@@ -139,20 +107,17 @@ void ADC1_Initialize (void)
 
 }
 
-void __attribute__ ((weak)) ADC1_CallBack(void)
-{
-    // Add your custom callback code here
-}
 
 void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 {
-    // Disable timer 3 (ADC conversion trigger)
-    TMR3_Stop();
-    
 	// ADC1 callback function 
 	//ADC1_CallBack();
 	
-    // transfer ADC samples to buffer (could use DMA in the future)
+    TMR3_Stop();
+    
+    // samples alternate in order of analog input number, ANx
+    // current is AN2
+    // voltage is AN3
     adc_buffer[0] = ADC1BUF0;
     adc_buffer[1] = ADC1BUF1;
     adc_buffer[2] = ADC1BUF2;
@@ -170,7 +135,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     adc_buffer[14] = ADC1BUFE;
     adc_buffer[15] = ADC1BUFF;
     
-    
+    // tell main loop to process data
     data_ready = true;
     
     // clear the ADC interrupt flag

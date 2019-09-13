@@ -10,7 +10,7 @@
 
 #include "can.h"
 
-#define DEBUG 
+//#define DEBUG 
 
 //Number of TX+RX message buffers must equal a total of 4, 6, 8, 12, 16, 24, or 32
 //Set C1FCTRLbits.DMABS accordingly - in order -        0, 1, 2, 3,   4,  5,     6

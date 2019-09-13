@@ -42,19 +42,21 @@
     TERMS.
 */
 
+#include "../device_configuration.h"
+
 // DSPIC33EV32GM102 Configuration Bit Settings
 
 // 'C' source line config statements
 
 // FSEC
-#pragma config BWRP = OFF    //Boot Segment Write-Protect Bit->Boot Segment may be written
-#pragma config BSS = DISABLED    //Boot Segment Code-Protect Level bits->No Protection (other than BWRP)
-#pragma config BSS2 = OFF    //Boot Segment Control Bit->No Boot Segment
-#pragma config GWRP = OFF    //General Segment Write-Protect Bit->General Segment may be written
-#pragma config GSS = DISABLED    //General Segment Code-Protect Level bits->No Protection (other than GWRP)
-#pragma config CWRP = OFF    //Configuration Segment Write-Protect Bit->Configuration Segment may be written
-#pragma config CSS = DISABLED    //Configuration Segment Code-Protect Level bits->No Protection (other than CWRP)
-#pragma config AIVTDIS = DISABLE    //Alternate Interrupt Vector Table Disable Bit ->Disable Alternate Vector Table
+#pragma config BWRP = OFF               //Boot Segment Write-Protect Bit->Boot Segment may be written
+#pragma config BSS = DISABLED           //Boot Segment Code-Protect Level bits->No Protection (other than BWRP)
+#pragma config BSS2 = OFF               //Boot Segment Control Bit->No Boot Segment
+#pragma config GWRP = OFF               //General Segment Write-Protect Bit->General Segment may be written
+#pragma config GSS = DISABLED           //General Segment Code-Protect Level bits->No Protection (other than GWRP)
+#pragma config CWRP = OFF               //Configuration Segment Write-Protect Bit->Configuration Segment may be written
+#pragma config CSS = DISABLED           //Configuration Segment Code-Protect Level bits->No Protection (other than CWRP)
+#pragma config AIVTDIS = DISABLE        //Alternate Interrupt Vector Table Disable Bit ->Disable Alternate Vector Table
 
 // FBSLIM
 #pragma config BSLIM = 8191            // Boot Segment Code Flash Page Address Limit Bits (Boot Segment Flash Page Address Limit (0-0x1FFF))
@@ -64,8 +66,18 @@
 #pragma config IESO = OFF               // Two Speed Oscillator Start-Up Bit (Start up device with user selected oscillator source)
 
 // FOSC
+#if (!defined(CLOCK_DEBUG) && defined(POSC_24MHz))
+#pragma config POSCMD = HS              // Primary Oscillator Mode Select Bits (Primary Oscillator enabled HS 10-25MHz)
+#else
 #pragma config POSCMD = NONE            // Primary Oscillator Mode Select Bits (Primary Oscillator disabled)
-#pragma config OSCIOFNC = OFF           // OSC2 Pin I/O Function Enable Bit (OSC2 is clock output)
+#endif
+
+#ifdef CLOCK_DEBUG
+#pragma config OSCIOFNC = ON            // OSC2 Pin I/O Function Enable Bit (OSC2 is clock output)
+#else
+#pragma config OSCIOFNC = OFF           // OSC2 Pin I/O Function Enable Bit (OSC2 is primary oscillator input)
+#endif
+
 #pragma config IOL1WAY = OFF            // Peripheral Pin Select Configuration Bit (Allow Multiple reconfigurations)
 #pragma config FCKSM = CSECME           // Clock Switching Mode Bits (Both Clock Switching and Fail-safe Clock Monitor are enabled)
 #pragma config PLLKEN = ON              // PLL Lock Enable Bit (Clock switch to PLL source will wait until the PLL lock signal is valid)
@@ -127,7 +139,7 @@
 
 void OSCILLATOR_Initialize(void)
 {
-    CLOCK_Initialize();
+    CLOCK_Initialize_FRC_40MHz();
 }
 
 uint16_t SYSTEM_GetResetCause(void)

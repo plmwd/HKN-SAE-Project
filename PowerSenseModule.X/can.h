@@ -10,6 +10,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include "device_configuration.h"
 
 #define DEBUG_SID 1234
 
@@ -42,15 +43,15 @@ typedef enum{
 } CAN_TXBUF;
 
 typedef enum{
-    CAN_SUCCESS,
-    CAN_ERROR,
-    CAN_ERR_INVALID_TXBUF,
-    CAN_ERR_INVALID_SID,
-    CAN_ERR_MSG_SIZE_OVERFLOW,
-    CAN_ERR_TXBUF_DISABLED,
-    CAN_ERR_TXBUF_FULL,
-    CAN_ERR_MSG_ABORTED,
-    CAN_ERR_MSG_LOST_ARBITRATION
+    CAN_SUCCESS,                    // general success
+    CAN_ERROR,                      // general error
+    CAN_ERR_INVALID_TXBUF,          // inputted tx buffer number invalid - either not enabled or out of range of max TX buffers
+    CAN_ERR_INVALID_SID,            // SID out of bounds - 11 bit number
+    CAN_ERR_INVALID_DATA_SIZE,      // data frame number of data bytes invalid - max 8
+    CAN_ERR_TXBUF_DISABLED,         // can't transmit frame if it isn't enabled for TX
+    CAN_ERR_TXBUF_FULL,             // previous tx not sent
+    CAN_ERR_MSG_ABORTED,            // tx message aborted
+    CAN_ERR_MSG_LOST_ARBITRATION    // tx message overridden by bus device with higher priority
 } CAN_ERR;
 
 typedef struct __attribute__((packed))can_msg_struct{
@@ -100,7 +101,7 @@ typedef struct __attribute__((packed))can_msg_struct{
 /*
  * Initializes the CAN module
  */
-void CAN_Initialize(CAN_OP_MODES mode);
+CAN_ERR CAN_Initialize(CAN_OP_MODES mode);
 
 
 /**
@@ -141,6 +142,10 @@ CAN_ERR CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t 
  * @param buf_num: TX buffer to setup for a standard data frame
  */
 void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num);
+
+void CAN1BR_1MHz_Initialize(void);
+
+void CAN1BR_125KHz_Initialize(void);
 
 #endif	/* CAN_H */
 
