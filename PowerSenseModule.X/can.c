@@ -214,8 +214,11 @@ CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, ui
 
 void CAN1BR_1MHz_Initialize(void) {
 #if defined(FRC_40MHz)
+#ifdef CAN1BR_1MHz
 #warning CAN 1MHZ WITH INTERNAL FRC 40MHZ WILL BE UNRELIABLE AND BAUD WILL BE OFF
-    
+#warning ACTUAL BAUD RATE IS 992.4KHZ
+#endif    
+
     /* Set up the baud rate*/	
     C1CFG1 = 0x00;	//BRP TQ = (2 x 1)/FCAN; SJW 1 x TQ; 
     C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM 3 times at the sample point; 
@@ -240,7 +243,10 @@ void CAN1BR_1MHz_Initialize(void) {
 
 void CAN1BR_125KHz_Initialize(void) {
 #if defined(FRC_40MHz)
-#warning CAN 1MHZ WITH INTERNAL FRC 40MHZ WILL BE UNRELIABLE
+#ifdef CAN1BR_125KHz
+#warning CAN 125KHZ WITH INTERNAL FRC 40MHZ WILL BE UNRELIABLE
+#warning ACTUAL BAUD RATE IS 124.6KHZ
+#endif
     
     /* Set up the baud rate*/	
     C1CFG1 = 0x07;	//BRP TQ = (2 x 8)/FCAN; SJW 1 x TQ; 
@@ -248,6 +254,8 @@ void CAN1BR_125KHz_Initialize(void) {
     C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
     C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
     C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
+    
+    //C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
 
 #elif defined (POSC_24MHz)
     /* Set up the baud rate*/	
@@ -261,6 +269,8 @@ void CAN1BR_125KHz_Initialize(void) {
     
 #elif defined(FRC_NORMAL)
 #warning CAN 125KHZ WITH INTERNAL FRC 7.37MHZ WILL BE UNRELIABLE AND BAUD WILL BE OFF
+#warning ACTUAL BAUD RATE IS 122.8KHZ
+    
     /* Set up the baud rate*/	
     C1CFG1 = 0x02;      //BRP TQ = (2 x 3)/FCAN; SJW 1 x TQ; 
     C1CFG2 = 0x3BE;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 4 x TQ; SEG1PH 8 x TQ; PRSEG 7 x TQ; SAM 3 times at the sample point; 

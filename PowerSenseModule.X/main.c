@@ -57,7 +57,6 @@
 
 #define VPTR(var)   (void*)&var
 
-void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
 uint16_t ProcessCurrent(uint16_t);
 uint16_t ProcessVoltage(uint16_t);
