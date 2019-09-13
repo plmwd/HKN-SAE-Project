@@ -99,6 +99,10 @@ void SYSTEM_Initialize(void)
     CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
 #endif
     
+#ifdef UART1_ENABLE
+    UART_Initialize();
+#endif
+    
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
     INTERRUPT_GlobalEnable();
     INTERRUPT_Initialize();

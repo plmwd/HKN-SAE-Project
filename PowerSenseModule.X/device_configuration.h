@@ -80,6 +80,7 @@
 #define ADC1_ENABLE
 //#define ADC1_BURST
 
+#define UART1BR_2400Hz
 
 
 
