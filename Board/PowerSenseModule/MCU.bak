@@ -682,17 +682,6 @@ F 3 "" H 5725 7375 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+12V #PWR010
-U 1 1 5D528ACF
-P 5725 6725
-F 0 "#PWR010" H 5725 6575 50  0001 C CNN
-F 1 "+12V" H 5740 6898 50  0000 C CNN
-F 2 "" H 5725 6725 50  0001 C CNN
-F 3 "" H 5725 6725 50  0001 C CNN
-	1    5725 6725
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_Small_US R16
 U 1 1 5D52A243
 P 5250 2200
@@ -865,8 +854,8 @@ $Comp
 L Device:R_US R20
 U 1 1 5D526340
 P 9500 5150
-F 0 "R20" V 9450 4975 50  0000 C CNN
-F 1 "300" V 9450 5325 50  0000 C CNN
+F 0 "R20" V 9400 5125 50  0000 C CNN
+F 1 "300" V 9600 5150 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9540 5140 50  0001 C CNN
 F 3 "~" H 9500 5150 50  0001 C CNN
 	1    9500 5150
@@ -876,8 +865,8 @@ $Comp
 L Device:R_US R21
 U 1 1 5D527256
 P 9400 5575
-F 0 "R21" V 9475 5475 50  0000 C CNN
-F 1 "300" V 9475 5650 50  0000 C CNN
+F 0 "R21" V 9300 5575 50  0000 C CNN
+F 1 "300" V 9525 5575 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9440 5565 50  0001 C CNN
 F 3 "~" H 9400 5575 50  0001 C CNN
 	1    9400 5575
@@ -1123,21 +1112,11 @@ Wire Wire Line
 	4425 2600 4675 2600
 Wire Wire Line
 	4525 3300 4525 4125
-Text GLabel 4675 2500 2    50   Input ~ 0
-VSENSE
-Text GLabel 10700 3400 2    50   Input ~ 0
-VSENSE
-Text GLabel 10725 1950 2    50   Input ~ 0
-ISENSE
 Wire Wire Line
 	10725 1950 10575 1950
 Connection ~ 10575 1950
-Text GLabel 4675 2400 2    50   Input ~ 0
-ISENSE
 Wire Wire Line
 	4675 2400 4425 2400
-Text GLabel 4175 5200 0    50   Input ~ 0
-OSC1
 Wire Wire Line
 	4775 5550 4770 5550
 Wire Wire Line
@@ -1158,56 +1137,28 @@ Connection ~ 4400 5200
 Wire Wire Line
 	4400 5550 4175 5550
 Connection ~ 4400 5550
-Text GLabel 4175 5550 0    50   Input ~ 0
-OSC2
-Text GLabel 4675 2100 2    50   Input ~ 0
-OSC1
-Text GLabel 4675 2200 2    50   Input ~ 0
-OSC2
 Wire Wire Line
 	4675 2100 4425 2100
 Wire Wire Line
 	4675 2200 4425 2200
-Text GLabel 6900 5575 0    50   Input ~ 0
-PGEC
-Text GLabel 6900 5475 0    50   Input ~ 0
-PGED
-Text GLabel 6900 5175 0    50   Input ~ 0
-J_MCLR
 Text GLabel 1175 1900 0    50   Input ~ 0
 J_MCLR
-Text GLabel 4675 2600 2    50   Input ~ 0
-PGEC
-Text GLabel 4675 2700 2    50   Input ~ 0
-PGED
 Text GLabel 1125 5200 0    50   Input ~ 0
-CAN_TX
-Text GLabel 4675 3500 2    50   Input ~ 0
 CAN_TX
 Wire Wire Line
 	4675 3500 4425 3500
 Text GLabel 1125 5300 0    50   Input ~ 0
 CAN_RX
-Text GLabel 4675 3600 2    50   Input ~ 0
-CAN_RX
 Wire Wire Line
 	4675 3600 4425 3600
-Text GLabel 4675 3800 2    50   Input ~ 0
-LED1
-Text GLabel 4675 3900 2    50   Input ~ 0
-LED2
 Wire Wire Line
 	4675 3800 4425 3800
 Wire Wire Line
 	4675 3900 4425 3900
-Text GLabel 9250 5150 0    50   Input ~ 0
-LED1
 Wire Wire Line
 	9250 5150 9350 5150
 Wire Wire Line
 	10450 5150 10450 5250
-Text GLabel 9125 5575 0    50   Input ~ 0
-LED2
 Wire Wire Line
 	9250 5575 9125 5575
 $Comp
@@ -1243,8 +1194,6 @@ Wire Notes Line
 	475  4675 11200 4675
 Text GLabel 1125 5600 0    50   Input ~ 0
 CAN_STBY
-Text GLabel 4675 3700 2    50   Input ~ 0
-CAN_STBY
 Wire Wire Line
 	4675 3700 4425 3700
 Wire Notes Line
@@ -1259,8 +1208,59 @@ Wire Notes Line
 	3275 4675 3275 6300
 Wire Notes Line
 	5925 475  5925 6300
-Text HLabel 4675 3400 2    50   Input ~ 0
+Text HLabel 5000 3400 2    50   Input ~ 0
 PWM
+$Comp
+L power:VS #PWR?
+U 1 1 5E3CF0BD
+P 5725 6725
+F 0 "#PWR?" H 5525 6575 50  0001 C CNN
+F 1 "VS" H 5742 6898 50  0000 C CNN
+F 2 "" H 5725 6725 50  0001 C CNN
+F 3 "" H 5725 6725 50  0001 C CNN
+	1    5725 6725
+	1    0    0    -1  
+$EndComp
+Text Label 4675 2100 0    50   ~ 0
+OSC1
+Text Label 4675 2200 0    50   ~ 0
+OSC2
+Text Label 4675 2400 0    50   ~ 0
+ISENSE
+Text Label 4675 2500 0    50   ~ 0
+VSENSE
+Text Label 4675 2600 0    50   ~ 0
+PGEC
+Text Label 4675 2700 0    50   ~ 0
+PGED
+Text Label 4675 3500 0    50   ~ 0
+CAN_TX
+Text Label 4675 3600 0    50   ~ 0
+CAN_RX
+Text Label 4675 3700 0    50   ~ 0
+CAN_STBY
+Text Label 4675 3800 0    50   ~ 0
+LED1
+Text Label 4675 3900 0    50   ~ 0
+LED2
 Wire Wire Line
-	4675 3400 4425 3400
+	4425 3400 5000 3400
+Text Label 10725 1950 0    50   ~ 0
+ISENSE
+Text Label 10700 3400 0    50   ~ 0
+VSENSE
+Text Label 9250 5150 2    50   ~ 0
+LED1
+Text Label 9125 5575 2    50   ~ 0
+LED2
+Text Label 6900 5175 2    50   ~ 0
+MCLR
+Text Label 6900 5475 2    50   ~ 0
+PGED
+Text Label 6900 5575 2    50   ~ 0
+PGEC
+Text Label 4175 5200 2    50   ~ 0
+OSC1
+Text Label 4175 5550 2    50   ~ 0
+OSC2
 $EndSCHEMATC
