@@ -37,8 +37,14 @@ U 1 1 5D33FB36
 P 8725 3700
 F 0 "U4" H 8375 3350 50  0000 C CNN
 F 1 "MCP2542FDxMF" H 9175 3300 50  0000 C CNN
-F 2 "Package_DFN_QFN:DFN-8-1EP_3x3mm_P0.65mm_EP1.55x2.4mm" H 8725 3200 50  0001 C CIN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 8725 3200 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/MCP2542FD-4FD-MCP2542WFD-4WFD-Data-Sheet20005514B.pdf" H 8725 3700 50  0001 C CNN
+F 4 "Microchip" H 8725 3700 50  0001 C CNN "Manufacturer"
+F 5 "MCP2542FD-H/SN" H 8725 3700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.79" H 8725 3700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 8725 3700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Microchip-Technology/MCP2542FD-H-SN?qs=sGAEpiMZZMsGqoCZrYwANkPccAfLmAxJzMSmRhEMflk%3D" H 8725 3700 50  0001 C CNN "Supplier Link"
+F 9 " 579-MCP2542FD-H/SN " H 8725 3700 50  0001 C CNN "Supplier PN"
 	1    8725 3700
 	1    0    0    -1  
 $EndComp
@@ -365,8 +371,13 @@ U 1 1 5D498F82
 P 1750 6075
 F 0 "R8" H 1818 6121 50  0000 L CNN
 F 1 "4m" H 1818 6030 50  0000 L CNN
-F 2 "Resistor_SMD:R_2512_6332Metric_Pad1.52x3.35mm_HandSolder" H 1750 6075 50  0001 C CNN
-F 3 "~" H 1750 6075 50  0001 C CNN
+F 2 "Resistor_SMD:R_4020_10251Metric_Pad1.65x5.30mm_HandSolder" H 1750 6075 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/427/wslp3921-536393.pdf" H 1750 6075 50  0001 C CNN
+F 4 "Vishay" H 1750 6075 50  0001 C CNN "Manufacturer"
+F 5 "WSLP39214L000FEB " H 1750 6075 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 1750 6075 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/Vishay-Dale/WSLP39214L000FEB?qs=sGAEpiMZZMtlleCFQhR%2FzQgA6HzdQSfq2cZRquULrVo%3D" H 1750 6075 50  0001 C CNN "Supplier Link"
+F 8 " 71- 71-WSLP39214L000FEB " H 1750 6075 50  0001 C CNN "Supplier PN"
 	1    1750 6075
 	1    0    0    -1  
 $EndComp
@@ -441,6 +452,12 @@ F 0 "U2" H 2900 5358 50  0000 C CNN
 F 1 "NCV2007x" H 2900 5449 50  0000 C CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 2850 5375 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 2850 5375 50  0001 C CNN
+F 4 "ON Semiconductor" H 2850 5725 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 2850 5725 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 2850 5725 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 2850 5725 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 2850 5725 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 2850 5725 50  0001 C CNN "Price 1 QTY"
 	1    2850 5725
 	1    0    0    1   
 $EndComp
@@ -452,6 +469,12 @@ F 0 "U2" H 2900 6792 50  0000 C CNN
 F 1 "NCV2007x" H 2900 6701 50  0000 C CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 2850 6075 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 2850 6075 50  0001 C CNN
+F 4 "ON Semiconductor" H 2850 6425 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 2850 6425 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 2850 6425 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 2850 6425 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 2850 6425 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 2850 6425 50  0001 C CNN "Price 1 QTY"
 	2    2850 6425
 	1    0    0    -1  
 $EndComp
@@ -463,6 +486,12 @@ F 0 "U2" H 4350 6392 50  0000 C CNN
 F 1 "NCV2007x" H 4350 6301 50  0000 C CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 4300 5675 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 4300 5675 50  0001 C CNN
+F 4 "ON Semiconductor" H 4300 6025 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 4300 6025 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 4300 6025 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 4300 6025 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 4300 6025 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 4300 6025 50  0001 C CNN "Price 1 QTY"
 	3    4300 6025
 	1    0    0    1   
 $EndComp
@@ -474,6 +503,12 @@ F 0 "U2" H 5700 5192 50  0000 C CNN
 F 1 "NCV2007x" H 5700 5101 50  0000 C CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 5650 4475 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 5650 4475 50  0001 C CNN
+F 4 "ON Semiconductor" H 5650 4825 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 5650 4825 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 5650 4825 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 5650 4825 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 5650 4825 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 5650 4825 50  0001 C CNN "Price 1 QTY"
 	4    5650 4825
 	1    0    0    1   
 $EndComp
@@ -485,6 +520,12 @@ F 0 "U2" H 7503 5671 50  0000 L CNN
 F 1 "NCV2007x" H 7503 5580 50  0000 L CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 7425 5250 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 7425 5250 50  0001 C CNN
+F 4 "ON Semiconductor" H 7425 5600 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 7425 5600 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 7425 5600 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 7425 5600 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 7425 5600 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 7425 5600 50  0001 C CNN "Price 1 QTY"
 	5    7425 5600
 	1    0    0    -1  
 $EndComp
@@ -791,10 +832,6 @@ F 3 "" H 1225 1500 50  0001 C CNN
 	1    1225 1500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4425 3600 8225 3600
-Wire Wire Line
-	4425 3700 8025 3700
 $Comp
 L Device:C C12
 U 1 1 5D1BA03E
@@ -806,94 +843,88 @@ F 3 "~" H 1225 2380 50  0001 C CNN
 	1    1225 2380
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4425 3500 8225 3500
 $Comp
 L power:GNDD #PWR0105
 U 1 1 5D4D1DB2
-P 6175 4075
-F 0 "#PWR0105" H 6175 3825 50  0001 C CNN
-F 1 "GNDD" H 6179 3920 50  0000 C CNN
-F 2 "" H 6175 4075 50  0001 C CNN
-F 3 "" H 6175 4075 50  0001 C CNN
-	1    6175 4075
+P 4525 4125
+F 0 "#PWR0105" H 4525 3875 50  0001 C CNN
+F 1 "GNDD" H 4529 3970 50  0000 C CNN
+F 2 "" H 4525 4125 50  0001 C CNN
+F 3 "" H 4525 4125 50  0001 C CNN
+	1    4525 4125
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4425 3800 4550 3800
-Wire Wire Line
-	4425 3900 4550 3900
 $Comp
 L Device:LED D4
 U 1 1 5D518286
-P 5200 3900
-F 0 "D4" H 5125 4000 50  0000 C CNN
-F 1 "LED" H 5325 4000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5200 3900 50  0001 C CNN
-F 3 "~" H 5200 3900 50  0001 C CNN
-	1    5200 3900
+P 5450 3900
+F 0 "D4" H 5375 4000 50  0000 C CNN
+F 1 "LED" H 5575 4000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5450 3900 50  0001 C CNN
+F 3 "~" H 5450 3900 50  0001 C CNN
+	1    5450 3900
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:LED D3
 U 1 1 5D518C5C
-P 5200 3800
-F 0 "D3" H 5300 3750 50  0000 C CNN
-F 1 "LED" H 5300 3675 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5200 3800 50  0001 C CNN
-F 3 "~" H 5200 3800 50  0001 C CNN
-	1    5200 3800
+P 5450 3800
+F 0 "D3" H 5550 3750 50  0000 C CNN
+F 1 "LED" H 5550 3675 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5450 3800 50  0001 C CNN
+F 3 "~" H 5450 3800 50  0001 C CNN
+	1    5450 3800
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_US R20
 U 1 1 5D526340
-P 4700 3800
-F 0 "R20" V 4650 3625 50  0000 C CNN
-F 1 "300" V 4650 3975 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4740 3790 50  0001 C CNN
-F 3 "~" H 4700 3800 50  0001 C CNN
-	1    4700 3800
+P 4950 3800
+F 0 "R20" V 4900 3625 50  0000 C CNN
+F 1 "300" V 4900 3975 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4990 3790 50  0001 C CNN
+F 3 "~" H 4950 3800 50  0001 C CNN
+	1    4950 3800
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R_US R21
 U 1 1 5D527256
-P 4700 3900
-F 0 "R21" V 4775 3800 50  0000 C CNN
-F 1 "300" V 4775 3975 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4740 3890 50  0001 C CNN
-F 3 "~" H 4700 3900 50  0001 C CNN
-	1    4700 3900
+P 4950 3900
+F 0 "R21" V 5025 3800 50  0000 C CNN
+F 1 "300" V 5025 3975 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4990 3890 50  0001 C CNN
+F 3 "~" H 4950 3900 50  0001 C CNN
+	1    4950 3900
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	5050 3900 4850 3900
+	5300 3900 5100 3900
 Wire Wire Line
-	5050 3800 4850 3800
+	5300 3800 5100 3800
 $Comp
 L power:GNDD #PWR0106
 U 1 1 5D597A06
-P 5650 4075
-F 0 "#PWR0106" H 5650 3825 50  0001 C CNN
-F 1 "GNDD" H 5654 3920 50  0000 C CNN
-F 2 "" H 5650 4075 50  0001 C CNN
-F 3 "" H 5650 4075 50  0001 C CNN
-	1    5650 4075
+P 5900 4075
+F 0 "#PWR0106" H 5900 3825 50  0001 C CNN
+F 1 "GNDD" H 5904 3920 50  0000 C CNN
+F 2 "" H 5900 4075 50  0001 C CNN
+F 3 "" H 5900 4075 50  0001 C CNN
+	1    5900 4075
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5350 3900 5650 3900
+	5600 3900 5900 3900
 Wire Wire Line
-	5650 3900 5650 4075
+	5900 3900 5900 4075
 Wire Wire Line
-	5350 3800 5650 3800
+	5600 3800 5900 3800
 Wire Wire Line
-	5650 3800 5650 3900
-Connection ~ 5650 3900
-Text Notes 5450 3775 0    50   ~ 0
+	5900 3800 5900 3900
+Connection ~ 5900 3900
+Text Notes 5700 3775 0    50   ~ 0
 Green
-Text Notes 5375 4000 0    50   ~ 0
+Text Notes 5625 4000 0    50   ~ 0
 Red\n
 Wire Wire Line
 	1225 2200 1225 2230
@@ -907,11 +938,7 @@ Wire Wire Line
 Wire Wire Line
 	8675 1775 8675 2600
 Wire Wire Line
-	4425 2600 8675 2600
-Wire Wire Line
 	8500 1675 8500 2700
-Wire Wire Line
-	8500 2700 4425 2700
 Wire Wire Line
 	9050 1875 9275 1875
 Wire Wire Line
@@ -923,54 +950,50 @@ Wire Wire Line
 Wire Wire Line
 	7090 6025 7090 2400
 Wire Wire Line
-	7090 2400 4425 2400
-Wire Wire Line
 	4575 4925 5125 4925
 Wire Wire Line
-	4425 2800 6175 2800
+	4425 2800 4525 2800
 Wire Wire Line
-	4425 2900 6175 2900
-Connection ~ 6175 2900
+	4425 2900 4525 2900
+Connection ~ 4525 2900
 Wire Wire Line
-	6175 2900 6175 3000
+	4525 2900 4525 3000
 Wire Wire Line
-	4425 3000 6175 3000
-Connection ~ 6175 3000
+	4425 3000 4525 3000
+Connection ~ 4525 3000
 Wire Wire Line
-	6175 3000 6175 3100
+	4525 3000 4525 3100
 Wire Wire Line
-	4425 3100 6175 3100
-Connection ~ 6175 3100
+	4425 3100 4525 3100
+Connection ~ 4525 3100
 Wire Wire Line
-	4425 3200 6175 3200
+	4425 3200 4525 3200
 Wire Wire Line
-	6175 3100 6175 3200
-Connection ~ 6175 3200
+	4525 3100 4525 3200
+Connection ~ 4525 3200
 Wire Wire Line
-	6175 3200 6175 3300
+	4525 3200 4525 3300
 Wire Wire Line
-	4425 3400 6175 3400
-Connection ~ 6175 3400
+	4425 3400 4525 3400
+Connection ~ 4525 3400
 Wire Wire Line
-	6175 3400 6175 4075
+	4525 3400 4525 4125
 Wire Wire Line
-	4425 3300 6175 3300
-Connection ~ 6175 3300
+	4425 3300 4525 3300
+Connection ~ 4525 3300
 Wire Wire Line
-	6175 3300 6175 3400
-Connection ~ 6175 2800
+	4525 3300 4525 3400
+Connection ~ 4525 2800
 Wire Wire Line
-	6175 2800 6175 2900
+	4525 2800 4525 2900
 Wire Wire Line
-	4425 2300 6175 2300
+	4425 2300 4525 2300
 Wire Wire Line
-	6175 2300 6175 2800
+	4525 2300 4525 2800
 Wire Wire Line
 	5300 6025 7090 6025
 Wire Wire Line
 	5125 5000 5125 4925
-Wire Wire Line
-	4425 2500 6900 2500
 Wire Wire Line
 	5125 4925 5400 4925
 Connection ~ 5125 4925
@@ -1041,9 +1064,15 @@ L Device:Crystal Y1
 U 1 1 5D7A06C0
 P 6640 2050
 F 0 "Y1" V 6686 1919 50  0000 R CNN
-F 1 "Crystal" V 6595 1919 50  0000 R CNN
+F 1 "25 MHz" V 6595 1919 50  0000 R CNN
 F 2 "Crystal_SMD_2520-4Pin_2.5x2.0mm.kicad_mod_IEEE.kicad_mod" H 6640 2050 50  0001 C CNN
 F 3 "https://www.mouser.com/datasheet/2/3/ABM10AIG-783578.pdf" H 6640 2050 50  0001 C CNN
+F 4 "Abracon" H 6640 2050 50  0001 C CNN "Manufacturer"
+F 5 "ABM10AIG-25.000MHZ-4Z-T3" H 6640 2050 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 6640 2050 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ABRACON/ABM10AIG-25000MHZ-4Z-T3?qs=%2Fha2pyFaduj1vudij7IzbnSbHVJSLi0XvJwHGYKLyiyh0mMcWMnyPh%2FmB9bKfREs" H 6640 2050 50  0001 C CNN "Supplier Link"
+F 8 " 815-M10AIG-25-4ZT3 " H 6640 2050 50  0001 C CNN "Supplier PN"
+F 9 "1.30" H 6640 2050 50  0001 C CNN "Price 1 QTY"
 	1    6640 2050
 	0    -1   -1   0   
 $EndComp
@@ -1083,6 +1112,12 @@ F 0 "U3" H 1875 6450 50  0000 R CNN
 F 1 "dsPIC33EV32GM102" H 1925 6350 50  0000 R CNN
 F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 3175 5150 50  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EVXXXGM00X-10X-Family-Data-Sheet-DS70005144H.pdf" H 3175 5150 50  0001 C CNN
+F 4 "Microchip" H 3175 5150 50  0001 C CNN "Manufacturer"
+F 5 "dsPIC33EV32GM102-E/SS" H 3175 5150 50  0001 C CNN "Manufacturer PN"
+F 6 "3.04" H 3175 5150 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 3175 5150 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Microchip-Technology/dsPIC33EV32GM102-E-SS?qs=sGAEpiMZZMvt8PIZHrwfMh2yGkphHpwrjAuM9fzLf5ybGoYsGfYIMw%3D%3D" H 3175 5150 50  0001 C CNN "Supplier Link"
+F 9 " 579-33EV32GM102ESS " H 3175 5150 50  0001 C CNN "Supplier PN"
 	1    3175 5150
 	1    0    0    -1  
 $EndComp
@@ -1153,4 +1188,22 @@ Wire Wire Line
 Connection ~ 7495 2045
 Wire Wire Line
 	7495 2045 7495 2200
+Wire Wire Line
+	4425 2500 6900 2500
+Wire Wire Line
+	7090 2400 4425 2400
+Wire Wire Line
+	8500 2700 4425 2700
+Wire Wire Line
+	4425 2600 8675 2600
+Wire Wire Line
+	4425 3500 8225 3500
+Wire Wire Line
+	4425 3600 8225 3600
+Wire Wire Line
+	4425 3900 4800 3900
+Wire Wire Line
+	4425 3800 4800 3800
+Wire Wire Line
+	4425 3700 8025 3700
 $EndSCHEMATC

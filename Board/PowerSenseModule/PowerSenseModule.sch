@@ -47,17 +47,6 @@ Neutral_IN\n
 Text Notes 700  2600 0    50   ~ 0
 Live_IN\n
 $Comp
-L Device:Net-Tie_3_Tee NT1
-U 1 1 5D4008D3
-P 10750 800
-F 0 "NT1" H 10750 981 50  0000 C CNN
-F 1 "Net-Tie_3_Tee" H 10750 890 50  0000 C CNN
-F 2 "NetTie:NetTie-3_SMD_Pad2.0mm" H 10750 800 50  0001 C CNN
-F 3 "~" H 10750 800 50  0001 C CNN
-	1    10750 800 
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GNDD #PWR013
 U 1 1 5D401FC5
 P 10750 900
@@ -121,30 +110,8 @@ F 3 "" H 1700 2150 50  0001 C CNN
 	1    1700 2150
 	1    0    0    -1  
 $EndComp
-$Comp
-L F1_TVS_Diodes:TVS1400 D2
-U 1 1 5D295E23
-P 1950 2050
-F 0 "D2" V 1854 1888 50  0000 L CNN
-F 1 "TVS1400" V 1945 1888 50  0000 L CNN
-F 2 "Package_SON_Custom:WSON-6-2NET-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 2100 1950 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1900 1900 50  0001 C CNN
-	1    1950 2050
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	1400 1550 1400 2600
-$Comp
-L F1_TVS_Diodes:TVS1400 D1
-U 1 1 5D295415
-P 1450 1650
-F 0 "D1" V 1446 1321 50  0000 R CNN
-F 1 "TVS1400" V 1355 1321 50  0000 R CNN
-F 2 "Package_SON_Custom:WSON-6-2NET-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 1600 1550 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1400 1500 50  0001 C CNN
-	1    1450 1650
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	1400 1550 1700 1550
 Connection ~ 1700 1550
@@ -220,72 +187,6 @@ Wire Wire Line
 Connection ~ 2550 1550
 Wire Wire Line
 	2550 1800 2550 1550
-$Comp
-L Device:C C1
-U 1 1 5D33534D
-P 2550 1950
-F 0 "C1" H 2665 1996 50  0000 L CNN
-F 1 "4.7pF" H 2665 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2588 1800 50  0001 C CNN
-F 3 "~" H 2550 1950 50  0001 C CNN
-	1    2550 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C2
-U 1 1 5D335009
-P 3000 1950
-F 0 "C2" H 3115 1996 50  0000 L CNN
-F 1 "470pF" H 3115 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3038 1800 50  0001 C CNN
-F 3 "~" H 3000 1950 50  0001 C CNN
-	1    3000 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C3
-U 1 1 5D334CE0
-P 3450 1950
-F 0 "C3" H 3565 1996 50  0000 L CNN
-F 1 "0.01uF" H 3565 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3488 1800 50  0001 C CNN
-F 3 "~" H 3450 1950 50  0001 C CNN
-	1    3450 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C4
-U 1 1 5D334C90
-P 3950 1950
-F 0 "C4" H 4065 1996 50  0000 L CNN
-F 1 "0.1uF" H 4065 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3988 1800 50  0001 C CNN
-F 3 "~" H 3950 1950 50  0001 C CNN
-	1    3950 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C5
-U 1 1 5D3344CE
-P 4400 1950
-F 0 "C5" H 4515 1996 50  0000 L CNN
-F 1 "4.7uF" H 4515 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4438 1800 50  0001 C CNN
-F 3 "~" H 4400 1950 50  0001 C CNN
-	1    4400 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_US R1
-U 1 1 5D32FCBE
-P 6900 2000
-F 0 "R1" H 6968 2046 50  0000 L CNN
-F 1 "100k" H 6968 1955 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6940 1990 50  0001 C CNN
-F 3 "~" H 6900 2000 50  0001 C CNN
-	1    6900 2000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6900 1550 6900 1850
 Connection ~ 6900 1550
@@ -297,28 +198,6 @@ Wire Wire Line
 	6900 2150 6900 2250
 Wire Wire Line
 	6900 2250 5800 2250
-$Comp
-L Device:R_US R2
-U 1 1 5D350393
-P 7650 1750
-F 0 "R2" H 7718 1796 50  0000 L CNN
-F 1 "523k" H 7718 1705 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 1740 50  0001 C CNN
-F 3 "~" H 7650 1750 50  0001 C CNN
-	1    7650 1750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_US R3
-U 1 1 5D350E98
-P 7650 2150
-F 0 "R3" H 7718 2196 50  0000 L CNN
-F 1 "100k" H 7718 2105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 2140 50  0001 C CNN
-F 3 "~" H 7650 2150 50  0001 C CNN
-	1    7650 2150
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7650 1900 7650 1950
 Connection ~ 7650 1950
@@ -339,17 +218,6 @@ F 1 "GND" H 7655 2127 50  0000 C CNN
 F 2 "" H 7650 2300 50  0001 C CNN
 F 3 "" H 7650 2300 50  0001 C CNN
 	1    7650 2300
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C8
-U 1 1 5D369605
-P 8200 1950
-F 0 "C8" H 8315 1996 50  0000 L CNN
-F 1 "47uF" H 8315 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 8238 1800 50  0001 C CNN
-F 3 "~" H 8200 1950 50  0001 C CNN
-	1    8200 1950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -390,17 +258,6 @@ Wire Wire Line
 	5500 1950 5900 1950
 Wire Wire Line
 	5500 2300 5500 1950
-$Comp
-L Device:C C7
-U 1 1 5D33425E
-P 5500 2450
-F 0 "C7" H 5615 2496 50  0000 L CNN
-F 1 "470p" H 5615 2405 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5538 2300 50  0001 C CNN
-F 3 "~" H 5500 2450 50  0001 C CNN
-	1    5500 2450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5800 1850 5900 1850
 Wire Wire Line
@@ -414,17 +271,6 @@ Wire Wire Line
 	5800 1750 5900 1750
 Text Notes 2650 1400 0    35   ~ 0
 ceramic, 2mOhm ESR\n
-$Comp
-L Regulator_Switching:TPS82150 U1
-U 1 1 5D32B50B
-P 6300 1750
-F 0 "U1" H 6300 2217 50  0000 C CNN
-F 1 "TPS82150" H 6300 2126 50  0000 C CNN
-F 2 "Package_LGA:Texas_SIL0008D_MicroSiP-8-1EP_2.8x3mm_P0.65mm_EP1.1x1.9mm" H 6300 1100 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tps82150.pdf" H 6300 1000 50  0001 C CNN
-	1    6300 1750
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8200 1350 8200 1550
 $Comp
@@ -451,17 +297,6 @@ F 3 "" H 6300 2450 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6300 2150 6300 2450
-$Comp
-L Device:C C6
-U 1 1 5D3208C5
-P 4850 1950
-F 0 "C6" H 4965 1996 50  0000 L CNN
-F 1 "47uF" H 4965 1905 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 4888 1800 50  0001 C CNN
-F 3 "~" H 4850 1950 50  0001 C CNN
-	1    4850 1950
-	1    0    0    -1  
-$EndComp
 $Sheet
 S 3150 3800 1700 1550
 U 5D226D6E
@@ -513,6 +348,10 @@ Wire Wire Line
 	1625 4650 1625 3100
 Wire Wire Line
 	1625 3100 1200 3100
+Text Notes 675  3025 0    50   ~ 0
+CAN_HI\n
+Text Notes 675  3125 0    50   ~ 0
+CAN_LO
 $Comp
 L Connector:Conn_01x06_Male J1
 U 1 1 5D4A20AB
@@ -524,8 +363,175 @@ F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&D
 	1    1000 2800
 	1    0    0    -1  
 $EndComp
-Text Notes 675  3025 0    50   ~ 0
-CAN_HI\n
-Text Notes 675  3125 0    50   ~ 0
-CAN_LO
+$Comp
+L Device:C C6
+U 1 1 5D3208C5
+P 4850 1950
+F 0 "C6" H 4965 1996 50  0000 L CNN
+F 1 "47uF" H 4965 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 4888 1800 50  0001 C CNN
+F 3 "~" H 4850 1950 50  0001 C CNN
+	1    4850 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Switching:TPS82150 U1
+U 1 1 5D32B50B
+P 6300 1750
+F 0 "U1" H 6300 2217 50  0000 C CNN
+F 1 "TPS82150" H 6300 2126 50  0000 C CNN
+F 2 "Package_LGA:Texas_SIL0008D_MicroSiP-8-1EP_2.8x3mm_P0.65mm_EP1.1x1.9mm" H 6300 1100 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tps82150.pdf" H 6300 1000 50  0001 C CNN
+F 4 "TI" H 6300 1750 50  0001 C CNN "Manufacturer"
+F 5 "TPS82150SILR " H 6300 1750 50  0001 C CNN "Manufacturer PN"
+F 6 "3.03" H 6300 1750 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 6300 1750 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/?qs=gt1LBUVyoHksxpRVOmIIkg%3D%3D" H 6300 1750 50  0001 C CNN "Supplier Link"
+F 9 " 595-TPS82150SILR " H 6300 1750 50  0001 C CNN "Supplier PN"
+	1    6300 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 5D33425E
+P 5500 2450
+F 0 "C7" H 5615 2496 50  0000 L CNN
+F 1 "470p" H 5615 2405 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5538 2300 50  0001 C CNN
+F 3 "~" H 5500 2450 50  0001 C CNN
+	1    5500 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C8
+U 1 1 5D369605
+P 8200 1950
+F 0 "C8" H 8315 1996 50  0000 L CNN
+F 1 "47uF" H 8315 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 8238 1800 50  0001 C CNN
+F 3 "~" H 8200 1950 50  0001 C CNN
+	1    8200 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R3
+U 1 1 5D350E98
+P 7650 2150
+F 0 "R3" H 7718 2196 50  0000 L CNN
+F 1 "100k" H 7718 2105 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 2140 50  0001 C CNN
+F 3 "~" H 7650 2150 50  0001 C CNN
+	1    7650 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R2
+U 1 1 5D350393
+P 7650 1750
+F 0 "R2" H 7718 1796 50  0000 L CNN
+F 1 "523k" H 7718 1705 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7690 1740 50  0001 C CNN
+F 3 "~" H 7650 1750 50  0001 C CNN
+	1    7650 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 5D32FCBE
+P 6900 2000
+F 0 "R1" H 6968 2046 50  0000 L CNN
+F 1 "100k" H 6968 1955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6940 1990 50  0001 C CNN
+F 3 "~" H 6900 2000 50  0001 C CNN
+	1    6900 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5D3344CE
+P 4400 1950
+F 0 "C5" H 4515 1996 50  0000 L CNN
+F 1 "4.7uF" H 4515 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4438 1800 50  0001 C CNN
+F 3 "~" H 4400 1950 50  0001 C CNN
+	1    4400 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 5D334C90
+P 3950 1950
+F 0 "C4" H 4065 1996 50  0000 L CNN
+F 1 "0.1uF" H 4065 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3988 1800 50  0001 C CNN
+F 3 "~" H 3950 1950 50  0001 C CNN
+	1    3950 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5D334CE0
+P 3450 1950
+F 0 "C3" H 3565 1996 50  0000 L CNN
+F 1 "0.01uF" H 3565 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3488 1800 50  0001 C CNN
+F 3 "~" H 3450 1950 50  0001 C CNN
+	1    3450 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5D335009
+P 3000 1950
+F 0 "C2" H 3115 1996 50  0000 L CNN
+F 1 "470pF" H 3115 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3038 1800 50  0001 C CNN
+F 3 "~" H 3000 1950 50  0001 C CNN
+	1    3000 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5D33534D
+P 2550 1950
+F 0 "C1" H 2665 1996 50  0000 L CNN
+F 1 "4.7pF" H 2665 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2588 1800 50  0001 C CNN
+F 3 "~" H 2550 1950 50  0001 C CNN
+	1    2550 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L F1_TVS_Diodes:TVS1400 D1
+U 1 1 5D295415
+P 1450 1650
+F 0 "D1" V 1446 1321 50  0000 R CNN
+F 1 "TVS1400" V 1355 1321 50  0000 R CNN
+F 2 "Package_SON_Custom:WSON-6-2NET-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 1600 1550 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1400 1500 50  0001 C CNN
+	1    1450 1650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L F1_TVS_Diodes:TVS1400 D2
+U 1 1 5D295E23
+P 1950 2050
+F 0 "D2" V 1854 1888 50  0000 L CNN
+F 1 "TVS1400" V 1945 1888 50  0000 L CNN
+F 2 "Package_SON_Custom:WSON-6-2NET-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 2100 1950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tvs1400.pdf" H 1900 1900 50  0001 C CNN
+	1    1950 2050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Net-Tie_3_Tee NT1
+U 1 1 5D4008D3
+P 10750 800
+F 0 "NT1" H 10750 981 50  0000 C CNN
+F 1 "Net-Tie_3_Tee" H 10750 890 50  0000 C CNN
+F 2 "NetTie:NetTie-3_SMD_Pad2.0mm" H 10750 800 50  0001 C CNN
+F 3 "~" H 10750 800 50  0001 C CNN
+	1    10750 800 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
