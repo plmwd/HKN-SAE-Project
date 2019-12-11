@@ -166,7 +166,6 @@ Wire Wire Line
 	3400 1550 3400 1300
 Wire Wire Line
 	2950 1300 3400 1300
-Connection ~ 2950 1300
 Wire Wire Line
 	2950 1550 2950 1300
 Wire Wire Line
@@ -321,12 +320,12 @@ F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&D
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP C6
+L Device:C C6
 U 1 1 5D3208C5
 P 5250 1700
 F 0 "C6" H 5365 1746 50  0000 L CNN
-F 1 "47uF" H 5365 1655 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 5288 1550 50  0001 C CNN
+F 1 "6.8uF" H 5365 1655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5288 1550 50  0001 C CNN
 F 3 "~" H 5250 1700 50  0001 C CNN
 	1    5250 1700
 	1    0    0    -1  
@@ -469,35 +468,32 @@ F 3 "~" H 10600 1525 50  0001 C CNN
 	1    10600 1525
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1800 1300 2175 1300
 $Comp
 L Device:D_Zener D1
 U 1 1 5DEFEB23
-P 2175 1550
-F 0 "D1" V 2129 1629 50  0000 L CNN
-F 1 "SD05-7" V 2220 1629 50  0000 L CNN
-F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 2175 1550 50  0001 C CNN
-F 3 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2175 1550 50  0001 C CNN
-	1    2175 1550
+P 2375 1550
+F 0 "D1" V 2329 1629 50  0000 L CNN
+F 1 "SD05-7" V 2420 1629 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 2375 1550 50  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN
+	1    2375 1550
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	2175 1400 2175 1300
-Connection ~ 2175 1300
+	2375 1400 2375 1300
 $Comp
 L power:GND #PWR02
 U 1 1 5DF00A75
-P 2175 1775
-F 0 "#PWR02" H 2175 1525 50  0001 C CNN
-F 1 "GND" H 2180 1602 50  0000 C CNN
-F 2 "" H 2175 1775 50  0001 C CNN
-F 3 "" H 2175 1775 50  0001 C CNN
-	1    2175 1775
+P 2375 1775
+F 0 "#PWR02" H 2375 1525 50  0001 C CNN
+F 1 "GND" H 2380 1602 50  0000 C CNN
+F 2 "" H 2375 1775 50  0001 C CNN
+F 3 "" H 2375 1775 50  0001 C CNN
+	1    2375 1775
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2175 1775 2175 1700
+	2375 1775 2375 1700
 $Comp
 L Device:D D2
 U 1 1 5E37B877
@@ -745,19 +741,6 @@ Wire Wire Line
 	5950 3400 5725 3400
 Text Notes 10000 4525 0    50   ~ 0
 35 to 50V cap and diode \nrating\n
-Wire Wire Line
-	2175 1300 2950 1300
-$Comp
-L Device:Fuse F?
-U 1 1 5DFE1622
-P 1650 1300
-F 0 "F?" V 1453 1300 50  0000 C CNN
-F 1 "Fuse" V 1544 1300 50  0000 C CNN
-F 2 "" V 1580 1300 50  0001 C CNN
-F 3 "~" H 1650 1300 50  0001 C CNN
-	1    1650 1300
-	0    1    1    0   
-$EndComp
 Text Label 3900 3400 2    50   ~ 0
 MEAS_IN
 Wire Wire Line
@@ -774,10 +757,8 @@ Text Label 3900 4075 2    50   ~ 0
 CANL
 Wire Wire Line
 	3900 4075 4025 4075
-Text Label 1375 1300 2    50   ~ 0
+Text Label 2250 1300 2    50   ~ 0
 LIVE_IN
-Wire Wire Line
-	1375 1300 1500 1300
 Text Label 2025 3400 0    50   ~ 0
 LIVE_IN
 Text Label 2025 3600 0    50   ~ 0
@@ -802,4 +783,12 @@ Wire Notes Line
 	2950 2700 2950 5175
 Text Notes 675  6325 0    50   ~ 0
 MEAS_IN needs to be physically placed after caps\n
+Text Notes 9925 4775 0    50   ~ 0
+Approximately 50% duty cycle \nat 50KHz from PWM module\n
+Wire Wire Line
+	2250 1300 2375 1300
+Wire Wire Line
+	2950 1300 2375 1300
+Connection ~ 2950 1300
+Connection ~ 2375 1300
 $EndSCHEMATC

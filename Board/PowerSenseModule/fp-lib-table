@@ -1,4 +1,5 @@
 (fp_lib_table
   (lib (name Connector_TE)(type KiCad)(uri ${CUSTOM_FOOTPRINT_DIR}/Connectors/Connector_TE.pretty)(options "")(descr ""))
   (lib (name Package_SON_Custom)(type KiCad)(uri ${CUSTOM_FOOTPRINT_DIR}/Package_SON/Package_SON_Custom.pretty)(options "")(descr ""))
+  (lib (name ABRACON_4PIN)(type KiCad)(uri ${CUSTOM_FOOTPRINT_DIR}/Crystals/ABRACON_4PIN.pretty)(options "")(descr ""))
 )

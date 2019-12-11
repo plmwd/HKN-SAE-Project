@@ -351,12 +351,12 @@ Wire Wire Line
 Wire Wire Line
 	7075 5375 7125 5375
 $Comp
-L Device:Crystal Y1
+L Device:Crystal_GND24_Small Y1
 U 1 1 5D7A06C0
 P 4400 5375
 F 0 "Y1" V 4446 5244 50  0000 R CNN
 F 1 "25 MHz" V 4355 5244 50  0000 R CNN
-F 2 "Crystal_SMD_2520-4Pin_2.5x2.0mm.kicad_mod_IEEE.kicad_mod" H 4400 5375 50  0001 C CNN
+F 2 "ABRACON_4PIN:Crystal_SMD_S2.05mm_L2.55" H 4400 5375 50  0001 C CNN
 F 3 "https://www.mouser.com/datasheet/2/3/ABM10AIG-783578.pdf" H 4400 5375 50  0001 C CNN
 F 4 "Abracon" H 4400 5375 50  0001 C CNN "Manufacturer"
 F 5 "ABM10AIG-25.000MHZ-4Z-T3" H 4400 5375 50  0001 C CNN "Manufacturer PN"
@@ -408,14 +408,14 @@ Wire Wire Line
 Wire Wire Line
 	4775 5550 4770 5550
 Wire Wire Line
-	4400 5550 4400 5525
+	4400 5550 4400 5475
 Connection ~ 4770 5550
 Wire Wire Line
 	4770 5550 4400 5550
 Wire Wire Line
 	4775 5200 4770 5200
 Wire Wire Line
-	4400 5200 4400 5225
+	4400 5200 4400 5275
 Connection ~ 4770 5200
 Wire Wire Line
 	4770 5200 4400 5200
@@ -1263,4 +1263,26 @@ Wire Wire Line
 	1925 1900 1875 1900
 Wire Wire Line
 	3275 1400 3275 1500
+Wire Wire Line
+	4300 5375 4300 5650
+Wire Wire Line
+	4500 5375 4500 5650
+$Comp
+L power:GNDA #PWR0107
+U 1 1 5DFA3DB1
+P 4400 5650
+F 0 "#PWR0107" H 4400 5400 50  0001 C CNN
+F 1 "GNDA" H 4405 5477 50  0000 C CNN
+F 2 "" H 4400 5650 50  0001 C CNN
+F 3 "" H 4400 5650 50  0001 C CNN
+	1    4400 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 5650 4400 5650
+Wire Wire Line
+	4400 5675 4400 5650
+Connection ~ 4400 5650
+Wire Wire Line
+	4400 5650 4300 5650
 $EndSCHEMATC
