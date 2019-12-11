@@ -530,6 +530,11 @@ F 1 "D" H 7300 4050 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 7300 4175 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 7300 4175 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 7300 4175 50  0001 C CNN "Supplier Link"
+F 5 "Toshiba" H 7300 4175 50  0001 C CNN "Manufacturer"
+F 6 "CUS10S30,H3F" H 7300 4175 50  0001 C CNN "Manufacturer PN"
+F 7 "0.42" H 7300 4175 50  0001 C CNN "Price 1 QTY"
+F 8 "Mouser" H 7300 4175 50  0001 C CNN "Supplier"
+F 9 " 757-CUS10S30H3F " H 7300 4175 50  0001 C CNN "Supplier PN"
 	1    7300 4175
 	-1   0    0    1   
 $EndComp
@@ -542,6 +547,11 @@ F 1 "D" H 7825 4050 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 7825 4175 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 7825 4175 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 7825 4175 50  0001 C CNN "Supplier Link"
+F 5 "Toshiba" H 7825 4175 50  0001 C CNN "Manufacturer"
+F 6 "CUS10S30,H3F" H 7825 4175 50  0001 C CNN "Manufacturer PN"
+F 7 "0.42" H 7825 4175 50  0001 C CNN "Price 1 QTY"
+F 8 "Mouser" H 7825 4175 50  0001 C CNN "Supplier"
+F 9 " 757-CUS10S30H3F " H 7825 4175 50  0001 C CNN "Supplier PN"
 	1    7825 4175
 	-1   0    0    1   
 $EndComp
@@ -617,6 +627,11 @@ F 1 "D" H 8450 4050 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8450 4175 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8450 4175 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8450 4175 50  0001 C CNN "Supplier Link"
+F 5 "Toshiba" H 8450 4175 50  0001 C CNN "Manufacturer"
+F 6 "CUS10S30,H3F" H 8450 4175 50  0001 C CNN "Manufacturer PN"
+F 7 "0.42" H 8450 4175 50  0001 C CNN "Price 1 QTY"
+F 8 "Mouser" H 8450 4175 50  0001 C CNN "Supplier"
+F 9 " 757-CUS10S30H3F " H 8450 4175 50  0001 C CNN "Supplier PN"
 	1    8450 4175
 	-1   0    0    1   
 $EndComp
@@ -629,6 +644,11 @@ F 1 "D" H 8975 4050 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8975 4175 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8975 4175 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8975 4175 50  0001 C CNN "Supplier Link"
+F 5 "Toshiba" H 8975 4175 50  0001 C CNN "Manufacturer"
+F 6 "CUS10S30,H3F" H 8975 4175 50  0001 C CNN "Manufacturer PN"
+F 7 "0.42" H 8975 4175 50  0001 C CNN "Price 1 QTY"
+F 8 "Mouser" H 8975 4175 50  0001 C CNN "Supplier"
+F 9 " 757-CUS10S30H3F " H 8975 4175 50  0001 C CNN "Supplier PN"
 	1    8975 4175
 	-1   0    0    1   
 $EndComp

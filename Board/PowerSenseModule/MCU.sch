@@ -5,7 +5,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title "Power Sense Module - MCU"
+Title "Power Sense Module "
 Date ""
 Rev "1.0"
 Comp "University of Central Florida - HKN Zeta Chi"

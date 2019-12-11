@@ -5,7 +5,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title "Power Sense Module - MCU"
+Title "Power Sense Module "
 Date ""
 Rev "1.0"
 Comp "University of Central Florida - HKN Zeta Chi"
@@ -1071,7 +1071,7 @@ L Device:C C17
 U 1 1 5D7A1F19
 P 4920 5200
 F 0 "C17" H 5035 5246 50  0000 L CNN
-F 1 "10uF" H 5035 5155 50  0000 L CNN
+F 1 "10pF" H 5035 5155 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4958 5050 50  0001 C CNN
 F 3 "~" H 4920 5200 50  0001 C CNN
 	1    4920 5200
@@ -1082,7 +1082,7 @@ L Device:C C18
 U 1 1 5D95386F
 P 4920 5550
 F 0 "C18" V 4668 5550 50  0000 C CNN
-F 1 "10uF" V 4759 5550 50  0000 C CNN
+F 1 "10pF" V 4759 5550 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4958 5400 50  0001 C CNN
 F 3 "~" H 4920 5550 50  0001 C CNN
 	1    4920 5550
