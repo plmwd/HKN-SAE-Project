@@ -527,8 +527,9 @@ U 1 1 5E37B877
 P 7300 4175
 F 0 "D2" H 7300 3959 50  0000 C CNN
 F 1 "D" H 7300 4050 50  0000 C CNN
-F 2 "" H 7300 4175 50  0001 C CNN
-F 3 "~" H 7300 4175 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 7300 4175 50  0001 C CNN
+F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 7300 4175 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 7300 4175 50  0001 C CNN "Supplier Link"
 	1    7300 4175
 	-1   0    0    1   
 $EndComp
@@ -538,8 +539,9 @@ U 1 1 5E37C9F3
 P 7825 4175
 F 0 "D5" H 7825 3959 50  0000 C CNN
 F 1 "D" H 7825 4050 50  0000 C CNN
-F 2 "" H 7825 4175 50  0001 C CNN
-F 3 "~" H 7825 4175 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 7825 4175 50  0001 C CNN
+F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 7825 4175 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 7825 4175 50  0001 C CNN "Supplier Link"
 	1    7825 4175
 	-1   0    0    1   
 $EndComp
@@ -549,7 +551,7 @@ U 1 1 5E37E7E2
 P 8150 4400
 F 0 "C20" H 8265 4446 50  0000 L CNN
 F 1 "0.1uF" H 8265 4355 50  0000 L CNN
-F 2 "" H 8188 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8188 4250 50  0001 C CNN
 F 3 "~" H 8150 4400 50  0001 C CNN
 	1    8150 4400
 	1    0    0    -1  
@@ -560,7 +562,7 @@ U 1 1 5E37E843
 P 7575 4400
 F 0 "C19" H 7690 4446 50  0000 L CNN
 F 1 "0.1uF" H 7690 4355 50  0000 L CNN
-F 2 "" H 7613 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7613 4250 50  0001 C CNN
 F 3 "~" H 7575 4400 50  0001 C CNN
 	1    7575 4400
 	1    0    0    -1  
@@ -612,8 +614,9 @@ U 1 1 5E394EB5
 P 8450 4175
 F 0 "D6" H 8450 3959 50  0000 C CNN
 F 1 "D" H 8450 4050 50  0000 C CNN
-F 2 "" H 8450 4175 50  0001 C CNN
-F 3 "~" H 8450 4175 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8450 4175 50  0001 C CNN
+F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8450 4175 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8450 4175 50  0001 C CNN "Supplier Link"
 	1    8450 4175
 	-1   0    0    1   
 $EndComp
@@ -623,8 +626,9 @@ U 1 1 5E394EBB
 P 8975 4175
 F 0 "D7" H 8975 3959 50  0000 C CNN
 F 1 "D" H 8975 4050 50  0000 C CNN
-F 2 "" H 8975 4175 50  0001 C CNN
-F 3 "~" H 8975 4175 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8975 4175 50  0001 C CNN
+F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8975 4175 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8975 4175 50  0001 C CNN "Supplier Link"
 	1    8975 4175
 	-1   0    0    1   
 $EndComp
@@ -634,7 +638,7 @@ U 1 1 5E394EC1
 P 9300 4400
 F 0 "C22" H 9415 4446 50  0000 L CNN
 F 1 "0.1uF" H 9415 4355 50  0000 L CNN
-F 2 "" H 9338 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9338 4250 50  0001 C CNN
 F 3 "~" H 9300 4400 50  0001 C CNN
 	1    9300 4400
 	1    0    0    -1  
@@ -645,7 +649,7 @@ U 1 1 5E394EC7
 P 8725 4400
 F 0 "C21" H 8840 4446 50  0000 L CNN
 F 1 "0.1uF" H 8840 4355 50  0000 L CNN
-F 2 "" H 8763 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8763 4250 50  0001 C CNN
 F 3 "~" H 8725 4400 50  0001 C CNN
 	1    8725 4400
 	1    0    0    -1  
@@ -715,7 +719,7 @@ U 1 1 5E3BD7DC
 P 9800 4400
 F 0 "C23" H 9918 4446 50  0000 L CNN
 F 1 "4.7uF" H 9918 4355 50  0000 L CNN
-F 2 "" H 9838 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 9838 4250 50  0001 C CNN
 F 3 "~" H 9800 4400 50  0001 C CNN
 	1    9800 4400
 	1    0    0    -1  
@@ -744,4 +748,6 @@ Text Label 5075 3975 0    50   ~ 0
 PWM
 Wire Wire Line
 	5075 3975 4850 3975
+Text Notes 10050 4875 0    50   ~ 0
+35 to 50V cap and diode \nrating\n
 $EndSCHEMATC
