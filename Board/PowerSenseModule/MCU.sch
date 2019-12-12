@@ -1263,26 +1263,22 @@ Wire Wire Line
 	1925 1900 1875 1900
 Wire Wire Line
 	3275 1400 3275 1500
-Wire Wire Line
-	4300 5375 4300 5650
-Wire Wire Line
-	4500 5375 4500 5650
 $Comp
 L power:GNDA #PWR0107
 U 1 1 5DFA3DB1
-P 4400 5650
-F 0 "#PWR0107" H 4400 5400 50  0001 C CNN
-F 1 "GNDA" H 4405 5477 50  0000 C CNN
-F 2 "" H 4400 5650 50  0001 C CNN
-F 3 "" H 4400 5650 50  0001 C CNN
-	1    4400 5650
+P 4525 5625
+F 0 "#PWR0107" H 4525 5375 50  0001 C CNN
+F 1 "GNDA" H 4530 5452 50  0000 C CNN
+F 2 "" H 4525 5625 50  0001 C CNN
+F 3 "" H 4525 5625 50  0001 C CNN
+	1    4525 5625
 	1    0    0    -1  
 $EndComp
+Text Notes 4050 6200 0    50   ~ 0
+both pins 2 and 4 are connected to\nthe lid, so only need to connect one to\nground. After PCB layout, easier to connect\nonly pin 2.
+NoConn ~ 4300 5375
 Wire Wire Line
-	4500 5650 4400 5650
+	4500 5375 4525 5375
 Wire Wire Line
-	4400 5675 4400 5650
-Connection ~ 4400 5650
-Wire Wire Line
-	4400 5650 4300 5650
+	4525 5625 4525 5375
 $EndSCHEMATC
