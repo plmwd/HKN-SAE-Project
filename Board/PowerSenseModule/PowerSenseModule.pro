@@ -1,4 +1,4 @@
-update=12/12/2019 11:28:01 AM
+update=12/12/2019 12:58:49 PM
 version=1
 last_client=kicad
 [general]
@@ -28,7 +28,9 @@ MinViaDrill=0.2
 MinMicroViaDiameter=0.2
 MinMicroViaDrill=0.09999999999999999
 MinHoleToHole=0.25
-TrackWidth1=0.1524
+TrackWidth1=0.25
+TrackWidth2=0.25
+TrackWidth3=0.45
 ViaDiameter1=0.7
 ViaDrill1=0.4
 dPairWidth1=0.2
@@ -228,7 +230,7 @@ Enabled=0
 [pcbnew/Netclasses/Default]
 Name=Default
 Clearance=0.14
-TrackWidth=0.1524
+TrackWidth=0.25
 ViaDiameter=0.7
 ViaDrill=0.4
 uViaDiameter=0.3
@@ -237,9 +239,20 @@ dPairWidth=0.2
 dPairGap=0.15
 dPairViaGap=0.25
 [pcbnew/Netclasses/1]
+Name=Default - thick trace
+Clearance=0.4
+TrackWidth=0.25
+ViaDiameter=0.7
+ViaDrill=0.4
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.15
+dPairViaGap=0.25
+[pcbnew/Netclasses/2]
 Name=JLC Min
 Clearance=0.9
-TrackWidth=0.9
+TrackWidth=0.09
 ViaDiameter=0.45
 ViaDrill=0.2
 uViaDiameter=0.3
