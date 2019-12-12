@@ -389,22 +389,6 @@ F 3 "~" H 4920 5550 50  0001 C CNN
 	1    4920 5550
 	0    -1   -1   0   
 $EndComp
-$Comp
-L power:GNDA #PWR035
-U 1 1 5D9832AA
-P 5070 5370
-F 0 "#PWR035" H 5070 5120 50  0001 C CNN
-F 1 "GNDA" V 5075 5242 50  0000 R CNN
-F 2 "" H 5070 5370 50  0001 C CNN
-F 3 "" H 5070 5370 50  0001 C CNN
-	1    5070 5370
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	5070 5200 5070 5370
-Connection ~ 5070 5370
-Wire Wire Line
-	5070 5370 5070 5550
 Wire Wire Line
 	4775 5550 4770 5550
 Wire Wire Line
@@ -1263,17 +1247,6 @@ Wire Wire Line
 	1925 1900 1875 1900
 Wire Wire Line
 	3275 1400 3275 1500
-$Comp
-L power:GNDA #PWR0107
-U 1 1 5DFA3DB1
-P 4525 5625
-F 0 "#PWR0107" H 4525 5375 50  0001 C CNN
-F 1 "GNDA" H 4530 5452 50  0000 C CNN
-F 2 "" H 4525 5625 50  0001 C CNN
-F 3 "" H 4525 5625 50  0001 C CNN
-	1    4525 5625
-	1    0    0    -1  
-$EndComp
 Text Notes 4050 6200 0    50   ~ 0
 both pins 2 and 4 are connected to\nthe lid, so only need to connect one to\nground. After PCB layout, easier to connect\nonly pin 2.
 NoConn ~ 4300 5375
@@ -1281,4 +1254,35 @@ Wire Wire Line
 	4500 5375 4525 5375
 Wire Wire Line
 	4525 5625 4525 5375
+$Comp
+L power:GNDD #PWR0107
+U 1 1 5DF77780
+P 4525 5625
+F 0 "#PWR0107" H 4525 5375 50  0001 C CNN
+F 1 "GNDD" H 4529 5470 50  0000 C CNN
+F 2 "" H 4525 5625 50  0001 C CNN
+F 3 "" H 4525 5625 50  0001 C CNN
+	1    4525 5625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5070 5200 5070 5350
+Wire Wire Line
+	5070 5350 5300 5350
+Wire Wire Line
+	5300 5350 5300 5625
+$Comp
+L power:GNDD #PWR?
+U 1 1 5DF81099
+P 5300 5625
+F 0 "#PWR?" H 5300 5375 50  0001 C CNN
+F 1 "GNDD" H 5304 5470 50  0000 C CNN
+F 2 "" H 5300 5625 50  0001 C CNN
+F 3 "" H 5300 5625 50  0001 C CNN
+	1    5300 5625
+	1    0    0    -1  
+$EndComp
+Connection ~ 5070 5350
+Wire Wire Line
+	5070 5350 5070 5550
 $EndSCHEMATC

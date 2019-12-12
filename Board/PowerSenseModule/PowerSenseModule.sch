@@ -791,4 +791,70 @@ Wire Wire Line
 	2950 1300 2375 1300
 Connection ~ 2950 1300
 Connection ~ 2375 1300
+$Comp
+L Mechanical:MountingHole_Pad H4
+U 1 1 5DF32F9A
+P 9625 5675
+F 0 "H4" H 9725 5724 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9300 5900 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9625 5675 50  0001 C CNN
+F 3 "~" H 9625 5675 50  0001 C CNN
+	1    9625 5675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 5DF339FC
+P 8500 5675
+F 0 "H2" H 8600 5724 50  0000 L CNN
+F 1 "MountingHole_Pad" H 8175 5900 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 8500 5675 50  0001 C CNN
+F 3 "~" H 8500 5675 50  0001 C CNN
+	1    8500 5675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H3
+U 1 1 5DF34056
+P 9075 5675
+F 0 "H3" H 9175 5724 50  0000 L CNN
+F 1 "MountingHole_Pad" H 8725 6025 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9075 5675 50  0001 C CNN
+F 3 "~" H 9075 5675 50  0001 C CNN
+	1    9075 5675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5DF3457C
+P 7950 5675
+F 0 "H1" H 8050 5724 50  0000 L CNN
+F 1 "MountingHole_Pad" H 7625 6025 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 7950 5675 50  0001 C CNN
+F 3 "~" H 7950 5675 50  0001 C CNN
+	1    7950 5675
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 5775 8500 5775
+Connection ~ 8500 5775
+Wire Wire Line
+	8500 5775 8800 5775
+Connection ~ 9075 5775
+Wire Wire Line
+	9075 5775 9625 5775
+$Comp
+L power:GND #PWR0108
+U 1 1 5DF4159C
+P 8800 5775
+F 0 "#PWR0108" H 8800 5525 50  0001 C CNN
+F 1 "GND" H 8805 5602 50  0000 C CNN
+F 2 "" H 8800 5775 50  0001 C CNN
+F 3 "" H 8800 5775 50  0001 C CNN
+	1    8800 5775
+	1    0    0    -1  
+$EndComp
+Connection ~ 8800 5775
+Wire Wire Line
+	8800 5775 9075 5775
 $EndSCHEMATC
