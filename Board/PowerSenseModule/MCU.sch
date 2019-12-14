@@ -547,12 +547,6 @@ Wire Wire Line
 	8575 2600 8575 2350
 Wire Wire Line
 	7775 2600 8100 2600
-Wire Wire Line
-	7775 2450 7775 2600
-Wire Wire Line
-	7875 2450 7775 2450
-Wire Wire Line
-	7875 2250 7025 2250
 $Comp
 L F1_OP_Amps:NCV2007x U2
 U 3 1 5D4B6BBE
@@ -573,26 +567,9 @@ $EndComp
 $Comp
 L F1_OP_Amps:NCV2007x U2
 U 2 1 5D4B605F
-P 8125 2350
-F 0 "U2" H 8175 2717 50  0000 C CNN
-F 1 "NCV2007x" H 8175 2626 50  0000 C CNN
-F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 2000 50  0001 C CNN
-F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 2000 50  0001 C CNN
-F 4 "ON Semiconductor" H 8125 2350 50  0001 C CNN "Manufacturer"
-F 5 "NCV20074DR2G " H 8125 2350 50  0001 C CNN "Manufacturer PN"
-F 6 "Mouser" H 8125 2350 50  0001 C CNN "Supplier"
-F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 8125 2350 50  0001 C CNN "Supplier Link"
-F 8 " 863-NCV20074DR2G " H 8125 2350 50  0001 C CNN "Supplier PN"
-F 9 "1.19" H 8125 2350 50  0001 C CNN "Price 1 QTY"
-	2    8125 2350
-	1    0    0    -1  
-$EndComp
-$Comp
-L F1_OP_Amps:NCV2007x U2
-U 1 1 5D4B495F
 P 8125 1650
-F 0 "U2" H 8175 1283 50  0000 C CNN
-F 1 "NCV2007x" H 8175 1374 50  0000 C CNN
+F 0 "U2" H 8175 2017 50  0000 C CNN
+F 1 "NCV2007x" H 8175 1926 50  0000 C CNN
 F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 1300 50  0001 C CNN
 F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 1300 50  0001 C CNN
 F 4 "ON Semiconductor" H 8125 1650 50  0001 C CNN "Manufacturer"
@@ -601,8 +578,25 @@ F 6 "Mouser" H 8125 1650 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 8125 1650 50  0001 C CNN "Supplier Link"
 F 8 " 863-NCV20074DR2G " H 8125 1650 50  0001 C CNN "Supplier PN"
 F 9 "1.19" H 8125 1650 50  0001 C CNN "Price 1 QTY"
-	1    8125 1650
+	2    8125 1650
 	1    0    0    1   
+$EndComp
+$Comp
+L F1_OP_Amps:NCV2007x U2
+U 1 1 5D4B495F
+P 8125 2350
+F 0 "U2" H 8175 1983 50  0000 C CNN
+F 1 "NCV2007x" H 8175 2074 50  0000 C CNN
+F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 2000 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 2000 50  0001 C CNN
+F 4 "ON Semiconductor" H 8125 2350 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 8125 2350 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 8125 2350 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 8125 2350 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 8125 2350 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 8125 2350 50  0001 C CNN "Price 1 QTY"
+	1    8125 2350
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	7025 2550 7025 2650
@@ -1322,4 +1316,10 @@ Text Label 7320 1750 0    50   ~ 0
 SENSE+
 Text Label 7330 2250 0    50   ~ 0
 SENSE-
+Wire Wire Line
+	7025 2250 7875 2250
+Wire Wire Line
+	7775 2600 7775 2450
+Wire Wire Line
+	7775 2450 7875 2450
 $EndSCHEMATC
