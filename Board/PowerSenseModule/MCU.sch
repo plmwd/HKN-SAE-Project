@@ -52,9 +52,9 @@ Connection ~ 7075 5675
 Wire Wire Line
 	7075 5375 7075 5675
 Text HLabel 2700 5550 2    50   Input ~ 0
-CANL
+CAN-
 Text HLabel 2700 5250 2    50   Input ~ 0
-CANH
+CAN+
 Wire Wire Line
 	7075 5275 7075 5025
 Wire Wire Line
@@ -1318,4 +1318,8 @@ F 3 "" H 10450 5250 50  0001 C CNN
 	1    10450 5250
 	1    0    0    -1  
 $EndComp
+Text Label 7320 1750 0    50   ~ 0
+SENSE+
+Text Label 7330 2250 0    50   ~ 0
+SENSE-
 $EndSCHEMATC

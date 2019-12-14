@@ -52,9 +52,9 @@ Connection ~ 7075 5675
 Wire Wire Line
 	7075 5375 7075 5675
 Text HLabel 2700 5550 2    50   Input ~ 0
-CANL
+CAN-
 Text HLabel 2700 5250 2    50   Input ~ 0
-CANH
+CAN+
 Wire Wire Line
 	7075 5275 7075 5025
 Wire Wire Line

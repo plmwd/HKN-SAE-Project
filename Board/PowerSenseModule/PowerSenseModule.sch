@@ -272,8 +272,8 @@ S 4025 3225 1700 1550
 U 5D226D6E
 F0 "MCU and CAN" 50
 F1 "MCU.sch" 50
-F2 "CANH" T L 4025 3925 50 
-F3 "CANL" T L 4025 4075 50 
+F2 "CAN+" T L 4025 3925 50 
+F3 "CAN-" T L 4025 4075 50 
 F4 "MEASURE_IN" I L 4025 3400 50 
 F5 "MEASURE_OUT" I L 4025 3575 50 
 F6 "PWM" O R 5725 3400 50 
@@ -637,11 +637,11 @@ MEAS_OUT
 Wire Wire Line
 	3900 3575 4025 3575
 Text Label 3900 3925 2    50   ~ 0
-CANH
+CAN+
 Wire Wire Line
 	3900 3925 4025 3925
 Text Label 3900 4075 2    50   ~ 0
-CANL
+CAN-
 Wire Wire Line
 	3900 4075 4025 4075
 Text Label 2250 1300 2    50   ~ 0
@@ -651,9 +651,9 @@ LIVE_IN
 Text Label 2025 3600 0    50   ~ 0
 MEAS_OUT
 Text Label 2025 3800 0    50   ~ 0
-CANH
+CAN+
 Text Label 2025 3900 0    50   ~ 0
-CANL
+CAN-
 Text Label 5425 1300 0    50   ~ 0
 MEAS_IN
 Wire Wire Line
@@ -840,4 +840,6 @@ F 3 "~" H 10600 1525 50  0001 C CNN
 	1    10600 1525
 	1    0    0    -1  
 $EndComp
+Text Notes 3180 5090 0    50   ~ 0
+CAN+ (CANH) and CAN- (CANL) renamed \nto use differential pair KiCAD feature
 $EndSCHEMATC
