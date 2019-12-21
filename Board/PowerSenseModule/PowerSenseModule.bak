@@ -302,7 +302,7 @@ L Connector:Conn_01x06_Male J1
 U 1 1 5D4A20AB
 P 1525 3600
 F 0 "J1" H 1633 3981 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 1633 3890 50  0000 C CNN
+F 1 "DT13-6P" H 1633 3890 50  0000 C CNN
 F 2 "Connector_TE:DT13-6P" H 1525 3600 50  0001 C CNN
 F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FDT13-4P%7FC%7Fpdf%7FEnglish%7FENG_CD_DT13-4P_C.pdf%7FDT13-4P" H 1525 3600 50  0001 C CNN
 	1    1525 3600
@@ -683,7 +683,7 @@ L Mechanical:MountingHole_Pad H4
 U 1 1 5DF32F9A
 P 9625 5675
 F 0 "H4" H 9725 5724 50  0000 L CNN
-F 1 "MountingHole_Pad" H 9300 5900 50  0000 L CNN
+F 1 " " H 9300 5900 50  0001 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9625 5675 50  0001 C CNN
 F 3 "~" H 9625 5675 50  0001 C CNN
 	1    9625 5675
@@ -694,7 +694,7 @@ L Mechanical:MountingHole_Pad H2
 U 1 1 5DF339FC
 P 8500 5675
 F 0 "H2" H 8600 5724 50  0000 L CNN
-F 1 "MountingHole_Pad" H 8175 5900 50  0000 L CNN
+F 1 " " H 8175 5900 50  0001 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 8500 5675 50  0001 C CNN
 F 3 "~" H 8500 5675 50  0001 C CNN
 	1    8500 5675
@@ -705,7 +705,7 @@ L Mechanical:MountingHole_Pad H3
 U 1 1 5DF34056
 P 9075 5675
 F 0 "H3" H 9175 5724 50  0000 L CNN
-F 1 "MountingHole_Pad" H 8725 6025 50  0000 L CNN
+F 1 " " H 8725 6025 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9075 5675 50  0001 C CNN
 F 3 "~" H 9075 5675 50  0001 C CNN
 	1    9075 5675
@@ -716,7 +716,7 @@ L Mechanical:MountingHole_Pad H1
 U 1 1 5DF3457C
 P 7950 5675
 F 0 "H1" H 8050 5724 50  0000 L CNN
-F 1 "MountingHole_Pad" H 7625 6025 50  0000 L CNN
+F 1 " " H 7625 6025 50  0001 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 7950 5675 50  0001 C CNN
 F 3 "~" H 7950 5675 50  0001 C CNN
 	1    7950 5675
@@ -842,4 +842,15 @@ F 3 "~" H 10600 1525 50  0001 C CNN
 $EndComp
 Text Notes 3180 5090 0    50   ~ 0
 CAN+ (CANH) and CAN- (CANL) renamed \nto use differential pair KiCAD feature
+$Comp
+L F1_Logo:LOGO G1
+U 1 1 5E08FC59
+P 10855 6840
+F 0 "G1" H 10855 6579 60  0001 C CNN
+F 1 "LOGO" H 10855 7101 60  0001 C CNN
+F 2 "Logo:HKNZetaChi" H 10854 7153 50  0001 C CNN
+F 3 "" H 10855 6840 50  0001 C CNN
+	1    10855 6840
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
