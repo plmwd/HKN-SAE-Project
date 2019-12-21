@@ -6,7 +6,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 2
 Title "Power Sense Module - Main Page and Power"
-Date ""
+Date "2019-12-18"
 Rev ""
 Comp "University of Central Florida - HKN Zeta Chi"
 Comment1 ""
@@ -305,6 +305,12 @@ F 0 "J1" H 1633 3981 50  0000 C CNN
 F 1 "DT13-6P" H 1633 3890 50  0000 C CNN
 F 2 "Connector_TE:DT13-6P" H 1525 3600 50  0001 C CNN
 F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FDT13-4P%7FC%7Fpdf%7FEnglish%7FENG_CD_DT13-4P_C.pdf%7FDT13-4P" H 1525 3600 50  0001 C CNN
+F 4 "TE Connectivity / DEUTSCH " H 1525 3600 50  0001 C CNN "Manufacturer"
+F 5 "DT13-6P " H 1525 3600 50  0001 C CNN "Manufacturer PN"
+F 6 "9.15" H 1525 3600 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 1525 3600 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/TE-Connectivity-DEUTSCH/DT13-6P?qs=sGAEpiMZZMs7eK6h2EBtKswEMLzR6%2FlTBSgyjyqtRK0%3D" H 1525 3600 50  0001 C CNN "Supplier Link"
+F 9 "571-DT13-6P " H 1525 3600 50  0001 C CNN "Supplier PN"
 	1    1525 3600
 	1    0    0    -1  
 $EndComp
@@ -315,7 +321,13 @@ P 5250 1700
 F 0 "C6" H 5365 1746 50  0000 L CNN
 F 1 "6.8uF" H 5365 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5288 1550 50  0001 C CNN
-F 3 "~" H 5250 1700 50  0001 C CNN
+F 3 "http://product.tdk.com/capacitor/mlcc/detailed_information.php?lang=en&ref=jp&part_no=CGA5L1X7R1V685K160AC" H 5250 1700 50  0001 C CNN
+F 4 "TDK" H 5250 1700 50  0001 C CNN "Manufacturer"
+F 5 "CGA5L1X7R1V685K160AC " H 5250 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.97" H 5250 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 5250 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/TDK/CGA5L1X7R1V685K160AC?qs=sGAEpiMZZMs0AnBnWHyRQFv7x1xn%252BYFdwL6q6%252B9Vk%2FVnVQKBUW1jAA%3D%3D" H 5250 1700 50  0001 C CNN "Supplier Link"
+F 9 "810-CGA5L1X7R1V685KC" H 5250 1700 50  0001 C CNN "Supplier PN"
 	1    5250 1700
 	1    0    0    -1  
 $EndComp
@@ -341,9 +353,15 @@ L Device:C C7
 U 1 1 5D33425E
 P 5900 2200
 F 0 "C7" H 6015 2246 50  0000 L CNN
-F 1 "470p" H 6015 2155 50  0000 L CNN
+F 1 "470pF" H 6015 2155 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5938 2050 50  0001 C CNN
-F 3 "~" H 5900 2200 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1003_C0G_SMD-1101588.pdf" H 5900 2200 50  0001 C CNN
+F 4 "KEMET" H 5900 2200 50  0001 C CNN "Manufacturer"
+F 5 "C0603C471J5GAC7411 " H 5900 2200 50  0001 C CNN "Manufacturer PN"
+F 6 "0.21" H 5900 2200 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 5900 2200 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 5900 2200 50  0001 C CNN "Supplier Link"
+F 9 "-C0603C471J5G7411" H 5900 2200 50  0001 C CNN "Supplier PN"
 	1    5900 2200
 	1    0    0    -1  
 $EndComp
@@ -354,7 +372,13 @@ P 8475 1675
 F 0 "C8" H 8590 1721 50  0000 L CNN
 F 1 "47uF" H 8590 1630 50  0000 L CNN
 F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 8513 1525 50  0001 C CNN
-F 3 "~" H 8475 1675 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/315/kamaya_06202019_Capacitor_Hybrid_Anti-Vib_Hi_Temp_-1606247.pdf" H 8475 1675 50  0001 C CNN
+F 4 "Panasonic" H 8475 1675 50  0001 C CNN "Manufacturer"
+F 5 "EEE-FT1C470AR " H 8475 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.42" H 8475 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 8475 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Panasonic/EEE-FT1C470AR?qs=sGAEpiMZZMtZ1n0r9vR22YEN0kVDQfupG5ns5UzWI9k%3D" H 8475 1675 50  0001 C CNN "Supplier Link"
+F 9 "667-EEE-FT1C470AR " H 8475 1675 50  0001 C CNN "Supplier PN"
 	1    8475 1675
 	1    0    0    -1  
 $EndComp
@@ -365,7 +389,13 @@ P 7875 1900
 F 0 "R3" H 7943 1946 50  0000 L CNN
 F 1 "100k" H 7943 1855 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7915 1890 50  0001 C CNN
-F 3 "~" H 7875 1900 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/427/dcrcwe3-45987.pdf" H 7875 1900 50  0001 C CNN
+F 4 "Vishay / Dale " H 7875 1900 50  0001 C CNN "Manufacturer"
+F 5 "CRCW0603100KFKEA " H 7875 1900 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 7875 1900 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 7875 1900 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Vishay-Dale/CRCW0603100KFKEA?qs=sGAEpiMZZMvdGkrng054tz1PN3csf7M2%2FnVet2rNmPY%3D" H 7875 1900 50  0001 C CNN "Supplier Link"
+F 9 "71-CRCW0603-100K-E3 " H 7875 1900 50  0001 C CNN "Supplier PN"
 	1    7875 1900
 	1    0    0    -1  
 $EndComp
@@ -376,7 +406,13 @@ P 7875 1500
 F 0 "R2" H 7943 1546 50  0000 L CNN
 F 1 "523k" H 7943 1455 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7915 1490 50  0001 C CNN
-F 3 "~" H 7875 1500 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/54/chpreztr-777398.pdf" H 7875 1500 50  0001 C CNN
+F 4 "Bourns" H 7875 1500 50  0001 C CNN "Manufacturer"
+F 5 "CR0603-FX-5233ELF" H 7875 1500 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 7875 1500 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 7875 1500 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Bourns/CR0603-FX-5233ELF?qs=sGAEpiMZZMvdGkrng054t%252BRNGJdg958RTagDgak0pWY%3D" H 7875 1500 50  0001 C CNN "Supplier Link"
+F 9 "652-CR0603FX-5233ELF" H 7875 1500 50  0001 C CNN "Supplier PN"
 	1    7875 1500
 	1    0    0    -1  
 $EndComp
@@ -387,7 +423,13 @@ P 7300 1750
 F 0 "R1" H 7368 1796 50  0000 L CNN
 F 1 "100k" H 7368 1705 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7340 1740 50  0001 C CNN
-F 3 "~" H 7300 1750 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/427/dcrcwe3-45987.pdf" H 7300 1750 50  0001 C CNN
+F 4 "Vishay / Dale " H 7300 1750 50  0001 C CNN "Manufacturer"
+F 5 "CRCW0603100KFKEA " H 7300 1750 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 7300 1750 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 7300 1750 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/Vishay-Dale/CRCW0603100KFKEA?qs=sGAEpiMZZMvdGkrng054tz1PN3csf7M2%2FnVet2rNmPY%3D" H 7300 1750 50  0001 C CNN "Supplier Link"
+F 9 "71-CRCW0603-100K-E3 " H 7300 1750 50  0001 C CNN "Supplier PN"
 	1    7300 1750
 	1    0    0    -1  
 $EndComp
@@ -397,8 +439,14 @@ U 1 1 5D3344CE
 P 4800 1700
 F 0 "C5" H 4915 1746 50  0000 L CNN
 F 1 "4.7uF" H 4915 1655 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4838 1550 50  0001 C CNN
-F 3 "~" H 4800 1700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4838 1550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 4800 1700 50  0001 C CNN
+F 4 "TDK" H 4800 1700 50  0001 C CNN "Manufacturer"
+F 5 "CGA4J1X7R1H475K125AC" H 4800 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.69" H 4800 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 4800 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/TDK/CGA4J1X7R1H475K125AC?qs=sGAEpiMZZMs0AnBnWHyRQN7%2FAA2D2lPP1QOYv8vVMK7ZOyW90AinIg%3D%3D" H 4800 1700 50  0001 C CNN "Supplier Link"
+F 9 "810-CGA4J1X7R1H475K1 " H 4800 1700 50  0001 C CNN "Supplier PN"
 	1    4800 1700
 	1    0    0    -1  
 $EndComp
@@ -409,7 +457,13 @@ P 4350 1700
 F 0 "C4" H 4465 1746 50  0000 L CNN
 F 1 "0.1uF" H 4465 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4388 1550 50  0001 C CNN
-F 3 "~" H 4350 1700 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 4350 1700 50  0001 C CNN
+F 4 "TDK" H 4350 1700 50  0001 C CNN "Manufacturer"
+F 5 "CGA3E2X7R1H104K080AA " H 4350 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 4350 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 4350 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 4350 1700 50  0001 C CNN "Supplier Link"
+F 9 "810-CGA3E2X7R1H104K " H 4350 1700 50  0001 C CNN "Supplier PN"
 	1    4350 1700
 	1    0    0    -1  
 $EndComp
@@ -420,7 +474,13 @@ P 3850 1700
 F 0 "C3" H 3965 1746 50  0000 L CNN
 F 1 "0.01uF" H 3965 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3888 1550 50  0001 C CNN
-F 3 "~" H 3850 1700 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1002_X7R_SMD-1102033.pdf" H 3850 1700 50  0001 C CNN
+F 4 "KEMET" H 3850 1700 50  0001 C CNN "Manufacturer"
+F 5 "C0603C103J5RACTU " H 3850 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.10" H 3850 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 3850 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C103J5RACTU?qs=sGAEpiMZZMs0AnBnWHyRQJxdEn2F2BG1SUc13Z4vudE%3D" H 3850 1700 50  0001 C CNN "Supplier Link"
+F 9 "80-C0603C103J5R " H 3850 1700 50  0001 C CNN "Supplier PN"
 	1    3850 1700
 	1    0    0    -1  
 $EndComp
@@ -431,7 +491,13 @@ P 3400 1700
 F 0 "C2" H 3515 1746 50  0000 L CNN
 F 1 "470pF" H 3515 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3438 1550 50  0001 C CNN
-F 3 "~" H 3400 1700 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1003_C0G_SMD-1101588.pdf" H 3400 1700 50  0001 C CNN
+F 4 "KEMET" H 3400 1700 50  0001 C CNN "Manufacturer"
+F 5 "C0603C471J5GAC7411 " H 3400 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.21" H 3400 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 3400 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 3400 1700 50  0001 C CNN "Supplier Link"
+F 9 "-C0603C471J5G7411" H 3400 1700 50  0001 C CNN "Supplier PN"
 	1    3400 1700
 	1    0    0    -1  
 $EndComp
@@ -442,7 +508,13 @@ P 2950 1700
 F 0 "C1" H 3065 1746 50  0000 L CNN
 F 1 "4.7pF" H 3065 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2988 1550 50  0001 C CNN
-F 3 "~" H 2950 1700 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1063_X8R_FT-CAP_SMD-1279429.pdf" H 2950 1700 50  0001 C CNN
+F 4 "KEMET" H 2950 1700 50  0001 C CNN "Manufacturer"
+F 5 "C0603X479C1HACTU " H 2950 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.12" H 2950 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 2950 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603X479C1HACTU?qs=sGAEpiMZZMvsSlwiRhF8qtsBU8Zhqm2RhNK9s8J99zqFcp5DRNC0WQ%3D%3D" H 2950 1700 50  0001 C CNN "Supplier Link"
+F 9 "80-C0603X479C1HACTU" H 2950 1700 50  0001 C CNN "Supplier PN"
 	1    2950 1700
 	1    0    0    -1  
 $EndComp
@@ -454,6 +526,7 @@ F 0 "D1" V 2329 1629 50  0000 L CNN
 F 1 "SD05-7" V 2420 1629 50  0000 L CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 2375 1550 50  0001 C CNN
 F 3 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN
+F 4 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN "Supplier Link"
 	1    2375 1550
 	0    1    1    0   
 $EndComp
@@ -477,7 +550,7 @@ L Device:D D2
 U 1 1 5E37B877
 P 7825 3500
 F 0 "D2" H 7825 3284 50  0000 C CNN
-F 1 "D" H 7825 3375 50  0000 C CNN
+F 1 "DPUMP" H 7825 3375 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 7825 3500 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 7825 3500 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 7825 3500 50  0001 C CNN "Supplier Link"
@@ -494,7 +567,7 @@ L Device:D D5
 U 1 1 5E37C9F3
 P 8350 3500
 F 0 "D5" H 8350 3284 50  0000 C CNN
-F 1 "D" H 8350 3375 50  0000 C CNN
+F 1 "DPUMP" H 8350 3375 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8350 3500 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8350 3500 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8350 3500 50  0001 C CNN "Supplier Link"
@@ -512,8 +585,13 @@ U 1 1 5E37E843
 P 8100 3725
 F 0 "C19" H 8215 3771 50  0000 L CNN
 F 1 "0.1uF" H 8215 3680 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 8138 3575 50  0001 C CNN
-F 3 "~" H 8100 3725 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8138 3575 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 8100 3725 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA " H 8100 3725 50  0001 C CNN "Manufacturer PN"
+F 5 "0.1" H 8100 3725 50  0001 C CNN "Price 1 QTY"
+F 6 "Mouser" H 8100 3725 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8100 3725 50  0001 C CNN "Supplier Link"
+F 8 "810-CGA3E2X7R1H104K " H 8100 3725 50  0001 C CNN "Supplier PN"
 	1    8100 3725
 	1    0    0    -1  
 $EndComp
@@ -546,7 +624,7 @@ L Device:D D6
 U 1 1 5E394EB5
 P 8975 3500
 F 0 "D6" H 8975 3284 50  0000 C CNN
-F 1 "D" H 8975 3375 50  0000 C CNN
+F 1 "DPUMP" H 8975 3375 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8975 3500 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 8975 3500 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 8975 3500 50  0001 C CNN "Supplier Link"
@@ -563,7 +641,7 @@ L Device:D D7
 U 1 1 5E394EBB
 P 9500 3500
 F 0 "D7" H 9500 3284 50  0000 C CNN
-F 1 "D" H 9500 3375 50  0000 C CNN
+F 1 "DPUMP" H 9500 3375 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 9500 3500 50  0001 C CNN
 F 3 "http://toshiba.semicon-storage.com/ap-en/product/diode/sbd/detail.CUS10S30.html" H 9500 3500 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D" H 9500 3500 50  0001 C CNN "Supplier Link"
@@ -581,8 +659,13 @@ U 1 1 5E394EC7
 P 9250 3725
 F 0 "C21" H 9365 3771 50  0000 L CNN
 F 1 "0.1uF" H 9365 3680 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9288 3575 50  0001 C CNN
-F 3 "~" H 9250 3725 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 9288 3575 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 9250 3725 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA " H 9250 3725 50  0001 C CNN "Manufacturer PN"
+F 5 "0.1" H 9250 3725 50  0001 C CNN "Price 1 QTY"
+F 6 "Mouser" H 9250 3725 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9250 3725 50  0001 C CNN "Supplier Link"
+F 8 "810-CGA3E2X7R1H104K " H 9250 3725 50  0001 C CNN "Supplier PN"
 	1    9250 3725
 	1    0    0    -1  
 $EndComp
@@ -761,8 +844,13 @@ U 1 1 5E0635BE
 P 8680 3720
 F 0 "C20" H 8795 3766 50  0000 L CNN
 F 1 "0.1uF" H 8795 3675 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 8718 3570 50  0001 C CNN
-F 3 "~" H 8680 3720 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8718 3570 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 8680 3720 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA " H 8680 3720 50  0001 C CNN "Manufacturer PN"
+F 5 "0.1" H 8680 3720 50  0001 C CNN "Price 1 QTY"
+F 6 "Mouser" H 8680 3720 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8680 3720 50  0001 C CNN "Supplier Link"
+F 8 "810-CGA3E2X7R1H104K " H 8680 3720 50  0001 C CNN "Supplier PN"
 	1    8680 3720
 	1    0    0    -1  
 $EndComp
@@ -792,8 +880,13 @@ U 1 1 5E07A737
 P 9880 3770
 F 0 "C22" H 9995 3816 50  0000 L CNN
 F 1 "0.1uF" H 9995 3725 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9918 3620 50  0001 C CNN
-F 3 "~" H 9880 3770 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 9918 3620 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 9880 3770 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA " H 9880 3770 50  0001 C CNN "Manufacturer PN"
+F 5 "0.1" H 9880 3770 50  0001 C CNN "Price 1 QTY"
+F 6 "Mouser" H 9880 3770 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9880 3770 50  0001 C CNN "Supplier Link"
+F 8 "810-CGA3E2X7R1H104K " H 9880 3770 50  0001 C CNN "Supplier PN"
 	1    9880 3770
 	1    0    0    -1  
 $EndComp
@@ -806,8 +899,14 @@ U 1 1 5E3BD7DC
 P 10340 3720
 F 0 "C23" H 10458 3766 50  0000 L CNN
 F 1 "4.7uF" H 10458 3675 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 10378 3570 50  0001 C CNN
-F 3 "~" H 10340 3720 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10378 3570 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 10340 3720 50  0001 C CNN
+F 4 "TDK" H 10340 3720 50  0001 C CNN "Manufacturer"
+F 5 "CGA4J1X7R1H475K125AC" H 10340 3720 50  0001 C CNN "Manufacturer PN"
+F 6 "0.69" H 10340 3720 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 10340 3720 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/TDK/CGA4J1X7R1H475K125AC?qs=sGAEpiMZZMs0AnBnWHyRQN7%2FAA2D2lPP1QOYv8vVMK7ZOyW90AinIg%3D%3D" H 10340 3720 50  0001 C CNN "Supplier Link"
+F 9 "810-CGA4J1X7R1H475K1 " H 10340 3720 50  0001 C CNN "Supplier PN"
 	1    10340 3720
 	1    0    0    -1  
 $EndComp

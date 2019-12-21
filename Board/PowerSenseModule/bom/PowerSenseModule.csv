@@ -1,0 +1,61 @@
+Title,Power Sense Module - Main Page and Power
+Revision,
+Date,2019-12-18
+Generated,12/21/2019 2:44:31 PM
+Company,University of Central Florida - HKN Zeta Chi
+Comment 1,
+Comment 2,
+Comment 3,
+Comment 4,
+Total Parts,70
+Total Unique Parts,40
+
+
+
+Ref,Qty,Value,Footprint,Manufacturer,Manufacturer PN,Price 1 QTY,Supplier,Supplier Link,Supplier PN,
+C6 ,1,6.8uF,Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder,TDK,CGA5L1X7R1V685K160AC ,0.97,Mouser,https://www.mouser.com/ProductDetail/TDK/CGA5L1X7R1V685K160AC?qs=sGAEpiMZZMs0AnBnWHyRQFv7x1xn%252BYFdwL6q6%252B9Vk%2FVnVQKBUW1jAA%3D%3D,810-CGA5L1X7R1V685KC
+C7 C2 ,2,470pF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,KEMET,C0603C471J5GAC7411 ,0.21,Mouser,https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D,-C0603C471J5G7411
+C8 ,1,47uF,Capacitor_SMD:CP_Elec_4x5.8,Panasonic,EEE-FT1C470AR ,0.42,Mouser,https://www.mouser.com/ProductDetail/Panasonic/EEE-FT1C470AR?qs=sGAEpiMZZMtZ1n0r9vR22YEN0kVDQfupG5ns5UzWI9k%3D,667-EEE-FT1C470AR 
+C5 C23 ,2,4.7uF,Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder,TDK,CGA4J1X7R1H475K125AC,0.69,Mouser,https://www.mouser.com/ProductDetail/TDK/CGA4J1X7R1H475K125AC?qs=sGAEpiMZZMs0AnBnWHyRQN7%2FAA2D2lPP1QOYv8vVMK7ZOyW90AinIg%3D%3D,810-CGA4J1X7R1H475K1 
+C4 C14 C11 C12 ,4,0.1uF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,TDK,CGA3E2X7R1H104K080AA ,0.1,Mouser,https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D,810-CGA3E2X7R1H104K 
+C3 C13 C10 C24 ,4,0.01uF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,KEMET,C0603C103J5RACTU ,0.10,Mouser,https://www.mouser.com/ProductDetail/KEMET/C0603C103J5RACTU?qs=sGAEpiMZZMs0AnBnWHyRQJxdEn2F2BG1SUc13Z4vudE%3D,80-C0603C103J5R 
+C1 ,1,4.7pF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,KEMET,C0603X479C1HACTU ,0.12,Mouser,https://www.mouser.com/ProductDetail/KEMET/C0603X479C1HACTU?qs=sGAEpiMZZMvsSlwiRhF8qtsBU8Zhqm2RhNK9s8J99zqFcp5DRNC0WQ%3D%3D,80-C0603X479C1HACTU
+C19 C21 C20 C22 ,4,0.1uF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder, ,CGA3E2X7R1H104K080AA ,0.1,Mouser,https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D,810-CGA3E2X7R1H104K 
+C17 C18 ,2,10pF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,KEMET,C0603C100J5GAC3190 ,0.1,Mouser,https://www.mouser.com/ProductDetail/KEMET/C0603C100J5GAC3190?qs=sGAEpiMZZMs0AnBnWHyRQAEbWhFpzKZHZLbFbAhRKyJ3xhQ%252BCi1ISg%3D%3D,80-C0603C100J5G3190
+C9 C16 ,2,33nF,Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,TDK,CGA3E2X7R1H333M080AA ,0.1,Mouser,https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H333M080AA?qs=sGAEpiMZZMvsSlwiRhF8qtKev7nvVKumKqcC%2FWMjzedOy0hAAevCbA%3D%3D,810-CGA3E2X7R1H333MA
+C15 ,1,10uF,Capacitor_Tantalum_SMD:CP_EIA-3528-12_Kemet-T_Pad1.50x2.35mm_HandSolder,KEMET,T491B106K016ATAUTO ,0.57,Mouser,https://www.mouser.com/ProductDetail/KEMET/T491B106K016ATAUTO?qs=sGAEpiMZZMuEN2agSAc2pudakkFilzLf93Y6vEE%252BqPU%3D,80-T491B106K016AUTO
+D1 ,1,SD05-7,Diode_SMD:D_SOD-323_HandSoldering, , , , ,https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D, 
+D2 D5 D6 D7 ,4,DPUMP,Diode_SMD:D_SOD-323_HandSoldering,Toshiba,CUS10S30 H3F,0.42,Mouser,https://www.mouser.com/ProductDetail/Toshiba/CUS10S30H3F?qs=sGAEpiMZZMtQ8nqTKtFS%2FLnbHK8U7YHpoD%2FnZkbvIUu50yFANYtBSg%3D%3D, 757-CUS10S30H3F 
+D4 D3 ,2,LED,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder, , , , , , 
+G1 ,1,LOGO,Logo:HKNZetaChi, , , , , , 
+H4 H2 H3 H1 ,4, ,MountingHole:MountingHole_2.7mm_M2.5_Pad, , , , , , 
+J1 ,1,DT13-6P,Connector_TE:DT13-6P,TE Connectivity / DEUTSCH ,DT13-6P ,9.15,Mouser,https://www.mouser.com/ProductDetail/TE-Connectivity-DEUTSCH/DT13-6P?qs=sGAEpiMZZMs7eK6h2EBtKswEMLzR6%2FlTBSgyjyqtRK0%3D,571-DT13-6P 
+J3 ,1,Programming Header,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical, , , , ,https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1, 
+J4 ,1,Board Interconnect,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical, , , , ,https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1, 
+J2 ,1,ISENSE,Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical, , , , ,https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1, 
+J5 ,1,VSENSE,Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical, , , , ,https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1, 
+JP1 ,1,Program Enable Jumper,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical, , , , ,https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1, 
+NT1 ,1,Net-Tie_2,NetTie:NetTie-2_SMD_Pad2.0mm, , , , , , 
+R3 R1 ,2,100k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Vishay / Dale ,CRCW0603100KFKEA ,0.1,Mouser,https://www.mouser.com/ProductDetail/Vishay-Dale/CRCW0603100KFKEA?qs=sGAEpiMZZMvdGkrng054tz1PN3csf7M2%2FnVet2rNmPY%3D,71-CRCW0603-100K-E3 
+R2 ,1,523k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Bourns,CR0603-FX-5233ELF,0.1,Mouser,https://www.mouser.com/ProductDetail/Bourns/CR0603-FX-5233ELF?qs=sGAEpiMZZMvdGkrng054t%252BRNGJdg958RTagDgak0pWY%3D,652-CR0603FX-5233ELF
+R7 ,1,120,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J121V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J121V/P120BZCT-ND/5036246,P120BZCT-ND
+R20 R21 ,2,300,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J301V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J301V/P300BZCT-ND/5036302,P300BZCT-ND
+R9 R6 ,2,0,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Keystone ,5110,0.43,DigiKey,https://www.digikey.com/product-detail/en/keystone-electronics/5110/36-5110CT-ND/5118858,36-5110CT-ND
+R14 R22 ,2,1k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J102V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J102V/P1KBZCT-ND/5036236,P1KBZCT-ND
+R13 R12 ,2,75k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J753V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364,P75KBZCT-ND
+R11 R10 ,2,1.2k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J122V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247,P1.2KBZCT-ND
+R8 ,1,4m,Resistor_SMD:R_4020_10251Metric_Pad1.65x5.30mm_HandSolder,Vishay,WSLP39214L000FEB ,2.18,Mouser,https://www.mouser.com/ProductDetail/Vishay-Dale/WSLP39214L000FEB?qs=sGAEpiMZZMtlleCFQhR%2FzQgA6HzdQSfq2cZRquULrVo%3D, 71- 71-WSLP39214L000FEB 
+R17 R19 ,2,4.99k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Vishay / Dale,RCS06034K99FKEA,0.14,DigiKey,https://www.digikey.com/product-detail/en/vishay-dale/RCS06034K99FKEA/541-2794-1-ND/5867087,541-2794-1-ND
+R18 R15 R16 R4 ,4,10k,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J103V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J103V/P10KBZCT-ND/5036237,P10KBZCT-ND
+R5 ,1,470,Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,Panasonic,ERJ-PA3J471V,0.1,DigiKey,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J471V/P470BZCT-ND/5036331,P470BZCT-ND
+U1 ,1,TPS82150,Package_LGA:Texas_SIL0008D_MicroSiP-8-1EP_2.8x3mm_P0.65mm_EP1.1x1.9mm,TI,TPS82150SILR ,3.03,Mouser,https://www.mouser.com/ProductDetail/?qs=gt1LBUVyoHksxpRVOmIIkg%3D%3D, 595-TPS82150SILR 
+U4 ,1,MCP2542FDxMF,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,Microchip,MCP2542FD-H/SN,0.79,Mouser,https://www.mouser.com/ProductDetail/Microchip-Technology/MCP2542FD-H-SN?qs=sGAEpiMZZMsGqoCZrYwANkPccAfLmAxJzMSmRhEMflk%3D, 579-MCP2542FD-H/SN 
+U2 ,1,NCV2007x,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,ON Semiconductor,NCV20074DR2G ,1.19,Mouser,https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D, 863-NCV20074DR2G 
+U3 ,1,dsPIC33EV32GM102,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,Microchip,dsPIC33EV32GM102-E/SS,3.04,Mouser,https://www.mouser.com/ProductDetail/Microchip-Technology/dsPIC33EV32GM102-E-SS?qs=sGAEpiMZZMvt8PIZHrwfMh2yGkphHpwrjAuM9fzLf5ybGoYsGfYIMw%3D%3D, 579-33EV32GM102ESS 
+Y1 ,1,25 MHz,ABRACON_4PIN:Crystal_SMD_S2.05mm_L2.55,Abracon,ABM10AIG-25.000MHZ-4Z-T3,1.30,Mouser,https://www.mouser.com/ProductDetail/ABRACON/ABM10AIG-25000MHZ-4Z-T3?qs=%2Fha2pyFaduj1vudij7IzbnSbHVJSLi0XvJwHGYKLyiyh0mMcWMnyPh%2FmB9bKfREs, 815-M10AIG-25-4ZT3 
+
+
+
+
+BOM made with KICAD_BOM_WIZARD (https://github.com/HashDefineElectronics/KiCad_BOM_Wizard.git)
+Generated 12/21/2019 2:44:31 PM
