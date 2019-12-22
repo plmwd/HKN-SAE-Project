@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>C:\Users\Paul\Documents\Git\HKN-SAE-Project\Board\PowerSenseModule\PowerSenseModule.sch</source>
-    <date>12/21/2019 2:44:31 PM</date>
+    <date>12/21/2019 10:54:07 PM</date>
     <tool>Eeschema (5.1.2)-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -243,9 +243,14 @@
     <comp ref="D1">
       <value>SD05-7</value>
       <footprint>Diode_SMD:D_SOD-323_HandSoldering</footprint>
-      <datasheet>https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D</datasheet>
+      <datasheet>https://www.mouser.com/datasheet/2/115/ds31594-88374.pdf</datasheet>
       <fields>
+        <field name="Manufacturer">Diodes Incorporated </field>
+        <field name="Manufacturer PN">SD05-7 </field>
+        <field name="Price 1 QTY">0.35</field>
+        <field name="Supplier">Mouser</field>
         <field name="Supplier Link">https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D</field>
+        <field name="Supplier PN">621-SD05-7</field>
       </fields>
       <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
@@ -537,7 +542,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J121V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J121V/P120BZCT-ND/5036246</field>
         <field name="Supplier PN">P120BZCT-ND</field>
       </fields>
@@ -562,17 +567,33 @@
       <tstamp>5D4B8129</tstamp>
     </comp>
     <comp ref="D4">
-      <value>LED</value>
+      <value>RED_LED</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
-      <datasheet>~</datasheet>
+      <datasheet>https://katalog.we-online.de/led/datasheet/150060RS75000.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer">Würth Elektronik</field>
+        <field name="Manufacturer PN">150060RS75000</field>
+        <field name="Price 1 QTY">0.14</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier Link">https://www.digikey.com/product-detail/en/w-rth-elektronik/150060RS75000/732-4978-1-ND/4489899</field>
+        <field name="Supplier PN">732-4978-1-ND</field>
+      </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/MCU and CAN/" tstamps="/5D226D6E/"/>
       <tstamp>5D518286</tstamp>
     </comp>
     <comp ref="D3">
-      <value>LED</value>
+      <value>GREEN_LED</value>
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
-      <datasheet>~</datasheet>
+      <datasheet>https://katalog.we-online.de/led/datasheet/150060VS75000.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer">Würth Elektronik</field>
+        <field name="Manufacturer PN">150060VS75000</field>
+        <field name="Price 1 QTY">0.14</field>
+        <field name="Supplier">Digikey</field>
+        <field name="Supplier Link">https://www.digikey.com/product-detail/en/w-rth-elektronik/150060VS75000/732-4980-1-ND/4489904</field>
+        <field name="Supplier PN">732-4980-1-ND</field>
+      </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/MCU and CAN/" tstamps="/5D226D6E/"/>
       <tstamp>5D518C5C</tstamp>
@@ -585,7 +606,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J301V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J301V/P300BZCT-ND/5036302</field>
         <field name="Supplier PN">P300BZCT-ND</field>
       </fields>
@@ -601,7 +622,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J301V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J301V/P300BZCT-ND/5036302</field>
         <field name="Supplier PN">P300BZCT-ND</field>
       </fields>
@@ -665,7 +686,7 @@
         <field name="Manufacturer">Keystone </field>
         <field name="Manufacturer PN">5110</field>
         <field name="Price 1 QTY">0.43</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/keystone-electronics/5110/36-5110CT-ND/5118858</field>
         <field name="Supplier PN">36-5110CT-ND</field>
       </fields>
@@ -697,7 +718,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J102V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J102V/P1KBZCT-ND/5036236</field>
         <field name="Supplier PN">P1KBZCT-ND</field>
       </fields>
@@ -713,7 +734,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J753V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364</field>
         <field name="Supplier PN">P75KBZCT-ND</field>
       </fields>
@@ -729,7 +750,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J122V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247</field>
         <field name="Supplier PN">P1.2KBZCT-ND</field>
       </fields>
@@ -745,7 +766,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J122V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247</field>
         <field name="Supplier PN">P1.2KBZCT-ND</field>
       </fields>
@@ -772,7 +793,7 @@
         <field name="Manufacturer">Keystone </field>
         <field name="Manufacturer PN">5110</field>
         <field name="Price 1 QTY">0.43</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/keystone-electronics/5110/36-5110CT-ND/5118858</field>
         <field name="Supplier PN">36-5110CT-ND</field>
       </fields>
@@ -820,7 +841,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J102V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J102V/P1KBZCT-ND/5036236</field>
         <field name="Supplier PN">P1KBZCT-ND</field>
       </fields>
@@ -836,7 +857,7 @@
         <field name="Manufacturer">Vishay / Dale</field>
         <field name="Manufacturer PN">RCS06034K99FKEA</field>
         <field name="Price 1 QTY">0.14</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/vishay-dale/RCS06034K99FKEA/541-2794-1-ND/5867087</field>
         <field name="Supplier PN">541-2794-1-ND</field>
       </fields>
@@ -852,7 +873,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J103V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J103V/P10KBZCT-ND/5036237</field>
         <field name="Supplier PN">P10KBZCT-ND</field>
       </fields>
@@ -868,7 +889,7 @@
         <field name="Manufacturer">Vishay / Dale</field>
         <field name="Manufacturer PN">RCS06034K99FKEA</field>
         <field name="Price 1 QTY">0.14</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/vishay-dale/RCS06034K99FKEA/541-2794-1-ND/5867087</field>
         <field name="Supplier PN">541-2794-1-ND</field>
       </fields>
@@ -884,7 +905,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J753V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364</field>
         <field name="Supplier PN">P75KBZCT-ND</field>
       </fields>
@@ -916,7 +937,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J103V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J103V/P10KBZCT-ND/5036237</field>
         <field name="Supplier PN">P10KBZCT-ND</field>
       </fields>
@@ -948,7 +969,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J103V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J103V/P10KBZCT-ND/5036237</field>
         <field name="Supplier PN">P10KBZCT-ND</field>
       </fields>
@@ -980,7 +1001,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J103V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J103V/P10KBZCT-ND/5036237</field>
         <field name="Supplier PN">P10KBZCT-ND</field>
       </fields>
@@ -996,7 +1017,7 @@
         <field name="Manufacturer">Panasonic</field>
         <field name="Manufacturer PN">ERJ-PA3J471V</field>
         <field name="Price 1 QTY">0.1</field>
-        <field name="Supplier">DigiKey</field>
+        <field name="Supplier">Digikey</field>
         <field name="Supplier Link">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J471V/P470BZCT-ND/5036331</field>
         <field name="Supplier PN">P470BZCT-ND</field>
       </fields>

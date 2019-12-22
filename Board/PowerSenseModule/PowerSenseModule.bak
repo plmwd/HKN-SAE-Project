@@ -525,8 +525,13 @@ P 2375 1550
 F 0 "D1" V 2329 1629 50  0000 L CNN
 F 1 "SD05-7" V 2420 1629 50  0000 L CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 2375 1550 50  0001 C CNN
-F 3 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/115/ds31594-88374.pdf" H 2375 1550 50  0001 C CNN
 F 4 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN "Supplier Link"
+F 5 "Diodes Incorporated " H 2375 1550 50  0001 C CNN "Manufacturer"
+F 6 "SD05-7 " H 2375 1550 50  0001 C CNN "Manufacturer PN"
+F 7 "0.35" H 2375 1550 50  0001 C CNN "Price 1 QTY"
+F 8 "Mouser" H 2375 1550 50  0001 C CNN "Supplier"
+F 9 "621-SD05-7" H 2375 1550 50  0001 C CNN "Supplier PN"
 	1    2375 1550
 	0    1    1    0   
 $EndComp
