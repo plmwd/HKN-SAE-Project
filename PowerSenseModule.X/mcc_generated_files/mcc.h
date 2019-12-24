@@ -55,9 +55,6 @@
 #include "interrupt_manager.h"
 #include "watchdog.h"
 #include "reset.h"
-#include "adc1.h"
-#include "tmr1.h"
-#include "tmr3.h"
 
 #ifndef _XTAL_FREQ
 #define _XTAL_FREQ  7370000UL

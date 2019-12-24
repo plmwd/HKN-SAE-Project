@@ -9,24 +9,17 @@
                      projectFiles="true">
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/watchdog.h</itemPath>
-        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
         <itemPath>mcc_generated_files/reset.h</itemPath>
-        <itemPath>mcc_generated_files/clock.h</itemPath>
         <itemPath>mcc_generated_files/system_types.h</itemPath>
         <itemPath>mcc_generated_files/reset_types.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
-        <itemPath>mcc_generated_files/system.h</itemPath>
-        <itemPath>mcc_generated_files/tmr1.h</itemPath>
-        <itemPath>mcc_generated_files/tmr3.h</itemPath>
         <itemPath>traps.h</itemPath>
-        <itemPath>mcc_generated_files/adc1.h</itemPath>
+        <itemPath>mcc_generated_files/traps.h</itemPath>
+        <itemPath>mcc_generated_files/uart1.h</itemPath>
+        <itemPath>mcc_generated_files/system.h</itemPath>
+        <itemPath>mcc_generated_files/clock.h</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
       </logicalFolder>
-      <itemPath>calibration.h</itemPath>
-      <itemPath>device_configuration.h</itemPath>
-      <itemPath>dma.h</itemPath>
-      <itemPath>globals.h</itemPath>
-      <itemPath>can.h</itemPath>
-      <itemPath>uart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -39,22 +32,15 @@
                      displayName="MCC Generated Files"
                      projectFiles="true">
         <itemPath>mcc_generated_files/reset.c</itemPath>
-        <itemPath>mcc_generated_files/system.c</itemPath>
-        <itemPath>mcc_generated_files/clock.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
+        <itemPath>mcc_generated_files/traps.c</itemPath>
+        <itemPath>mcc_generated_files/uart1.c</itemPath>
+        <itemPath>mcc_generated_files/system.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/clock.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
-        <itemPath>mcc_generated_files/tmr1.c</itemPath>
-        <itemPath>mcc_generated_files/tmr3.c</itemPath>
-        <itemPath>traps.c</itemPath>
-        <itemPath>mcc_generated_files/adc1.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
-      <itemPath>calibration.c</itemPath>
-      <itemPath>dma.c</itemPath>
-      <itemPath>can.c</itemPath>
-      <itemPath>globals.c</itemPath>
-      <itemPath>uart.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -74,7 +60,7 @@
         <targetDevice>dsPIC33EV32GM102</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.36</languageToolchainVersion>
         <platform>3</platform>

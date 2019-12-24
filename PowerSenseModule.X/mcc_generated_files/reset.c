@@ -13,11 +13,11 @@
   @Description
     This header file provides implementations for driver APIs for RESET.
     Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36B
-        MPLAB             :  MPLAB X v5.20
+        Compiler          :  XC16 v1.36
+        MPLAB             :  MPLAB X v5.10
 */
 
 /*

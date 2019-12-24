@@ -67,20 +67,19 @@
 #define FRC_40MHz
 #define CLOCK_DEBUG
 
-#define TMR1_ENABLE
+//#define TMR1_ENABLE
 
-#define TMR3_ENABLE
+//#define TMR3_ENABLE
 
-#define CAN1_ENABLE
+//#define CAN1_ENABLE
 #define CAN1BR_125KHz
 
-#define UART1_ENABLE
+//#define UART1_ENABLE
 #define UART1BR_9600Hz
 
 #define ADC1_ENABLE
 //#define ADC1_BURST
 
-#define UART1BR_2400Hz
 
 
 

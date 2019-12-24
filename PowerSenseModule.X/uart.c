@@ -3,7 +3,8 @@
 
 #include <p33EV32GM102.h>
 
-#include "uart.h"
+//#include "uart.h"
+#include <uart.h>
 #include "device_configuration.h"
 #include "mcc_generated_files/clock.h"
 
@@ -15,7 +16,10 @@ void __attribute__((auto_psv, interrupt)) _U1TXInterrupt(void) {
 
 }
 
-
+/*
+ * 1 stop bit, no parity, 
+ * 
+ */
 void UART_Initialize(void) {
     
 #if defined(UART1BR_2400Hz)
@@ -33,6 +37,7 @@ void UART_Initialize(void) {
     U1MODE = 0;
     U1STA = 0;
     
+    // UARTEN needs to be enabled before UTXEN
     U1MODEbits.UARTEN = 1;
     U1STAbits.UTXEN = 1;
     
