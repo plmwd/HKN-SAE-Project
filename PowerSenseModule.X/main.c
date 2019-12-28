@@ -58,6 +58,7 @@
 //#include "dma.h"
 #include "mcc_generated_files/uart1.h"
 #include <libpic30.h>
+#include "device_configuration.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
 
@@ -70,6 +71,20 @@ double ProcessCurrent(uint16_t);
 double ProcessVoltage(uint16_t);
 void CAN_send(uint16_t);    
 
+
+#define NUM_CAL_POINTS      10              // Number of calibration points
+#define DIFFAMP_GAIN        80
+#define OPAMP_UNITY_GAIN    1
+#define R_SHUNT             0.004
+
+#define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
+
+#define R_V_DIV_1           1000000.0           // 1MOhm
+#define R_V_DIV_2           499000.0            // 499kOhm
+#define R_DIFF_1            1200.0              // 1.2kOhm
+#define R_DIFF_2            75000.0             // 75kOhm
+#define R_S                 0.004               // 4mOhm
+
 // current and voltage calibration data - ideal points need to be set
 //cal_point_t current_cal_data[NUM_CAL_POINTS];
 //cal_point_t voltage_cal_data[NUM_CAL_POINTS];
@@ -77,6 +92,7 @@ void CAN_send(uint16_t);
 /*
                          Main application
  */
+#ifndef DEBUG
 int main(void)
 {
     uint16_t current_readings[ADC_BUF_SIZE / 2];
@@ -87,95 +103,60 @@ int main(void)
     
     // initialize the device
     SYSTEM_Initialize();
-    UART1_Initialize();
-    UART1_Enable();
+    DMA_ChannelEnable(DMA_CANTX_CHANNEL);
+    DMA_ChannelEnable(DMA_CANRX_CHANNEL);
+    
+    //debug - disable tmrs 
+    double test = 69.420;
+    CAN_ConfigBufForStandardDataFrame(0);
+    CAN_WriteBuf(VPTR(test), 0, sizeof(test), 0);
     
     while (1) {
-        printf("Hello world!\n\r");
-        __delay_ms(250);
+        //CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
+        //while(C1TR01CONbits.TXREQ0 == 1);
     }
-    
-}
-//int main(void)
-//{
-//    uint16_t current_readings[ADC_BUF_SIZE / 2];
-//    uint16_t voltage_readings[ADC_BUF_SIZE / 2];
-//    
-//    uint16_t current_avg = 0;
-//    uint16_t voltage_avg = 0;
-//    
-//    // initialize the device
-//    SYSTEM_Initialize();
-//    DMA_ChannelEnable(DMA_CANTX_CHANNEL);
-//    DMA_ChannelEnable(DMA_CANRX_CHANNEL);
-//    
-//    //debug - disable tmrs 
-//    double test = 69.420;
-//    CAN_ConfigBufForStandardDataFrame(0);
-//    CAN_WriteBuf(VPTR(test), 0, sizeof(test), 0);
-//    
-//    while (1) {
-//        //CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
-//        //while(C1TR01CONbits.TXREQ0 == 1);
-//    }
-//        
-//    return 0;
-//    
-////        /* Message was received. */
-////        while (C1RXFUL1bits.RXFUL10 == 0);
-////        C1RXFUL1bits.RXFUL10 = 0;
-//        
-// 
-//    //end
-//    
-//    while (1)
-//    {
-//        if (ADC1_IsDataReady() == true) {
-//            ADC1_AcknowledgeDataReady();  
-//            
-//            uint16_t *data = ADC1_GetBufferPtr(); 
-//            
-//            // process sampled data
-//            uint16_t buffer_index = 0;
-//            uint16_t i;
-//            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
-//                buffer_index = i * 2;
-//                current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], current_cal_data, NUM_CAL_POINTS));   
-//                voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], voltage_cal_data, NUM_CAL_POINTS));  
-//            }
-//            
-//            // average data
-//            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
-//                current_avg += current_readings[i];
-//                voltage_avg += voltage_readings[i];
-//            }
-//            current_avg /= ADC_BUF_SIZE / 2;
-//            voltage_avg /= ADC_BUF_SIZE / 2;
-//                
-//            // send data over CAN
-//            //CAN_send(current_avg);
-//            //CAN_send(voltage_avg);
-//        }
-//    }
-//    return 1; 
-//}
-
-
-// TESTER MAIN FUNCTION
-/*
-int main (void)
-{
-    uint16_t adcVoltageRead = 1023;
-    double batteryVoltage = 0;
-    double batteryCurrent = 0;
-    batteryVoltage = ProcessVoltage(adcVoltageRead);
-    batteryCurrent = ProcessCurrent(adcVoltageRead);
-   
-    
+        
     return 0;
-}
+    
+//        /* Message was received. */
+//        while (C1RXFUL1bits.RXFUL10 == 0);
+//        C1RXFUL1bits.RXFUL10 = 0;
+        
  
- */
+    //end
+    
+    while (1)
+    {
+        if (ADC1_IsDataReady() == true) {
+            ADC1_AcknowledgeDataReady();  
+            
+            uint16_t *data = ADC1_GetBufferPtr(); 
+            
+            // process sampled data
+            uint16_t buffer_index = 0;
+            uint16_t i;
+            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
+                buffer_index = i * 2;
+                current_readings[i] = ProcessCurrent(CalibrateData(data[buffer_index], current_cal_data, NUM_CAL_POINTS));   
+                voltage_readings[i] = ProcessVoltage(CalibrateData(data[buffer_index + 1], voltage_cal_data, NUM_CAL_POINTS));  
+            }
+            
+            // average data
+            for (i = 0; i < ADC_BUF_SIZE / 2; i++) {
+                current_avg += current_readings[i];
+                voltage_avg += voltage_readings[i];
+            }
+            current_avg /= ADC_BUF_SIZE / 2;
+            voltage_avg /= ADC_BUF_SIZE / 2;
+                
+            // send data over CAN
+            //CAN_send(current_avg);
+            //CAN_send(voltage_avg);
+        }
+    }
+    return 1; 
+}
+#endif
 
 double ProcessCurrent(uint16_t data) {
     

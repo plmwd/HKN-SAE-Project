@@ -4,30 +4,14 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>PowerSenseModule</name>
-            <creation-uuid>1eb75d31-2762-41fe-98ed-09d62de3f41a</creation-uuid>
+            <creation-uuid>db2b01fe-fdc1-45c1-99d4-4299be914a88</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-<<<<<<< HEAD
-            <sourceRootList>
-                <sourceRootElem>mcc_generated_files</sourceRootElem>
-            </sourceRootList>
-=======
             <make-dep-projects/>
-            <sourceRootList/>
->>>>>>> Firmware-ADC-Data_Handling
-            <confList>
-                <confElem>
-                    <name>default</name>
-                    <type>2</type>
-                </confElem>
-            </confList>
-            <formatting>
-                <project-formatting-style>false</project-formatting-style>
-            </formatting>
         </data>
     </configuration>
 </project>

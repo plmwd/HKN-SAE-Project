@@ -44,7 +44,7 @@
 
 #include <stdint.h>
 #include "xc.h"
-#include "clock.h"
+#include "clock_backup.h"
 #include <math.h>
 
 // ADC clock variables
@@ -149,7 +149,7 @@ void CLOCK_Initialize_FRC_SLOWEST(void) {
 }
 
 
-void CLOCK_Initialize_POSC_24MHz(void) {
+void CLOCK_Initialize_POSC_25MHz(void) {
     // FRCDIV FRC/256; PLLPRE 2; DOZE 1:1; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
     CLKDIV = 0x00;
     // TUN Center Frequency-0%; 

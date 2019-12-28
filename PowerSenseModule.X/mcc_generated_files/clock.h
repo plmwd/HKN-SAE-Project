@@ -48,6 +48,12 @@
 #ifndef _XTAL_FREQ
 #define _XTAL_FREQ  25000000UL
 #endif
+
+// remove me later
+#ifndef FCY
+#define FCY 25000000
+#endif
+
 /**
  * @Param
     none

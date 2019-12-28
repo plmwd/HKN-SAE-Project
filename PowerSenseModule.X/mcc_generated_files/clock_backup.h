@@ -59,9 +59,9 @@
 
 #define _XTAL_FREQ  14395UL
 
-#elif defined(POSC_24MHz)
+#elif defined(POSC_25MHz)
 
-#define _XTAL_FREQ  24000000UL
+#define _XTAL_FREQ  25000000UL
 
 #else
 #error NO CLOCK DEFINED
@@ -91,7 +91,7 @@
 void CLOCK_Initialize_FRC_NORMAL(void);
 void CLOCK_Initialize_FRC_SLOWEST(void);
 void CLOCK_Initialize_FRC_40MHz(void);
-void CLOCK_Initialize_POSC_24MHz(void);
+void CLOCK_Initialize_POSC_25MHz(void);
 
 uint16_t CLOCK_PeriodnsGet(void);
 
