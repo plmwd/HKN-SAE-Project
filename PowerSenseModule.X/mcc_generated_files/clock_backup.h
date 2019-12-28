@@ -13,11 +13,11 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36
-        MPLAB             :  MPLAB X v5.10
+        Compiler          :  XC16 v1.36B
+        MPLAB             :  MPLAB X v5.20
 */
 
 /*
@@ -41,18 +41,41 @@
     MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
     TERMS.
 */
+#include "../device_configuration.h"
 
 #ifndef CLOCK_H
 #define	CLOCK_H
 
 #ifndef _XTAL_FREQ
+#if defined(FRC_40MHz)
+
+#define _XTAL_FREQ  79395351UL
+
+#elif defined(FRC_NORMAL)
+
+#define _XTAL_FREQ  7370000UL
+
+#elif defined(FRC_SLOWEST)
+
+#define _XTAL_FREQ  14395UL
+
+#elif defined(POSC_25MHz)
+
 #define _XTAL_FREQ  25000000UL
+
+#else
+#error NO CLOCK DEFINED
+#endif
+#define FCY         _XTAL_FREQ / 2
 #endif
 
-// remove me later
-#ifndef FCY
-#define FCY 25000000
-#endif
+#define CLOCK_SystemFrequencyGet()        (_XTAL_FREQ)
+
+#define CLOCK_PeripheralFrequencyGet()    (CLOCK_SystemFrequencyGet() / 2)
+
+#define CLOCK_InstructionFrequencyGet()   (CLOCK_SystemFrequencyGet() / 2)
+
+
 
 /**
  * @Param
@@ -65,7 +88,27 @@
  * @Example
     CLOCK_Initialize(void);
  */
-void CLOCK_Initialize(void);
+void CLOCK_Initialize_FRC_NORMAL(void);
+void CLOCK_Initialize_FRC_SLOWEST(void);
+void CLOCK_Initialize_FRC_40MHz(void);
+void CLOCK_Initialize_POSC_25MHz(void);
+
+uint16_t CLOCK_PeriodnsGet(void);
+
+/* ADC */
+uint16_t ADC1CLOCK_GENMultiplier(void);
+
+uint16_t ADC1CLOCK_PeriodnsGet(void);
+
+uint16_t ADC1CLOCK_MultiplierGet(void);
+
+//MUST RE-INITIALIZE ADC
+void ADC1CLOCK_PeriodnsSet(uint16_t);
+//MUST RE-INITIALIZE ADC
+void ADC1CLOCK_MultiplierSet(uint16_t);
+
+
+
 #endif	/* CLOCK_H */
 /**
  End of File

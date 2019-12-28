@@ -13,11 +13,11 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36B
-        MPLAB             :  MPLAB X v5.20
+        Compiler          :  XC16 v1.36
+        MPLAB             :  MPLAB X v5.10
 */
 
 /*
@@ -47,61 +47,17 @@
 #include "system.h"
 #include "system_types.h"
 #include "interrupt_manager.h"
-#include "adc1.h"
-#include "tmr1.h"
-#include "tmr3.h"
-#include "../dma.h"
-#include "../can.h"
-#include "../device_configuration.h"
-
+#include "traps.h"
+#include "uart1.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    CAN_STBY_SetHigh();     // put the CAN transceiver in low power mode until all inits are done
-    
-#if defined FRC_NORMAL
-    CLOCK_Initialize_FRC_NORMAL();
-
-#elif defined FRC_SLOWEST
-    CLOCK_Initialize_FRC_SLOWEST();
-    
-#elif defined FRC_40MHz
-    CLOCK_Initialize_FRC_40MHz();
-    
-#elif defined POSC_24MHz
-    CLOCK_Initialize_POSC_24MHz();
-#endif
-    
-#ifdef ADC1_ENABLE
-    ADC1_Initialize();
-    // delay TMR init 20us for ADC to stabilize
-    int i;
-    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
-#endif    
-
-#ifdef TMR1_ENABLE
-    TMR1_Initialize();
-#endif
-    
-#ifdef TMR3_ENABLE
-    TMR3_Initialize();
-    
-#endif
-    
-#ifdef CAN1_ENABLE
-    CAN_Initialize(CAN_NORMAL_OPERATION_MODE);
-#endif
-    
-    DMA_Initialize();
-    
-#ifdef CAN1_ENABLE
-    CAN_STBY_SetLow();  // bring the CAN transceiver to wakeup mode
-#endif
-    
-    SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
-    INTERRUPT_GlobalEnable();
     INTERRUPT_Initialize();
+    CLOCK_Initialize();
+    UART1_Initialize();
+    INTERRUPT_GlobalEnable();
+    SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }
 
 /**

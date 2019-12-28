@@ -42,33 +42,57 @@
     TERMS.
 */
 
+ #define FOSC    (25000000ULL)
+ #define FCY     (FOSC/2)
+
 /**
   Section: Included Files
 */
+#include <stdio.h>
 #include "mcc_generated_files/system.h"
-#include "mcc_generated_files/adc1.h"
-#include "calibration.h"
-#include "mcc_generated_files/tmr1.h"
-#include "mcc_generated_files/tmr3.h"
-#include "can.h"
-#include "dma.h"
+//#include "mcc_generated_files/adc1.h"
+//#include "calibration.h"
+//#include "mcc_generated_files/tmr1.h"
+//#include "mcc_generated_files/tmr3.h"
+//#include "can.h"
+//#include "dma.h"
+#include "mcc_generated_files/uart1.h"
+#include <libpic30.h>
+#include "device_configuration.h"
 
 #define NUM_CAL_POINTS      10              // Number of calibration points
 
 #define VPTR(var)   (void*)&var
 
+
+void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
-uint16_t ProcessCurrent(uint16_t);
-uint16_t ProcessVoltage(uint16_t);
+double ProcessCurrent(uint16_t);
+double ProcessVoltage(uint16_t);
 void CAN_send(uint16_t);    
 
+
+#define NUM_CAL_POINTS      10              // Number of calibration points
+#define DIFFAMP_GAIN        80
+#define OPAMP_UNITY_GAIN    1
+#define R_SHUNT             0.004
+
+#define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
+
+#define R_V_DIV_1           1000000.0           // 1MOhm
+#define R_V_DIV_2           499000.0            // 499kOhm
+#define R_DIFF_1            1200.0              // 1.2kOhm
+#define R_DIFF_2            75000.0             // 75kOhm
+#define R_S                 0.004               // 4mOhm
+
 // current and voltage calibration data - ideal points need to be set
-cal_point_t current_cal_data[NUM_CAL_POINTS];
-cal_point_t voltage_cal_data[NUM_CAL_POINTS];
+//cal_point_t current_cal_data[NUM_CAL_POINTS];
+//cal_point_t voltage_cal_data[NUM_CAL_POINTS];
 
 /*
                          Main application
  */
+#ifndef DEBUG
 int main(void)
 {
     uint16_t current_readings[ADC_BUF_SIZE / 2];
@@ -132,16 +156,36 @@ int main(void)
     }
     return 1; 
 }
+#endif
 
-
-uint16_t ProcessCurrent(uint16_t data) {
-     return 0;
+double ProcessCurrent(uint16_t data) {
+    
+    double adcVoltage, fOneBatteryCurrent = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting current going through battery
+    fOneBatteryCurrent =  R_DIFF_1 / (R_DIFF_2 * R_S) * adcVoltage;
+    
+    return fOneBatteryCurrent;
 }
 
 
-uint16_t ProcessVoltage(uint16_t data) {
-    // STUFF
-     return 0;
+
+// The following function takes the value read by the
+// ADC and returns the voltage of the F1 battery
+double ProcessVoltage(uint16_t data) {
+    
+    double adcVoltage, fOneBatteryVoltage = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting voltage of actual battery using circuit analysis
+    fOneBatteryVoltage = adcVoltage * ( R_V_DIV_1 / R_V_DIV_2 + 1);
+    
+    return fOneBatteryVoltage;
 }
 
 

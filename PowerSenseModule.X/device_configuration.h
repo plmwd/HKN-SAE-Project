@@ -8,6 +8,19 @@
 #ifndef DEVICE_CONFIGURATION_H
 #define	DEVICE_CONFIGURATION_H
 
+/**********************************************************************
+ * 
+ *                              DEBUG
+ * 
+ **********************************************************************
+ * Added #define [DEBUG] for different mains in different files for 
+ * testing various peripherals/systems. First define "DEBUG" to 
+ * comment out the main power sense main.
+ * **********************************************************************
+ * DEBUG_UART : uart debug main file
+ ***********************************************************************/
+#define DEBUG
+#define DEBUG_UART
 
 /**********************************************************************
  * 
@@ -24,7 +37,7 @@
  * FRC_NORMAL : unaltered FRC oscillator, FCY = 7.37MHz / 2 = 3.685MHz
  * FRC_40MHz: closest cycle frequency to 40MHz (39.698MHz)
  * FRC_SLOWEST: slowest FRC frequency, 14.39KHz
- * POSC_24MHz: Primary, external oscillator at 24MHz
+ * POSC_25MHz: Primary, crystal oscillator at 25MHz
  * CLOCK_DEBUG: internal clock on OSC2 - can't be used with primary oscillator
  * 
  ***********************************************************************
@@ -67,14 +80,14 @@
 #define FRC_40MHz
 #define CLOCK_DEBUG
 
-#define TMR1_ENABLE
+//#define TMR1_ENABLE
 
-#define TMR3_ENABLE
+//#define TMR3_ENABLE
 
-#define CAN1_ENABLE
+//#define CAN1_ENABLE
 #define CAN1BR_125KHz
 
-#define UART1_ENABLE
+//#define UART1_ENABLE
 #define UART1BR_9600Hz
 
 #define ADC1_ENABLE

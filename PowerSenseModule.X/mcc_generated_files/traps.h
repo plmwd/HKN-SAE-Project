@@ -1,25 +1,25 @@
 /**
-  TMR1 Generated Driver API Header File 
+  System Traps Generated Driver File 
 
-  @Company
+  @Company:
     Microchip Technology Inc.
 
-  @File Name
-    tmr1.h
+  @File Name:
+    traps.h
 
-  @Summary
-    This is the generated header file for the TMR1 driver using PIC24 / dsPIC33 / PIC32MM MCUs
+  @Summary:
+    This is the generated driver implementation file for handling traps
+    using PIC24 / dsPIC33 / PIC32MM MCUs
 
-  @Description
-    This header file provides APIs for driver for TMR1. 
+  @Description:
+    This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs traps.
     Generation Information : 
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36B
-        MPLAB 	          :  MPLAB X v5.20
+        Compiler          :  XC16 v1.36
+        MPLAB             :  MPLAB X v5.10
 */
-
 /*
     (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
     software and any derivatives exclusively with Microchip products.
@@ -42,61 +42,47 @@
     TERMS.
 */
 
-#ifndef _TMR1_H
-#define _TMR1_H
+#ifndef _TRAPS_H
+#define _TRAPS_H
 
-/**
-  Section: Included Files
-*/
-
-#include <xc.h>
 #include <stdint.h>
-#include <stdbool.h>
-
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    extern "C" {
-
-#endif
-
-        
-#define TMR1_Start()                    T1CONbits.TON = 1
-#define TMR1_Stop()                     T1CONbits.TON = 0
-#define TMR1_ClearInterruptFlag()       IFS0bits.T1IF = 0
-#define TMR1_InterruptEnable()          IEC0bits.T1IE = 1
-#define TMR1_InterruptDisable()         IEC0bits.T1IE = 0
 
 /**
-  Section: Interface Routines
-*/
-
+ * Error codes
+ */
+typedef enum 
+{
+    /* ----- Traps ----- */
+    TRAPS_OSC_FAIL = 0, /** Oscillator Fail Trap vector */
+    TRAPS_STACK_ERR = 1, /** Stack Error Trap Vector */
+    TRAPS_ADDRESS_ERR = 2, /** Address error Trap vector */
+    TRAPS_MATH_ERR = 3, /** Math Error Trap vector */
+    TRAPS_DMAC_ERR = 4, /** DMAC Error Trap vector */
+    TRAPS_HARD_ERR = 7, /** Generic Hard Trap vector */
+    TRAPS_DOOVR_ERR = 10, /** Generic Soft Trap vector */
+} TRAPS_ERROR_CODE;
 /**
   @Summary
-    Initializes hardware and data for the given instance of the TMR module
+    Default handler for the traps
 
   @Description
-    This routine initializes hardware for the instance of the TMR module,
-    using the hardware initialization given data.  It also initializes all
-    necessary internal data.
+    This routine will be called whenever a trap happens. It stores the trap
+    error code and waits forever.
+    This routine has a weak attribute and can be over written.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
 
   @Param
     None.
 
-  @Returns
-    None
- 
+  @Example
+    None.
+
 */
-void TMR1_Initialize (void);
-
-
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    }
+void __attribute__((naked, noreturn, weak)) TRAPS_halt_on_error(uint16_t code);
 
 #endif
-
-#endif //_TMR1_H
-    
-/**
- End of File
-*/

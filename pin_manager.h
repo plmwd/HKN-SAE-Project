@@ -15,11 +15,11 @@
   @Description:
     This source file provides implementations for PIN MANAGER.
     Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.95-b-SNAPSHOT
+        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.125
         Device            :  dsPIC33EV32GM102
     The generated drivers are tested against the following:
-        Compiler          :  XC16 v1.36
-        MPLAB 	          :  MPLAB X v5.10
+        Compiler          :  XC16 v1.36B
+        MPLAB 	          :  MPLAB X v5.20
 */
 
 /*
@@ -49,7 +49,7 @@
 /**
     Section: Includes
 */
-#include <xc.h>
+#include "xc.h"
 
 /**
     Section: Device Pin Macros
@@ -346,6 +346,298 @@
 
 */
 #define HIGH_IE_SetDigitalOutput() _TRISA1 = 0
+/**
+  @Summary
+    Sets the GPIO pin, RB0, high using LATB0.
+
+  @Description
+    Sets the GPIO pin, RB0, high using LATB0.
+
+  @Preconditions
+    The RB0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB0 high (1)
+    VIN_SetHigh();
+    </code>
+
+*/
+#define VIN_SetHigh()          _LATB0 = 1
+/**
+  @Summary
+    Sets the GPIO pin, RB0, low using LATB0.
+
+  @Description
+    Sets the GPIO pin, RB0, low using LATB0.
+
+  @Preconditions
+    The RB0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB0 low (0)
+    VIN_SetLow();
+    </code>
+
+*/
+#define VIN_SetLow()           _LATB0 = 0
+/**
+  @Summary
+    Toggles the GPIO pin, RB0, using LATB0.
+
+  @Description
+    Toggles the GPIO pin, RB0, using LATB0.
+
+  @Preconditions
+    The RB0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB0
+    VIN_Toggle();
+    </code>
+
+*/
+#define VIN_Toggle()           _LATB0 ^= 1
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB0.
+
+  @Description
+    Reads the value of the GPIO pin, RB0.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB0
+    postValue = VIN_GetValue();
+    </code>
+
+*/
+#define VIN_GetValue()         _RB0
+/**
+  @Summary
+    Configures the GPIO pin, RB0, as an input.
+
+  @Description
+    Configures the GPIO pin, RB0, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB0 as an input
+    VIN_SetDigitalInput();
+    </code>
+
+*/
+#define VIN_SetDigitalInput()  _TRISB0 = 1
+/**
+  @Summary
+    Configures the GPIO pin, RB0, as an output.
+
+  @Description
+    Configures the GPIO pin, RB0, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB0 as an output
+    VIN_SetDigitalOutput();
+    </code>
+
+*/
+#define VIN_SetDigitalOutput() _TRISB0 = 0
+/**
+  @Summary
+    Sets the GPIO pin, RB1, high using LATB1.
+
+  @Description
+    Sets the GPIO pin, RB1, high using LATB1.
+
+  @Preconditions
+    The RB1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB1 high (1)
+    IIN_SetHigh();
+    </code>
+
+*/
+#define IIN_SetHigh()          _LATB1 = 1
+/**
+  @Summary
+    Sets the GPIO pin, RB1, low using LATB1.
+
+  @Description
+    Sets the GPIO pin, RB1, low using LATB1.
+
+  @Preconditions
+    The RB1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB1 low (0)
+    IIN_SetLow();
+    </code>
+
+*/
+#define IIN_SetLow()           _LATB1 = 0
+/**
+  @Summary
+    Toggles the GPIO pin, RB1, using LATB1.
+
+  @Description
+    Toggles the GPIO pin, RB1, using LATB1.
+
+  @Preconditions
+    The RB1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB1
+    IIN_Toggle();
+    </code>
+
+*/
+#define IIN_Toggle()           _LATB1 ^= 1
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB1.
+
+  @Description
+    Reads the value of the GPIO pin, RB1.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB1
+    postValue = IIN_GetValue();
+    </code>
+
+*/
+#define IIN_GetValue()         _RB1
+/**
+  @Summary
+    Configures the GPIO pin, RB1, as an input.
+
+  @Description
+    Configures the GPIO pin, RB1, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB1 as an input
+    IIN_SetDigitalInput();
+    </code>
+
+*/
+#define IIN_SetDigitalInput()  _TRISB1 = 1
+/**
+  @Summary
+    Configures the GPIO pin, RB1, as an output.
+
+  @Description
+    Configures the GPIO pin, RB1, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB1 as an output
+    IIN_SetDigitalOutput();
+    </code>
+
+*/
+#define IIN_SetDigitalOutput() _TRISB1 = 0
 /**
   @Summary
     Sets the GPIO pin, RB11, high using LATB11.
@@ -1110,5 +1402,6 @@
 
 */
 void PIN_MANAGER_Initialize (void);
+
 
 #endif
