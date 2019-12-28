@@ -38,7 +38,7 @@
  * FRC_40MHz: closest cycle frequency to 40MHz (39.698MHz)
  * FRC_SLOWEST: slowest FRC frequency, 14.39KHz
  * POSC_25MHz: Primary, crystal oscillator at 25MHz
- * CLOCK_DEBUG: internal clock on OSC2 - can't be used with primary oscillator
+ * DEBUG_CLOCK: internal clock on OSC2 - can't be used with primary oscillator
  * 
  ***********************************************************************
  * CAN BAUD RATE
@@ -52,7 +52,7 @@
  *********************************************************************** 
  * UART1BR_2400Hz
  * UART1BR_4800Hz
- * UART1BR_9600Hz
+ * UART1BR_9600Hz - only one working atm
  * UART1BR_19200Hz
  * UART1BR_128KHz
  * UART1_ENABLE: enable UART1 initialization at startup
@@ -77,21 +77,8 @@
  */
     
 
-#define FRC_40MHz
-#define CLOCK_DEBUG
-
-//#define TMR1_ENABLE
-
-//#define TMR3_ENABLE
-
-//#define CAN1_ENABLE
-#define CAN1BR_125KHz
-
-//#define UART1_ENABLE
-#define UART1BR_9600Hz
-
-#define ADC1_ENABLE
-//#define ADC1_BURST
+#define POSC_25MHz
+#define UART1_ENABLE
 
 
 

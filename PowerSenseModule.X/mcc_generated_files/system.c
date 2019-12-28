@@ -51,11 +51,72 @@
 #include "uart1.h"
 
 void SYSTEM_Initialize(void)
-{
+{   
     PIN_MANAGER_Initialize();
     INTERRUPT_Initialize();
-    CLOCK_Initialize();
+    
+/***********************************************************************
+* CLOCK
+***********************************************************************/
+#if defined FRC_NORMAL
+CLOCK_Initialize_FRC_NORMAL();
+
+#elif defined FRC_SLOWEST
+    CLOCK_Initialize_FRC_SLOWEST();
+    
+#elif defined FRC_40MHz
+    CLOCK_Initialize_FRC_40MHz();
+    
+#elif defined POSC_24MHz
+    CLOCK_Initialize_POSC_24MHz();
+#endif
+    
+/***********************************************************************
+* ADC1
+***********************************************************************/
+#ifdef ADC1_ENABLE
+    ADC1_Initialize();
+    // delay TMR init 20us for ADC to stabilize
+    int i;
+    for (i = 0; i < 20000/CLOCK_PeriodnsGet(); i++) {}  
+#endif    
+
+/***********************************************************************
+* TMR1
+***********************************************************************/
+#ifdef TMR1_ENABLE
+    TMR1_Initialize();
+#endif
+
+/***********************************************************************
+* TMR3
+***********************************************************************/
+#ifdef TMR3_ENABLE
+    TMR3_Initialize();
+#endif
+    
+/***********************************************************************
+* CAN1
+***********************************************************************/
+#ifdef CAN1_ENABLE
+    CAN_Initialize(CAN_NORMAL_OPERATION_MODE);
+#endif
+    
+/***********************************************************************
+* DMA
+***********************************************************************/
+#ifdef DMA_ENABLE
+    DMA_Initialize();
+#endif
+    
+/***********************************************************************
+* UART1
+***********************************************************************/
+#ifdef UART1_ENABLE
     UART1_Initialize();
+#endif
+    
+    
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }
