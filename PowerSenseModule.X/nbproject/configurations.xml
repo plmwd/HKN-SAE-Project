@@ -9,15 +9,22 @@
                      projectFiles="true">
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/watchdog.h</itemPath>
-        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
         <itemPath>mcc_generated_files/reset.h</itemPath>
-        <itemPath>mcc_generated_files/clock.h</itemPath>
         <itemPath>mcc_generated_files/system_types.h</itemPath>
         <itemPath>mcc_generated_files/reset_types.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
+        <itemPath>traps.h</itemPath>
+        <itemPath>mcc_generated_files/traps.h</itemPath>
+        <itemPath>mcc_generated_files/uart1.h</itemPath>
         <itemPath>mcc_generated_files/system.h</itemPath>
+<<<<<<< HEAD
       </logicalFolder>
       <itemPath>dma_backup.h</itemPath>
+=======
+        <itemPath>mcc_generated_files/clock.h</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
+      </logicalFolder>
+>>>>>>> Firmware-UART
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,14 +37,20 @@
                      displayName="MCC Generated Files"
                      projectFiles="true">
         <itemPath>mcc_generated_files/reset.c</itemPath>
-        <itemPath>mcc_generated_files/system.c</itemPath>
-        <itemPath>mcc_generated_files/clock.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
+        <itemPath>mcc_generated_files/traps.c</itemPath>
+        <itemPath>mcc_generated_files/uart1.c</itemPath>
+        <itemPath>mcc_generated_files/system.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/clock.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
       </logicalFolder>
+<<<<<<< HEAD
       <itemPath>dma_backup.c</itemPath>
       <itemPath>main_backup.c</itemPath>
+=======
+      <itemPath>main.c</itemPath>
+>>>>>>> Firmware-UART
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -57,7 +70,7 @@
         <targetDevice>dsPIC33EV32GM102</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.36</languageToolchainVersion>
         <platform>3</platform>
@@ -104,8 +117,7 @@
         <property key="enable-short-double" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
-        <property key="extra-include-directories"
-                  value="..\..\..\..\..\..\Program Files (x86)\Microchip\xc16\v1.36\include"/>
+        <property key="extra-include-directories" value=""/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -174,7 +186,7 @@
         <property key="general-code-protect" value="no_code_protect"/>
         <property key="general-write-protect" value="no_write_protect"/>
         <property key="generate-cross-reference-file" value="false"/>
-        <property key="heap-size" value=""/>
+        <property key="heap-size" value="512"/>
         <property key="input-libraries" value=""/>
         <property key="linker-stack" value="true"/>
         <property key="linker-symbols" value=""/>
@@ -244,6 +256,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
