@@ -122,11 +122,6 @@
 * a private place to store the error code if we run into a severe error
 */
 
-void OSCILLATOR_Initialize(void)
-{
-    CLOCK_Initialize();
-}
-
 uint16_t SYSTEM_GetResetCause(void)
 {
     return RCON;
