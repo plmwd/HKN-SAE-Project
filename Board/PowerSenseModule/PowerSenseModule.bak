@@ -320,14 +320,14 @@ U 1 1 5D3208C5
 P 5250 1700
 F 0 "C6" H 5365 1746 50  0000 L CNN
 F 1 "6.8uF" H 5365 1655 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5288 1550 50  0001 C CNN
-F 3 "http://product.tdk.com/capacitor/mlcc/detailed_information.php?lang=en&ref=jp&part_no=CGA5L1X7R1V685K160AC" H 5250 1700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 5288 1550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 5250 1700 50  0001 C CNN
 F 4 "TDK" H 5250 1700 50  0001 C CNN "Manufacturer"
-F 5 "CGA5L1X7R1V685K160AC " H 5250 1700 50  0001 C CNN "Manufacturer PN"
-F 6 "0.97" H 5250 1700 50  0001 C CNN "Price 1 QTY"
+F 5 "CGA6P3X7S1H685K250AB" H 5250 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "1.25" H 5250 1700 50  0001 C CNN "Price 1 QTY"
 F 7 "Mouser" H 5250 1700 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/TDK/CGA5L1X7R1V685K160AC?qs=sGAEpiMZZMs0AnBnWHyRQFv7x1xn%252BYFdwL6q6%252B9Vk%2FVnVQKBUW1jAA%3D%3D" H 5250 1700 50  0001 C CNN "Supplier Link"
-F 9 "810-CGA5L1X7R1V685KC" H 5250 1700 50  0001 C CNN "Supplier PN"
+F 8 "https://www.mouser.com/ProductDetail/TDK/CGA6P3X7S1H685K250AB?qs=sGAEpiMZZMsh%252B1woXyUXj0VscQlT5uEBw6FmIyOpVRg%3D" H 5250 1700 50  0001 C CNN "Supplier Link"
+F 9 "810-CGA6P3X7S1H685K" H 5250 1700 50  0001 C CNN "Supplier PN"
 	1    5250 1700
 	1    0    0    -1  
 $EndComp
@@ -361,7 +361,7 @@ F 5 "C0603C471J5GAC7411 " H 5900 2200 50  0001 C CNN "Manufacturer PN"
 F 6 "0.21" H 5900 2200 50  0001 C CNN "Price 1 QTY"
 F 7 "Mouser" H 5900 2200 50  0001 C CNN "Supplier"
 F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 5900 2200 50  0001 C CNN "Supplier Link"
-F 9 "-C0603C471J5G7411" H 5900 2200 50  0001 C CNN "Supplier PN"
+F 9 "80-C0603C471J5G7411" H 5900 2200 50  0001 C CNN "Supplier PN"
 	1    5900 2200
 	1    0    0    -1  
 $EndComp
@@ -371,14 +371,14 @@ U 1 1 5D369605
 P 8475 1675
 F 0 "C8" H 8590 1721 50  0000 L CNN
 F 1 "47uF" H 8590 1630 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_4x5.8" H 8513 1525 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/315/kamaya_06202019_Capacitor_Hybrid_Anti-Vib_Hi_Temp_-1606247.pdf" H 8475 1675 50  0001 C CNN
-F 4 "Panasonic" H 8475 1675 50  0001 C CNN "Manufacturer"
-F 5 "EEE-FT1C470AR " H 8475 1675 50  0001 C CNN "Manufacturer PN"
-F 6 "0.42" H 8475 1675 50  0001 C CNN "Price 1 QTY"
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-6032-20_AVX-F_Pad2.25x2.35mm_HandSolder" H 8513 1525 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/40/taj-776811.pdf" H 8475 1675 50  0001 C CNN
+F 4 "AVX" H 8475 1675 50  0001 C CNN "Manufacturer"
+F 5 "EMK325ABJ476MMHP " H 8475 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.95" H 8475 1675 50  0001 C CNN "Price 1 QTY"
 F 7 "Mouser" H 8475 1675 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/Panasonic/EEE-FT1C470AR?qs=sGAEpiMZZMtZ1n0r9vR22YEN0kVDQfupG5ns5UzWI9k%3D" H 8475 1675 50  0001 C CNN "Supplier Link"
-F 9 "667-EEE-FT1C470AR " H 8475 1675 50  0001 C CNN "Supplier PN"
+F 8 "https://www.mouser.com/ProductDetail/AVX/TAJC476K016SNJ?qs=sGAEpiMZZMsh%252B1woXyUXjyF6yju1dtUCKBgIJtPUx7k%3D" H 8475 1675 50  0001 C CNN "Supplier Link"
+F 9 "963-EMK325ABJ476MMHP" H 8475 1675 50  0001 C CNN "Supplier PN"
 	1    8475 1675
 	1    0    0    -1  
 $EndComp
@@ -497,7 +497,7 @@ F 5 "C0603C471J5GAC7411 " H 3400 1700 50  0001 C CNN "Manufacturer PN"
 F 6 "0.21" H 3400 1700 50  0001 C CNN "Price 1 QTY"
 F 7 "Mouser" H 3400 1700 50  0001 C CNN "Supplier"
 F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 3400 1700 50  0001 C CNN "Supplier Link"
-F 9 "-C0603C471J5G7411" H 3400 1700 50  0001 C CNN "Supplier PN"
+F 9 "80-C0603C471J5G7411" H 3400 1700 50  0001 C CNN "Supplier PN"
 	1    3400 1700
 	1    0    0    -1  
 $EndComp
@@ -563,7 +563,7 @@ F 5 "Toshiba" H 7825 3500 50  0001 C CNN "Manufacturer"
 F 6 "CUS10S30,H3F" H 7825 3500 50  0001 C CNN "Manufacturer PN"
 F 7 "0.42" H 7825 3500 50  0001 C CNN "Price 1 QTY"
 F 8 "Mouser" H 7825 3500 50  0001 C CNN "Supplier"
-F 9 " 757-CUS10S30H3F " H 7825 3500 50  0001 C CNN "Supplier PN"
+F 9 "757-CUS10S30H3F" H 7825 3500 50  0001 C CNN "Supplier PN"
 	1    7825 3500
 	-1   0    0    1   
 $EndComp
@@ -580,7 +580,7 @@ F 5 "Toshiba" H 8350 3500 50  0001 C CNN "Manufacturer"
 F 6 "CUS10S30,H3F" H 8350 3500 50  0001 C CNN "Manufacturer PN"
 F 7 "0.42" H 8350 3500 50  0001 C CNN "Price 1 QTY"
 F 8 "Mouser" H 8350 3500 50  0001 C CNN "Supplier"
-F 9 " 757-CUS10S30H3F " H 8350 3500 50  0001 C CNN "Supplier PN"
+F 9 "757-CUS10S30H3F" H 8350 3500 50  0001 C CNN "Supplier PN"
 	1    8350 3500
 	-1   0    0    1   
 $EndComp
@@ -637,7 +637,7 @@ F 5 "Toshiba" H 8975 3500 50  0001 C CNN "Manufacturer"
 F 6 "CUS10S30,H3F" H 8975 3500 50  0001 C CNN "Manufacturer PN"
 F 7 "0.42" H 8975 3500 50  0001 C CNN "Price 1 QTY"
 F 8 "Mouser" H 8975 3500 50  0001 C CNN "Supplier"
-F 9 " 757-CUS10S30H3F " H 8975 3500 50  0001 C CNN "Supplier PN"
+F 9 "757-CUS10S30H3F" H 8975 3500 50  0001 C CNN "Supplier PN"
 	1    8975 3500
 	-1   0    0    1   
 $EndComp
@@ -654,7 +654,7 @@ F 5 "Toshiba" H 9500 3500 50  0001 C CNN "Manufacturer"
 F 6 "CUS10S30,H3F" H 9500 3500 50  0001 C CNN "Manufacturer PN"
 F 7 "0.42" H 9500 3500 50  0001 C CNN "Price 1 QTY"
 F 8 "Mouser" H 9500 3500 50  0001 C CNN "Supplier"
-F 9 " 757-CUS10S30H3F " H 9500 3500 50  0001 C CNN "Supplier PN"
+F 9 "757-CUS10S30H3F" H 9500 3500 50  0001 C CNN "Supplier PN"
 	1    9500 3500
 	-1   0    0    1   
 $EndComp
