@@ -78,3 +78,5 @@ dkms.conf
 #KiCAD
 \Board\PowerSenseModule\fp-info-cache
 Board/PowerSenseModule/fp-info-cache
+
+*.mk
