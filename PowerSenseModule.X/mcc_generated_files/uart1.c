@@ -47,6 +47,7 @@
 */
 
 #include "uart1.h"
+#include "../device_configuration.h"
 
 /**
   Section: Data Type Definitions
@@ -131,8 +132,17 @@ void UART1_Initialize(void)
     U1MODE = (0x8008 & ~(1<<15));  // disabling UARTEN bit
     // UTXISEL0 TX_ONE_CHAR; UTXINV disabled; OERR NO_ERROR_cleared; URXISEL RX_ONE_CHAR; UTXBRK COMPLETED; UTXEN disabled; ADDEN disabled; 
     U1STA = 0x00;
+    
+#if defined POSC_25MHz
     // BaudRate = 9600; Frequency = 12500000 Hz; BRG 325; 
     U1BRG = 0x145;
+#elif defined FRC_NORMAL
+#elif defined FRC_40MHz
+    // BaudRate = 9600; Frequency = 40MHz Hz; BRG 325; 
+    U1BRG = 1040;
+#elif defined FRC_SLOWEST
+#endif 
+    
     
     IEC0bits.U1RXIE = 1;
     
