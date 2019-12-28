@@ -69,7 +69,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33EV-GM-00X-10X_DFP" vendor="Microchip" version="1.0.18"/>
+        <pack name="dsPIC33EV-GM-00X-10X_DFP" vendor="Microchip" version="1.0.20"/>
       </packs>
       <compileType>
         <linkerTool>

@@ -48,6 +48,7 @@
 /**
   Section: Included Files
 */
+#include <stdio.h>
 #include "mcc_generated_files/system.h"
 //#include "mcc_generated_files/adc1.h"
 //#include "calibration.h"
@@ -62,9 +63,11 @@
 
 #define VPTR(var)   (void*)&var
 
+
+void TMR1_InterruptCallback (void);
 // dummy functions for now - test basic functionality
-uint16_t ProcessCurrent(uint16_t);
-uint16_t ProcessVoltage(uint16_t);
+double ProcessCurrent(uint16_t);
+double ProcessVoltage(uint16_t);
 void CAN_send(uint16_t);    
 
 // current and voltage calibration data - ideal points need to be set
@@ -74,8 +77,15 @@ void CAN_send(uint16_t);
 /*
                          Main application
  */
-
-void main(void) {
+int main(void)
+{
+    uint16_t current_readings[ADC_BUF_SIZE / 2];
+    uint16_t voltage_readings[ADC_BUF_SIZE / 2];
+    
+    uint16_t current_avg = 0;
+    uint16_t voltage_avg = 0;
+    
+    // initialize the device
     SYSTEM_Initialize();
     UART1_Initialize();
     UART1_Enable();
@@ -151,14 +161,50 @@ void main(void) {
 //}
 
 
-uint16_t ProcessCurrent(uint16_t data) {
-     return 0;
+// TESTER MAIN FUNCTION
+/*
+int main (void)
+{
+    uint16_t adcVoltageRead = 1023;
+    double batteryVoltage = 0;
+    double batteryCurrent = 0;
+    batteryVoltage = ProcessVoltage(adcVoltageRead);
+    batteryCurrent = ProcessCurrent(adcVoltageRead);
+   
+    
+    return 0;
+}
+ 
+ */
+
+double ProcessCurrent(uint16_t data) {
+    
+    double adcVoltage, fOneBatteryCurrent = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting current going through battery
+    fOneBatteryCurrent =  R_DIFF_1 / (R_DIFF_2 * R_S) * adcVoltage;
+    
+    return fOneBatteryCurrent;
 }
 
 
-uint16_t ProcessVoltage(uint16_t data) {
-    // STUFF
-     return 0;
+
+// The following function takes the value read by the
+// ADC and returns the voltage of the F1 battery
+double ProcessVoltage(uint16_t data) {
+    
+    double adcVoltage, fOneBatteryVoltage = 0;
+    
+    // Converting to actual voltage
+    adcVoltage = 5.0 * (data / 1023.0);
+    
+    // Getting voltage of actual battery using circuit analysis
+    fOneBatteryVoltage = adcVoltage * ( R_V_DIV_1 / R_V_DIV_2 + 1);
+    
+    return fOneBatteryVoltage;
 }
 
 
