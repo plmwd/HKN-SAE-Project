@@ -11,7 +11,9 @@
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>mcc_generated_files</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>default</name>

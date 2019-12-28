@@ -50,7 +50,7 @@
 #include "adc1.h"
 #include "tmr1.h"
 #include "tmr3.h"
-#include "../dma.h"
+#include "../dma_backup.h"
 
 
 void SYSTEM_Initialize(void)
