@@ -54,6 +54,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>main_backup.c</itemPath>
       <itemPath>test_uart1.c</itemPath>
+      <itemPath>test_menu.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -259,6 +260,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

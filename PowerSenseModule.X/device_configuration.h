@@ -18,9 +18,11 @@
  * comment out the main power sense main.
  * **********************************************************************
  * DEBUG_UART : uart debug main file
+ * DEBUG_TEST_MENU : UART operated menu test file
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_UART
+//#define DEBUG_UART
+#define DEBUG_TEST_MENU
 
 /**********************************************************************
  * 

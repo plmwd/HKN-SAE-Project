@@ -25,4 +25,5 @@ extern can_msg_t* canRXBuffer;
 //extern can_msg_t canRXBuffer[NUM_CANRX_MSGS] __attribute__((aligned));
 
 
+
 #endif	/* GLOBALS_H */
