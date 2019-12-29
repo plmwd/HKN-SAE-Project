@@ -85,6 +85,9 @@ void CAN_send(uint16_t);
 #define R_DIFF_2            75000.0             // 75kOhm
 #define R_S                 0.004               // 4mOhm
 
+
+
+
 // current and voltage calibration data - ideal points need to be set
 //cal_point_t current_cal_data[NUM_CAL_POINTS];
 //cal_point_t voltage_cal_data[NUM_CAL_POINTS];

@@ -77,7 +77,7 @@
  */
     
 
-#define POSC_25MHz
+#define FRC_40MHz
 #define UART1_ENABLE
 
 

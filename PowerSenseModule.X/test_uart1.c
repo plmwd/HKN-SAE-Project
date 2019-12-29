@@ -14,10 +14,21 @@ int main(void)
     UART1_Initialize();
     UART1_Enable();
     
-    while (1) {
-        printf("Hello world!\n\r");
-        __delay_ms(250);
+    unsigned int test = 'z';
+    
+    while(1)
+    {
+        // Wait until the buffer contains something
+        while(UART1_ReceiveBufferIsEmpty())
+        {
+
+            //wait
+        }
+        test = UART1_Read();
+
+        printf("I scanned : %c\n\r", test);
     }
+
     
 }
 #endif
