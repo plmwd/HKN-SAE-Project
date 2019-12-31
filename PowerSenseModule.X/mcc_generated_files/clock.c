@@ -1,4 +1,4 @@
-/**
+ /**
   @Generated PIC24 / dsPIC33 / PIC32MM MCUs Source File
 
   @Company:
@@ -46,13 +46,9 @@
 #include "xc.h"
 #include "clock.h"
 #include <math.h>
+#include "../device_configuration.h"     
 
-// ADC clock variables
-#define TAD_MIN_US      75     
-uint16_t TAD_ns;            // nanoseconds
-uint16_t TAD_multiplier;
-
-
+// all FOSC, not FCY
 void CLOCK_Initialize_FRC_40MHz(void)
 {
     // FRCDIV FRC/1; PLLPRE 2; DOZE 1:8; PLLPOST 1:4; DOZEN disabled; ROI disabled; 
@@ -182,37 +178,5 @@ void CLOCK_Initialize_POSC_25MHz(void) {
 
 
 uint16_t CLOCK_PeriodnsGet(void) {
-    return ceil(1 / (CLOCK_InstructionFrequencyGet() * 0.000000001));
-}
-
-
-uint16_t ADC1CLOCK_GENMultiplier(void) {
-    uint16_t T_instruction_ns = CLOCK_PeriodnsGet();
-    if (T_instruction_ns < TAD_MIN_US) {
-        TAD_multiplier = ceil(TAD_MIN_US / T_instruction_ns);
-    }
-    else {
-        TAD_multiplier = 0;
-    }
-    
-    TAD_ns = T_instruction_ns * (1 + TAD_multiplier);
-    
-    return TAD_multiplier;
-}
-
-
-uint16_t ADC1CLOCK_PeriodnsGet(void) {
-    return TAD_ns;
-}
-
-uint16_t ADC1CLOCK_MultiplierGet(void) {
-    return TAD_multiplier;
-}
-
-void ADC1CLOCK_PeriodnsSet(uint16_t period_ns) {
-    TAD_ns = period_ns;
-}
-
-void ADC1CLOCK_MultiplierSet(uint16_t multiplier) {
-    TAD_multiplier = multiplier;
+    return ceil(1 / (FCY * 0.000000001));
 }

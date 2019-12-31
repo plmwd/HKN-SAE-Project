@@ -50,6 +50,9 @@
 #include <stdio.h>
 #include "tmr1.h"
 #include "tmr3.h"
+#include "../device_configuration.h"
+#include <stdint.h>
+
 
 /**
  Section: File specific functions
@@ -78,14 +81,15 @@ void TMR1_CallBack(void);
   Section: Driver Interface
 */
 
+// need to manually start TMR1
 void TMR1_Initialize (void)
-{
+{   
     //TMR1 0; 
     TMR1 = 0x00;
-    //Period = 0.002 s;  
-    PR1 = 0x1CC9;
-    //TCKPS 1:1; TON enabled; TSIDL disabled; TCS FOSC/2; TSYNC disabled; TGATE disabled; 
-    T1CON = 0x8000;
+    //Period = BURST_PERIOD 
+    PR1 = BURST_CYCLES / TMR1_CLOCK_PRESCALER;   //0x1CC9 before;
+    //TCKPS 1:1; TON enabled; TSIDL disabled; TCS defined by TMR1_CLOCK_PRESCALER_BITS; TSYNC disabled; TGATE disabled; 
+    T1CON = TMR1_CLOCK_PRESCALER_BITS < 4; //0x8000 before
 
     TMR1_ClearInterruptFlag();
     TMR1_InterruptEnable();

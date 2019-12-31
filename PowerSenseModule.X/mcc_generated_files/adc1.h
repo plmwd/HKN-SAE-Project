@@ -65,10 +65,96 @@
 
 #define ADC1_ISR_FUNCTION_HEADER    void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt
 #define ADC_BUF_SIZE 16
-#define ADC_CONV_TIME_TAD 12
-#define ADC_SAMPLE_TIME_TAD_MIN 2
 
+extern bool adc_sampling_request_done;
+extern uint16_t adc_buffer[ADC_BUF_SIZE];
    
+typedef enum {
+    SINGLE_CH = 0,
+    DUAL_CH = 1,
+    MULTI_CH = 2
+} channel_mode_t;
+
+typedef enum {
+    MANUAL_BLOCKING,
+    MANUAL_NONBLOCKING,
+    CONTINUOUS
+} sampling_mode_t;
+
+typedef enum {
+    ADC_10BIT,
+    ADC_12BIT
+} adc_precision_t;
+
+typedef enum {
+    VPOS_AN0_AN1_AN2 = 0,
+    VPOS_AN3_AN4_AN5 = 1,
+    VPOS_AN3_AN0_AN25 = 2,
+    VPOS_AN0_AN25_AN6 = 3
+} channel123_vpos_select_t;
+
+typedef enum {
+    VNEG_VREFL = 0,
+    VNEG_AN6_AN7_AN8 = 2,
+    VNEG_AN9_AN10_AN11 = 3
+} channel123_vneg_select_t;
+
+#define CH123SA_MASK    0x0019
+
+typedef struct {
+    uint16_t *ch0_buffer; 
+    uint16_t ch0_buffer_size;
+    
+    uint16_t *ch1_buffer; 
+    uint16_t ch1_buffer_size;
+    
+    uint16_t *ch2_buffer;
+    uint16_t ch2_buffer_size;
+    
+    uint16_t *ch3_buffer;
+    uint16_t ch3_buffer_size;
+} channel_buffers_t;
+
+
+inline void ADC1_SetPrecision(adc_precision_t p) {
+    switch (p) {
+        case ADC_10BIT:
+            AD1CON1bits.AD12B = 0; 
+            break;
+        case ADC_12BIT:
+            AD1CON1bits.AD12B = 1; 
+            break;
+        default: 
+            AD1CON1bits.AD12B = 0; 
+            break;
+    };
+}
+
+void ADC1_ConfigureSampleMode(sampling_mode_t spm);
+
+inline void ADC1_ConfigureChannelMode(channel_mode_t chm) {
+    AD1CON2bits.CHPS = chm;
+}
+
+// pos_select can be between 0-63 for AN0 to AN63 respectively
+// neg_select can only be 0 or 1 for VREFL and AN1 respectively
+inline void ADC1_ConfigureChannel0(uint16_t pos_select, uint16_t neg_select) {
+    AD1CHS0bits.CH0SA = pos_select;
+    AD1CHS0bits.CH0NA = neg_select;
+}
+
+inline void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channel123_vneg_select_t neg) {
+    // CHS123 is laid out weird and the CH123SA field is split up
+    // CH123SA<2:1> = bits 4-3, CH123NA = bits 2-1, CH123SA<0> = bit 0
+    AD1CHS123 &= ~CH123SA_MASK;
+    AD1CHS123 |= ((pos >> 1) << 3) | (pos & 1);
+    
+    AD1CHS123bits.CH123NA = neg;
+}
+
+void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers);
+void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples);
+
 /**
   @Summary
     This function initializes ADC instance for the low current configuration
@@ -116,25 +202,6 @@ void ADC1_Initialize_HIMode (void);
 
 /**
   @Summary
-    This function gets the "adc_buffer" pointer
-
-  @Description
-    
-
-  @Preconditions
-    None.
-
-  @Param
-    None.
-
-  @Returns
-    The pointer of "adc_buffer"
-
-*/
-uint16_t* ADC1_GetBufferPtr(void);
-
-/**
-  @Summary
     This function gets the status of the "data_ready" variable
 
   @Description
@@ -150,7 +217,7 @@ uint16_t* ADC1_GetBufferPtr(void);
     "data_ready"
 
 */
-bool ADC1_IsDataReady(void);
+inline bool ADC1_IsDataReady(void);
 
 
 /**
@@ -171,7 +238,7 @@ bool ADC1_IsDataReady(void);
     None.
 
 */
-void ADC1_AcknowledgeDataReady(void);
+inline void ADC1_AcknowledgeDataReady(void);
 
 
 /**
@@ -336,164 +403,6 @@ inline static void ADC1_SamplingStop(void)
    AD1CON1bits.SAMP = 0;
 }
 
-/**
-  @Summary
-    Gets the buffer loaded with conversion results.
-
-  @Description
-    This routine is used to get the analog to digital converted values in a
-    buffer. This routine gets converted values from multiple channels.
- 
-  @Preconditions
-    This routine returns the buffer containing the conversion values only after 
-    the conversion is complete. Completion status conversion can be checked using 
-    ADC1_IsConversionComplete() routine.
- 
-  @Param
-    None.
-
-  @Returns
-    Returns the count of the buffer containing the conversion values.
-
-  @Example
-    <code>
-        int count;
-        //Initialize for channel scanning
-        ADC1_Initialize();
-        ADC1_SamplingStart();
-        //Provide Delay
-        for(int i=0;i <1000;i++)
-        {
-        }
-        ADC1_SamplingStop();
-        while(!ADC1_IsConversionComplete())
-        {
-            count = ADC1_ConversionResultBufferGet();
-        }
-    </code>
-*/
-
-uint16_t ADC1_ConversionResultBufferGet(uint16_t *buffer);
-
-/**
-  @Summary
-    Returns the ADC1 conversion value for Channel 0.
-
-  @Description
-    This routine is used to get the analog to digital converted value. This
-    routine gets converted values from the channel specified.
- 
-  @Preconditions
-    The channel required must be selected before calling this routine using
-    ADC1_ChannelSelect(channel). This routine returns the 
-    conversion value only after the conversion is complete. Completion status 
-    conversion can be checked using ADC1_IsConversionComplete()
-    routine.
-   
-  @Returns
-    Returns the buffer containing the conversion value.
-
-  @Param
-    Buffer address
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- */
-
-inline static uint16_t ADC1_Channel0ConversionResultGet(void) 
-{
-    return ADC1BUF0;
-}
-
-/**
-  @Summary
-    Returns the ADC1 conversion value from Channel 1.
-
-  @Description
-    This routine is used to get the analog to digital converted value. This
-    routine gets converted values from the channel specified.
- 
-  @Preconditions
-    The channel required must be selected before calling this routine using
-    ADC1_ChannelSelect(channel). This routine returns the 
-    conversion value only after the conversion is complete. Completion status 
-    conversion can be checked using ADC1_IsConversionComplete()
-    routine.
-   
-  @Returns
-    Returns the buffer containing the conversion value.
-
-  @Param
-    Buffer address
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- */
-
-inline static uint16_t ADC1_Channel1ConversionResultGet(void) 
-{
-    return ADC1BUF1;
-}
-
-/**
-  @Summary
-    Returns the ADC1 conversion value from Channel 2.
-
-  @Description
-    This routine is used to get the analog to digital converted value. This
-    routine gets converted values from the channel specified.
- 
-  @Preconditions
-    The channel required must be selected before calling this routine using
-    ADC1_ChannelSelect(channel). This routine returns the 
-    conversion value only after the conversion is complete. Completion status 
-    conversion can be checked using ADC1_IsConversionComplete()
-    routine.
-   
-  @Returns
-    Returns the buffer containing the conversion value.
-
-  @Param
-    Buffer address
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- */
-
-inline static uint16_t ADC1_Channel2ConversionResultGet(void) 
-{
-    return ADC1BUF2;
-}
-
-/**
-  @Summary
-    Returns the ADC1 conversion value from Channel 3.
-
-  @Description
-    This routine is used to get the analog to digital converted value. This
-    routine gets converted values from the channel specified.
- 
-  @Preconditions
-    The channel required must be selected before calling this routine using
-    ADC1_ChannelSelect(channel). This routine returns the 
-    conversion value only after the conversion is complete. Completion status 
-    conversion can be checked using ADC1_IsConversionComplete()
-    routine.
-   
-  @Returns
-    Returns the buffer containing the conversion value.
-
-  @Param
-    Buffer address
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- */
-
-inline static uint16_t ADC1_Channel3ConversionResultGet(void) 
-{
-    return ADC1BUF3;
-}
 
 /**
   @Summary
@@ -518,39 +427,11 @@ inline static uint16_t ADC1_Channel3ConversionResultGet(void)
     Refer to ADC1_Initialize(); for an example
  */
 
+// TODO
 inline static bool ADC1_IsConversionComplete( void )
 {
     return AD1CON1bits.DONE; //Wait for conversion to complete   
 }
-
-
-/**
-  @Summary
-    Returns the channel selected for conversion
-
-  @Description
-    This routine is used to return the channel selected for conversion.
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    The value of the Channel Conversion register
-
-  @Param
-    None
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
- 
-*/
-
-inline static uint16_t ADC1_ChannelSelectGet( void )
-{
-    return AD1CHS0bits.CH0SA ;
-}
-
 
 
 /**
@@ -604,58 +485,6 @@ inline static void ADC1_SimultaneousSamplingEnable(void)
 inline static void ADC1_SimultaneousSamplingDisble(void)
 {
     AD1CON1bits.SIMSAM = 0;
-}
-
-/**
-@Summary
-    Allows sutomatic sampling to be enabled manually
-
-  @Description
-    This routine is used to enable automatic sampling of channels manually
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    None.
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
-*/
-
-inline static void ADC1_AutomaticSamplingEnable(void)
-{
-    AD1CON1bits.ASAM = 1;
-}
-
-/**
-  @Summary
-    Allows automatic sampling to be disabled manually
-
-  @Description
-    This routine is used to disable automatic sampling of channels manually
-  
-  @Preconditions
-    ADC1_Initialize() function should have been 
-    called before calling this function.
- 
-  @Returns
-    None
-
-  @Param
-    None.
-  
-  @Example
-    Refer to ADC1_Initialize(); for an example
-*/
-
-inline static void ADC1_AutomaticSamplingDisable(void)
-{
-    AD1CON1bits.ASAM = 0;
 }
 
 /**
@@ -782,7 +611,8 @@ inline static void ADC1_InterruptPrioritySet( uint16_t priorityValue )
 */
 void ADC1_CallBack(void);
 
-        
+     
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

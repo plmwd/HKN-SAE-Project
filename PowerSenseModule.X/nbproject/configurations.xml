@@ -26,6 +26,8 @@
       <itemPath>device_configuration.h</itemPath>
       <itemPath>dma_backup.h</itemPath>
       <itemPath>globals.h</itemPath>
+      <itemPath>sampling_manager.h</itemPath>
+      <itemPath>device_parameters.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -54,6 +56,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>main_backup.c</itemPath>
       <itemPath>test_uart1.c</itemPath>
+      <itemPath>test_adc.c</itemPath>
+      <itemPath>sampling_manager.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

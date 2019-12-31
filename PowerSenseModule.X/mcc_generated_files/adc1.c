@@ -49,10 +49,14 @@
 
 #include "adc1.h"
 #include "tmr3.h"
-#include "clock.h"
+#include <math.h>
+#include "../device_parameters.h"
+#include "../device_configuration.h"
 
-bool data_ready = 0;
-uint16_t adc_buffer[ADC_BUF_SIZE] = { 0 };
+bool adc_sampling_request_done = false;
+uint16_t* adc_buffer = 0;
+uint16_t num_requested_samples = 0, num_completed_samples = 0, num_next_completed_samples = 0;
+channel_mode_t ch_mode = 0;
 
 
 /**
@@ -82,38 +86,71 @@ static ADC_OBJECT adc1_obj;
   Section: Driver Interface
 */
 
+//// generates 
+//uint16_t ADC1_Generate_Clock_Multiplier(void) {
+//    uint16_t T_instruction_ns = ceil(1000000000.0 / FCY);
+//    if (T_instruction_ns < TAD_MIN_12b_ns) {
+//        return ceil(TAD_MIN_US / T_instruction_ns);
+//    }
+//    else {
+//        return 0;
+//    }
+//}
+
+void ADC1_ConfigureSampleMode(sampling_mode_t spm) {
+    switch (spm) {
+        case MANUAL_BLOCKING:
+            
+            break;
+        case MANUAL_NONBLOCKING:
+            
+            break;
+        case CONTINUOUS:
+            
+            break;
+    };
+}
+
+void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers);
+void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples);
 
 void ADC1_Initialize (void)
 {
-   
-   AD1CON1bits.ADON     = 1;    // Enable ADC
    AD1CON1bits.ADSIDL   = 0;    // Keep ADC running when system idle
-   AD1CON1bits.ADDMABM  = 1;    // Buffer written in order of conversion
-   AD1CON1bits.AD12B    = 0;    // 10-bit operation
+   AD1CON1bits.ADDMABM  = 1;    // DMA Buffer written in order of conversion
+   AD1CON1bits.AD12B    = 0;    // 10-bit operation in order to use 4 channels
    AD1CON1bits.FORM     = 0;    // Unsigned integer
-   AD1CON1bits.SSRC     = 2;    // TMR3 starts conversion
+   AD1CON1bits.SSRC     = 7;    // default auto-convert after sampling
    AD1CON1bits.SSRCG    = 0;    // 0 clock source group
    AD1CON1bits.SIMSAM   = 1;    // Sample channels simultaneously
-   AD1CON1bits.ASAM     = 1;    // Auto sample after last conversion
-   AD1CON1bits.SAMP     = 1;
+   AD1CON1bits.ASAM     = 0;    // Manual sampling
+   AD1CON1bits.SAMP     = 0;    // Hold
    
    AD1CON2bits.CSCNA    = 0;    // Don't scan input
-   AD1CON2bits.SMPI     = 7;    // Generate interrupt after 16 total samples (8 per CH)
-   AD1CON2bits.CHPS     = 1;    // Converts CH0 and CH1
+   AD1CON2bits.SMPI     = 0;    // default generate interrupt after every conversion
+   AD1CON2bits.CHPS     = 0;    // default convert channel 0
    AD1CON2bits.BUFM     = 0;    // Always fill buffer from the beginning
    AD1CON2bits.ALTS     = 0;    // Always sample MUX A 
    
 
-    // SAMC 5; ADRC FOSC/2; ADCS 0; 
 
-   AD1CON3bits.ADRC = 0;        // Use system clock
-   AD1CON3bits.ADCS = ADC1CLOCK_GENMultiplier();
+   AD1CON3bits.ADRC     = 0;    // Use system clock
 
-    // CH0SA AN2; CH0SB AN2; CH0NB VREFL; CH0NA VREFL; 
+   // set clock divider according to system clock. Minimum clock period is 118 ns or ~13 MHz.
+   // see "device_configuration.h" for frequency and divider value.
+   // only for system clock - ignored for RC clock
+   AD1CON3bits.ADCS     = ADC1_CONV_CLOCK_DIVIDER;
+  
+   // set sample time - only for automatic convert after sample
+   AD1CON3bits.SAMC = ADC_SAMPLE_TIME_TAD + ADC_CONV_START_TIME_TAD + ADC_SAMPLE_START_TIME_TAD;
 
-   AD1CHS0 = 0b0000001000000010;
+   // DMABL Allocates 8 word of buffer to each analog input; ADDMAEN disabled; 
+   //AD1CON4 = 0x04;
+   
+    // default CH0SA AN0; CH0SB AN0; CH0NB VREFL; CH0NA VREFL; 
+   AD1CHS0 = 0x00;
 
-    // CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
+    // default CSS26 disabled; CSS25 disabled; CSS24 disabled; CSS27 disabled; 
 
    AD1CSSH = 0x00;
 
@@ -121,22 +158,23 @@ void ADC1_Initialize (void)
 
    AD1CSSL = 0x00;
 
-    // DMABL Allocates 8 word of buffer to each analog input; ADDMAEN disabled; 
+    // CH123SA2 AN0/AN1/AN2; CH123SB2 AN0/AN1/AN2; CH123NA CH1=VREF-; CH123NB CH1=VREF-; 
 
-   AD1CON4 = 0x04;
-
-    // CH123SA2 CH1=OA1/AN3; CH123SB2 CH1=OA1/AN3; CH123NA CH1=VREF-; CH123NB CH1=VREF-; 
-
-   AD1CHS123 = 0x101;
+   AD1CHS123 = 0x00;
 
    
    adc1_obj.intSample = AD1CON2bits.SMPI;
    
-   data_ready = 0;
-           
-   // Enabling ADC1 interrupt.
-   IEC0bits.AD1IE = 1;
-
+   // initialize ADC variables
+   adc_sampling_request_done = false;
+   ch_mode = false;
+   num_requested_samples = 0; 
+   num_completed_samples = 0; 
+   num_next_completed_samples = 0;
+   adc_buffer = 0;
+   
+   ADC1_InterruptEnable();
+   // programmer configures channels and sampling mode and enables the ADC
 }
 
 void __attribute__ ((weak)) ADC1_CallBack(void)
@@ -171,7 +209,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     adc_buffer[15] = ADC1BUFF;
     
     
-    data_ready = true;
+    adc_sampling_request_done = true;
     
     // clear the ADC interrupt flag
     IFS0bits.AD1IF = false;
@@ -182,11 +220,11 @@ uint16_t* ADC1_GetBufferPtr(void) {
 }
 
 bool ADC1_IsDataReady(void) {
-    return data_ready;
+    return adc_sampling_request_done;
 }
 
 void ADC1_AcknowledgeDataReady(void) {
-    data_ready = false;
+    adc_sampling_request_done = false;
 }
 
 /**
