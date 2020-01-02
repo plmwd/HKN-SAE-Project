@@ -53,12 +53,6 @@
 #include "../device_parameters.h"
 #include "../device_configuration.h"
 
-bool adc_sampling_request_done = false;
-uint16_t* adc_buffer = 0;
-uint16_t num_requested_samples = 0, num_completed_samples = 0, num_next_completed_samples = 0;
-channel_mode_t ch_mode = 0;
-
-
 /**
   Section: Data Type Definitions
 */
@@ -73,12 +67,13 @@ channel_mode_t ch_mode = 0;
     instance. This object exists once per hardware instance of the peripheral.
 
  */
-typedef struct
-{
+typedef struct {
 	uint8_t intSample;
-}
-
-ADC_OBJECT;
+    bool adc_sampling_request_complete;
+    uint16_t* adc_buffer;
+    uint16_t num_requested_samples, num_completed_samples; //, num_next_completed_samples;
+    sampling_mode_t sa_mode;
+} ADC_OBJECT;
 
 static ADC_OBJECT adc1_obj;
 
@@ -98,6 +93,8 @@ static ADC_OBJECT adc1_obj;
 //}
 
 void ADC1_ConfigureSampleMode(sampling_mode_t spm) {
+    adc1_obj.sa_mode = spm;
+    
     switch (spm) {
         case MANUAL_BLOCKING:
             
@@ -108,11 +105,38 @@ void ADC1_ConfigureSampleMode(sampling_mode_t spm) {
         case CONTINUOUS:
             
             break;
+        default: 
+            break;
     };
 }
 
-void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers);
-void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples);
+
+bool ADC1_SampleRequestComplete() {
+    return adc1_obj.adc_sampling_request_complete;
+}
+
+void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers) {
+
+}
+
+
+void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples) {
+    AD1CHS0bits.CH0SA = analog_input;
+    adc1_obj.adc_buffer = buffer;
+    adc1_obj.num_requested_samples = num_samples;
+    adc1_obj.num_completed_samples = 0;
+    adc1_obj.adc_sampling_request_complete = false;
+    
+    ADC1_SamplingStart();
+    
+    switch (adc1_obj.sa_mode) {
+        case MANUAL_BLOCKING:
+            while (adc1_obj.adc_sampling_request_complete == false);
+        case MANUAL_NONBLOCKING:
+        default:
+            break;
+    };
+}
 
 void ADC1_Initialize (void)
 {
@@ -142,7 +166,8 @@ void ADC1_Initialize (void)
    AD1CON3bits.ADCS     = ADC1_CONV_CLOCK_DIVIDER;
   
    // set sample time - only for automatic convert after sample
-   AD1CON3bits.SAMC = ADC_SAMPLE_TIME_TAD + ADC_CONV_START_TIME_TAD + ADC_SAMPLE_START_TIME_TAD;
+   AD1CON3bits.SAMC = 31; // data sheet for ADC says to use at least 31 (I'm guessing could go lower?)
+   //ADC_SAMPLE_TIME_TAD + ADC_CONV_START_TIME_TAD + ADC_SAMPLE_START_TIME_TAD;
 
    // DMABL Allocates 8 word of buffer to each analog input; ADDMAEN disabled; 
    //AD1CON4 = 0x04;
@@ -166,12 +191,13 @@ void ADC1_Initialize (void)
    adc1_obj.intSample = AD1CON2bits.SMPI;
    
    // initialize ADC variables
-   adc_sampling_request_done = false;
-   ch_mode = false;
-   num_requested_samples = 0; 
-   num_completed_samples = 0; 
-   num_next_completed_samples = 0;
-   adc_buffer = 0;
+   adc1_obj.adc_sampling_request_complete = false;
+   adc1_obj.num_requested_samples = 0; 
+   adc1_obj.num_completed_samples = 0; 
+   adc1_obj.num_completed_samples = 0;
+   adc1_obj.adc_buffer = 0;
+   
+   ADC1_ConfigureSampleMode(MANUAL_BLOCKING);
    
    ADC1_InterruptEnable();
    // programmer configures channels and sampling mode and enables the ADC
@@ -184,35 +210,23 @@ void __attribute__ ((weak)) ADC1_CallBack(void)
 
 void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 {
-    // Disable timer 3 (ADC conversion trigger)
-    TMR3_Stop();
-    
 	// ADC1 callback function 
-	//ADC1_CallBack();
+	// ADC1_CallBack();
 	
     // transfer ADC samples to buffer (could use DMA in the future)
-    adc_buffer[0] = ADC1BUF0;
-    adc_buffer[1] = ADC1BUF1;
-    adc_buffer[2] = ADC1BUF2;
-    adc_buffer[3] = ADC1BUF3;
-    adc_buffer[4] = ADC1BUF4;
-    adc_buffer[5] = ADC1BUF5;
-    adc_buffer[6] = ADC1BUF6;
-    adc_buffer[7] = ADC1BUF7;
-    adc_buffer[8] = ADC1BUF8;
-    adc_buffer[9] = ADC1BUF9;
-    adc_buffer[10] = ADC1BUFA;
-    adc_buffer[11] = ADC1BUFB;
-    adc_buffer[12] = ADC1BUFC;
-    adc_buffer[13] = ADC1BUFD;
-    adc_buffer[14] = ADC1BUFE;
-    adc_buffer[15] = ADC1BUFF;
+    adc1_obj.adc_buffer[adc1_obj.num_completed_samples] = ADC1BUF0;
     
-    
-    adc_sampling_request_done = true;
+    adc1_obj.num_completed_samples++;
     
     // clear the ADC interrupt flag
     IFS0bits.AD1IF = false;
+    
+    if (adc1_obj.num_requested_samples < adc1_obj.num_completed_samples) {
+        ADC1_SamplingStart();
+    }
+    else {
+        adc1_obj.adc_sampling_request_complete = true;
+    }
 }
 
 uint16_t* ADC1_GetBufferPtr(void) {

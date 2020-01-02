@@ -154,6 +154,7 @@ inline void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channel123_vn
 
 void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers);
 void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples);
+bool ADC1_SampleRequestComplete();
 
 /**
   @Summary
