@@ -103,16 +103,9 @@ typedef enum {
 
 typedef struct {
     uint16_t *ch0_buffer; 
-    uint16_t ch0_buffer_size;
-    
     uint16_t *ch1_buffer; 
-    uint16_t ch1_buffer_size;
-    
     uint16_t *ch2_buffer;
-    uint16_t ch2_buffer_size;
-    
     uint16_t *ch3_buffer;
-    uint16_t ch3_buffer_size;
 } channel_buffers_t;
 
 

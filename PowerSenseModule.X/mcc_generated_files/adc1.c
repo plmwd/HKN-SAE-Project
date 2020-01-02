@@ -70,7 +70,7 @@
 typedef struct {
 	uint8_t intSample;
     bool adc_sampling_request_complete;
-    uint16_t* adc_buffer;
+    channel_buffers_t ch_buffers;
     uint16_t num_requested_samples, num_completed_samples; //, num_next_completed_samples;
     sampling_mode_t sa_mode;
 } ADC_OBJECT;
@@ -122,12 +122,17 @@ void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers) {
 
 void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples) {
     AD1CHS0bits.CH0SA = analog_input;
-    adc1_obj.adc_buffer = buffer;
+    adc1_obj.ch_buffers.ch0_buffer = buffer;
     adc1_obj.num_requested_samples = num_samples;
     adc1_obj.num_completed_samples = 0;
     adc1_obj.adc_sampling_request_complete = false;
     
     ADC1_SamplingStart();
+    
+    adc1_obj.ch_buffers.ch0_buffer = 0;
+    adc1_obj.ch_buffers.ch1_buffer = 0;
+    adc1_obj.ch_buffers.ch2_buffer = 0;
+    adc1_obj.ch_buffers.ch3_buffer = 0;
     
     switch (adc1_obj.sa_mode) {
         case MANUAL_BLOCKING:
@@ -195,7 +200,7 @@ void ADC1_Initialize (void)
    adc1_obj.num_requested_samples = 0; 
    adc1_obj.num_completed_samples = 0; 
    adc1_obj.num_completed_samples = 0;
-   adc1_obj.adc_buffer = 0;
+   adc1_obj.ch_buffers = {0,0,0,0};
    
    ADC1_ConfigureSampleMode(MANUAL_BLOCKING);
    
@@ -214,7 +219,12 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
 	// ADC1_CallBack();
 	
     // transfer ADC samples to buffer (could use DMA in the future)
-    adc1_obj.adc_buffer[adc1_obj.num_completed_samples] = ADC1BUF0;
+    uint16_t num_completed_samples = adc1_obj.num_completed_samples;
+    
+    adc1_obj.ch_buffers.ch0_buffer[num_completed_samples] = ADC1BUF0;
+    adc1_obj.ch_buffers.ch1_buffer[num_completed_samples] = ADC1BUF1;
+    adc1_obj.ch_buffers.ch2_buffer[num_completed_samples] = ADC1BUF2;
+    adc1_obj.ch_buffers.ch3_buffer[num_completed_samples] = ADC1BUF3;
     
     adc1_obj.num_completed_samples++;
     
