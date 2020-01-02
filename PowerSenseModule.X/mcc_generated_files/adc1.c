@@ -129,11 +129,6 @@ void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samp
     
     ADC1_SamplingStart();
     
-    adc1_obj.ch_buffers.ch0_buffer = 0;
-    adc1_obj.ch_buffers.ch1_buffer = 0;
-    adc1_obj.ch_buffers.ch2_buffer = 0;
-    adc1_obj.ch_buffers.ch3_buffer = 0;
-    
     switch (adc1_obj.sa_mode) {
         case MANUAL_BLOCKING:
             while (adc1_obj.adc_sampling_request_complete == false);
@@ -200,7 +195,6 @@ void ADC1_Initialize (void)
    adc1_obj.num_requested_samples = 0; 
    adc1_obj.num_completed_samples = 0; 
    adc1_obj.num_completed_samples = 0;
-   adc1_obj.ch_buffers = {0,0,0,0};
    
    ADC1_ConfigureSampleMode(MANUAL_BLOCKING);
    
@@ -221,10 +215,16 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     // transfer ADC samples to buffer (could use DMA in the future)
     uint16_t num_completed_samples = adc1_obj.num_completed_samples;
     
-    adc1_obj.ch_buffers.ch0_buffer[num_completed_samples] = ADC1BUF0;
-    adc1_obj.ch_buffers.ch1_buffer[num_completed_samples] = ADC1BUF1;
-    adc1_obj.ch_buffers.ch2_buffer[num_completed_samples] = ADC1BUF2;
-    adc1_obj.ch_buffers.ch3_buffer[num_completed_samples] = ADC1BUF3;
+    switch (AD1CON2bits.CHPS) {
+        case MULTI_CH:
+            adc1_obj.ch_buffers.ch3_buffer[num_completed_samples] = ADC1BUF3;
+            adc1_obj.ch_buffers.ch2_buffer[num_completed_samples] = ADC1BUF2;
+        case DUAL_CH:
+            adc1_obj.ch_buffers.ch1_buffer[num_completed_samples] = ADC1BUF1;
+        case SINGLE_CH:
+        default:
+            adc1_obj.ch_buffers.ch0_buffer[num_completed_samples] = ADC1BUF0;
+    };
     
     adc1_obj.num_completed_samples++;
     
@@ -239,17 +239,17 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     }
 }
 
-uint16_t* ADC1_GetBufferPtr(void) {
-    return &adc_buffer;
-}
+//uint16_t* ADC1_GetBufferPtr(void) {
+//    return &adc_buffer;
+//}
 
-bool ADC1_IsDataReady(void) {
-    return adc_sampling_request_done;
-}
-
-void ADC1_AcknowledgeDataReady(void) {
-    adc_sampling_request_done = false;
-}
+//bool ADC1_IsDataReady(void) {
+//    return adc_sampling_request_done;
+//}
+//
+//void ADC1_AcknowledgeDataReady(void) {
+//    adc_sampling_request_done = false;
+//}
 
 /**
   End of File

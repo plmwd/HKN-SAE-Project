@@ -109,7 +109,7 @@ typedef struct {
 } channel_buffers_t;
 
 
-inline void ADC1_SetPrecision(adc_precision_t p) {
+inline static void ADC1_SetPrecision(adc_precision_t p) {
     switch (p) {
         case ADC_10BIT:
             AD1CON1bits.AD12B = 0; 
@@ -125,18 +125,18 @@ inline void ADC1_SetPrecision(adc_precision_t p) {
 
 void ADC1_ConfigureSampleMode(sampling_mode_t spm);
 
-inline void ADC1_ConfigureChannelMode(channel_mode_t chm) {
+inline static void ADC1_ConfigureChannelMode(channel_mode_t chm) {
     AD1CON2bits.CHPS = chm;
 }
 
 // pos_select can be between 0-63 for AN0 to AN63 respectively
 // neg_select can only be 0 or 1 for VREFL and AN1 respectively
-inline void ADC1_ConfigureChannel0(uint16_t pos_select, uint16_t neg_select) {
+inline static void ADC1_ConfigureChannel0(uint16_t pos_select, uint16_t neg_select) {
     AD1CHS0bits.CH0SA = pos_select;
     AD1CHS0bits.CH0NA = neg_select;
 }
 
-inline void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channel123_vneg_select_t neg) {
+inline static void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channel123_vneg_select_t neg) {
     // CHS123 is laid out weird and the CH123SA field is split up
     // CH123SA<2:1> = bits 4-3, CH123NA = bits 2-1, CH123SA<0> = bit 0
     AD1CHS123 &= ~CH123SA_MASK;
@@ -211,7 +211,7 @@ void ADC1_Initialize_HIMode (void);
     "data_ready"
 
 */
-inline bool ADC1_IsDataReady(void);
+//inline bool ADC1_IsDataReady(void);
 
 
 /**
@@ -232,7 +232,7 @@ inline bool ADC1_IsDataReady(void);
     None.
 
 */
-inline void ADC1_AcknowledgeDataReady(void);
+//inline void ADC1_AcknowledgeDataReady(void);
 
 
 /**
