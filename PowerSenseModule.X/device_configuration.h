@@ -90,12 +90,12 @@
 
 #define POSC_25MHz
 #define UART1_ENABLE
-#define TMR1_ENABLE
-#define TMR3_ENABLE
+//#define TMR1_ENABLE
+//#define TMR3_ENABLE
 
 
 #define ADC1_ENABLE
-#define BURST_FREQ 500
+//#define BURST_FREQ 500
 // SAMPLING_FREQ undefined for maximum rate
 
 
@@ -149,8 +149,8 @@
 
 
 // ADC clock
-#define BURST_PERIOD_ns     (1000000000UL / BURST_FREQ)
-#define BURST_CYCLES        ((FCY * BURST_PERIOD_ns) / 1000000000UL)
+//#define BURST_PERIOD_ns     (1000000000UL / BURST_FREQ)
+//#define BURST_CYCLES        ((FCY * BURST_PERIOD_ns) / 1000000000UL)
 
 #if defined FRC_40MHz               // FCY = 20 MHz
 #define ADC1_CONV_CLOCK_DIVIDER     2       

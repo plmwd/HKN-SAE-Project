@@ -231,7 +231,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     // clear the ADC interrupt flag
     IFS0bits.AD1IF = false;
     
-    if (adc1_obj.num_requested_samples < adc1_obj.num_completed_samples) {
+    if (adc1_obj.num_completed_samples < adc1_obj.num_requested_samples) {
         ADC1_SamplingStart();
     }
     else {

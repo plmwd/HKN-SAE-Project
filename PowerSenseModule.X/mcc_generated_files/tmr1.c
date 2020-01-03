@@ -85,14 +85,14 @@ void TMR1_CallBack(void);
 void TMR1_Initialize (void)
 {   
     //TMR1 0; 
-    TMR1 = 0x00;
-    //Period = BURST_PERIOD 
-    PR1 = BURST_CYCLES / TMR1_CLOCK_PRESCALER;   //0x1CC9 before;
-    //TCKPS 1:1; TON enabled; TSIDL disabled; TCS defined by TMR1_CLOCK_PRESCALER_BITS; TSYNC disabled; TGATE disabled; 
-    T1CON = TMR1_CLOCK_PRESCALER_BITS < 4; //0x8000 before
-
-    TMR1_ClearInterruptFlag();
-    TMR1_InterruptEnable();
+//    TMR1 = 0x00;
+//    //Period = BURST_PERIOD 
+//    PR1 = BURST_CYCLES / TMR1_CLOCK_PRESCALER;   //0x1CC9 before;
+//    //TCKPS 1:1; TON enabled; TSIDL disabled; TCS defined by TMR1_CLOCK_PRESCALER_BITS; TSYNC disabled; TGATE disabled; 
+//    T1CON = TMR1_CLOCK_PRESCALER_BITS < 4; //0x8000 before
+//
+//    TMR1_ClearInterruptFlag();
+//    TMR1_InterruptEnable();
 
 }
 
