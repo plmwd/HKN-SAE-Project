@@ -115,8 +115,44 @@ bool ADC1_SampleRequestComplete() {
     return adc1_obj.adc_sampling_request_complete;
 }
 
-void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers) {
+void ADC1_SetPrecision(adc_precision_t p) {
+    switch (ADC1_CHMODE) {
+        case DUAL_CH:
+        case MULTI_CH:
+            switch (p) {
+                case ADC_10BIT:
+                    AD1CON1bits.AD12B = 0; 
+                    break;
+                case ADC_12BIT:
+                    AD1CON1bits.AD12B = 1; 
+                    break;
+                default: 
+                    AD1CON1bits.AD12B = 0; 
+                    break;
+            };
+            break;
+        case SINGLE_CH:
+        default:
+            AD1CON1bits.AD12B = 0; 
+    };
+    
+}
 
+void ADC1_SampleChannels(channel_buffers_t *buffers, uint16_t num_samples) {
+    adc1_obj.ch_buffers = *buffers;
+    adc1_obj.num_requested_samples = num_samples;
+    adc1_obj.num_completed_samples = 0;
+    adc1_obj.adc_sampling_request_complete = false;
+    
+    ADC1_SamplingStart();
+    
+    switch (adc1_obj.sa_mode) {
+        case MANUAL_BLOCKING:
+            while (adc1_obj.adc_sampling_request_complete == false);
+        case MANUAL_NONBLOCKING:
+        default:
+            break;
+    };
 }
 
 

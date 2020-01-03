@@ -108,20 +108,9 @@ typedef struct {
     uint16_t *ch3_buffer;
 } channel_buffers_t;
 
+#define ADC1_CHMODE     AD1CON2bits.CHPS
 
-inline static void ADC1_SetPrecision(adc_precision_t p) {
-    switch (p) {
-        case ADC_10BIT:
-            AD1CON1bits.AD12B = 0; 
-            break;
-        case ADC_12BIT:
-            AD1CON1bits.AD12B = 1; 
-            break;
-        default: 
-            AD1CON1bits.AD12B = 0; 
-            break;
-    };
-}
+void ADC1_SetPrecision(adc_precision_t p);
 
 void ADC1_ConfigureSampleMode(sampling_mode_t spm);
 
@@ -145,7 +134,7 @@ inline static void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channe
     AD1CHS123bits.CH123NA = neg;
 }
 
-void ADC1_SampleChannels(uint16_t num_samples, channel_buffers_t *buffers);
+void ADC1_SampleChannels(channel_buffers_t *buffers, uint16_t num_samples);
 void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples);
 bool ADC1_SampleRequestComplete();
 
