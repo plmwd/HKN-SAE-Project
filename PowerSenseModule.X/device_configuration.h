@@ -33,9 +33,11 @@
  * **********************************************************************
  * DEBUG : disables system main
  * DEBUG_UART : uart debug main file
+ * DEBUG_ADC
+ * DEBUG_PPS : peripheral pin select
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_ADC
+#define DEBUG_PPS
 
 /**********************************************************************
  * 
