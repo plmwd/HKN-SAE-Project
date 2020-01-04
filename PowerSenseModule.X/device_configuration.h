@@ -10,6 +10,20 @@
 
 /**********************************************************************
  * 
+ *                   DEFINED GENERATED VARIABLES
+ * 
+ **********************************************************************
+ * FCY
+ * BURST_PERIOD
+ * BURST_CYCLES
+ * TMR1_CLOCK_PRESCALER
+ * TMR1_CLOCK_PRESCALER_BITS
+ * ADC1_CONV_CLOCK_DIVIDER
+ * ADC1_CONV_CLOCK_FREQ
+ **********************************************************************/ 
+
+/**********************************************************************
+ * 
  *                              DEBUG
  * 
  **********************************************************************
@@ -17,10 +31,11 @@
  * testing various peripherals/systems. First define "DEBUG" to 
  * comment out the main power sense main.
  * **********************************************************************
+ * DEBUG : disables system main
  * DEBUG_UART : uart debug main file
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_UART
+#define DEBUG_ADC
 
 /**********************************************************************
  * 
@@ -34,9 +49,7 @@
  ***********************************************************************
  * CLOCK (needs testing)
  ***********************************************************************
- * FRC_NORMAL : unaltered FRC oscillator, FCY = 7.37MHz / 2 = 3.685MHz
  * FRC_40MHz: closest cycle frequency to 40MHz (39.698MHz)
- * FRC_SLOWEST: slowest FRC frequency, 14.39KHz
  * POSC_25MHz: Primary, crystal oscillator at 25MHz
  * DEBUG_CLOCK: internal clock on OSC2 - can't be used with primary oscillator
  * 
@@ -58,13 +71,11 @@
  * UART1_ENABLE: enable UART1 initialization at startup
  * 
  ***********************************************************************
- * ADC OPTIONS 
+ * SAMPLING/ADC OPTIONS 
  ***********************************************************************
- * ADC1_BURST: enable ADC burst sampling operation 
- * ADC1_BURST_FREQ: if ADC_BURST is defined, optionally can define a burst frequency (needs testing)
- * ADC1_BURST_SMPL_FREQ: unsigned long, if ADC_BURST is defined, don't define for fastest frequency and define user defined sample frequency (not implemented)
- * 
- * ADC1_CONTINUOUS: enable ADC for continuous sampling (not implemented)
+ * BURST_FREQ: frequency at which the bursts start - timer 1
+ * SAMPLING_FREQ: frequency at which the ADC will sample. If undefined, 
+ *  it's the maximum rate.
  * 
  * ADC1_ENABLE: enable ADC initialization at startup
  * 
@@ -79,6 +90,13 @@
 
 #define POSC_25MHz
 #define UART1_ENABLE
+//#define TMR1_ENABLE
+//#define TMR3_ENABLE
+
+
+#define ADC1_ENABLE
+//#define BURST_FREQ 500
+// SAMPLING_FREQ undefined for maximum rate
 
 
 
@@ -102,22 +120,50 @@
 
 
 
+// system clock
+#ifndef _XTAL_FREQ
+#if defined(FRC_40MHz)
+
+#define _XTAL_FREQ  79395351UL
+
+#elif defined(FRC_NORMAL)
+
+#define _XTAL_FREQ  7370000UL
+
+#elif defined(FRC_SLOWEST)
+
+#define _XTAL_FREQ  14395UL
+
+#elif defined(POSC_25MHz)
+
+#define _XTAL_FREQ  25000000UL
+
+#else
+#error NO CLOCK DEFINED
+#endif
+#endif
+
+#ifndef FCY
+#define FCY     _XTAL_FREQ / 2
+#endif
 
 
+// ADC clock
+//#define BURST_PERIOD_ns     (1000000000UL / BURST_FREQ)
+//#define BURST_CYCLES        ((FCY * BURST_PERIOD_ns) / 1000000000UL)
+
+#if defined FRC_40MHz               // FCY = 20 MHz
+#define ADC1_CONV_CLOCK_DIVIDER     2       
+#define ADC1_CONV_CLOCK_FREQ        10000000UL
 
 
+#elif defined POSC_25MHz            // FCY = 12.5 MHz
+#define ADC1_CONV_CLOCK_DIVIDER     1       
+#define ADC1_CONV_CLOCK_FREQ        12500000UL
 
-
-
-
-
-
-
-
-
-
-
-
+#else
+#error NO ADC CONVERSION CLOCK DEFINED
+#endif
 
 
 
@@ -170,7 +216,26 @@
 #warning ASSUMING FASTEST ADC1 SAMPLING FREQUENCY
 #endif
 
+//BURST SAMPLING
+#if (BURST_CYCLES < 65536)
+#define TMR1_CLOCK_PRESCALER_BITS   0
+#define TMR1_CLOCK_PRESCALER        1
 
+#elif (BURST_CYCLES < 65536 * 8)
+#define TMR1_CLOCK_PRESCALER_BITS   1
+#define TMR1_CLOCK_PRESCALER        8
+
+#elif (BURST_CYCLES < 65536 * 64)
+#define TMR1_CLOCK_PRESCALER_BITS   2
+#define TMR1_CLOCK_PRESCALER        64
+
+#elif (BURST_CYCLES < 65536 * 256)
+#define TMR1_CLOCK_PRESCALER_BITS   3
+#define TMR1_CLOCK_PRESCALER        256
+
+#else
+#error TIMER 1 CLOCK ERROR
+#endif
 
 #endif	/* DEVICE_CONFIGURATION_H */
 

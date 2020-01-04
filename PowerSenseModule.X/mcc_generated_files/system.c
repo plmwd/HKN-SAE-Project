@@ -49,6 +49,10 @@
 #include "interrupt_manager.h"
 #include "traps.h"
 #include "uart1.h"
+#include "adc1.h"
+#include "tmr1.h"
+#include "tmr3.h"
+#include "../device_configuration.h" 
 
 void SYSTEM_Initialize(void)
 {   
@@ -67,8 +71,8 @@ CLOCK_Initialize_FRC_NORMAL();
 #elif defined FRC_40MHz
     CLOCK_Initialize_FRC_40MHz();
     
-#elif defined POSC_24MHz
-    CLOCK_Initialize_POSC_24MHz();
+#elif defined POSC_25MHz
+    CLOCK_Initialize_POSC_25MHz();
 #endif
     
 /***********************************************************************

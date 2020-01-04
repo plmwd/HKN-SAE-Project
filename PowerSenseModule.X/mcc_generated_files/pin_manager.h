@@ -1077,6 +1077,9 @@
 */
 #define LED_G_SetDigitalOutput() _TRISB15 = 0
 
+#define IIN_ANALOG_INPUT      2       // RB0, AN2
+#define VIN_ANALOG_INPUT      3       // RB1, AN3
+
 /**
     Section: Function Prototypes
 */

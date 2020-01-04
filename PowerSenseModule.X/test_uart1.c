@@ -12,7 +12,6 @@ int main(void)
     // initialize the device
     SYSTEM_Initialize();
     UART1_Initialize();
-    UART1_Enable();
     
     while (1) {
         printf("Hello world!\n\r");
