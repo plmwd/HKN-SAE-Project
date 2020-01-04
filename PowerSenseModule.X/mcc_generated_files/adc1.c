@@ -70,7 +70,7 @@
 typedef struct {
 	uint8_t intSample;
     bool adc_sampling_request_complete;
-    channel_buffers_t ch_buffers;
+    uint16_t *ch0_buffer, *ch1_buffer, *ch2_buffer, *ch3_buffer;
     uint16_t num_requested_samples, num_completed_samples; //, num_next_completed_samples;
     sampling_mode_t sa_mode;
 } ADC_OBJECT;
@@ -95,19 +95,19 @@ static ADC_OBJECT adc1_obj;
 void ADC1_ConfigureSampleMode(sampling_mode_t spm) {
     adc1_obj.sa_mode = spm;
     
-    switch (spm) {
-        case MANUAL_BLOCKING:
-            
-            break;
-        case MANUAL_NONBLOCKING:
-            
-            break;
-        case CONTINUOUS:
-            
-            break;
-        default: 
-            break;
-    };
+//    switch (spm) {
+//        case MANUAL_BLOCKING:
+//            
+//            break;
+//        case MANUAL_NONBLOCKING:
+//            
+//            break;
+//        case CONTINUOUS:
+//            
+//            break;
+//        default: 
+//            break;
+//    };
 }
 
 
@@ -138,8 +138,11 @@ void ADC1_SetPrecision(adc_precision_t p) {
     
 }
 
-void ADC1_SampleChannels(channel_buffers_t *buffers, uint16_t num_samples) {
-    adc1_obj.ch_buffers = *buffers;
+void ADC1_SampleChannels(uint16_t* ch0_buffer, uint16_t* ch1_buffer, uint16_t* ch2_buffer, uint16_t* ch3_buffer, uint16_t num_samples) {
+    adc1_obj.ch0_buffer = ch0_buffer;
+    adc1_obj.ch1_buffer = ch1_buffer;
+    adc1_obj.ch2_buffer = ch2_buffer;
+    adc1_obj.ch3_buffer = ch3_buffer;
     adc1_obj.num_requested_samples = num_samples;
     adc1_obj.num_completed_samples = 0;
     adc1_obj.adc_sampling_request_complete = false;
@@ -156,9 +159,9 @@ void ADC1_SampleChannels(channel_buffers_t *buffers, uint16_t num_samples) {
 }
 
 
-void ADC1_SampleInput(uint16_t analog_input, uint16_t *buffer, uint16_t num_samples) {
-    AD1CHS0bits.CH0SA = analog_input;
-    adc1_obj.ch_buffers.ch0_buffer = buffer;
+void ADC1_SampleInput(channel0_vpos_select_t input, uint16_t *buffer, uint16_t num_samples) {
+    ADC1_ConfigureChannel0(input, VNEG_CH0_VREFL);
+    adc1_obj.ch0_buffer = buffer;
     adc1_obj.num_requested_samples = num_samples;
     adc1_obj.num_completed_samples = 0;
     adc1_obj.adc_sampling_request_complete = false;
@@ -178,11 +181,11 @@ void ADC1_Initialize (void)
 {
    AD1CON1bits.ADSIDL   = 0;    // Keep ADC running when system idle
    AD1CON1bits.ADDMABM  = 1;    // DMA Buffer written in order of conversion
-   AD1CON1bits.AD12B    = 0;    // 10-bit operation in order to use 4 channels
+   ADC1_SetPrecision(ADC_10BIT);    // default 10 bit operation
    AD1CON1bits.FORM     = 0;    // Unsigned integer
    AD1CON1bits.SSRC     = 7;    // default auto-convert after sampling
    AD1CON1bits.SSRCG    = 0;    // 0 clock source group
-   AD1CON1bits.SIMSAM   = 1;    // Sample channels simultaneously
+   AD1CON1bits.SIMSAM   = 1;    // default sample channels simultaneously
    AD1CON1bits.ASAM     = 0;    // Manual sampling
    AD1CON1bits.SAMP     = 0;    // Hold
    
@@ -202,7 +205,7 @@ void ADC1_Initialize (void)
    AD1CON3bits.ADCS     = ADC1_CONV_CLOCK_DIVIDER;
   
    // set sample time - only for automatic convert after sample
-   AD1CON3bits.SAMC = 31; // data sheet for ADC says to use at least 31 (I'm guessing could go lower?)
+   ADC1_SampleTimeSet(31);   // data sheet for ADC says to use at least 31 (I'm guessing could go lower?)
    //ADC_SAMPLE_TIME_TAD + ADC_CONV_START_TIME_TAD + ADC_SAMPLE_START_TIME_TAD;
 
    // DMABL Allocates 8 word of buffer to each analog input; ADDMAEN disabled; 
@@ -253,19 +256,19 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _AD1Interrupt ( void )
     
     switch (AD1CON2bits.CHPS) {
         case MULTI_CH:
-            adc1_obj.ch_buffers.ch3_buffer[num_completed_samples] = ADC1BUF3;
-            adc1_obj.ch_buffers.ch2_buffer[num_completed_samples] = ADC1BUF2;
+            adc1_obj.ch3_buffer[num_completed_samples] = ADC1BUF3;
+            adc1_obj.ch2_buffer[num_completed_samples] = ADC1BUF2;
         case DUAL_CH:
-            adc1_obj.ch_buffers.ch1_buffer[num_completed_samples] = ADC1BUF1;
+            adc1_obj.ch1_buffer[num_completed_samples] = ADC1BUF1;
         case SINGLE_CH:
         default:
-            adc1_obj.ch_buffers.ch0_buffer[num_completed_samples] = ADC1BUF0;
+            adc1_obj.ch0_buffer[num_completed_samples] = ADC1BUF0;
     };
     
     adc1_obj.num_completed_samples++;
     
     // clear the ADC interrupt flag
-    IFS0bits.AD1IF = false;
+    ADC1_InterruptFlagClear();
     
     if (adc1_obj.num_completed_samples < adc1_obj.num_requested_samples) {
         ADC1_SamplingStart();
