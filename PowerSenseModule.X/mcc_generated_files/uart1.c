@@ -486,3 +486,8 @@ int __attribute__((__section__(".libc.write"))) write(int handle, void *buffer, 
     while(U1STAbits.TRMT == 0);
     return UART1_WriteBuffer((uint8_t *) buffer, len);
 }
+
+int __attribute__((__section__(".libc.read"))) read(int handle, void *buffer, unsigned int len) {
+    printf("I was called\n\r");
+    return UART1_ReadBuffer((uint8_t *) buffer, len);
+}
