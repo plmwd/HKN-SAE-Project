@@ -52,6 +52,14 @@
 #include <xc.h>
 #include "pin_manager.h"
 
+#define PPS_RPI34       0x22                    // RB2
+#define PPS_U1TX        0x01
+#define PPS_U1RX        PPS_RPI34
+#define PPS_U1RX_REG    RPINR18bits.U1RXR      
+#define PPS_RP35R       RPOR0bits.RP35R         // RB3
+#define PPS_U1TX_REG    PPS_RP35R
+
+
 /**
  Section: Driver Interface Function Definitions
 */
@@ -91,15 +99,20 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     ANSELA = 0x0010;
     ANSELB = 0x0183;
-
+    
+    
+    // UART test 
+    _TRISB2 = 1; // U1RX input
+    _TRISB3 = 0; // U1TX output
+    
 
     /****************************************************************************
      * Set the PPS
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
-    RPINR18bits.U1RXR = 0x0029;    //RB9->UART1:U1RX
-    RPOR3bits.RP40R = 0x0001;    //RB8->UART1:U1TX
+    PPS_U1TX_REG = PPS_U1TX;    
+    PPS_U1RX_REG = PPS_U1RX;    
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
 
