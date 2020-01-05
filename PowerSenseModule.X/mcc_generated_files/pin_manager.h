@@ -1080,6 +1080,11 @@
 #define IIN_ANALOG_INPUT      2       // RB0, AN2
 #define VIN_ANALOG_INPUT      3       // RB1, AN3
 
+#define test_SetDigitalOutput()  _TRISB2 = 0
+#define test_SetDigitalPin()     _ANSB2 = 0
+#define test_SetHigh()           _LATB2 = 1
+#define test_SetLow()            _LATB2 = 0
+
 /**
     Section: Function Prototypes
 */
