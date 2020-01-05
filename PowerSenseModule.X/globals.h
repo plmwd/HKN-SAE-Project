@@ -8,7 +8,7 @@
 #ifndef GLOBALS_H
 #define	GLOBALS_H
 
-#include "can.h"
+#include "can1.h"
 
 //#define DEBUG 
 
@@ -19,8 +19,8 @@
 #define NUM_CANRX_MSGS      7       // num messages for can rx buffer
 
 
-extern can_msg_t* canTXBuffer;
-extern can_msg_t* canRXBuffer;
+extern can_message_t* canTXBuffer;
+extern can_message_t* canRXBuffer;
 //extern can_msg_t canTXBuffer[NUM_CANTX_MSGS] __attribute__((aligned));
 //extern can_msg_t canRXBuffer[NUM_CANRX_MSGS] __attribute__((aligned));
 

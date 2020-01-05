@@ -1,10 +1,12 @@
 
-#include "can.h"
+#include "can1.h"
 #include "globals.h"
 #include <string.h>
 #include "mcc_generated_files/pin_manager.h"
 #include "device_configuration.h"
+#include "dma.h"
 
+#define NUM_RX_BUFFERS      3
 
 typedef struct __attribute__((packed))
 {
@@ -15,7 +17,40 @@ typedef struct __attribute__((packed))
     unsigned lost_arbitration           :1;
     unsigned message_aborted            :1;
     unsigned transmit_enabled           :1;
-} CAN_TX_CONTROLS;
+} can_tx_controls_t;
+
+typedef struct {
+    can_message_t       tx_buffer;
+    can_message_t       rx_buffers[NUM_RX_BUFFERS];
+    can_tx_controls_t   *tx_controls; 
+} can_object_t;
+
+can_object_t can_obj;
+
+dma_channel_settings_t dma_canrx_settings = { 
+                            .SIZE   = 0,     
+                            .DIR    = 0,     
+                            .HALF   = 0,     
+                            .NULLW  = 0,     
+                            .AMODE  = 2,     
+                            .MODE   = 0,     
+                            .IRQSEL = 34,     
+                            .PAD    = &C1RXD,     
+                            .CNT    = 7     
+                            };
+
+dma_channel_settings_t dma_cantx_settings = { 
+                            .SIZE   = 0,     
+                            .DIR    = 1,     
+                            .HALF   = 0,     
+                            .NULLW  = 0,     
+                            .AMODE  = 2,     
+                            .MODE   = 0,     
+                            .IRQSEL = 70,     
+                            .PAD    = &C1TXD,     
+                            .CNT    = 7     
+                            };
+
 
 /**************************************************************************
  * 
@@ -54,13 +89,12 @@ void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
  *                              INIT
  * 
  **************************************************************************/
-CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
+can_error_t CAN_Initialize() {
     if (NUM_CANTX_MSGS <= 0 || NUM_CANTX_MSGS > 8)
         return CAN_ERR_INVALID_TXBUF;
     
     /* put the module in configuration mode */
-    C1CTRL1bits.REQOP = CAN_CONFIGURATION_MODE;
-    while(C1CTRL1bits.OPMODE != CAN_CONFIGURATION_MODE);
+    CAN_OperationModeRequest(CAN_CONFIGURATION_MODE);
 
     // replace below baud config with inline function
 #if defined(CAN1BR_1MHz)
@@ -72,7 +106,7 @@ CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
     /* Filter configuration */
     /* enable window to access the filter configuration registers */
     /* use filter window*/
-    C1CTRL1bits.WIN=1;
+    CAN_UseFilterSFRWindow();
 	   
     /* select acceptance masks for filters */
 
@@ -98,7 +132,7 @@ CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
     /* Non FIFO Mode */
 
     /* clear window bit to access ECAN control registers */
-    C1CTRL1bits.WIN=0;    
+    CAN_UseBufferSFRWindow();  
 
     // configure TX/RX message buffers    
     if (NUM_CANTX_MSGS > 0)
@@ -129,9 +163,21 @@ CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
     /* clear the buffer full flags */ 	
     C1INTFbits.RBIF = 0;  
 
+    // configure can object
+    can_obj.tx_controls = (can_tx_controls_t*)&C1TR01CONbits;
+    can_obj.tx_controls->transmit_enabled = true;
+    can_obj.tx_controls->priority = CAN_PRIORITY_LOW;
+    can_obj.tx_buffer.RB0 = 0;
+    can_obj.tx_buffer.RB1 = 0;
+    can_obj.tx_buffer.use_extended_id = false;
+    can_obj.tx_buffer.use_remote_frame = false;
+    
+    // configure DMA for CAN RX and TX
+    DMA_InitializeChannel(DMA_CANTX_CH, dma_cantx_settings, &can_obj.tx_buffer);
+    DMA_InitializeChannel(DMA_CANRX_CH, dma_canrx_settings, can_obj.rx_buffers);
+    
     /* put the module in normal mode */
-    C1CTRL1bits.REQOP = mode;
-    while(C1CTRL1bits.OPMODE != mode);	
+    CAN_OperationModeRequest(CAN_NORMAL_MODE);
 
     return CAN_SUCCESS;
 }
@@ -142,9 +188,9 @@ CAN_ERR CAN_Initialize(CAN_OP_MODES mode) {
  *                             FUNCTIONS
  * 
  **************************************************************************/
-CAN_ERR CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t starting_byte) {
+can_error_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
-    char* data_byte_addr = (char*)&(canTXBuffer[buf_num].data_byte0);
+    uint8_t* data_byte_addr = (uint8_t*)&can_obj.tx_buffer;
     
     //if number of bytes is longer than the max data field
     if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
@@ -159,20 +205,31 @@ CAN_ERR CAN_WriteBuf(void* data, uint16_t buf_num, uint16_t num_bytes, uint16_t 
     return CAN_SUCCESS;
 }
 
-
-void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num) {
-    can_msg_t* buffer = &canTXBuffer[buf_num];
-    buffer->SRR = 0;        // normal message
-    buffer->IDE = 0;        // standard frame
-    buffer->EIDH = 0;       // extended ID high
-    buffer->EIDL = 0;       // extended ID high
-    buffer->RTR = 0;        // normal message
-    buffer->RB0 = 0;
-    buffer->RB1 = 0;
+can_error_t CAN_StartTransmission() {
+    if (can_obj.tx_controls->transmit_enabled != 1)
+        return CAN_ERR_TXBUF_DISABLED;
+    
+    if(can_obj.tx_controls->send_request == 1)
+        return CAN_ERR_TXBUF_FULL;
+    
+    
+    //send message
+    can_obj.tx_controls->send_request = 1;
+    
+    return CAN_SUCCESS;
 }
 
+void CAN_TXMessageSIDSet(uint16_t sid) {
+    can_obj.tx_buffer.standard_id = sid;
+}
 
-CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, uint16_t num_bytes) {
+void CAN_TXMessagePrioritySet(can_tx_priority_t priority) {
+    can_obj.tx_controls->priority = priority;
+}
+
+can_error_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority) {
+    can_error_t error;
+    
     //SID must be an 11-bit number - 2^11 = 2048
     if (sid > 2028)
         return CAN_ERR_INVALID_SID;   // not an 11-bit number
@@ -180,35 +237,18 @@ CAN_ERR CAN_Transmit(CAN_TXBUF txbuf, uint16_t sid, CAN_TX_PRIOIRTY priority, ui
     if (num_bytes > 8 || num_bytes < 1)
         return CAN_ERR_INVALID_DATA_SIZE;   // max 8 bytes
      
-    CAN_TX_CONTROLS* TXControls;
+    CAN_WriteTXBuffer(data, num_bytes, 0);
+    CAN_TXMessageSIDSet(sid);
+    CAN_TXMessagePrioritySet(priority);
     
-    //request transmission
-    switch(txbuf) {
-        case CAN_TXBUF_0:
-            TXControls = (CAN_TX_CONTROLS*)&C1TR01CONbits;
-            break;
-        default:
-            return CAN_ERR_INVALID_TXBUF; 
+    error = CAN_StartTransmission();
+    if (error != CAN_SUCCESS) {
+        return error;
     }
     
-    can_msg_t* buffer = &canTXBuffer[txbuf]; 
-    
-    if (TXControls->transmit_enabled != 1)
-        return CAN_ERR_TXBUF_DISABLED;
-    
-    if(TXControls->send_request == 1)
-        return CAN_ERR_TXBUF_FULL;
-    
-    buffer->SID = sid;          // bus peripheral address
-    buffer->DLC = num_bytes;    // number of bytes in buffer to send (starting from byte 0)
-    
-    TXControls->priority = priority;
-    
-    //send message
-    TXControls->send_request = 1;
     
     // successful
-    return (TXControls->error) ? CAN_ERROR : CAN_SUCCESS;
+    return (can_obj.tx_controls->error) ? CAN_ERROR : CAN_SUCCESS;
 }
 
 
@@ -226,15 +266,26 @@ void CAN1BR_1MHz_Initialize(void) {
     C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
     C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
 
-#elif defined (POSC_24MHz)
+#elif defined (POSC_25MHz)
     /* Set up the baud rate*/	
-    C1CFG1 = 0x00;	//BRP TQ = (2 x 1)/FCAN; SJW 1 x TQ; 
-    C1CFG2 = 0x06BF;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 7 x TQ; SEG1PH 8 x TQ; PRSEG 8 x TQ; SAM 3 times at the sample point; 
+    C1CFG1bits.BRP = 0;
+    C1CFG1bits.SJW = 0;         // 1 TQ
+    
+    C1CFG2bits.WAKFIL = 0;      // CAN bus filter not used to wake up device
+    C1CFG2bits.SEG1PH = 7;      // phase segment 1 is 8 TQ
+    C1CFG2bits.SEG2PH = 7;      // phase segment 2 is 8 TQ
+    C1CFG2bits.PRSEG = 7;       // propagation is 8 TQ
+    C1CFG2bits.SAM = 1;         // sample 3 times at the sample point
+    
+    C1CTRL1bits.CSIDL = 0;      // continue operation in idle mode
+    C1CTRL1bits.ABAT = 0;       // clear TX abort
+    C1CTRL1bits.CANCKS = 1;     // Make CAN clock equal to FOSC (25MHz and not /2)
+    CAN_OperationModeRequest(CAN_NORMAL_MODE);
+    C1CTRL1bits.CANCAP = 0;     // disable CAN capture
+    
     C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 
     C1FEN1 = 0x00;	//FLTEN8 disabled; FLTEN7 disabled; FLTEN9 disabled; FLTEN0 disabled; FLTEN2 disabled; FLTEN10 disabled; FLTEN1 disabled; FLTEN11 disabled; FLTEN4 disabled; FLTEN3 disabled; FLTEN6 disabled; FLTEN5 disabled; FLTEN12 disabled; FLTEN13 disabled; FLTEN14 disabled; FLTEN15 disabled; 
     C1CTRL1 = 0x00;	//CANCKS FOSC/2; CSIDL disabled; ABAT disabled; REQOP Sets Normal Operation Mode; WIN Uses buffer window; CANCAP disabled; 
-
-    C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
     
 #else
 #error CAN 1MHZ WITH CURRENT CLOCK NOT REALIZABLE
@@ -257,7 +308,7 @@ void CAN1BR_125KHz_Initialize(void) {
     
     //C1CTRL1bits.CANCKS = 1;     //FCAN = 2 * FP
 
-#elif defined (POSC_24MHz)
+#elif defined (POSC_25MHz)
     /* Set up the baud rate*/	
     C1CFG1 = 0x07;      //BRP TQ = (2 x 8)/FCAN; SJW 1 x TQ; 
     C1CFG2 = 0x06BF;	//WAKFIL disabled; SEG2PHTS Freely programmable; SEG2PH 7 x TQ; SEG1PH 8 x TQ; PRSEG 8 x TQ; SAM 3 times at the sample point; 

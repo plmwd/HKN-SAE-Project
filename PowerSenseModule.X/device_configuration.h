@@ -35,9 +35,10 @@
  * DEBUG_UART : uart debug main file
  * DEBUG_ADC
  * DEBUG_PPS : peripheral pin select
+ * DEBUG_CAN
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_UART
+#define DEBUG_CAN
 
 /**********************************************************************
  * 
@@ -92,11 +93,11 @@
 
 #define POSC_25MHz
 #define UART1_ENABLE
-//#define TMR1_ENABLE
-//#define TMR3_ENABLE
+#define CAN1_ENABLE
+#define CAN1BR_1MHz
 
 
-#define ADC1_ENABLE
+//#define ADC1_ENABLE
 //#define BURST_FREQ 500
 // SAMPLING_FREQ undefined for maximum rate
 
