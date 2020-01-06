@@ -33,12 +33,14 @@
  * **********************************************************************
  * DEBUG : disables system main
  * DEBUG_UART : uart debug main file
+ * DEBUG_UART_ALT_PIN: uses different pins for UART rx = pin 18, tx = pin 17
  * DEBUG_ADC
  * DEBUG_PPS : peripheral pin select
  * DEBUG_CAN
  ***********************************************************************/
 #define DEBUG
 #define DEBUG_CAN
+#define DEBUG_UART_ALT_PIN
 
 /**********************************************************************
  * 

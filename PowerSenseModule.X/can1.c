@@ -89,7 +89,7 @@ void __attribute__((interrupt, auto_psv)) _C1Interrupt(void) {
  *                              INIT
  * 
  **************************************************************************/
-can_error_t CAN_Initialize() {
+can_status_t CAN_Initialize() {
     if (NUM_CANTX_MSGS <= 0 || NUM_CANTX_MSGS > 8)
         return CAN_ERR_INVALID_TXBUF;
     
@@ -173,8 +173,8 @@ can_error_t CAN_Initialize() {
     can_obj.tx_buffer.use_remote_frame = false;
     
     // configure DMA for CAN RX and TX
-    DMA_InitializeChannel(DMA_CANTX_CH, dma_cantx_settings, &can_obj.tx_buffer);
-    DMA_InitializeChannel(DMA_CANRX_CH, dma_canrx_settings, can_obj.rx_buffers);
+    DMA_InitializeChannel(DMA_CANTX_CH, dma_cantx_settings, (uint16_t *)&can_obj.tx_buffer);
+    DMA_InitializeChannel(DMA_CANRX_CH, dma_canrx_settings, (uint16_t *)can_obj.rx_buffers);
     
     /* put the module in normal mode */
     CAN_OperationModeRequest(CAN_NORMAL_MODE);
@@ -188,9 +188,9 @@ can_error_t CAN_Initialize() {
  *                             FUNCTIONS
  * 
  **************************************************************************/
-can_error_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_byte) {
+can_status_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_byte) {
     //get byte addressable pointer
-    uint8_t* data_byte_addr = (uint8_t*)&can_obj.tx_buffer;
+    uint8_t* data_byte_addr = (uint8_t*)&can_obj.tx_buffer.data_byte0;
     
     //if number of bytes is longer than the max data field
     if ((num_bytes >= CAN_MSG_SIZE) || (starting_byte >= CAN_MSG_SIZE)) 
@@ -205,7 +205,7 @@ can_error_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_b
     return CAN_SUCCESS;
 }
 
-can_error_t CAN_StartTransmission() {
+can_status_t CAN_StartTransmission() {
     if (can_obj.tx_controls->transmit_enabled != 1)
         return CAN_ERR_TXBUF_DISABLED;
     
@@ -227,11 +227,11 @@ void CAN_TXMessagePrioritySet(can_tx_priority_t priority) {
     can_obj.tx_controls->priority = priority;
 }
 
-can_error_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority) {
-    can_error_t error;
+can_status_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority) {
+    can_status_t error;
     
     //SID must be an 11-bit number - 2^11 = 2048
-    if (sid > 2028)
+    if (sid > 0x7FF)
         return CAN_ERR_INVALID_SID;   // not an 11-bit number
     
     if (num_bytes > 8 || num_bytes < 1)
@@ -280,7 +280,6 @@ void CAN1BR_1MHz_Initialize(void) {
     C1CTRL1bits.CSIDL = 0;      // continue operation in idle mode
     C1CTRL1bits.ABAT = 0;       // clear TX abort
     C1CTRL1bits.CANCKS = 1;     // Make CAN clock equal to FOSC (25MHz and not /2)
-    CAN_OperationModeRequest(CAN_NORMAL_MODE);
     C1CTRL1bits.CANCAP = 0;     // disable CAN capture
     
     C1FCTRL = 0xC001;	//FSA Transmit/Receive Buffer TRB1; DMABS 32; 

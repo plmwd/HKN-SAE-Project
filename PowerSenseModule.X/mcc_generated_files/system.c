@@ -52,6 +52,7 @@
 #include "adc1.h"
 #include "tmr1.h"
 #include "tmr3.h"
+#include "../can1.h"
 #include "../device_configuration.h" 
 
 void SYSTEM_Initialize(void)

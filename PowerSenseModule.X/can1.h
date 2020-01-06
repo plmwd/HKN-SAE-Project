@@ -53,7 +53,7 @@ typedef enum{
     CAN_ERR_TXBUF_FULL,             // previous tx not sent
     CAN_ERR_MSG_ABORTED,            // tx message aborted
     CAN_ERR_MSG_LOST_ARBITRATION    // tx message overridden by bus device with higher priority
-} can_error_t;
+} can_status_t;
 
 typedef struct __attribute__((packed))can_msg_struct{
     //order of word, then LSB to MSB
@@ -122,7 +122,7 @@ inline static void CAN_UseBufferSFRWindow() {
 /*
  * Initializes the CAN module
  */
-can_error_t CAN_Initialize();
+can_status_t CAN_Initialize();
 
 
 /**
@@ -134,9 +134,9 @@ can_error_t CAN_Initialize();
  * 
  * @return 1 if error, 0 if successful
  */
-can_error_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority);
+can_status_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority);
 
-can_error_t CAN_StartTransmission();
+can_status_t CAN_StartTransmission();
 
 void CAN_TXMessageSIDSet(uint16_t sid);
 
@@ -158,16 +158,8 @@ void CAN_TXMessagePrioritySet(can_tx_priority_t priority);
  * 
  * @return 1 if error, 0 if successful
  */
-can_error_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_byte);
+can_status_t CAN_WriteTXBuffer(void* data, uint8_t num_bytes, uint16_t starting_byte);
 
-
-/**
- * CAN messages can take on different formats. This function configures the buffer to be a 
- * standard data message.
- * 
- * @param buf_num: TX buffer to setup for a standard data frame
- */
-void CAN_ConfigBufForStandardDataFrame(uint16_t buf_num);
 
 void CAN1BR_1MHz_Initialize(void);
 
