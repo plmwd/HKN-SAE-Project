@@ -1,0 +1,10 @@
+Board changes TODO 01/10/2020
+----------------------------------------------------
+> Verify connector fitting
+> verify cap footprints around buck
+> search for THT or cheaper caps, specifically the larger value caps
+> THT shunt jumpers
+> rewire programming jumper or remove it
+> op amo package
+> label header functions
+> match brightness of red and green LED
