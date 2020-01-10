@@ -115,6 +115,9 @@ void PIN_MANAGER_Initialize (void)
     _TRISB2 = 1; // U1RX input
     _TRISB3 = 0; // U1TX output
     
+    // CAN
+    _TRISB11 = 0;   // tx output
+    _TRISB12 = 1;   // rx input
 
     /****************************************************************************
      * Set the PPS

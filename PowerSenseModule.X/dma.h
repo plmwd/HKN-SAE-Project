@@ -39,7 +39,7 @@ typedef struct {
     uint8_t IRQSEL:8;
     
 //DMAxPAD: peripheral data address
-    uint16_t PAD;
+    uint16_t* PAD;
     
 //DMAxCNT: number of transfers per data block 
     uint16_t CNT:14;

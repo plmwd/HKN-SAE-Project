@@ -96,7 +96,7 @@
 #define POSC_25MHz
 #define UART1_ENABLE
 #define CAN1_ENABLE
-#define CAN1BR_1MHz
+#define CAN1BR_125KHz
 
 
 //#define ADC1_ENABLE

@@ -56,9 +56,6 @@
 #include "watchdog.h"
 #include "reset.h"
 
-#ifndef _XTAL_FREQ
-#define _XTAL_FREQ  7370000UL
-#endif
 
 /**
  * @Param

@@ -2,18 +2,6 @@
 #include <stdbool.h>
 //#include <string.h>
 
-dma_channel_settings_t DMA_ADC_INIT = {   .SIZE   = 1,     \
-                            .DIR    = 1,     \
-                            .HALF   = 1,     \
-                            .NULLW  = 1,     \
-                            .AMODE  = 1,     \
-                            .MODE   = 1,     \
-                            .IRQSEL = 1,     \
-                            .PAD    = 1,     \
-                            .CNT    = 1     \
-                            };
-
-
 
 
 #define inactive    false
@@ -34,7 +22,6 @@ dma_status_t DMA_InitializeChannel(uint8_t ch, dma_channel_settings_t ch_setting
     switch (ch)
     {
         case 0:
-            DMA0CONbits.CHEN = 1;
             DMA0CONbits.SIZE = ch_settings.SIZE;
             DMA0CONbits.DIR = ch_settings.DIR;
             DMA0CONbits.HALF = ch_settings.HALF;
@@ -43,14 +30,14 @@ dma_status_t DMA_InitializeChannel(uint8_t ch, dma_channel_settings_t ch_setting
             DMA0CONbits.MODE = ch_settings.MODE;
             DMA0REQbits.IRQSEL = ch_settings.IRQSEL;
             DMA0STAHbits.STA = 0;
-            DMA0STAL = buffer_addr;
+            DMA0STAL = (uint16_t)buffer_addr;
             DMA0STBHbits.STB = 0;
             DMA0STBL = 0;
-            DMA0PAD = ch_settings.PAD;
+            DMA0PAD = (uint16_t)ch_settings.PAD;
             DMA0CNTbits.CNT = ch_settings.CNT;
+            DMA0CONbits.CHEN = 1;
             break;
         case 1:
-            DMA1CONbits.CHEN = 1;
             DMA1CONbits.SIZE = ch_settings.SIZE;
             DMA1CONbits.DIR = ch_settings.DIR;
             DMA1CONbits.HALF = ch_settings.HALF;
@@ -59,14 +46,14 @@ dma_status_t DMA_InitializeChannel(uint8_t ch, dma_channel_settings_t ch_setting
             DMA1CONbits.MODE = ch_settings.MODE;
             DMA1REQbits.IRQSEL = ch_settings.IRQSEL;
             DMA1STAHbits.STA = 0;
-            DMA1STAL = buffer_addr;
+            DMA1STAL = (uint16_t)buffer_addr;
             DMA1STBHbits.STB = 0;
             DMA1STBL = 0;
-            DMA1PAD = ch_settings.PAD;
+            DMA1PAD = (uint16_t)ch_settings.PAD;
             DMA1CNTbits.CNT = ch_settings.CNT;
+            DMA1CONbits.CHEN = 1;
             break;
         case 2:
-            DMA2CONbits.CHEN = 1;
             DMA2CONbits.SIZE = ch_settings.SIZE;
             DMA2CONbits.DIR = ch_settings.DIR;
             DMA2CONbits.HALF = ch_settings.HALF;
@@ -75,14 +62,14 @@ dma_status_t DMA_InitializeChannel(uint8_t ch, dma_channel_settings_t ch_setting
             DMA2CONbits.MODE = ch_settings.MODE;
             DMA2REQbits.IRQSEL = ch_settings.IRQSEL;
             DMA2STAHbits.STA = 0;
-            DMA2STAL = buffer_addr;
+            DMA2STAL = (uint16_t)buffer_addr;
             DMA2STBHbits.STB = 0;
             DMA2STBL = 0;
-            DMA2PAD = ch_settings.PAD;
+            DMA2PAD = (uint16_t)ch_settings.PAD;
             DMA2CNTbits.CNT = ch_settings.CNT;
+            DMA2CONbits.CHEN = 1;
             break;
         case 3:
-            DMA3CONbits.CHEN = 1;
             DMA3CONbits.SIZE = ch_settings.SIZE;
             DMA3CONbits.DIR = ch_settings.DIR;
             DMA3CONbits.HALF = ch_settings.HALF;
@@ -91,11 +78,12 @@ dma_status_t DMA_InitializeChannel(uint8_t ch, dma_channel_settings_t ch_setting
             DMA3CONbits.MODE = ch_settings.MODE;
             DMA3REQbits.IRQSEL = ch_settings.IRQSEL;
             DMA3STAHbits.STA = 0;
-            DMA3STAL = buffer_addr;
+            DMA3STAL = (uint16_t)buffer_addr;
             DMA3STBHbits.STB = 0;
             DMA3STBL = 0;
-            DMA3PAD = ch_settings.PAD;
+            DMA3PAD = (uint16_t)ch_settings.PAD;
             DMA3CNTbits.CNT = ch_settings.CNT;
+            DMA3CONbits.CHEN = 1;
             break;
         default:
             return DMA_ERROR;

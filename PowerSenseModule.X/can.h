@@ -14,6 +14,7 @@
 #include <stdbool.h>
 
 #define DEBUG_SID 1234
+#define CAN_MSG_SIZE 8
 
 typedef enum
 {
@@ -117,6 +118,45 @@ inline static void CAN_UseBufferSFRWindow() {
     C1CTRL1bits.WIN = 0;
 }
 
+inline static void CAN_TransmitBufferInterruptEnable() {
+    C1INTEbits.TBIE = 1;
+}
+
+inline static void CAN_TransmitBufferInterruptDisable() {
+    C1INTEbits.TBIE = 0;
+}
+
+inline static void CAN_ReceiveBufferInterruptEnable() {
+    C1INTEbits.RBIE = 1;
+}
+
+inline static void CAN_ReceiveBufferInterruptDisable() {
+    C1INTEbits.RBIE = 0;
+}
+
+inline static void CAN_ErrorInterruptEnable() {
+    C1INTEbits.RBIE = 1;
+}
+
+inline static void CAN_ErrorInterruptDisable() {
+    C1INTEbits.RBIE = 0;
+}
+
+inline static void CAN_WakeUpInterruptEnable() {
+    C1INTEbits.WAKIE = 1;
+}
+
+inline static void CAN_WakeUpInterruptDisable() {
+    C1INTEbits.WAKIE = 0;
+}
+
+inline static void CAN_AllInterruptsEnable() {
+    C1INTE = 0x00FF;
+}
+
+inline static void CAN_AllInterruptsDisable() {
+    C1INTE = 0x0000;
+}
 
 
 /*
@@ -134,7 +174,7 @@ can_status_t CAN_Initialize();
  * 
  * @return 1 if error, 0 if successful
  */
-can_status_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid, can_tx_priority_t priority);
+can_status_t CAN_TransmitData(void *data, uint8_t num_bytes, uint16_t sid);
 
 can_status_t CAN_StartTransmission();
 
