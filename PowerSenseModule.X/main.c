@@ -72,13 +72,6 @@ double ProcessVoltage(uint16_t);
 void CAN_send(uint16_t);    
 
 
-#define NUM_CAL_POINTS      10              // Number of calibration points
-#define DIFFAMP_GAIN        80
-#define OPAMP_UNITY_GAIN    1
-#define R_SHUNT             0.004
-
-#define I_EFF_GAIN          DIFFAMP_GAIN * OPAMP_UNITY_GAIN;
-
 #define R_V_DIV_1           1000000.0           // 1MOhm
 #define R_V_DIV_2           499000.0            // 499kOhm
 #define R_DIFF_1            1200.0              // 1.2kOhm

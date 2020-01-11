@@ -261,7 +261,7 @@ inline static void ADC1_ConfigureChannel123(channel123_vpos_select_t pos, channe
     10 bits for 2 or more channels. For one channel, 10 or 12 bits can be used. 
 
   @Param
-    Channel buffers and number of samples to request.
+    Channel buffers and number of samples to request per channel.
 
   @Returns
     None.
