@@ -37,9 +37,11 @@
  * DEBUG_ADC
  * DEBUG_PPS : peripheral pin select
  * DEBUG_CAN
+ * DEBUG_PWM
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_CAN
+#define DEBUG_PWM
+//#define DEBUG_CAN
 #define DEBUG_UART_ALT_PIN
 
 /**********************************************************************
@@ -90,6 +92,11 @@
  * TMR1_ENABLE: enable TMR1 initialization at startup
  * TMR3_ENABLE: enable TMR3 initialization at startup
  *
+ ***********************************************************************
+ * PWM OPTIONS 
+ ***********************************************************************
+ * PWM_ENABLE
+ * 
  */
     
 
@@ -97,6 +104,7 @@
 #define UART1_ENABLE
 #define CAN1_ENABLE
 #define CAN1BR_125KHz
+#define PWM_ENABLE
 
 
 //#define ADC1_ENABLE

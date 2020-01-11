@@ -21,6 +21,8 @@
         <itemPath>mcc_generated_files/adc1.h</itemPath>
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
         <itemPath>mcc_generated_files/tmr3.h</itemPath>
+        <itemPath>mcc_generated_files/pwm.h</itemPath>
+        <itemPath>mcc_generated_files/dma.h</itemPath>
       </logicalFolder>
       <itemPath>calibration.h</itemPath>
       <itemPath>device_configuration.h</itemPath>
@@ -51,6 +53,8 @@
         <itemPath>mcc_generated_files/adc1.c</itemPath>
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/tmr3.c</itemPath>
+        <itemPath>mcc_generated_files/pwm.c</itemPath>
+        <itemPath>mcc_generated_files/dma.c</itemPath>
       </logicalFolder>
       <itemPath>calibration.c</itemPath>
       <itemPath>main.c</itemPath>
@@ -62,6 +66,7 @@
       <itemPath>test_can.c</itemPath>
       <itemPath>dma.c</itemPath>
       <itemPath>can.c</itemPath>
+      <itemPath>test_pwm.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
