@@ -37,10 +37,12 @@
  * DEBUG_ADC
  * DEBUG_PPS : peripheral pin select
  * DEBUG_CAN
+ * DEBUG_SYSTEM
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_CAN
-#define DEBUG_UART_ALT_PIN
+//#define DEBUG_CAN
+//#define DEBUG_UART_ALT_PIN
+#define DEBUG_SYSTEM
 
 /**********************************************************************
  * 

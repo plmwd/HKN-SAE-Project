@@ -29,6 +29,7 @@
       <itemPath>device_parameters.h</itemPath>
       <itemPath>dma.h</itemPath>
       <itemPath>can.h</itemPath>
+      <itemPath>power_sense_module.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -62,6 +63,8 @@
       <itemPath>test_can.c</itemPath>
       <itemPath>dma.c</itemPath>
       <itemPath>can.c</itemPath>
+      <itemPath>test_system.c</itemPath>
+      <itemPath>power_sense_module.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
