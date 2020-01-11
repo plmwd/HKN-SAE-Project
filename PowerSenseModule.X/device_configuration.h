@@ -33,11 +33,14 @@
  * **********************************************************************
  * DEBUG : disables system main
  * DEBUG_UART : uart debug main file
+ * DEBUG_UART_ALT_PIN: uses different pins for UART rx = pin 18, tx = pin 17
  * DEBUG_ADC
  * DEBUG_PPS : peripheral pin select
+ * DEBUG_CAN
  ***********************************************************************/
 #define DEBUG
-#define DEBUG_UART
+#define DEBUG_CAN
+#define DEBUG_UART_ALT_PIN
 
 /**********************************************************************
  * 
@@ -92,11 +95,11 @@
 
 #define POSC_25MHz
 #define UART1_ENABLE
-//#define TMR1_ENABLE
-//#define TMR3_ENABLE
+#define CAN1_ENABLE
+#define CAN1BR_125KHz
 
 
-#define ADC1_ENABLE
+//#define ADC1_ENABLE
 //#define BURST_FREQ 500
 // SAMPLING_FREQ undefined for maximum rate
 

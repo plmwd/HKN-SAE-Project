@@ -52,6 +52,7 @@
 #include "adc1.h"
 #include "tmr1.h"
 #include "tmr3.h"
+#include "../can.h"
 #include "../device_configuration.h" 
 
 void SYSTEM_Initialize(void)
@@ -103,14 +104,7 @@ CLOCK_Initialize_FRC_NORMAL();
 * CAN1
 ***********************************************************************/
 #ifdef CAN1_ENABLE
-    CAN_Initialize(CAN_NORMAL_OPERATION_MODE);
-#endif
-    
-/***********************************************************************
-* DMA
-***********************************************************************/
-#ifdef DMA_ENABLE
-    DMA_Initialize();
+    CAN_Initialize();
 #endif
     
 /***********************************************************************

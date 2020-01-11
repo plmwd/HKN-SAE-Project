@@ -73,9 +73,9 @@ typedef struct {
     uint16_t *ch0_buffer, *ch1_buffer, *ch2_buffer, *ch3_buffer;
     uint16_t num_requested_samples, num_completed_samples; //, num_next_completed_samples;
     sampling_mode_t sa_mode;
-} ADC_OBJECT;
+} adc_object_t;
 
-static ADC_OBJECT adc1_obj;
+static adc_object_t adc1_obj;
 
 /**
   Section: Driver Interface

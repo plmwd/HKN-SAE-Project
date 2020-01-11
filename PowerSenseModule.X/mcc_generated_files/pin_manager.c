@@ -51,13 +51,23 @@
 
 #include <xc.h>
 #include "pin_manager.h"
+#include "../device_configuration.h"
 
+// UART
 #define PPS_RPI34       0x22                    // RB2
 #define PPS_U1TX        0x01
 #define PPS_U1RX        PPS_RPI34
-#define PPS_U1RX_REG    RPINR18bits.U1RXR      
-#define PPS_RP35R       RPOR0bits.RP35R         // RB3
-#define PPS_U1TX_REG    PPS_RP35R
+#define PPS_U1RX_REG    RPINR18      
+#define PPS_RP35_REG    RPOR0bits.RP35R         // RB3
+#define PPS_U1TX_REG    PPS_RP35_REG
+
+// CAN
+#define PPS_RPI44       0x2C
+#define PPS_C1RX        PPS_RPI44
+#define PPS_C1TX        0x0E
+#define PPS_C1RX_REG    RPINR26
+#define PPS_RP43_REG    RPOR4bits.RP43R
+#define PPS_C1TX_REG    PPS_RP43_REG
 
 
 /**
@@ -105,14 +115,27 @@ void PIN_MANAGER_Initialize (void)
     _TRISB2 = 1; // U1RX input
     _TRISB3 = 0; // U1TX output
     
+    // CAN
+    _TRISB11 = 0;   // tx output
+    _TRISB12 = 1;   // rx input
 
     /****************************************************************************
      * Set the PPS
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
-
+    
+#ifdef DEBUG_UART_ALT_PIN
+    RPINR18bits.U1RXR = 0x0029;    //RB9->UART1:U1RX
+    RPOR3bits.RP40R = 0x0001;    //RB8->UART1:U1TX
+#else
+    // UART
     PPS_U1TX_REG = PPS_U1TX;    
-    PPS_U1RX_REG = PPS_U1RX;    
+    PPS_U1RX_REG = PPS_U1RX;
+#endif  
+    
+    // CAN
+    PPS_C1TX_REG = PPS_C1TX;
+    PPS_C1RX_REG = PPS_C1RX;
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
 

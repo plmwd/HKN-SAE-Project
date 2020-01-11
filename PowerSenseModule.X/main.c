@@ -109,7 +109,7 @@ int main(void)
     //debug - disable tmrs 
     double test = 69.420;
     CAN_ConfigBufForStandardDataFrame(0);
-    CAN_WriteBuf(VPTR(test), 0, sizeof(test), 0);
+    CAN_WriteTXBuffer(VPTR(test), 0, sizeof(test), 0);
     
     while (1) {
         //CAN_Transmit(DMA_CANTX_CHANNEL, DEBUG_SID, CAN_PRIORITY_HIGH, sizeof(test));
