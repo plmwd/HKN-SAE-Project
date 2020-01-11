@@ -54,6 +54,7 @@
 #include "tmr3.h"
 #include "../can.h"
 #include "../device_configuration.h" 
+#include "pwm.h"
 
 void SYSTEM_Initialize(void)
 {   
@@ -114,6 +115,13 @@ CLOCK_Initialize_FRC_NORMAL();
     UART1_Initialize();
 #endif
     
+/***********************************************************************
+* PWM
+***********************************************************************/
+#ifdef PWM_ENABLE
+    PWM_Initialize();
+    PWM_ModuleEnable();
+#endif
     
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
