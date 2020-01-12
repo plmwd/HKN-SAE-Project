@@ -1,0 +1,23 @@
+Board changes TODO 01/10/2020
+----------------------------------------------------
+- [x]  Verify connector fitting
+- [x]  shorten PCB at connector. The connector has a seal and screw holes to mount to an enclosure
+- [x]  re-route CAN differential tracks to connector
+- [x]  search different shunt jumper
+- [x]  search for cheaper cheaper 47 uF cap
+- [x]  search for cheaper cheaper 6.8 uF cap. Replaced with 2 4.7 uF
+- [x]  verify cap footprints around buck
+- [x]  rewire programming jumper or remove it. Removed it.
+- [x]  op amp package
+- [x]  label header functions
+- [x]  footprint for the crystal needs indication of pin 1 and orientation
+- [x]  Choose protection diode
+- [x]  silk screen text for config resistors
+- [x]  Protection diodes for MCU ADC inputs? No. Voltage divider for voltage sensing for range 0-20V and max voltage for buck is 17V so have protection diode for 15-17V only across input power to the device
+- [x]  Clean up board layout
+- [x]  SSOP CAN transceiver ? None
+- TVS zener diodes: https://www.diodes.com/assets/App-Note-Files/TVS-in-Automotive-Applications.pdf
+- [ ]  Update BOM
+- [ ]  Review layout
+- [ ]  Review routing
+- [ ]  Review BOM
