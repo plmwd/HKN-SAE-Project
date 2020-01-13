@@ -1107,51 +1107,15 @@ Wire Wire Line
 	7775 2600 7775 2450
 Wire Wire Line
 	7775 2450 7875 2450
-$Comp
-L Connector:Conn_01x01_Male J2
-U 1 1 5DF9BAF2
-P 10780 1570
-F 0 "J2" H 10752 1502 50  0000 R CNN
-F 1 "ISENSE" H 10765 1650 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 10780 1570 50  0001 C CNN
-F 3 "~" H 10780 1570 50  0001 C CNN
-F 4 "https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1" H 10780 1570 50  0001 C CNN "Supplier Link"
-	1    10780 1570
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	10475 1950 10625 1950
 Wire Wire Line
 	9925 1950 10050 1950
-Wire Wire Line
-	10050 1400 10050 1570
 Connection ~ 10050 1950
 Wire Wire Line
 	10050 1950 10175 1950
 Wire Wire Line
 	9795 1400 10050 1400
-Wire Wire Line
-	10580 1570 10050 1570
-Connection ~ 10050 1570
-Wire Wire Line
-	10050 1570 10050 1950
-Wire Wire Line
-	10600 3100 10075 3100
-Wire Wire Line
-	10075 3100 10075 3125
-Connection ~ 10075 3125
-$Comp
-L Connector:Conn_01x01_Male J5
-U 1 1 5DFA7BAD
-P 10800 3100
-F 0 "J5" H 10772 3032 50  0000 R CNN
-F 1 "VSENSE" H 10772 3123 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 10800 3100 50  0001 C CNN
-F 3 "~" H 10800 3100 50  0001 C CNN
-F 4 "https://www.amazon.com/gp/product/B07VNXL5BD/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1" H 10800 3100 50  0001 C CNN "Supplier Link"
-	1    10800 3100
-	-1   0    0    1   
-$EndComp
 $Comp
 L F1_Logo:LOGO #G1
 U 1 1 5E098C04
@@ -1610,4 +1574,6 @@ Wire Wire Line
 	4275 5625 4275 5375
 Wire Wire Line
 	4275 5375 4300 5375
+Wire Wire Line
+	10050 1400 10050 1950
 $EndSCHEMATC

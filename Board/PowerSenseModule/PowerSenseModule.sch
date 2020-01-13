@@ -184,26 +184,25 @@ F 3 "" H 7875 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8475 1525 8475 1300
-Connection ~ 8475 1300
+	8375 1525 8375 1300
 $Comp
 L power:GND #PWR08
 U 1 1 5D36B6A5
-P 8475 2025
-F 0 "#PWR08" H 8475 1775 50  0001 C CNN
-F 1 "GND" H 8480 1852 50  0000 C CNN
-F 2 "" H 8475 2025 50  0001 C CNN
-F 3 "" H 8475 2025 50  0001 C CNN
-	1    8475 2025
+P 8375 2025
+F 0 "#PWR08" H 8375 1775 50  0001 C CNN
+F 1 "GND" H 8380 1852 50  0000 C CNN
+F 2 "" H 8375 2025 50  0001 C CNN
+F 3 "" H 8375 2025 50  0001 C CNN
+	1    8375 2025
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8475 2025 8475 1825
+	8375 2025 8375 1925
 Wire Wire Line
 	7875 1300 7875 1350
 Connection ~ 7875 1300
 Wire Wire Line
-	8475 1300 7875 1300
+	8375 1300 7875 1300
 Text Notes 5950 2400 0    35   ~ 0
 1mOhm ESR\n\n
 $Comp
@@ -234,8 +233,6 @@ Wire Wire Line
 	6200 1500 6300 1500
 Text Notes 2925 2225 0    35   ~ 0
 ceramic, 2mOhm ESR\n
-Wire Wire Line
-	8475 1200 8475 1300
 $Comp
 L power:+5V #PWR07
 U 1 1 5D35D5EE
@@ -339,23 +336,6 @@ F 7 "Mouser" H 6050 2200 50  0001 C CNN "Supplier"
 F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 6050 2200 50  0001 C CNN "Supplier Link"
 F 9 "80-C0603C471J5G7411" H 6050 2200 50  0001 C CNN "Supplier PN"
 	1    6050 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP C8
-U 1 1 5D369605
-P 8475 1675
-F 0 "C8" H 8590 1721 50  0000 L CNN
-F 1 "47uF" H 8590 1630 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8513 1525 50  0001 C CNN
-F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-ubt.pdf" H 8475 1675 50  0001 C CNN
-F 4 "Nichicon" H 8475 1675 50  0001 C CNN "Manufacturer"
-F 5 "UBT2A470MPD" H 8475 1675 50  0001 C CNN "Manufacturer PN"
-F 6 "0.85" H 8475 1675 50  0001 C CNN "Price 1 QTY"
-F 7 "Digikey" H 8475 1675 50  0001 C CNN "Supplier"
-F 8 "https://www.digikey.com/product-detail/en/nichicon/UBT2A470MPD/493-14883-ND/2597442" H 8475 1675 50  0001 C CNN "Supplier Link"
-F 9 "493-14883-ND" H 8475 1675 50  0001 C CNN "Supplier PN"
-	1    8475 1675
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -494,23 +474,6 @@ F 9 "80-C0603X479C1HACTU" H 2950 1700 50  0001 C CNN "Supplier PN"
 	1    2950 1700
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:D_TVS D1
-U 1 1 5DEFEB23
-P 2375 1550
-F 0 "D1" V 2350 1250 50  0000 L CNN
-F 1 "SMBJ9.0CA-13-F" V 2425 825 50  0000 L CNN
-F 2 "Diode_SMD:D_SMB_Handsoldering" H 2375 1550 50  0001 C CNN
-F 3 "https://www.diodes.com/assets/Datasheets/ds19002.pdf" H 2375 1550 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/diodes-incorporated/SMBJ9.0CA-13-F/SMBJ9.0CA-FDICT-ND/775877" H 2375 1550 50  0001 C CNN "Supplier Link"
-F 5 "Diodes Incorporated " H 2375 1550 50  0001 C CNN "Manufacturer"
-F 6 "SMBJ9.0CA-13-F" H 2375 1550 50  0001 C CNN "Manufacturer PN"
-F 7 "0.36" H 2375 1550 50  0001 C CNN "Price 1 QTY"
-F 8 "Digikey" H 2375 1550 50  0001 C CNN "Supplier"
-F 9 "SMBJ9.0CA-FDICT-ND" H 2375 1550 50  0001 C CNN "Supplier PN"
-	1    2375 1550
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2375 1400 2375 1300
 $Comp
@@ -573,6 +536,7 @@ F 5 "0.1" H 8100 3725 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 8100 3725 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8100 3725 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 8100 3725 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 8100 3725 50  0001 C CNN "Manufacturer"
 	1    8100 3725
 	1    0    0    -1  
 $EndComp
@@ -647,6 +611,7 @@ F 5 "0.1" H 9250 3725 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 9250 3725 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9250 3725 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 9250 3725 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 9250 3725 50  0001 C CNN "Manufacturer"
 	1    9250 3725
 	1    0    0    -1  
 $EndComp
@@ -804,6 +769,7 @@ F 5 "0.1" H 8680 3720 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 8680 3720 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8680 3720 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 8680 3720 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 8680 3720 50  0001 C CNN "Manufacturer"
 	1    8680 3720
 	1    0    0    -1  
 $EndComp
@@ -840,6 +806,7 @@ F 5 "0.1" H 9880 3770 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 9880 3770 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9880 3770 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 9880 3770 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 9880 3770 50  0001 C CNN "Manufacturer"
 	1    9880 3770
 	1    0    0    -1  
 $EndComp
@@ -956,4 +923,99 @@ Wire Wire Line
 Connection ~ 1800 3800
 Wire Wire Line
 	1800 3800 1800 4175
+$Comp
+L Device:C C8
+U 1 1 5E3C2606
+P 8375 1675
+F 0 "C8" H 8490 1721 50  0000 L CNN
+F 1 "22uF" H 8490 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8413 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 8375 1675 50  0001 C CNN
+F 4 "Samsung" H 8375 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 8375 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 8375 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8375 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 8375 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 8375 1675 50  0001 C CNN "Supplier PN"
+	1    8375 1675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C12
+U 1 1 5E3C38C2
+P 8800 1675
+F 0 "C12" H 8915 1721 50  0000 L CNN
+F 1 "22uF" H 8915 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8838 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 8800 1675 50  0001 C CNN
+F 4 "Samsung" H 8800 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 8800 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 8800 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8800 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 8800 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 8800 1675 50  0001 C CNN "Supplier PN"
+	1    8800 1675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C27
+U 1 1 5E3C42D6
+P 9225 1675
+F 0 "C27" H 9340 1721 50  0000 L CNN
+F 1 "22uF" H 9340 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 9263 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 9225 1675 50  0001 C CNN
+F 4 "Samsung" H 9225 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 9225 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 9225 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 9225 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 9225 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 9225 1675 50  0001 C CNN "Supplier PN"
+	1    9225 1675
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8375 1300 8475 1300
+Wire Wire Line
+	8800 1300 8800 1525
+Connection ~ 8375 1300
+Wire Wire Line
+	8800 1300 9225 1300
+Wire Wire Line
+	9225 1300 9225 1525
+Connection ~ 8800 1300
+Wire Wire Line
+	8800 1825 8800 1925
+Wire Wire Line
+	8800 1925 8375 1925
+Connection ~ 8375 1925
+Wire Wire Line
+	8375 1925 8375 1825
+Wire Wire Line
+	8800 1925 9225 1925
+Wire Wire Line
+	9225 1925 9225 1825
+Connection ~ 8800 1925
+Wire Wire Line
+	8475 1200 8475 1300
+Connection ~ 8475 1300
+Wire Wire Line
+	8475 1300 8800 1300
+$Comp
+L Device:D_TVS D1
+U 1 1 5DEFEB23
+P 2375 1550
+F 0 "D1" V 2350 1250 50  0000 L CNN
+F 1 "SMBJ9.0CA-13-F" V 2425 825 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB_Handsoldering" H 2375 1550 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds19002.pdf" H 2375 1550 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/diodes-incorporated/SMBJ9.0CA-13-F/SMBJ9.0CA-FDICT-ND/775877" H 2375 1550 50  0001 C CNN "Supplier Link"
+F 5 "Diodes Incorporated " H 2375 1550 50  0001 C CNN "Manufacturer"
+F 6 "SMBJ9.0CA-13-F" H 2375 1550 50  0001 C CNN "Manufacturer PN"
+F 7 "0.36" H 2375 1550 50  0001 C CNN "Price 1 QTY"
+F 8 "Digikey" H 2375 1550 50  0001 C CNN "Supplier"
+F 9 "SMBJ9.0CA-FDICT-ND" H 2375 1550 50  0001 C CNN "Supplier PN"
+	1    2375 1550
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
