@@ -22,7 +22,8 @@
  ***********************************************************************/
 #define DEBUG
 //#define DEBUG_UART
-#define DEBUG_TEST_MENU
+//#define DEBUG_TEST_MENU
+#define DATA_MENU
 
 /**********************************************************************
  * 

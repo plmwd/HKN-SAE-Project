@@ -93,13 +93,13 @@ void TMR1_Initialize (void)
 }
 
 
-void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
-{
-    
-    TMR3 = 0;
-    TMR3_Start();   
-    
-}
+//void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
+//{
+//    
+//    TMR3 = 0;
+//    TMR3_Start();   
+//    
+//}
 
 /**
  End of File

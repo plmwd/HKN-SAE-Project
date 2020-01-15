@@ -83,7 +83,7 @@ void main(void)
 
     
 }
-#endif
+
 
 // The following function reads the input sent from the PC through UART.
 // This function will read until a newline character is sent through UART (\n).
@@ -220,3 +220,4 @@ void infiniteCounter(void)
     
 }
 
+#endif
