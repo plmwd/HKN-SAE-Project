@@ -9,7 +9,6 @@
 #define	GLOBALS_H
 
 #define MAX_BUFFER_SIZE 128
-//extern bool menuStatus;
 //#include "can.h"
 
 //#define DEBUG 
