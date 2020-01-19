@@ -5,5 +5,5 @@
   (lib (name F1_Power_Sense)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Sensors/Power_Sense_Microchip.lib)(options "")(descr ""))
   (lib (name F1_Deutsch_DT_Series_Connectors)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Connectors/Deutsch_DT_Series_Connectors.lib)(options "")(descr ""))
   (lib (name F1_OP_Amps)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/OP-Amps/F1_OP_Amps.lib)(options "")(descr ""))
-  (lib (name F1_Logo)(type Legacy)(uri C:/Users/Paul/Documents/Git/HKN-SAE-Project/KiCAD-Libraries/Symbols/Logo/HKNZetaChi.lib)(options "")(descr ""))
+  (lib (name F1_Logo)(type Legacy)(uri ${CUSTOM_SYMBOL_DIR}/Logo/HKNZetaChi.lib)(options "")(descr ""))
 )

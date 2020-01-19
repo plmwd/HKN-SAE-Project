@@ -20,13 +20,6 @@ Wire Wire Line
 	2025 3400 1725 3400
 Wire Wire Line
 	1800 3500 1725 3500
-Connection ~ 1800 3700
-Wire Wire Line
-	1800 3500 1800 3700
-Wire Wire Line
-	1725 3700 1800 3700
-Wire Wire Line
-	1800 3700 1800 4175
 $Comp
 L power:GND #PWR01
 U 1 1 5D342EEF
@@ -38,7 +31,7 @@ F 3 "" H 1800 4175 50  0001 C CNN
 	1    1800 4175
 	1    0    0    -1  
 $EndComp
-Text Notes 1050 3725 0    50   ~ 0
+Text Notes 1050 3825 0    50   ~ 0
 Neutral_OUT
 Text Notes 1175 3700 0    50   ~ 0
 Live_OUT\n\n
@@ -191,43 +184,42 @@ F 3 "" H 7875 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8475 1525 8475 1300
-Connection ~ 8475 1300
+	8375 1525 8375 1300
 $Comp
 L power:GND #PWR08
 U 1 1 5D36B6A5
-P 8475 2025
-F 0 "#PWR08" H 8475 1775 50  0001 C CNN
-F 1 "GND" H 8480 1852 50  0000 C CNN
-F 2 "" H 8475 2025 50  0001 C CNN
-F 3 "" H 8475 2025 50  0001 C CNN
-	1    8475 2025
+P 8375 2025
+F 0 "#PWR08" H 8375 1775 50  0001 C CNN
+F 1 "GND" H 8380 1852 50  0000 C CNN
+F 2 "" H 8375 2025 50  0001 C CNN
+F 3 "" H 8375 2025 50  0001 C CNN
+	1    8375 2025
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8475 2025 8475 1825
+	8375 2025 8375 1925
 Wire Wire Line
 	7875 1300 7875 1350
 Connection ~ 7875 1300
 Wire Wire Line
-	8475 1300 7875 1300
+	8375 1300 7875 1300
 Text Notes 5950 2400 0    35   ~ 0
 1mOhm ESR\n\n
 $Comp
 L power:GND #PWR04
 U 1 1 5D34E109
-P 5900 2350
-F 0 "#PWR04" H 5900 2100 50  0001 C CNN
-F 1 "GND" H 5905 2177 50  0000 C CNN
-F 2 "" H 5900 2350 50  0001 C CNN
-F 3 "" H 5900 2350 50  0001 C CNN
-	1    5900 2350
+P 6050 2350
+F 0 "#PWR04" H 6050 2100 50  0001 C CNN
+F 1 "GND" H 6055 2177 50  0000 C CNN
+F 2 "" H 6050 2350 50  0001 C CNN
+F 3 "" H 6050 2350 50  0001 C CNN
+	1    6050 2350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5900 1700 6300 1700
+	6050 1700 6300 1700
 Wire Wire Line
-	5900 2050 5900 1700
+	6050 2050 6050 1700
 Wire Wire Line
 	6200 1600 6300 1600
 Wire Wire Line
@@ -241,8 +233,6 @@ Wire Wire Line
 	6200 1500 6300 1500
 Text Notes 2925 2225 0    35   ~ 0
 ceramic, 2mOhm ESR\n
-Wire Wire Line
-	8475 1200 8475 1300
 $Comp
 L power:+5V #PWR07
 U 1 1 5D35D5EE
@@ -290,10 +280,10 @@ F 3 "" H 5900 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2025 3800 1725 3800
+	2025 3700 1725 3700
 Wire Wire Line
 	2025 3900 1725 3900
-Text Notes 1200 3825 0    50   ~ 0
+Text Notes 1250 3725 0    50   ~ 0
 CAN_HI\n
 Text Notes 1200 3925 0    50   ~ 0
 CAN_LO
@@ -312,23 +302,6 @@ F 7 "Mouser" H 1525 3600 50  0001 C CNN "Supplier"
 F 8 "https://www.mouser.com/ProductDetail/TE-Connectivity-DEUTSCH/DT13-6P?qs=sGAEpiMZZMs7eK6h2EBtKswEMLzR6%2FlTBSgyjyqtRK0%3D" H 1525 3600 50  0001 C CNN "Supplier Link"
 F 9 "571-DT13-6P " H 1525 3600 50  0001 C CNN "Supplier PN"
 	1    1525 3600
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C6
-U 1 1 5D3208C5
-P 5250 1700
-F 0 "C6" H 5365 1746 50  0000 L CNN
-F 1 "6.8uF" H 5365 1655 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 5288 1550 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 5250 1700 50  0001 C CNN
-F 4 "TDK" H 5250 1700 50  0001 C CNN "Manufacturer"
-F 5 "CGA6P3X7S1H685K250AB" H 5250 1700 50  0001 C CNN "Manufacturer PN"
-F 6 "1.25" H 5250 1700 50  0001 C CNN "Price 1 QTY"
-F 7 "Mouser" H 5250 1700 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/TDK/CGA6P3X7S1H685K250AB?qs=sGAEpiMZZMsh%252B1woXyUXj0VscQlT5uEBw6FmIyOpVRg%3D" H 5250 1700 50  0001 C CNN "Supplier Link"
-F 9 "810-CGA6P3X7S1H685K" H 5250 1700 50  0001 C CNN "Supplier PN"
-	1    5250 1700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -351,35 +324,18 @@ $EndComp
 $Comp
 L Device:C C7
 U 1 1 5D33425E
-P 5900 2200
-F 0 "C7" H 6015 2246 50  0000 L CNN
-F 1 "470pF" H 6015 2155 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5938 2050 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1003_C0G_SMD-1101588.pdf" H 5900 2200 50  0001 C CNN
-F 4 "KEMET" H 5900 2200 50  0001 C CNN "Manufacturer"
-F 5 "C0603C471J5GAC7411 " H 5900 2200 50  0001 C CNN "Manufacturer PN"
-F 6 "0.21" H 5900 2200 50  0001 C CNN "Price 1 QTY"
-F 7 "Mouser" H 5900 2200 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 5900 2200 50  0001 C CNN "Supplier Link"
-F 9 "80-C0603C471J5G7411" H 5900 2200 50  0001 C CNN "Supplier PN"
-	1    5900 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP C8
-U 1 1 5D369605
-P 8475 1675
-F 0 "C8" H 8590 1721 50  0000 L CNN
-F 1 "47uF" H 8590 1630 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-6032-20_AVX-F_Pad2.25x2.35mm_HandSolder" H 8513 1525 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/40/taj-776811.pdf" H 8475 1675 50  0001 C CNN
-F 4 "AVX" H 8475 1675 50  0001 C CNN "Manufacturer"
-F 5 "EMK325ABJ476MMHP " H 8475 1675 50  0001 C CNN "Manufacturer PN"
-F 6 "0.95" H 8475 1675 50  0001 C CNN "Price 1 QTY"
-F 7 "Mouser" H 8475 1675 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/AVX/TAJC476K016SNJ?qs=sGAEpiMZZMsh%252B1woXyUXjyF6yju1dtUCKBgIJtPUx7k%3D" H 8475 1675 50  0001 C CNN "Supplier Link"
-F 9 "963-EMK325ABJ476MMHP" H 8475 1675 50  0001 C CNN "Supplier PN"
-	1    8475 1675
+P 6050 2200
+F 0 "C7" H 6165 2246 50  0000 L CNN
+F 1 "470pF" H 6165 2155 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6088 2050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/212/KEM_C1003_C0G_SMD-1101588.pdf" H 6050 2200 50  0001 C CNN
+F 4 "KEMET" H 6050 2200 50  0001 C CNN "Manufacturer"
+F 5 "C0603C471J5GAC7411 " H 6050 2200 50  0001 C CNN "Manufacturer PN"
+F 6 "0.21" H 6050 2200 50  0001 C CNN "Price 1 QTY"
+F 7 "Mouser" H 6050 2200 50  0001 C CNN "Supplier"
+F 8 "https://www.mouser.com/ProductDetail/KEMET/C0603C471J5GAC7411?qs=sGAEpiMZZMs0AnBnWHyRQFnMEHnA13dzFos3ms0o4JM%3D" H 6050 2200 50  0001 C CNN "Supplier Link"
+F 9 "80-C0603C471J5G7411" H 6050 2200 50  0001 C CNN "Supplier PN"
+	1    6050 2200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -440,13 +396,13 @@ P 4800 1700
 F 0 "C5" H 4915 1746 50  0000 L CNN
 F 1 "4.7uF" H 4915 1655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4838 1550 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 4800 1700 50  0001 C CNN
-F 4 "TDK" H 4800 1700 50  0001 C CNN "Manufacturer"
-F 5 "CGA4J1X7R1H475K125AC" H 4800 1700 50  0001 C CNN "Manufacturer PN"
-F 6 "0.69" H 4800 1700 50  0001 C CNN "Price 1 QTY"
-F 7 "Mouser" H 4800 1700 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/TDK/CGA4J1X7R1H475K125AC?qs=sGAEpiMZZMs0AnBnWHyRQN7%2FAA2D2lPP1QOYv8vVMK7ZOyW90AinIg%3D%3D" H 4800 1700 50  0001 C CNN "Supplier Link"
-F 9 "810-CGA4J1X7R1H475K1 " H 4800 1700 50  0001 C CNN "Supplier PN"
+F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BC81H475KE11-01.pdf" H 4800 1700 50  0001 C CNN
+F 4 "Murata Electronics" H 4800 1700 50  0001 C CNN "Manufacturer"
+F 5 "GRM21BC81H475KE11L" H 4800 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.49" H 4800 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 4800 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/murata-electronics/GRM21BC81H475KE11L/490-14658-1-ND/6606264" H 4800 1700 50  0001 C CNN "Supplier Link"
+F 9 "490-14658-1-ND" H 4800 1700 50  0001 C CNN "Supplier PN"
 	1    4800 1700
 	1    0    0    -1  
 $EndComp
@@ -518,23 +474,6 @@ F 9 "80-C0603X479C1HACTU" H 2950 1700 50  0001 C CNN "Supplier PN"
 	1    2950 1700
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:D_Zener D1
-U 1 1 5DEFEB23
-P 2375 1550
-F 0 "D1" V 2329 1629 50  0000 L CNN
-F 1 "SD05-7" V 2420 1629 50  0000 L CNN
-F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 2375 1550 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/115/ds31594-88374.pdf" H 2375 1550 50  0001 C CNN
-F 4 "https://www.mouser.com/ProductDetail/Diodes-Incorporated/SD05-7?qs=%2Fha2pyFadugD%2Fr1MYEydUCcSjftG2Vlq5z2%2Fe2tdzfA%3D" H 2375 1550 50  0001 C CNN "Supplier Link"
-F 5 "Diodes Incorporated " H 2375 1550 50  0001 C CNN "Manufacturer"
-F 6 "SD05-7 " H 2375 1550 50  0001 C CNN "Manufacturer PN"
-F 7 "0.35" H 2375 1550 50  0001 C CNN "Price 1 QTY"
-F 8 "Mouser" H 2375 1550 50  0001 C CNN "Supplier"
-F 9 "621-SD05-7" H 2375 1550 50  0001 C CNN "Supplier PN"
-	1    2375 1550
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2375 1400 2375 1300
 $Comp
@@ -597,6 +536,7 @@ F 5 "0.1" H 8100 3725 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 8100 3725 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8100 3725 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 8100 3725 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 8100 3725 50  0001 C CNN "Manufacturer"
 	1    8100 3725
 	1    0    0    -1  
 $EndComp
@@ -671,6 +611,7 @@ F 5 "0.1" H 9250 3725 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 9250 3725 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9250 3725 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 9250 3725 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 9250 3725 50  0001 C CNN "Manufacturer"
 	1    9250 3725
 	1    0    0    -1  
 $EndComp
@@ -738,14 +679,14 @@ Text Label 2025 3400 0    50   ~ 0
 LIVE_IN
 Text Label 2025 3600 0    50   ~ 0
 MEAS_OUT
-Text Label 2025 3800 0    50   ~ 0
+Text Label 2025 3700 0    50   ~ 0
 CAN+
 Text Label 2025 3900 0    50   ~ 0
 CAN-
-Text Label 5425 1300 0    50   ~ 0
+Text Label 5325 1300 0    50   ~ 0
 MEAS_IN
 Wire Wire Line
-	5250 1300 5900 1300
+	5250 1300 5675 1300
 Wire Notes Line
 	475  2700 11225 2700
 Wire Notes Line
@@ -767,21 +708,10 @@ Wire Wire Line
 Connection ~ 2950 1300
 Connection ~ 2375 1300
 $Comp
-L Mechanical:MountingHole_Pad H4
-U 1 1 5DF32F9A
-P 9625 5675
-F 0 "H4" H 9725 5724 50  0000 L CNN
-F 1 " " H 9300 5900 50  0001 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9625 5675 50  0001 C CNN
-F 3 "~" H 9625 5675 50  0001 C CNN
-	1    9625 5675
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole_Pad H2
+L Mechanical:MountingHole_Pad H1
 U 1 1 5DF339FC
 P 8500 5675
-F 0 "H2" H 8600 5724 50  0000 L CNN
+F 0 "H1" H 8600 5724 50  0000 L CNN
 F 1 " " H 8175 5900 50  0001 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 8500 5675 50  0001 C CNN
 F 3 "~" H 8500 5675 50  0001 C CNN
@@ -789,35 +719,18 @@ F 3 "~" H 8500 5675 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole_Pad H3
+L Mechanical:MountingHole_Pad H2
 U 1 1 5DF34056
 P 9075 5675
-F 0 "H3" H 9175 5724 50  0000 L CNN
+F 0 "H2" H 9175 5724 50  0000 L CNN
 F 1 " " H 8725 6025 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 9075 5675 50  0001 C CNN
 F 3 "~" H 9075 5675 50  0001 C CNN
 	1    9075 5675
 	1    0    0    -1  
 $EndComp
-$Comp
-L Mechanical:MountingHole_Pad H1
-U 1 1 5DF3457C
-P 7950 5675
-F 0 "H1" H 8050 5724 50  0000 L CNN
-F 1 " " H 7625 6025 50  0001 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 7950 5675 50  0001 C CNN
-F 3 "~" H 7950 5675 50  0001 C CNN
-	1    7950 5675
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7950 5775 8500 5775
-Connection ~ 8500 5775
 Wire Wire Line
 	8500 5775 8800 5775
-Connection ~ 9075 5775
-Wire Wire Line
-	9075 5775 9625 5775
 $Comp
 L power:GND #PWR0108
 U 1 1 5DF4159C
@@ -856,6 +769,7 @@ F 5 "0.1" H 8680 3720 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 8680 3720 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 8680 3720 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 8680 3720 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 8680 3720 50  0001 C CNN "Manufacturer"
 	1    8680 3720
 	1    0    0    -1  
 $EndComp
@@ -892,6 +806,7 @@ F 5 "0.1" H 9880 3770 50  0001 C CNN "Price 1 QTY"
 F 6 "Mouser" H 9880 3770 50  0001 C CNN "Supplier"
 F 7 "https://www.mouser.com/ProductDetail/TDK/CGA3E2X7R1H104K080AA?qs=sGAEpiMZZMs0AnBnWHyRQEWjzA2rN6H9nJklEYEm1tg%3D" H 9880 3770 50  0001 C CNN "Supplier Link"
 F 8 "810-CGA3E2X7R1H104K " H 9880 3770 50  0001 C CNN "Supplier PN"
+F 9 "TDK" H 9880 3770 50  0001 C CNN "Manufacturer"
 	1    9880 3770
 	1    0    0    -1  
 $EndComp
@@ -905,13 +820,13 @@ P 10340 3720
 F 0 "C23" H 10458 3766 50  0000 L CNN
 F 1 "4.7uF" H 10458 3675 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10378 3570 50  0001 C CNN
-F 3 "https://www.mouser.com/datasheet/2/400/lcc_automotive_general_en-843974.pdf" H 10340 3720 50  0001 C CNN
-F 4 "TDK" H 10340 3720 50  0001 C CNN "Manufacturer"
-F 5 "CGA4J1X7R1H475K125AC" H 10340 3720 50  0001 C CNN "Manufacturer PN"
-F 6 "0.69" H 10340 3720 50  0001 C CNN "Price 1 QTY"
-F 7 "Mouser" H 10340 3720 50  0001 C CNN "Supplier"
-F 8 "https://www.mouser.com/ProductDetail/TDK/CGA4J1X7R1H475K125AC?qs=sGAEpiMZZMs0AnBnWHyRQN7%2FAA2D2lPP1QOYv8vVMK7ZOyW90AinIg%3D%3D" H 10340 3720 50  0001 C CNN "Supplier Link"
-F 9 "810-CGA4J1X7R1H475K1 " H 10340 3720 50  0001 C CNN "Supplier PN"
+F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BC81H475KE11-01.pdf" H 10340 3720 50  0001 C CNN
+F 4 "Murata Electronics" H 10340 3720 50  0001 C CNN "Manufacturer"
+F 5 "GRM21BC81H475KE11L" H 10340 3720 50  0001 C CNN "Manufacturer PN"
+F 6 "0.49" H 10340 3720 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 10340 3720 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/murata-electronics/GRM21BC81H475KE11L/490-14658-1-ND/6606264" H 10340 3720 50  0001 C CNN "Supplier Link"
+F 9 "490-14658-1-ND" H 10340 3720 50  0001 C CNN "Supplier PN"
 	1    10340 3720
 	1    0    0    -1  
 $EndComp
@@ -956,5 +871,151 @@ F 2 "Logo:HKNZetaChi" H 10854 7153 50  0001 C CNN
 F 3 "" H 10855 6840 50  0001 C CNN
 	1    10855 6840
 	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5D3208C5
+P 5250 1700
+F 0 "C6" H 5365 1746 50  0000 L CNN
+F 1 "4.7uF" H 5365 1655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5288 1550 50  0001 C CNN
+F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BC81H475KE11-01.pdf" H 5250 1700 50  0001 C CNN
+F 4 "Murata Electronics" H 5250 1700 50  0001 C CNN "Manufacturer"
+F 5 "GRM21BC81H475KE11L" H 5250 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.49" H 5250 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 5250 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/murata-electronics/GRM21BC81H475KE11L/490-14658-1-ND/6606264" H 5250 1700 50  0001 C CNN "Supplier Link"
+F 9 "490-14658-1-ND" H 5250 1700 50  0001 C CNN "Supplier PN"
+	1    5250 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C25
+U 1 1 5E1C5310
+P 5675 1700
+F 0 "C25" H 5790 1746 50  0000 L CNN
+F 1 "4.7uF" H 5790 1655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5713 1550 50  0001 C CNN
+F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BC81H475KE11-01.pdf" H 5675 1700 50  0001 C CNN
+F 4 "Murata Electronics" H 5675 1700 50  0001 C CNN "Manufacturer"
+F 5 "GRM21BC81H475KE11L" H 5675 1700 50  0001 C CNN "Manufacturer PN"
+F 6 "0.49" H 5675 1700 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 5675 1700 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/murata-electronics/GRM21BC81H475KE11L/490-14658-1-ND/6606264" H 5675 1700 50  0001 C CNN "Supplier Link"
+F 9 "490-14658-1-ND" H 5675 1700 50  0001 C CNN "Supplier PN"
+	1    5675 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5675 1850 5675 2050
+Wire Wire Line
+	5675 2050 5250 2050
+Connection ~ 5250 2050
+Wire Wire Line
+	5675 1550 5675 1300
+Connection ~ 5675 1300
+Wire Wire Line
+	5675 1300 5900 1300
+Wire Wire Line
+	1800 3500 1800 3800
+Wire Wire Line
+	1800 3800 1725 3800
+Connection ~ 1800 3800
+Wire Wire Line
+	1800 3800 1800 4175
+$Comp
+L Device:C C8
+U 1 1 5E3C2606
+P 8375 1675
+F 0 "C8" H 8490 1721 50  0000 L CNN
+F 1 "22uF" H 8490 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8413 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 8375 1675 50  0001 C CNN
+F 4 "Samsung" H 8375 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 8375 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 8375 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8375 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 8375 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 8375 1675 50  0001 C CNN "Supplier PN"
+	1    8375 1675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C12
+U 1 1 5E3C38C2
+P 8800 1675
+F 0 "C12" H 8915 1721 50  0000 L CNN
+F 1 "22uF" H 8915 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8838 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 8800 1675 50  0001 C CNN
+F 4 "Samsung" H 8800 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 8800 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 8800 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8800 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 8800 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 8800 1675 50  0001 C CNN "Supplier PN"
+	1    8800 1675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C27
+U 1 1 5E3C42D6
+P 9225 1675
+F 0 "C27" H 9340 1721 50  0000 L CNN
+F 1 "22uF" H 9340 1630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 9263 1525 50  0001 C CNN
+F 3 "http://www.samsungsem.com/kr/support/product-search/mlcc/CL32B226MOJNNNE.jsp" H 9225 1675 50  0001 C CNN
+F 4 "Samsung" H 9225 1675 50  0001 C CNN "Manufacturer"
+F 5 "CL32B226MOJNNNE" H 9225 1675 50  0001 C CNN "Manufacturer PN"
+F 6 "0.61" H 9225 1675 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 9225 1675 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL32B226MOJNNNE/1276-3395-1-ND/3891481" H 9225 1675 50  0001 C CNN "Supplier Link"
+F 9 "1276-3395-1-ND" H 9225 1675 50  0001 C CNN "Supplier PN"
+	1    9225 1675
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8375 1300 8475 1300
+Wire Wire Line
+	8800 1300 8800 1525
+Connection ~ 8375 1300
+Wire Wire Line
+	8800 1300 9225 1300
+Wire Wire Line
+	9225 1300 9225 1525
+Connection ~ 8800 1300
+Wire Wire Line
+	8800 1825 8800 1925
+Wire Wire Line
+	8800 1925 8375 1925
+Connection ~ 8375 1925
+Wire Wire Line
+	8375 1925 8375 1825
+Wire Wire Line
+	8800 1925 9225 1925
+Wire Wire Line
+	9225 1925 9225 1825
+Connection ~ 8800 1925
+Wire Wire Line
+	8475 1200 8475 1300
+Connection ~ 8475 1300
+Wire Wire Line
+	8475 1300 8800 1300
+$Comp
+L Device:D_TVS D1
+U 1 1 5DEFEB23
+P 2375 1550
+F 0 "D1" V 2350 1250 50  0000 L CNN
+F 1 "SMBJ9.0CA-13-F" V 2425 825 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB_Handsoldering" H 2375 1550 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds19002.pdf" H 2375 1550 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/diodes-incorporated/SMBJ9.0CA-13-F/SMBJ9.0CA-FDICT-ND/775877" H 2375 1550 50  0001 C CNN "Supplier Link"
+F 5 "Diodes Incorporated " H 2375 1550 50  0001 C CNN "Manufacturer"
+F 6 "SMBJ9.0CA-13-F" H 2375 1550 50  0001 C CNN "Manufacturer PN"
+F 7 "0.36" H 2375 1550 50  0001 C CNN "Price 1 QTY"
+F 8 "Digikey" H 2375 1550 50  0001 C CNN "Supplier"
+F 9 "SMBJ9.0CA-FDICT-ND" H 2375 1550 50  0001 C CNN "Supplier PN"
+	1    2375 1550
+	0    1    1    0   
 $EndComp
 $EndSCHEMATC
