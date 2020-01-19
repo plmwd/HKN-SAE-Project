@@ -544,15 +544,10 @@ F 9 "P1KBZCT-ND" H 10325 1950 50  0001 C CNN "Supplier PN"
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9225 2050 9125 2050
-Connection ~ 9225 2050
-Wire Wire Line
 	9225 1850 9325 1850
 Connection ~ 9225 1850
 Wire Wire Line
 	9225 1400 9225 1850
-Wire Wire Line
-	9495 1400 9225 1400
 Connection ~ 8575 2350
 Wire Wire Line
 	8575 2050 8575 2350
@@ -564,58 +559,22 @@ Wire Wire Line
 Wire Wire Line
 	8825 1850 8575 1850
 Wire Wire Line
-	9325 2050 9225 2050
-Wire Wire Line
 	9125 1850 9225 1850
 $Comp
 L Device:R_US R13
 U 1 1 5D4CADE5
-P 9645 1400
-F 0 "R13" V 9440 1400 50  0000 C CNN
-F 1 "75k" V 9531 1400 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9685 1390 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 9645 1400 50  0001 C CNN
-F 4 "Panasonic" H 9645 1400 50  0001 C CNN "Manufacturer"
-F 5 "ERJ-PA3J753V" H 9645 1400 50  0001 C CNN "Manufacturer PN"
-F 6 "0.1" H 9645 1400 50  0001 C CNN "Price 1 QTY"
-F 7 "Digikey" H 9645 1400 50  0001 C CNN "Supplier"
-F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364" H 9645 1400 50  0001 C CNN "Supplier Link"
-F 9 "P75KBZCT-ND" H 9645 1400 50  0001 C CNN "Supplier PN"
-	1    9645 1400
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_US R11
-U 1 1 5D4CA856
-P 8975 2050
-F 0 "R11" V 9075 2050 50  0000 C CNN
-F 1 "1.2k" V 9175 2050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9015 2040 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 8975 2050 50  0001 C CNN
-F 4 "Panasonic" H 8975 2050 50  0001 C CNN "Manufacturer"
-F 5 "ERJ-PA3J122V" H 8975 2050 50  0001 C CNN "Manufacturer PN"
-F 6 "0.1" H 8975 2050 50  0001 C CNN "Price 1 QTY"
-F 7 "Digikey" H 8975 2050 50  0001 C CNN "Supplier"
-F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247" H 8975 2050 50  0001 C CNN "Supplier Link"
-F 9 "P1.2KBZCT-ND" H 8975 2050 50  0001 C CNN "Supplier PN"
-	1    8975 2050
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_US R10
-U 1 1 5D4CA065
-P 8975 1850
-F 0 "R10" V 8770 1850 50  0000 C CNN
-F 1 "1.2k" V 8861 1850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9015 1840 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 8975 1850 50  0001 C CNN
-F 4 "Panasonic" H 8975 1850 50  0001 C CNN "Manufacturer"
-F 5 "ERJ-PA3J122V" H 8975 1850 50  0001 C CNN "Manufacturer PN"
-F 6 "0.1" H 8975 1850 50  0001 C CNN "Price 1 QTY"
-F 7 "Digikey" H 8975 1850 50  0001 C CNN "Supplier"
-F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247" H 8975 1850 50  0001 C CNN "Supplier Link"
-F 9 "P1.2KBZCT-ND" H 8975 1850 50  0001 C CNN "Supplier PN"
-	1    8975 1850
+P 9625 2450
+F 0 "R13" V 9800 2445 50  0000 C CNN
+F 1 "75k" V 9725 2445 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9665 2440 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 9625 2450 50  0001 C CNN
+F 4 "Panasonic" H 9625 2450 50  0001 C CNN "Manufacturer"
+F 5 "ERJ-PA3J753V" H 9625 2450 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 9625 2450 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 9625 2450 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364" H 9625 2450 50  0001 C CNN "Supplier Link"
+F 9 "P75KBZCT-ND" H 9625 2450 50  0001 C CNN "Supplier PN"
+	1    9625 2450
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -649,40 +608,6 @@ F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEp
 F 8 " 863-NCV20074DR2G " H 9575 1950 50  0001 C CNN "Supplier PN"
 F 9 "1.19" H 9575 1950 50  0001 C CNN "Price 1 QTY"
 	3    9575 1950
-	1    0    0    1   
-$EndComp
-$Comp
-L F1_OP_Amps:NCV2007x U2
-U 2 1 5D4B605F
-P 8125 1650
-F 0 "U2" H 8175 2017 50  0000 C CNN
-F 1 "NCV2007x" H 8175 1926 50  0000 C CNN
-F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 1300 50  0001 C CNN
-F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 1300 50  0001 C CNN
-F 4 "ON Semiconductor" H 8125 1650 50  0001 C CNN "Manufacturer"
-F 5 "NCV20074DR2G " H 8125 1650 50  0001 C CNN "Manufacturer PN"
-F 6 "Mouser" H 8125 1650 50  0001 C CNN "Supplier"
-F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 8125 1650 50  0001 C CNN "Supplier Link"
-F 8 " 863-NCV20074DR2G " H 8125 1650 50  0001 C CNN "Supplier PN"
-F 9 "1.19" H 8125 1650 50  0001 C CNN "Price 1 QTY"
-	2    8125 1650
-	1    0    0    1   
-$EndComp
-$Comp
-L F1_OP_Amps:NCV2007x U2
-U 1 1 5D4B495F
-P 8125 2350
-F 0 "U2" H 8175 1983 50  0000 C CNN
-F 1 "NCV2007x" H 8175 2074 50  0000 C CNN
-F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 2000 50  0001 C CNN
-F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 2000 50  0001 C CNN
-F 4 "ON Semiconductor" H 8125 2350 50  0001 C CNN "Manufacturer"
-F 5 "NCV20074DTBR2G" H 8125 2350 50  0001 C CNN "Manufacturer PN"
-F 6 "Digikey" H 8125 2350 50  0001 C CNN "Supplier"
-F 7 "https://www.digikey.com/product-detail/en/on-semiconductor/NCV20074DTBR2G/NCV20074DTBR2GOSCT-ND/9087194" H 8125 2350 50  0001 C CNN "Supplier Link"
-F 8 "NCV20074DTBR2GOSCT-ND" H 8125 2350 50  0001 C CNN "Supplier PN"
-F 9 "1.01" H 8125 2350 50  0001 C CNN "Price 1 QTY"
-	1    8125 2350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -920,38 +845,6 @@ F 9 "1.19" H 9650 3400 50  0001 C CNN "Price 1 QTY"
 	4    9650 3400
 	1    0    0    1   
 $EndComp
-$Comp
-L power:GNDA #PWR015
-U 1 1 5D4E04FF
-P 9225 2625
-F 0 "#PWR015" H 9225 2375 50  0001 C CNN
-F 1 "GNDA" H 9230 2452 50  0000 C CNN
-F 2 "" H 9225 2625 50  0001 C CNN
-F 3 "" H 9225 2625 50  0001 C CNN
-	1    9225 2625
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9225 2625 9225 2500
-Wire Wire Line
-	9225 2200 9225 2050
-$Comp
-L Device:R_US R12
-U 1 1 5D4D53DE
-P 9225 2350
-F 0 "R12" H 9293 2396 50  0000 L CNN
-F 1 "75k" H 9293 2305 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9265 2340 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 9225 2350 50  0001 C CNN
-F 4 "Panasonic" H 9225 2350 50  0001 C CNN "Manufacturer"
-F 5 "ERJ-PA3J753V" H 9225 2350 50  0001 C CNN "Manufacturer PN"
-F 6 "0.1" H 9225 2350 50  0001 C CNN "Price 1 QTY"
-F 7 "Digikey" H 9225 2350 50  0001 C CNN "Supplier"
-F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364" H 9225 2350 50  0001 C CNN "Supplier Link"
-F 9 "P75KBZCT-ND" H 9225 2350 50  0001 C CNN "Supplier PN"
-	1    9225 2350
-	1    0    0    -1  
-$EndComp
 Text HLabel 7025 2650 3    50   Input ~ 0
 MEASURE_OUT
 Text HLabel 7025 1350 1    50   Input ~ 0
@@ -1109,13 +1002,6 @@ Wire Wire Line
 	7775 2450 7875 2450
 Wire Wire Line
 	10475 1950 10625 1950
-Wire Wire Line
-	9925 1950 10050 1950
-Connection ~ 10050 1950
-Wire Wire Line
-	10050 1950 10175 1950
-Wire Wire Line
-	9795 1400 10050 1400
 $Comp
 L F1_Logo:LOGO #G1
 U 1 1 5E098C04
@@ -1575,5 +1461,123 @@ Wire Wire Line
 Wire Wire Line
 	4275 5375 4300 5375
 Wire Wire Line
-	10050 1400 10050 1950
+	9925 1950 10025 1950
+$Comp
+L power:GNDA #PWR0106
+U 1 1 5E254739
+P 10050 1450
+F 0 "#PWR0106" H 10050 1200 50  0001 C CNN
+F 1 "GNDA" H 10055 1277 50  0000 C CNN
+F 2 "" H 10050 1450 50  0001 C CNN
+F 3 "" H 10050 1450 50  0001 C CNN
+	1    10050 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10025 2450 10025 1950
+Connection ~ 10025 1950
+Wire Wire Line
+	10025 1950 10175 1950
+Wire Wire Line
+	9125 2050 9225 2050
+Wire Wire Line
+	10025 2450 9775 2450
+Wire Wire Line
+	9475 2450 9225 2450
+Wire Wire Line
+	9225 2450 9225 2050
+Connection ~ 9225 2050
+Wire Wire Line
+	9225 2050 9325 2050
+Wire Wire Line
+	10050 1400 10050 1450
+$Comp
+L Device:R_US R12
+U 1 1 5D4D53DE
+P 9625 1400
+F 0 "R12" H 9693 1446 50  0000 L CNN
+F 1 "75k" H 9693 1355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9665 1390 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 9625 1400 50  0001 C CNN
+F 4 "Panasonic" H 9625 1400 50  0001 C CNN "Manufacturer"
+F 5 "ERJ-PA3J753V" H 9625 1400 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 9625 1400 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 9625 1400 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J753V/P75KBZCT-ND/5036364" H 9625 1400 50  0001 C CNN "Supplier Link"
+F 9 "P75KBZCT-ND" H 9625 1400 50  0001 C CNN "Supplier PN"
+	1    9625 1400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9475 1400 9225 1400
+Wire Wire Line
+	9775 1400 10050 1400
+$Comp
+L F1_OP_Amps:NCV2007x U2
+U 2 1 5D4B605F
+P 8125 1650
+F 0 "U2" H 8175 2017 50  0000 C CNN
+F 1 "NCV2007x" H 8175 1926 50  0000 C CNN
+F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 1300 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 1300 50  0001 C CNN
+F 4 "ON Semiconductor" H 8125 1650 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DR2G " H 8125 1650 50  0001 C CNN "Manufacturer PN"
+F 6 "Mouser" H 8125 1650 50  0001 C CNN "Supplier"
+F 7 "https://www.mouser.com/ProductDetail/ON-Semiconductor/NCV20074DR2G?qs=sGAEpiMZZMtCHixnSjNA6NXlPpRsFEjtp%252BTBls3ALHY%3D" H 8125 1650 50  0001 C CNN "Supplier Link"
+F 8 " 863-NCV20074DR2G " H 8125 1650 50  0001 C CNN "Supplier PN"
+F 9 "1.19" H 8125 1650 50  0001 C CNN "Price 1 QTY"
+	2    8125 1650
+	1    0    0    1   
+$EndComp
+$Comp
+L F1_OP_Amps:NCV2007x U2
+U 1 1 5D4B495F
+P 8125 2350
+F 0 "U2" H 8175 1983 50  0000 C CNN
+F 1 "NCV2007x" H 8175 2074 50  0000 C CNN
+F 2 "Package_SO:TSSOP-14_4.4x5mm_P0.65mm" H 8125 2000 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/NCS20071-D.PDF" H 8125 2000 50  0001 C CNN
+F 4 "ON Semiconductor" H 8125 2350 50  0001 C CNN "Manufacturer"
+F 5 "NCV20074DTBR2G" H 8125 2350 50  0001 C CNN "Manufacturer PN"
+F 6 "Digikey" H 8125 2350 50  0001 C CNN "Supplier"
+F 7 "https://www.digikey.com/product-detail/en/on-semiconductor/NCV20074DTBR2G/NCV20074DTBR2GOSCT-ND/9087194" H 8125 2350 50  0001 C CNN "Supplier Link"
+F 8 "NCV20074DTBR2GOSCT-ND" H 8125 2350 50  0001 C CNN "Supplier PN"
+F 9 "1.01" H 8125 2350 50  0001 C CNN "Price 1 QTY"
+	1    8125 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R11
+U 1 1 5D4CA856
+P 8975 2050
+F 0 "R11" V 9075 2050 50  0000 C CNN
+F 1 "1.2k" V 9175 2050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9015 2040 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 8975 2050 50  0001 C CNN
+F 4 "Panasonic" H 8975 2050 50  0001 C CNN "Manufacturer"
+F 5 "ERJ-PA3J122V" H 8975 2050 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 8975 2050 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8975 2050 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247" H 8975 2050 50  0001 C CNN "Supplier Link"
+F 9 "P1.2KBZCT-ND" H 8975 2050 50  0001 C CNN "Supplier PN"
+	1    8975 2050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_US R10
+U 1 1 5D4CA065
+P 8975 1850
+F 0 "R10" V 8770 1850 50  0000 C CNN
+F 1 "1.2k" V 8861 1850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9015 1840 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf" H 8975 1850 50  0001 C CNN
+F 4 "Panasonic" H 8975 1850 50  0001 C CNN "Manufacturer"
+F 5 "ERJ-PA3J122V" H 8975 1850 50  0001 C CNN "Manufacturer PN"
+F 6 "0.1" H 8975 1850 50  0001 C CNN "Price 1 QTY"
+F 7 "Digikey" H 8975 1850 50  0001 C CNN "Supplier"
+F 8 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-PA3J122V/P1.2KBZCT-ND/5036247" H 8975 1850 50  0001 C CNN "Supplier Link"
+F 9 "P1.2KBZCT-ND" H 8975 1850 50  0001 C CNN "Supplier PN"
+	1    8975 1850
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
