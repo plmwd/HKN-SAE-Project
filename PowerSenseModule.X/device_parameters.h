@@ -11,21 +11,26 @@
  /**********************************************************************
  * DIFFERENTIAL AMPLIFIER - CURRENT SENSING
  ***********************************************************************/
-#define R_DIFF_1            10000.0              
-#define R_DIFF_2            10000.0             
-#define R_S                 99.0               
+// breadboard test
+//#define R_DIFF_1            10000.0              
+//#define R_DIFF_2            10000.0             
+//#define R_S                 99.0               
 
-//#define R_DIFF_1            1200.0              // 1.2kOhm
-//#define R_DIFF_2            75000.0             // 75kOhm
-//#define R_S                 0.004               // 4mOhm
+// PCB
+#define R_DIFF_1            1200.0              // 1.2kOhm
+#define R_DIFF_2            75000.0             // 75kOhm
+#define R_S                 0.004               // 4mOhm
 
  /**********************************************************************
  * VOLTAGE DIVIDER - VOLTAGE SENSING
  ***********************************************************************/
-#define R_V_DIV_1           1             // no division 
-#define R_V_DIV_2           1           
-//#define R_V_DIV_1           1000000.0           // 1MOhm
-//#define R_V_DIV_2           499000.0            // 499kOhm
+// breadboard test
+//#define R_V_DIV_1           1             // no division 
+//#define R_V_DIV_2           1           
+
+// PCB (1/4 divider)
+#define R_V_DIV_1           14990.0           // 14.99KOhm
+#define R_V_DIV_2           4990.0            // 4.99KOhm
 
 
  /**********************************************************************

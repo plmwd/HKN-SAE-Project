@@ -10,7 +10,7 @@
 
 #ifdef DEBUG_SYSTEM
 
-#define NUM_SAMPLES_PER_CH  10
+#define NUM_SAMPLES_PER_CH  100
 #define STR_LEN 40
 
 void BackslashFor(uint16_t num_backslashes);
@@ -50,7 +50,7 @@ void main(void) {
         for (int i = 0; i < NUM_SAMPLES_PER_CH; i++) {
             current_value += PSM_ProcessCurrent(current_samples[i]);
             voltage_value += PSM_ProcessVoltage(voltage_samples[i]);
-            //printf("measured voltage: %u, %.2f\tcurrent: %u, %.2f\n\r", voltage_samples[i], voltage_value, current_samples[i], current_value * 100);
+            //printf("measured voltage: %u, %.2fV\tcurrent: %u, %.2fA\n\r", voltage_samples[i], voltage_value, current_samples[i], current_value);
         }
         current_value /= NUM_SAMPLES_PER_CH;
         voltage_value /= NUM_SAMPLES_PER_CH;

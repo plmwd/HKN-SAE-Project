@@ -41,7 +41,7 @@
  ***********************************************************************/
 #define DEBUG
 //#define DEBUG_CAN
-#define DEBUG_UART_ALT_PIN
+//#define DEBUG_UART_ALT_PIN
 #define DEBUG_SYSTEM
 
 /**********************************************************************
