@@ -10,7 +10,7 @@
 
 #ifdef DEBUG_SYSTEM
 
-#define NUM_SAMPLES_PER_CH  10
+#define NUM_SAMPLES_PER_CH  100
 #define STR_LEN 40
 
 void BackslashFor(uint16_t num_backslashes);
@@ -27,7 +27,7 @@ void main(void) {
     SYSTEM_Initialize();
     
     // configure and enable ADC for dual channel readings for current and voltage
-    ADC1_ConfigureSampleMode(MANUAL_NONBLOCKING);
+    ADC1_ConfigureSampleMode(MANUAL_BLOCKING);
     ADC1_ConfigureChannelMode(DUAL_CH);
     ADC1_SetPrecision(ADC_10BIT);
     ADC1_ConfigureChannel0(VPOS_AN2, VNEG_CH0_VREFL);               // current 
@@ -41,20 +41,33 @@ void main(void) {
     // main while loop
     while (1) {
         // get ADC samples
+        //printf("sampling...\n\r");
+//        ADC1_SampleInput(VPOS_AN2, current_samples, 1);
+//        printf("measured: %u\n\r", current_samples[0]);
         ADC1_SampleChannels(current_samples, voltage_samples, 0, 0, NUM_SAMPLES_PER_CH);
         
         // calculate current and voltage from samples and take average
         for (int i = 0; i < NUM_SAMPLES_PER_CH; i++) {
             current_value += PSM_ProcessCurrent(current_samples[i]);
             voltage_value += PSM_ProcessVoltage(voltage_samples[i]);
+            //printf("measured voltage: %u, %.2fV\tcurrent: %u, %.2fA\n\r", voltage_samples[i], voltage_value, current_samples[i], current_value);
         }
         current_value /= NUM_SAMPLES_PER_CH;
         voltage_value /= NUM_SAMPLES_PER_CH;
         
+        
         // display on UART
+        //printf("voltage = %.2f V\tcurrent = %.2f mA\n\r", voltage_value, current_value * 1000);
+        
+        printf("  ");
         BackslashFor(strlen(display));
-        sprintf(display, "voltage = %.2f V\n\rcurrent = %.2f A", 0.0, 0.0);
+        printf("\r");
+        sprintf(display, "voltage = %.2f V\n\rcurrent = %.2f mA", voltage_value, current_value * 1000);
         printf("%s", display);
+        
+        current_value = 0;
+        voltage_value = 0;
+        __delay_ms(1000);
     }
 }
 

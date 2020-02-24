@@ -105,11 +105,7 @@
 #define CAN1_ENABLE
 #define CAN1BR_125KHz
 #define PWM_ENABLE
-
-
-//#define ADC1_ENABLE
-//#define BURST_FREQ 500
-// SAMPLING_FREQ undefined for maximum rate
+#define ADC1_ENABLE
 
 
 

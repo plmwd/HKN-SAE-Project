@@ -1,4 +1,6 @@
 #include "power_sense_module.h"
+#include "device_parameters.h"
+
 
 double PSM_ProcessCurrent(uint16_t data) {
     double adcVoltage, fOneBatteryCurrent = 0;
@@ -20,7 +22,7 @@ double PSM_ProcessVoltage(uint16_t data) {
     adcVoltage = 5.0 * (data / 1023.0);
     
     // Getting voltage of actual battery using circuit analysis
-    fOneBatteryVoltage = adcVoltage * ( R_V_DIV_1 / R_V_DIV_2 + 1);
+    fOneBatteryVoltage = adcVoltage * ( (R_V_DIV_1 + R_V_DIV_2) / R_V_DIV_2);
     
     return fOneBatteryVoltage;
 }
